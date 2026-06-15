@@ -1,0 +1,29 @@
+[project]
+name = "poto-backend"
+version = "0.1.0"
+description = "P.O.T.O — Backend FastAPI do Totem Inteligente de Emergência (UFPI)"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "pydantic>=2.7",
+    "httpx>=0.27",
+    "python-multipart>=0.0.9",
+    "langgraph>=0.2.50",
+    "langchain-core>=0.3",
+    "langchain-ollama>=0.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6", "langgraph-cli[inmem]>=0.1.55"]
+stt = ["faster-whisper>=1.0"]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

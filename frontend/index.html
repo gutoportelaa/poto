@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>P.O.T.O — Totem de Emergência</title>
+  <meta name="theme-color" content="#c0392b" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/poto-logo-3.png" />
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="/poto-logo-3.png" alt="P.O.T.O" />
+      <div>
+        <div class="wm">P<span class="d">.</span>O<span class="d">.</span>T<span class="d">.</span>O</div>
+        <div class="tag">Orientação · Triagem · Ouvidoria</div>
+      </div>
+    </div>
+    <span id="status" class="status"><span class="dot"></span>...</span>
+  </header>
+  <main class="kiosk" id="app"></main>
+  <script type="module" src="/dist/totem.js"></script>
+</body>
+</html>

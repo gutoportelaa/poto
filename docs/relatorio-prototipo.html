@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P.O.T.O — Protótipo (Entrega Inicial)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Zilla+Slab:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17150f; --muted:#6f6862; --faint:#9a938b;
+    --rust:#c0392b; --rust-d:#8f2a17;
+    --paper:#fbf9f6; --line:#e8e3dd; --line-d:#d6cfc6;
+    --bg:#ffffff; --ok:#2f7d4f;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.65;
+    font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:0 28px}
+  a{color:var(--rust-d);text-decoration:none;border-bottom:1px solid var(--line-d)}
+  a:hover{border-color:var(--rust)}
+
+  header.mast{padding:54px 0 30px;border-bottom:2px solid var(--ink)}
+  .wordmark{font-family:'Zilla Slab',serif;font-weight:700;font-size:15px;letter-spacing:.22em;color:var(--ink)}
+  .wordmark .dot{color:var(--rust)}
+  header.mast h1{font-family:'Zilla Slab',serif;font-weight:600;font-size:32px;line-height:1.15;
+    margin:18px 0 10px;letter-spacing:-.01em}
+  header.mast .sub{color:var(--muted);font-size:16px;max-width:660px;margin:0}
+  header.mast .meta{margin-top:18px;font-size:13px;color:var(--faint);letter-spacing:.02em}
+  .docnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .docnav a{font-size:13px;font-weight:600;border:1px solid var(--line-d);border-radius:999px;
+    padding:6px 14px;color:var(--ink);border-bottom-width:1px}
+  .docnav a.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .docnav a:hover{border-color:var(--rust)}
+
+  nav.toc{padding:26px 0;border-bottom:1px solid var(--line)}
+  nav.toc .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+  nav.toc ol{margin:0;padding:0;list-style:none;column-count:2;column-gap:36px}
+  nav.toc li{margin:0 0 6px;break-inside:avoid;font-size:14.5px}
+  nav.toc a{color:var(--ink);border:none}
+  nav.toc a:hover{color:var(--rust)}
+  nav.toc .n{color:var(--rust);font-family:'Zilla Slab',serif;font-weight:600;margin-right:8px}
+
+  section{padding:40px 0;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);
+    font-weight:600;margin-bottom:8px}
+  h2.sec{font-family:'Zilla Slab',serif;font-weight:600;font-size:25px;margin:0 0 14px;letter-spacing:-.01em}
+  h3{font-family:'Zilla Slab',serif;font-weight:600;font-size:18px;margin:26px 0 8px}
+  h4{font-weight:700;font-size:15px;margin:20px 0 4px;color:var(--ink)}
+  p{margin:12px 0}
+  .lead{color:var(--muted)}
+  ul,ol{margin:12px 0;padding-left:20px}
+  li{margin:5px 0}
+
+  table{border-collapse:collapse;width:100%;margin:18px 0;font-size:14px}
+  th{text-align:left;padding:9px 12px 9px 0;font-weight:600;font-size:12.5px;
+    text-transform:uppercase;letter-spacing:.04em;color:var(--muted);border-bottom:2px solid var(--ink)}
+  td{padding:10px 12px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+  td:first-child,th:first-child{padding-left:0}
+  tfoot td{font-weight:700;border-top:2px solid var(--ink);border-bottom:none}
+
+  code{font-family:'SFMono-Regular',Consolas,monospace;font-size:13px;background:var(--paper);
+    border:1px solid var(--line);padding:1px 5px;border-radius:4px;color:var(--rust-d)}
+  pre{background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--rust);
+    padding:16px 18px;border-radius:6px;overflow:auto;font-size:13px;line-height:1.55}
+  pre code{background:none;border:none;padding:0;color:var(--ink)}
+
+  .note{border-left:3px solid var(--line-d);padding:4px 0 4px 16px;margin:16px 0;color:var(--muted);font-size:14.5px}
+  .note.key{border-color:var(--rust)}
+  .note b{color:var(--ink)}
+
+  .tag{display:inline-block;font-size:11px;font-weight:600;padding:1px 7px;border-radius:4px;
+    border:1px solid var(--line-d);color:var(--muted);letter-spacing:.02em}
+  .tag.must{border-color:var(--rust);color:#fff;background:var(--rust)}
+
+  .fig{margin:22px 0}
+  .fig .mermaid{display:flex;justify-content:center;padding:10px 0}
+  .fig .cap{font-size:12.5px;color:var(--faint);margin-top:6px;text-align:center}
+  .yes{color:var(--ok);font-weight:700}
+  .no{color:var(--faint);font-weight:600}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  footer{padding:34px 0 60px;color:var(--faint);font-size:13px}
+
+  @media (max-width:680px){nav.toc ol,.grid2{column-count:1;grid-template-columns:1fr}
+    header.mast h1{font-size:26px}}
+  @media print{a{border:none}section{border-color:#ddd}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="wordmark">P<span class="dot">.</span>O<span class="dot">.</span>T<span class="dot">.</span>O &nbsp;— PLATAFORMA DE ORIENTAÇÃO, TRIAGEM E OUVIDORIA</div>
+  <h1>Protótipo — Entrega Inicial (1 totem)</h1>
+  <p class="sub">Recorte mínimo para validar as funcionalidades em bancada: um totem com controlador, câmera e microfone, emissão via API e central web. Sem TPU e sem gabinete nesta fase.</p>
+  <div class="meta">Campus Ministro Petrônio Portella · Teresina–PI &nbsp;·&nbsp; Documento de execução &nbsp;·&nbsp; Atualizado em 14/06/2026</div>
+  <div class="docnav">
+    <a href="relatorio-poto.html">← Projeção final</a>
+    <a class="active" href="relatorio-prototipo.html">Protótipo (entrega inicial)</a>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="eyebrow">Sumário</div>
+  <ol>
+    <li><span class="n">1</span><a href="#p1">Objetivo da entrega</a></li>
+    <li><span class="n">2</span><a href="#p2">Escopo — dentro e fora</a></li>
+    <li><span class="n">3</span><a href="#p3">Funcionalidades a validar</a></li>
+    <li><span class="n">4</span><a href="#p4">Arquitetura do protótipo</a></li>
+    <li><span class="n">5</span><a href="#p5">Lista de componentes (BOM)</a></li>
+    <li><span class="n">6</span><a href="#p6">Vídeo: bidirecional ou evidência</a></li>
+    <li><span class="n">7</span><a href="#p7">Emissão de alerta</a></li>
+    <li><span class="n">8</span><a href="#p8">Critérios de aceite</a></li>
+    <li><span class="n">9</span><a href="#p9">Plano até a entrega</a></li>
+  </ol>
+</nav>
+
+<section id="p1">
+  <div class="eyebrow">01 — Objetivo</div>
+  <h2 class="sec">Objetivo da entrega inicial</h2>
+  <p>Demonstrar, em <b>um único totem de bancada</b>, o fluxo ponta-a-ponta do P.O.T.O: acionamento → triagem (botão/touch, texto e voz) → roteamento → chamado na <b>central</b> em tempo real, com modo discreto e confirmação. O foco é <b>validar funcionalidades</b>, não a robustez física.</p>
+  <p class="note key">Decisões desta fase: <b>sem TPU</b> (triagem roda no servidor com Ollama), <b>sem gabinete</b> (montagem aberta para apresentação), <b>emissão só via API HTTP</b>. Resiliência offline, TPU, multi-protocolo e central NOC completa ficam na <a href="relatorio-poto.html">projeção final</a>.</p>
+</section>
+
+<section id="p2">
+  <div class="eyebrow">02 — Escopo</div>
+  <h2 class="sec">Escopo — dentro e fora</h2>
+  <div class="grid2">
+    <div>
+      <h4>Dentro (protótipo)</h4>
+      <ul>
+        <li>1 totem: controlador + câmera + microfone + tela touch.</li>
+        <li>Triagem por botão/touch, texto e voz (STT).</li>
+        <li>Agentes (LangGraph + Ollama) no servidor.</li>
+        <li>Emissão via <b>API HTTP</b> + fila local (store-and-forward).</li>
+        <li>Central web: lista em tempo real, ACK, mudança de estado.</li>
+        <li>Modo discreto (trilha mulher).</li>
+        <li>Captura de vídeo (chamada e/ou evidência — ver §6).</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Fora (vai para a projeção final)</h4>
+      <ul>
+        <li>Triagem offline em TPU (Hailo/Coral).</li>
+        <li>Gabinete antivandalismo, tamper, no-break.</li>
+        <li>Emissão MQTT / GSM / LoRa / sirene.</li>
+        <li>Central NOC com mapa de frota e relatórios PDF/CSV.</li>
+        <li>mTLS, RBAC completo e auditoria imutável.</li>
+        <li>Frota (vários totens) e atualização remota.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="p3">
+  <div class="eyebrow">03 — Funcionalidades</div>
+  <h2 class="sec">Funcionalidades a validar</h2>
+  <table>
+    <thead><tr><th>Req.</th><th>Funcionalidade</th><th>Como validar</th></tr></thead>
+    <tbody>
+      <tr><td>RC-01</td><td>Botão de pânico físico + touch</td><td>Pressionar o botão (GPIO) e tocar os ícones; chamado aparece na central.</td></tr>
+      <tr><td>RC-02</td><td>Triagem por trilha</td><td>Segurança / Mulher / Saúde / Ouvidoria roteiam ao canal correto.</td></tr>
+      <tr><td>RE-04</td><td>Chat por texto (agentes)</td><td>Descrever situação → triagem sugere tipo/gravidade com merge protetivo.</td></tr>
+      <tr><td>RE-04</td><td>Chat por voz (STT)</td><td>Gravar fala → transcrição → triagem. Animação e logs do microfone.</td></tr>
+      <tr><td>RC-06</td><td>Modo discreto</td><td>Trilha mulher: sem som, tela neutra, mensagem genérica.</td></tr>
+      <tr><td>RC-08</td><td>Store-and-forward</td><td>Desligar a rede: evento enfileira e sincroniza ao reconectar (idempotente).</td></tr>
+      <tr><td>RO-02</td><td>Central em tempo real</td><td>Chamado novo aparece via WebSocket; ACK e troca de estado refletem na hora.</td></tr>
+      <tr><td>RE-02</td><td>Vídeo (chamada/evidência)</td><td>Ver §6 — depende da validação com os destinos.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="p4">
+  <div class="eyebrow">04 — Arquitetura</div>
+  <h2 class="sec">Arquitetura do protótipo</h2>
+  <div class="fig">
+    <div class="mermaid">
+flowchart LR
+  subgraph TOTEM["Totem (Raspberry Pi 5)"]
+    direction TB
+    CAM["Camera"]
+    MIC["Microfone"]
+    TOUCH["Tela touch + botao"]
+    PWA["PWA kiosk (Bun)"]
+    CAM --> PWA
+    MIC --> PWA
+    TOUCH --> PWA
+  end
+  subgraph SRV["Servidor (notebook/PC)"]
+    direction TB
+    API["FastAPI · API de Eventos"]
+    AG["Agentes · LangGraph + Ollama"]
+    STT["STT · Whisper"]
+    DB[("SQLite")]
+    API --> DB
+    API -.-> AG
+    API -.-> STT
+  end
+  PWA -->|"HTTP / WS"| API
+  API --> CENTRAL["Central web (PWA)"]
+  classDef accent stroke:#c0392b,stroke-width:2px;
+  class API accent;
+    </div>
+    <div class="cap">Figura 1 — Protótipo: totem fino (Pi) + servidor com agentes/STT + central web.</div>
+  </div>
+  <p>Stack já implementada: <code>backend/</code> (FastAPI, uv), <code>frontend/</code> (Bun: totem + central). O totem é apenas cliente da API — o mesmo backend servirá o Pi+TPU na projeção final, sem reescrita.</p>
+</section>
+
+<section id="p5">
+  <div class="eyebrow">05 — Componentes</div>
+  <h2 class="sec">Lista de componentes (BOM)</h2>
+  <p>Preços aproximados no varejo BR, jun/2026, para referência de ordem de grandeza. <span class="tag must">obrigatório</span> marca os itens exigidos: controlador, câmera e microfone.</p>
+
+  <h3>5.1 Núcleo do totem</h3>
+  <table>
+    <thead><tr><th>Item</th><th>Modelo / versão sugerida</th><th>Papel</th><th>Aprox. (R$)</th></tr></thead>
+    <tbody>
+      <tr><td>Controlador <span class="tag must">obrigatório</span></td><td><b>Raspberry Pi 5 — 8 GB</b></td><td>Computador do totem (kiosk + cliente da API)</td><td>750–950</td></tr>
+      <tr><td>Câmera <span class="tag must">obrigatório</span></td><td><b>Raspberry Pi Camera Module 3</b> (Wide, CSI) <i>ou</i> webcam USB UVC (Logitech C920)</td><td>Vídeo de chamada / evidência. A C920 já inclui microfone</td><td>250–500</td></tr>
+      <tr><td>Microfone <span class="tag must">obrigatório</span></td><td><b>Mic USB</b> (array compacto) <i>ou</i> MEMS I2S (SPH0645) — dispensável se usar a C920</td><td>Captação de voz para o STT</td><td>80–250</td></tr>
+      <tr><td>Tela / touch</td><td>Raspberry Pi Touch Display 2 (7") <i>ou</i> monitor HDMI + touch USB</td><td>Interface do kiosk</td><td>500–900</td></tr>
+      <tr><td>Botão de pânico</td><td>Botão arcade 60 mm + jumpers (GPIO)</td><td>Acionamento físico (RC-01)</td><td>30–60</td></tr>
+      <tr><td>Alto-falante</td><td>Mini speaker USB ou 3,5 mm</td><td>Feedback sonoro (quando não discreto)</td><td>40–90</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5.2 Itens de operação (para ligar e rodar)</h3>
+  <table>
+    <thead><tr><th>Item</th><th>Modelo / versão</th><th>Aprox. (R$)</th></tr></thead>
+    <tbody>
+      <tr><td>Fonte</td><td>Fonte oficial USB-C PD 27 W (Pi 5)</td><td>90–140</td></tr>
+      <tr><td>Armazenamento</td><td>microSD 64 GB A2 (classe A2/U3)</td><td>50–90</td></tr>
+      <tr><td>Refrigeração</td><td>Active Cooler oficial do Pi 5</td><td>50–80</td></tr>
+      <tr><td>Cabos</td><td>CSI/FFC para a câmera, HDMI, USB</td><td>40–80</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td colspan="2">Total estimado do protótipo (1 totem, sem gabinete)</td><td>≈ R$ 1,9k–4,2k</td></tr>
+    </tfoot>
+  </table>
+
+  <h3>5.3 Upgrades (projeção final, fora do protótipo)</h3>
+  <table>
+    <thead><tr><th>Item</th><th>Modelo / versão</th><th>Para quê</th></tr></thead>
+    <tbody>
+      <tr><td>TPU</td><td>Raspberry Pi AI Kit (Hailo-8L, 13 TOPS, M.2) <i>ou</i> Google Coral USB</td><td>Triagem offline no edge</td></tr>
+      <tr><td>Celular</td><td>HAT 4G/LTE SIM7600</td><td>SMS + voz + dados de fallback</td></tr>
+      <tr><td>LoRa</td><td>Módulo SX1276/RFM95 + gateway</td><td>Alerta ultra-resiliente</td></tr>
+      <tr><td>Saída física</td><td>HAT de relé / contato seco</td><td>Sirene/strobe ou alarme do campus</td></tr>
+      <tr><td>Energia</td><td>UPS HAT + baterias 18650</td><td>No-break contra queda de energia</td></tr>
+      <tr><td>Proteção</td><td>Gabinete metálico antivandalismo + sensor tamper</td><td>Instalação em campo</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Recomendação de compra para a câmera: se o objetivo é <b>vídeo bidirecional plug-and-play</b>, a webcam USB (C920) simplifica (UVC + mic embutido). Se a prioridade é integração compacta e futura visão on-device, o <b>Camera Module 3</b> (CSI) é melhor — nesse caso, o microfone USB/I2S é obrigatório à parte.</p>
+</section>
+
+<section id="p6">
+  <div class="eyebrow">06 — Vídeo</div>
+  <h2 class="sec">Vídeo: bidirecional ou evidência</h2>
+  <p>A meta é <b>vídeo bidirecional</b> (o atendente vê a pessoa durante o chamado). Mas isso depende de os destinos de triagem conseguirem <b>receber</b> esse vídeo — o que precisa ser validado antes de prometer o recurso.</p>
+  <div class="fig">
+    <div class="mermaid">
+flowchart TD
+  Q{"Destino (CSV/Lilas) consegue receber video?"} -->|Sim| BI["Video bidirecional: WebRTC totem -> central/atendente"]:::accent
+  Q -->|Nao / a validar| FB["Tela de chamada (voz/texto) + camera grava evidencia local"]
+  classDef accent stroke:#c0392b,stroke-width:2px;
+    </div>
+    <div class="cap">Figura 2 — Caminho do vídeo conforme a capacidade de recepção dos destinos.</div>
+  </div>
+  <table>
+    <thead><tr><th>Cenário</th><th>O que entregamos</th><th>Recepção do vídeo</th></tr></thead>
+    <tbody>
+      <tr><td><b>Bidirecional</b></td><td>WebRTC totem → operador da central (que vê e fala).</td><td><span class="yes">Sim, na central</span></td></tr>
+      <tr><td><b>Fallback</b></td><td>Tela de chamada (voz/texto) + gravação local de evidência sob política.</td><td><span class="no">Vídeo só como registro</span></td></tr>
+    </tbody>
+  </table>
+  <p class="note key"><b>Plano de validação:</b> implementar a chamada WebRTC do totem para o operador da central (caminho garantido, pois a central é nossa). A integração de vídeo com WhatsApp/telefonia da CSV e da Sala Lilás é a incógnita — alinhar com cada unidade. Até lá, a câmera serve como <b>evidência</b> (gravação local sob política), nunca como transmissão sem respaldo.</p>
+</section>
+
+<section id="p7">
+  <div class="eyebrow">07 — Emissão</div>
+  <h2 class="sec">Emissão de alerta</h2>
+  <p>No protótipo, o alerta usa o <b>protocolo mínimo</b>: <code>POST /api/v1/eventos</code> via HTTPS, com fila local (store-and-forward) garantindo que nada se perca em queda de rede. A confirmação ao usuário é dada pelo enfileiramento, não pela resposta do servidor.</p>
+  <p>Os demais caminhos entram como <b>upgrade</b> na projeção final, na ordem da escada de fallback:</p>
+  <ol>
+    <li><b>API HTTPS</b> — implementado no protótipo.</li>
+    <li>MQTT (broker + central em tempo real).</li>
+    <li>GSM/4G — SMS + autodiscagem de voz (sem IP).</li>
+    <li>LoRa/LoRaWAN — payload mínimo, longo alcance.</li>
+    <li>Saída física — sirene/strobe ou alarme do campus.</li>
+  </ol>
+  <p class="note">Detalhes da escada completa na <a href="relatorio-poto.html#s8">projeção final, §8</a>.</p>
+</section>
+
+<section id="p8">
+  <div class="eyebrow">08 — Aceite</div>
+  <h2 class="sec">Critérios de aceite</h2>
+  <table>
+    <thead><tr><th>#</th><th>Critério</th><th>Meta</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Acionamento (botão e touch) gera chamado na central</td><td>≤ 3 s em rede local</td></tr>
+      <tr><td>2</td><td>Cada trilha roteia ao canal correto (tipo × horário)</td><td>4/4 trilhas corretas</td></tr>
+      <tr><td>3</td><td>Triagem por voz: fala → texto → tipo sugerido</td><td>Transcreve e classifica em PT-BR</td></tr>
+      <tr><td>4</td><td>Modo discreto não emite som nem texto explícito</td><td>Verificado na trilha mulher</td></tr>
+      <tr><td>5</td><td>Sinal crítico força escalonamento humano</td><td>Ex.: ideação suicida → SAMU + escalonar</td></tr>
+      <tr><td>6</td><td>Queda de rede: evento enfileira e sincroniza (sem duplicar)</td><td>Idempotência confirmada</td></tr>
+      <tr><td>7</td><td>Central: ACK e mudança de estado em tempo real</td><td>Refletem via WebSocket</td></tr>
+      <tr><td>8</td><td>Vídeo: chamada totem → operador da central</td><td>Imagem visível na central</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="p9">
+  <div class="eyebrow">09 — Plano</div>
+  <h2 class="sec">Plano até a entrega</h2>
+  <div class="grid2">
+    <div>
+      <h4>Software (já em andamento)</h4>
+      <ol>
+        <li>Backend FastAPI + central web — <span class="yes">pronto</span>.</li>
+        <li>Totem PWA (botão/touch, texto, voz) — <span class="yes">pronto</span>.</li>
+        <li>Agentes LangGraph + Ollama — <span class="yes">pronto</span>.</li>
+        <li>STT (Whisper local) — ativar com <code>make stt-setup</code>.</li>
+        <li>Vídeo WebRTC totem → central — a implementar.</li>
+      </ol>
+    </div>
+    <div>
+      <h4>Hardware / montagem</h4>
+      <ol>
+        <li>Adquirir BOM do núcleo (§5.1–5.2).</li>
+        <li>Gravar Raspberry Pi OS + rodar a PWA em modo kiosk.</li>
+        <li>Ligar botão de pânico ao GPIO.</li>
+        <li>Aferir câmera e microfone (captação e enquadramento).</li>
+        <li>Ensaiar a demonstração dos 8 critérios de aceite.</li>
+      </ol>
+    </div>
+  </div>
+  <p class="note key">Pendências de governança antes de testes com usuários: validar recepção de vídeo com CSV/Lilás, política de evidência (PROJUR) e pontos focais de cada serviço.</p>
+</section>
+
+<footer>
+  P.O.T.O · Plataforma de Orientação, Triagem e Ouvidoria — protótipo de entrega inicial.<br>
+  Arquitetura-alvo no <a href="relatorio-poto.html">relatório da projeção final</a>. Diagramas em Mermaid.js.
+</footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad:true, theme:'base',
+    themeVariables:{
+      primaryColor:'#fbf9f6', primaryBorderColor:'#17150f', primaryTextColor:'#17150f',
+      lineColor:'#9a938b', secondaryColor:'#f3efe9', tertiaryColor:'#ffffff',
+      fontFamily:'Inter, system-ui, sans-serif', fontSize:'13px'
+    },
+    flowchart:{curve:'basis', htmlLabels:true, nodeSpacing:42, rankSpacing:50}
+  });
+</script>
+</body>
+</html>

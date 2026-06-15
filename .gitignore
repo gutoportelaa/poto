@@ -1,0 +1,20 @@
+# Python / uv
+backend/.venv/
+__pycache__/
+*.pyc
+backend/poto.db
+.pytest_cache/
+.ruff_cache/
+
+# Node / Bun
+frontend/node_modules/
+frontend/dist/
+bun.lock
+bun.lockb
+
+# Env
+.env
+
+.agents/
+skills-lock.json
+*.pdf

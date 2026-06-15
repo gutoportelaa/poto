@@ -1,0 +1,8 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "triagem": "app.agents.graph:graph"
+  },
+  "env": ".env",
+  "python_version": "3.11"
+}

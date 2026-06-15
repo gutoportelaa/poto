@@ -1,0 +1,13 @@
+{
+  "name": "P.O.T.O — Totem de Emergência",
+  "short_name": "P.O.T.O",
+  "description": "Plataforma de Orientação, Triagem e Ouvidoria — UFPI",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#c0392b",
+  "icons": [
+    { "src": "/poto-logo-3.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

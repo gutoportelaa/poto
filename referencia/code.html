@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>P.O.T.O - Totem Home</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Space+Grotesk:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#ccc6bc",
+                    "rust": "#C0392B",
+                    "on-secondary-fixed-variant": "#4a463f",
+                    "tertiary-fixed-dim": "#80d0f8",
+                    "surface-container-high": "#fce2de",
+                    "on-primary-container": "#ffe5e1",
+                    "secondary-fixed": "#e8e2d7",
+                    "outline": "#8d706c",
+                    "tertiary-fixed": "#c0e8ff",
+                    "u2-warning": "#D68A2E",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#e8e2d7",
+                    "tertiary-container": "#007296",
+                    "tertiary": "#005875",
+                    "on-surface": "#261816",
+                    "line": "#E8E3DD",
+                    "surface-container-highest": "#f7ddd9",
+                    "on-tertiary-fixed-variant": "#004d66",
+                    "surface-bright": "#fff8f6",
+                    "u1-critical": "#C0392B",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#3c2d2a",
+                    "surface-tint": "#b02d21",
+                    "surface-variant": "#f7ddd9",
+                    "on-primary-fixed": "#410000",
+                    "primary-fixed": "#ffdad5",
+                    "on-background": "#261816",
+                    "muted": "#6F6862",
+                    "surface-dim": "#eed4d1",
+                    "background": "#fff8f6",
+                    "u4-success": "#2F7D4F",
+                    "u3-info": "#9A938B",
+                    "surface": "#fff8f6",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#c0392b",
+                    "on-surface-variant": "#59413d",
+                    "surface-container-low": "#fff0ee",
+                    "on-tertiary-container": "#d3eeff",
+                    "inverse-on-surface": "#ffedea",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#ffb4a9",
+                    "inverse-primary": "#ffb4a9",
+                    "on-tertiary-fixed": "#001e2b",
+                    "on-secondary-container": "#68645c",
+                    "outline-variant": "#e1bfb9",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "ink": "#17150F",
+                    "on-secondary-fixed": "#1e1b15",
+                    "rust-dark": "#8F2A17",
+                    "paper": "#FBF9F6",
+                    "on-primary-fixed-variant": "#8e130c",
+                    "rust-soft": "#F6E7E3",
+                    "secondary": "#625e56",
+                    "primary": "#9e2016",
+                    "surface-container": "#ffe9e6",
+                    "faint": "#9A938B"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "xxl": "48px",
+                    "md": "16px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "xl": "32px",
+                    "totem-margin": "64px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter", "sans-serif"],
+                    "label-bold": ["Inter", "sans-serif"],
+                    "display-totem": ["Space Grotesk", "sans-serif"],
+                    "headline-lg": ["Space Grotesk", "sans-serif"],
+                    "headline-md": ["Space Grotesk", "sans-serif"],
+                    "body-md": ["Inter", "sans-serif"],
+                    "caption": ["Inter", "sans-serif"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                    "label-bold": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                    "display-totem": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "400" }],
+                    "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                    "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                    "caption": ["12px", { "lineHeight": "16px", "fontWeight": "400" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+        
+        /* Custom animations for high-risk elements */
+        @keyframes pulse-ready {
+            0% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.4); transform: scale(1); }
+            70% { box-shadow: 0 0 0 20px rgba(192, 57, 43, 0); transform: scale(1.01); }
+            100% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0); transform: scale(1); }
+        }
+        .animate-pulse-ready {
+            animation: pulse-ready 3s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+
+        @keyframes subtle-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+        .hover-bounce:hover {
+            animation: subtle-bounce 1s ease-in-out infinite;
+        }
+        
+        /* Prevent selection on totem UI */
+        body {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+    </style>
+</head>
+<body class="bg-paper text-ink font-body-md h-screen w-screen overflow-hidden flex flex-col antialiased">
+<!-- Safe Area Container for Totem Display -->
+<div class="flex-grow flex flex-col p-totem-margin max-w-7xl mx-auto w-full h-full relative">
+<!-- Top App Bar / Header -->
+<header class="flex justify-between items-center w-full mb-xl shrink-0">
+<!-- Brand -->
+<div class="flex items-center gap-xs cursor-default">
+<span class="font-display-totem text-display-totem tracking-widest text-ink">
+                    P<span class="text-rust">.</span>O<span class="text-rust">.</span>T<span class="text-rust">.</span>O
+                </span>
+</div>
+<!-- Status Pill -->
+<div class="flex items-center gap-sm bg-surface-container-lowest border border-line rounded-full px-lg py-sm shadow-sm">
+<div class="relative flex h-3 w-3">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-u4-success opacity-75"></span>
+<span class="relative inline-flex rounded-full h-3 w-3 bg-u4-success"></span>
+</div>
+<span class="font-label-bold text-label-bold text-ink uppercase">Online</span>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col justify-center items-center w-full gap-xxl relative z-10">
+<!-- Headline -->
+<h1 class="font-display-totem text-[64px] leading-none text-ink text-center mb-md">
+                Como podemos ajudar?
+            </h1>
+<!-- Choice Cards Grid (2x2) -->
+<div class="grid grid-cols-2 gap-lg w-full max-w-4xl">
+<!-- Card 1: Emergência Médica -->
+<button class="bg-surface-container-lowest border border-line rounded-xl flex flex-col items-center justify-center p-xxl gap-lg transition-all duration-200 hover:bg-rust-soft hover:border-outline-variant hover:shadow-md active:scale-95 group h-[220px]">
+<span class="material-symbols-outlined text-[72px] text-rust group-hover:scale-110 transition-transform duration-300">stethoscope</span>
+<span class="font-headline-md text-headline-md text-ink text-center">Emergência médica</span>
+</button>
+<!-- Card 2: Segurança -->
+<button class="bg-surface-container-lowest border border-line rounded-xl flex flex-col items-center justify-center p-xxl gap-lg transition-all duration-200 hover:bg-rust-soft hover:border-outline-variant hover:shadow-md active:scale-95 group h-[220px]">
+<span class="material-symbols-outlined text-[72px] text-rust group-hover:scale-110 transition-transform duration-300">security</span>
+<span class="font-headline-md text-headline-md text-ink text-center">Segurança</span>
+</button>
+<!-- Card 3: Assédio / Sala Lilás -->
+<button class="bg-surface-container-lowest border border-line rounded-xl flex flex-col items-center justify-center p-xxl gap-lg transition-all duration-200 hover:bg-rust-soft hover:border-outline-variant hover:shadow-md active:scale-95 group h-[220px]">
+<span class="material-symbols-outlined text-[72px] text-rust group-hover:scale-110 transition-transform duration-300">female</span>
+<span class="font-headline-md text-headline-md text-ink text-center">Assédio / Sala Lilás</span>
+</button>
+<!-- Card 4: Outros -->
+<button class="bg-surface-container-lowest border border-line rounded-xl flex flex-col items-center justify-center p-xxl gap-lg transition-all duration-200 hover:bg-surface-variant hover:border-outline-variant hover:shadow-md active:scale-95 group h-[220px]">
+<span class="material-symbols-outlined text-[72px] text-muted group-hover:text-ink transition-colors duration-300">info</span>
+<span class="font-headline-md text-headline-md text-ink text-center">Outros</span>
+</button>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<footer class="w-full flex flex-col items-center gap-xl mt-auto shrink-0 z-20">
+<!-- Sub-action: Voice -->
+<button class="flex items-center gap-md group hover:bg-surface-container-lowest py-xs px-md rounded-full transition-colors duration-200">
+<div class="w-[56px] h-[56px] bg-surface-container-lowest border border-line rounded-full flex items-center justify-center shadow-sm group-hover:border-outline-variant group-hover:shadow-md transition-all duration-300">
+<span class="material-symbols-outlined text-rust text-[28px]">mic</span>
+</div>
+<span class="font-headline-md text-[20px] text-muted group-hover:text-ink transition-colors duration-200">Descrever por voz</span>
+</button>
+<!-- Massive Panic Button -->
+<button class="w-full max-w-4xl bg-rust text-on-primary rounded-full py-xl flex justify-center items-center gap-md shadow-lg active:bg-rust-dark transition-colors duration-150 animate-pulse-ready group">
+<span class="material-symbols-outlined text-[40px] group-active:scale-90 transition-transform">emergency</span>
+<span class="font-headline-lg text-headline-lg uppercase tracking-widest group-active:scale-95 transition-transform">Botão de Pânico</span>
+</button>
+</footer>
+</div>
+</body></html>

@@ -1,0 +1,16 @@
+{
+  "name": "poto-frontend",
+  "version": "0.1.0",
+  "description": "P.O.T.O — Totem (kiosk) e Painel institucional. PWA online/offline.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "bun run build.ts",
+    "serve": "bun run server.ts",
+    "dev": "bun run build.ts && bun run server.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.0",
+    "@types/bun": "latest"
+  }
+}
