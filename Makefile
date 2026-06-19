@@ -77,7 +77,11 @@ dev: ## Sobe backend e frontend juntos
 # ----------------------------------------------------------------- test ----
 .PHONY: test
 test: ## Roda os testes do backend
-	cd $(BACKEND) && uv run pytest -q
+	cd $(BACKEND) && uv sync --extra dev && uv run pytest -q
+
+.PHONY: acceptance
+acceptance: ## Critérios de aceite automatizados (relatorio-prototipo §8)
+	cd $(BACKEND) && uv sync --extra dev && uv run pytest tests/test_acceptance.py tests/test_router.py -q
 
 .PHONY: doctor
 doctor: ## Verifica módulos do setup (ferramentas, agentes, STT, câmera, microfone, serviços)

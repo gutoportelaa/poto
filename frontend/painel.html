@@ -3,44 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>P.O.T.O — Painel Institucional</title>
+  <title>P.O.T.O — Central</title>
   <link rel="icon" href="/poto-logo-3.png" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Michroma&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
   <link rel="stylesheet" href="/src/styles.css" />
 </head>
-<body>
-  <header class="topbar">
-    <div class="brand">
-      <img src="/poto-logo-3.png" alt="P.O.T.O" />
-      <div>
-        <div class="wm">P<span class="d">.</span>O<span class="d">.</span>T<span class="d">.</span>O</div>
-        <div class="tag">Painel Institucional</div>
-      </div>
+<body class="panel-body">
+  <header class="panel-bar">
+    <div class="brand compact">
+      <div class="wm">P<span class="d">.</span>O<span class="d">.</span>T<span class="d">.</span>O</div>
+      <span class="panel-label">Central</span>
     </div>
-    <span id="status" class="status"><span class="dot"></span>...</span>
+    <span id="status" class="status"><span class="dot"></span>…</span>
   </header>
   <main class="panel-wrap">
-    <div class="panel-head">
-      <div>
-        <h1>Chamados</h1>
-        <div style="color:var(--muted);font-size:14px">Monitoramento em tempo real — CSV · Sala Lilás · SAPSI · Ouvidoria</div>
+    <div class="panel-toolbar">
+      <h1>Chamados</h1>
+      <div class="filters">
+        <select id="f-tipo" aria-label="Filtrar tipo">
+          <option value="">Todos</option>
+          <option value="seguranca">Segurança</option>
+          <option value="mulher">Mulher</option>
+          <option value="saude">Saúde</option>
+          <option value="ouvidoria">Ouvidoria</option>
+        </select>
+        <select id="f-status" aria-label="Filtrar estado">
+          <option value="">Ativos</option>
+          <option value="notificado">Aguardando</option>
+          <option value="reconhecido">Reconhecidos</option>
+          <option value="em_atendimento">Em atendimento</option>
+          <option value="encerrado">Encerrados</option>
+        </select>
       </div>
-    </div>
-    <div class="filters">
-      <select id="f-tipo">
-        <option value="">Todos os tipos</option>
-        <option value="seguranca">Segurança</option>
-        <option value="mulher">Mulher</option>
-        <option value="saude">Saúde</option>
-        <option value="ouvidoria">Ouvidoria</option>
-      </select>
-      <select id="f-status">
-        <option value="">Todos os estados</option>
-        <option value="roteado">Roteado</option>
-        <option value="notificado">Notificado</option>
-        <option value="reconhecido">Reconhecido</option>
-        <option value="em_atendimento">Em atendimento</option>
-        <option value="encerrado">Encerrado</option>
-      </select>
     </div>
     <div class="cards" id="lista"></div>
   </main>

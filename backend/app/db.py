@@ -11,7 +11,7 @@ import sqlite3
 import threading
 from datetime import datetime, timezone
 
-from .config import DB_PATH
+from .config import DB_PATH, SLA_SEGUNDOS
 
 _lock = threading.Lock()
 _conn: sqlite3.Connection | None = None
@@ -62,9 +62,96 @@ def init_db() -> None:
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 totem_id TEXT NOT NULL, status_json TEXT, created_at TEXT NOT NULL
             );
+            CREATE TABLE IF NOT EXISTS notificacoes (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                chamado_id TEXT NOT NULL,
+                canal TEXT NOT NULL,
+                destino TEXT NOT NULL,
+                provider TEXT NOT NULL,
+                sucesso INTEGER NOT NULL,
+                mensagem TEXT,
+                detalhe TEXT,
+                escalonamento INTEGER NOT NULL DEFAULT 0,
+                created_at TEXT NOT NULL
+            );
             """
         )
         c.commit()
+
+
+def _parse_ts(iso: str) -> datetime:
+    return datetime.fromisoformat(iso.replace("Z", "+00:00"))
+
+
+def add_notificacao(
+    chamado_id: str,
+    canal: str,
+    destino: str,
+    provider: str,
+    sucesso: bool,
+    mensagem: str,
+    *,
+    detalhe: str | None = None,
+    escalonamento: bool = False,
+) -> None:
+    with _lock:
+        c = conn()
+        c.execute(
+            """INSERT INTO notificacoes
+               (chamado_id, canal, destino, provider, sucesso, mensagem, detalhe,
+                escalonamento, created_at)
+               VALUES (?,?,?,?,?,?,?,?,?)""",
+            (
+                chamado_id, canal, destino, provider, int(sucesso), mensagem,
+                detalhe, int(escalonamento), _now(),
+            ),
+        )
+        c.commit()
+
+
+def list_notificacoes(chamado_id: str) -> list[dict]:
+    with _lock:
+        rows = conn().execute(
+            "SELECT * FROM notificacoes WHERE chamado_id = ? ORDER BY created_at DESC",
+            (chamado_id,),
+        ).fetchall()
+    return [dict(r) for r in rows]
+
+
+def foi_escalonado(chamado_id: str) -> bool:
+    with _lock:
+        r = conn().execute(
+            "SELECT 1 FROM estado_log WHERE chamado_id = ? AND para = 'escalonado' LIMIT 1",
+            (chamado_id,),
+        ).fetchone()
+    return r is not None
+
+
+def chamados_sla_expirado() -> list[dict]:
+    """Chamados notificados sem ACK dentro do SLA e ainda não escalonados."""
+    with _lock:
+        rows = conn().execute(
+            """SELECT c.* FROM chamados c
+               WHERE c.status = 'notificado'
+                 AND c.acked_at IS NULL
+                 AND c.gravidade IN ('risco_imediato', 'risco_potencial')
+                 AND NOT EXISTS (
+                   SELECT 1 FROM estado_log e
+                   WHERE e.chamado_id = c.chamado_id AND e.para = 'escalonado'
+                 )
+               ORDER BY c.created_at ASC"""
+        ).fetchall()
+        candidatos = [row_to_dict(r) for r in rows]
+    agora = datetime.now(timezone.utc)
+    expirados: list[dict] = []
+    for chamado in candidatos:
+        sla = SLA_SEGUNDOS.get(chamado["gravidade"])
+        if not sla:
+            continue
+        ref = _parse_ts(chamado["updated_at"])
+        if (agora - ref).total_seconds() >= sla:
+            expirados.append(chamado)
+    return expirados
 
 
 def row_to_dict(r: sqlite3.Row) -> dict:

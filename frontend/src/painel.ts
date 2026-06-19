@@ -1,63 +1,99 @@
-// Painel institucional: chamados em tempo real, ACK e mudança de estado.
+// Central — fila limpa, ações claras.
 import { apiBase } from "./api";
 import { assistir, type SessaoRTC } from "./video";
+import { SYM, sym } from "./icons";
 
 const videoAtivo = new Set<string>();
-
 const lista = document.getElementById("lista")!;
 const statusEl = document.getElementById("status")!;
 const fTipo = document.getElementById("f-tipo") as HTMLSelectElement;
 const fStatus = document.getElementById("f-status") as HTMLSelectElement;
 
 const ESTADOS = ["roteado", "notificado", "reconhecido", "em_atendimento", "encerrado", "escalonado", "cancelado"];
-const CANAL_NOME: Record<string, string> = {
-  csv: "CSV / PREUNI", sala_lilas: "Sala Lilás", sapsi: "SAPSI", ouvidoria: "Ouvidoria",
-  samu_192: "SAMU 192", pm_190: "PM 190", central_180: "Central 180",
+const CANAL: Record<string, string> = {
+  csv: "CSV", sala_lilas: "Sala Lilás", sapsi: "SAPSI", ouvidoria: "Ouvidoria",
+  samu_192: "SAMU", pm_190: "PM", central_180: "180",
 };
-const TIPO_NOME: Record<string, string> = {
+const TIPO: Record<string, string> = {
   seguranca: "Segurança", mulher: "Mulher", saude: "Saúde", ouvidoria: "Ouvidoria",
 };
+const STATUS: Record<string, string> = {
+  roteado: "Roteado", notificado: "Aguardando", reconhecido: "Reconhecido",
+  em_atendimento: "Em atendimento", encerrado: "Encerrado", escalonado: "Escalonado",
+  cancelado: "Cancelado", falha_notificacao: "Falha envio",
+};
+const SLA_SEG: Record<string, number> = { risco_imediato: 120, risco_potencial: 600 };
 
 let chamados: any[] = [];
 
 function quando(iso: string): string {
-  const d = new Date(iso);
-  return d.toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
+  return new Date(iso).toLocaleString("pt-BR", {
+    day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit",
+  });
 }
 
 function gravClasse(g: string) {
   return g === "risco_imediato" ? "imediato" : g === "risco_potencial" ? "potencial" : "orientacao";
 }
 
+function slaRestante(c: any): string | null {
+  if (c.status !== "notificado" || c.acked_at) return null;
+  const sla = SLA_SEG[c.gravidade];
+  if (!sla) return null;
+  const ref = new Date(c.updated_at || c.created_at).getTime();
+  const rest = sla - Math.floor((Date.now() - ref) / 1000);
+  if (rest <= 0) return "SLA expirado";
+  const m = Math.floor(rest / 60);
+  const s = rest % 60;
+  return `Responder em ${m}:${String(s).padStart(2, "0")}`;
+}
+
 function render() {
-  const t = fTipo.value, s = fStatus.value;
-  const arr = chamados.filter((c) => (!t || c.tipo_ocorrencia === t) && (!s || c.status === s));
-  if (!arr.length) { lista.innerHTML = `<div class="empty">Nenhum chamado.</div>`; return; }
-  lista.innerHTML = arr.map((c) => `
-    <div class="card ${gravClasse(c.gravidade)}">
-      <div style="display:flex;justify-content:space-between;align-items:baseline">
-        <span class="id">${c.chamado_id}</span>
-        <span class="when">${quando(c.created_at)}</span>
-      </div>
-      <div class="chips">
-        <span class="chip rust">${TIPO_NOME[c.tipo_ocorrencia] || c.tipo_ocorrencia}</span>
-        <span class="chip">${c.gravidade.replace("_", " ")}</span>
-        ${c.modo === "discreto" ? `<span class="chip">discreto</span>` : ""}
-        <span class="chip">${c.totem_id}</span>
-        ${videoAtivo.has(c.chamado_id) ? `<span class="chip rust">● vídeo ao vivo</span>` : ""}
-      </div>
-      <div style="font-size:14px;color:var(--muted)">
-        Canal: <strong>${CANAL_NOME[c.canal_roteado] || c.canal_roteado}</strong> · estado: ${c.status}
-      </div>
-      <div class="acts">
-        <button class="ack" data-ack="${c.chamado_id}">Reconhecer</button>
-        <button data-video="${c.chamado_id}">${videoAtivo.has(c.chamado_id) ? "📹 Ver vídeo" : "📹 Vídeo"}</button>
-        <select data-st="${c.chamado_id}">
-          ${ESTADOS.map((e) => `<option value="${e}" ${e === c.status ? "selected" : ""}>${e}</option>`).join("")}
-        </select>
-      </div>
-    </div>
-  `).join("");
+  const t = fTipo.value;
+  const s = fStatus.value;
+  const arr = chamados.filter((c) => {
+    if (t && c.tipo_ocorrencia !== t) return false;
+    if (!s) return c.status !== "encerrado" && c.status !== "cancelado";
+    return c.status === s;
+  });
+
+  if (!arr.length) {
+    lista.innerHTML = `<div class="empty">Nenhum chamado${s || t ? " com estes filtros" : " ativo"}.</div>`;
+    return;
+  }
+
+  lista.innerHTML = arr.map((c) => {
+    const sla = slaRestante(c);
+    const urgente = sla === "SLA expirado";
+    const live = videoAtivo.has(c.chamado_id);
+    const meta = [
+      TIPO[c.tipo_ocorrencia] || c.tipo_ocorrencia,
+      CANAL[c.canal_roteado] || c.canal_roteado,
+      STATUS[c.status] || c.status,
+      c.modo === "discreto" ? "discreto" : null,
+    ].filter(Boolean).join(" · ");
+
+    return `
+      <article class="card ${gravClasse(c.gravidade)}${urgente ? " sla-urgente" : ""}">
+        <div class="card-head">
+          <span class="card-id">${c.chamado_id}</span>
+          <span class="card-meta">${meta}${live ? ` · <span class="badge live">vídeo</span>` : ""}</span>
+        </div>
+        <time class="card-when">${quando(c.created_at)}</time>
+        ${sla ? `<div class="card-sla">${sla}</div>` : ""}
+        <div class="card-actions">
+          ${c.status === "notificado" || c.status === "roteado" ? `
+            <button class="btn-ack" type="button" data-ack="${c.chamado_id}">Reconhecer</button>` : ""}
+          ${live || c.status !== "encerrado" ? `
+            <button class="btn-ghost" type="button" data-video="${c.chamado_id}">
+              ${sym(SYM.video, "sm")}${live ? "Ver vídeo" : "Vídeo"}
+            </button>` : ""}
+          <select data-st="${c.chamado_id}" aria-label="Estado">
+            ${ESTADOS.map((e) => `<option value="${e}" ${e === c.status ? "selected" : ""}>${STATUS[e] || e}</option>`).join("")}
+          </select>
+        </div>
+      </article>`;
+  }).join("");
 
   lista.querySelectorAll<HTMLButtonElement>("[data-ack]").forEach((b) =>
     b.addEventListener("click", () => ack(b.dataset.ack!)),
@@ -70,7 +106,6 @@ function render() {
   );
 }
 
-// Modal de visualização do vídeo do totem (sala = chamado_id).
 function abrirVideo(chamadoId: string) {
   let sessao: SessaoRTC | null = null;
   const ov = document.createElement("div");
@@ -78,11 +113,11 @@ function abrirVideo(chamadoId: string) {
   ov.innerHTML = `
     <div class="vbox">
       <div class="vhead">
-        <span>Vídeo · ${chamadoId}</span>
-        <button class="vclose" aria-label="Fechar">✕</button>
+        <span>${chamadoId}</span>
+        <button class="vclose" type="button" aria-label="Fechar">${sym(SYM.close, "sm")}</button>
       </div>
       <video class="vstream" autoplay playsinline></video>
-      <div class="vstatus">Aguardando o totem iniciar o vídeo…</div>
+      <div class="vstatus">Aguardando totem…</div>
     </div>`;
   document.body.appendChild(ov);
   const vid = ov.querySelector(".vstream") as HTMLVideoElement;
@@ -92,28 +127,27 @@ function abrirVideo(chamadoId: string) {
   ov.addEventListener("click", (e) => { if (e.target === ov) fechar(); });
 
   assistir(chamadoId, vid, {
-    onStream: () => { st.textContent = "Recebendo vídeo do totem."; },
+    onStream: () => { st.textContent = "Recebendo vídeo."; },
     onEstado: (e) => {
       if (e === "connected") st.textContent = "Conectado.";
       else if (e === "failed") st.textContent = "Falha na conexão.";
-      else if (e === "disconnected") st.textContent = "Totem desconectou.";
     },
   }).then((s) => { sessao = s; });
 }
 
 async function carregar() {
   try {
-    const r = await fetch(`${apiBase()}/chamados`);
-    chamados = await r.json();
+    chamados = await fetch(`${apiBase()}/chamados`).then((r) => r.json());
     render();
   } catch {
-    lista.innerHTML = `<div class="empty">Backend indisponível. Inicie a API (porta 8000).</div>`;
+    lista.innerHTML = `<div class="empty">API indisponível (porta 8000).</div>`;
   }
 }
 
 async function ack(id: string) {
   await fetch(`${apiBase()}/chamados/${id}/ack`, { method: "POST" });
 }
+
 async function mudarEstado(id: string, status: string) {
   await fetch(`${apiBase()}/chamados/${id}`, {
     method: "PATCH",
@@ -124,7 +158,8 @@ async function mudarEstado(id: string, status: string) {
 
 function upsert(c: any) {
   const i = chamados.findIndex((x) => x.chamado_id === c.chamado_id);
-  if (i >= 0) chamados[i] = c; else chamados.unshift(c);
+  if (i >= 0) chamados[i] = c;
+  else chamados.unshift(c);
   render();
 }
 
@@ -132,10 +167,13 @@ function conectarWS() {
   const url = apiBase().replace(/^http/, "ws") + "/ws";
   let ws: WebSocket;
   try { ws = new WebSocket(url); } catch { return; }
-  ws.onopen = () => { statusEl.className = "status online"; statusEl.innerHTML = `<span class="dot"></span>Tempo real`; };
+  ws.onopen = () => {
+    statusEl.className = "status online";
+    statusEl.innerHTML = `<span class="dot"></span>Tempo real`;
+  };
   ws.onclose = () => {
     statusEl.className = "status offline";
-    statusEl.innerHTML = `<span class="dot"></span>Reconectando...`;
+    statusEl.innerHTML = `<span class="dot"></span>Reconectando`;
     setTimeout(conectarWS, 3000);
   };
   ws.onmessage = (e) => {
@@ -152,4 +190,5 @@ fTipo.addEventListener("change", render);
 fStatus.addEventListener("change", render);
 carregar();
 conectarWS();
-setInterval(carregar, 20000);
+setInterval(carregar, 20_000);
+setInterval(render, 1000);

@@ -52,3 +52,50 @@ STUN_URL = os.getenv("POTO_STUN_URL", "stun:stun.l.google.com:19302")
 TURN_URL = os.getenv("POTO_TURN_URL", "")
 TURN_USER = os.getenv("POTO_TURN_USER", "")
 TURN_PASS = os.getenv("POTO_TURN_PASS", "")
+
+# --- Notificação externa ---------------------------------------------------
+# Redireciona todos os destinos para um número (testes em bancada).
+CONTACT_OVERRIDE = os.getenv("POTO_CONTACT_OVERRIDE", "").strip()
+NOTIF_PROVIDER = os.getenv("POTO_NOTIF_PROVIDER", "log").strip().lower()
+NOTIF_WEBHOOK_URL = os.getenv("POTO_NOTIF_WEBHOOK_URL", "").strip()
+NOTIF_WEBHOOK_TOKEN = os.getenv("POTO_NOTIF_WEBHOOK_TOKEN", "").strip()
+TELEGRAM_BOT_TOKEN = os.getenv("POTO_TELEGRAM_BOT_TOKEN", "").strip()
+TELEGRAM_CHAT_ID = os.getenv("POTO_TELEGRAM_CHAT_ID", "").strip()
+SLA_CHECK_INTERVAL = int(os.getenv("POTO_SLA_CHECK_INTERVAL", "30"))
+
+# Twilio (voz ou SMS)
+TWILIO_ACCOUNT_SID = os.getenv("POTO_TWILIO_ACCOUNT_SID", "").strip()
+TWILIO_AUTH_TOKEN = os.getenv("POTO_TWILIO_AUTH_TOKEN", "").strip()
+TWILIO_FROM = os.getenv("POTO_TWILIO_FROM", "").strip()
+TWILIO_MODE = os.getenv("POTO_TWILIO_MODE", "voice").strip().lower()  # voice | sms
+
+# Contatos por canal (E.164 ou e-mail). Usados quando CONTACT_OVERRIDE está vazio.
+_CONTACTS_RAW = {
+    "csv": os.getenv("POTO_CONTACT_CSV", "558632155591"),
+    "sala_lilas": os.getenv("POTO_CONTACT_SALA_LILAS", "5586994287263"),
+    "sapsi": os.getenv("POTO_CONTACT_SAPSI", "sapsi@ufpi.edu.br"),
+    "ouvidoria": os.getenv("POTO_CONTACT_OUVIDORIA", "ouvidoria@ufpi.br"),
+    "samu_192": os.getenv("POTO_CONTACT_SAMU", "192"),
+    "pm_190": os.getenv("POTO_CONTACT_PM", "190"),
+    "central_180": os.getenv("POTO_CONTACT_180", "180"),
+}
+
+CANAIS = {
+    key: {"nome": nome, "contato": _CONTACTS_RAW[key]}
+    for key, nome in [
+        ("csv", "CSV / PREUNI"),
+        ("sala_lilas", "Sala Lilás"),
+        ("sapsi", "SAPSI / PRAEC"),
+        ("ouvidoria", "Ouvidoria UFPI / Fala.BR"),
+        ("samu_192", "SAMU"),
+        ("pm_190", "Polícia Militar"),
+        ("central_180", "Central de Atendimento à Mulher"),
+    ]
+}
+
+
+def contato_canal(canal: str) -> str:
+    """Resolve o destino efetivo (override de testes ou contato do canal)."""
+    if CONTACT_OVERRIDE:
+        return CONTACT_OVERRIDE
+    return _CONTACTS_RAW.get(canal, canal)

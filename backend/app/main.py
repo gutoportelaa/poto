@@ -24,7 +24,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import db, stt, video
+from . import db, notifier, sla, stt, video
 from .agents.graph import conversa_voz, status_agentes, triagem_conversacional
 from .config import FRONTEND_DIST
 from .models import (
@@ -45,7 +45,13 @@ from .router_engine import CANAIS, rotear
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
     db.init_db()
+    task = asyncio.create_task(sla.sla_loop(hub))
     yield
+    task.cancel()
+    try:
+        await task
+    except asyncio.CancelledError:
+        pass
 
 
 app = FastAPI(
@@ -131,6 +137,7 @@ def health() -> dict:
         "agentes": status_agentes(),
         "stt": stt.status(),
         "video": video.status(),
+        "notificacao": notifier.status(),
     }
 
 
@@ -158,6 +165,8 @@ async def criar_evento(evento: EventoIn) -> EventoOut:
 
     if not duplicado:
         await hub.broadcast("novo_chamado", chamado)
+        _, chamado = await notifier.notificar_chamado(chamado)
+        await hub.broadcast("atualizado", chamado)
 
     return EventoOut(
         chamado_id=chamado["chamado_id"],
@@ -277,6 +286,7 @@ def detalhe(chamado_id: str):
     c = db.get_chamado(chamado_id)
     if not c:
         raise HTTPException(404, "Chamado não encontrado")
+    c["notificacoes"] = db.list_notificacoes(chamado_id)
     return c
 
 
