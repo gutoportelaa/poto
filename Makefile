@@ -79,6 +79,10 @@ dev: ## Sobe backend e frontend juntos
 test: ## Roda os testes do backend
 	cd $(BACKEND) && uv run pytest -q
 
+.PHONY: doctor
+doctor: ## Verifica módulos do setup (ferramentas, agentes, STT, câmera, microfone, serviços)
+	bash scripts/doctor.sh
+
 .PHONY: smoke
 smoke: ## Teste de fumaça: importa app e roteia um evento sem subir servidor
 	cd $(BACKEND) && uv run python -c "from app.router_engine import rotear; from app.models import TipoOcorrencia, Modo; print(rotear(TipoOcorrencia.mulher, Modo.normal))"

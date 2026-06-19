@@ -46,6 +46,7 @@ make dev            # backend :8000 + frontend :5173
 |---|---|
 | `make backend` | Sobe só a API (uvicorn, reload) |
 | `make frontend` | Builda e serve só a PWA |
+| `make doctor` | Verifica módulos do setup (ferramentas, agentes, STT, câmera, microfone, serviços) |
 | `make agents-check` | Mostra se está em modo `agentes` ou `heuristica` |
 | `make studio` | Abre o **LangGraph Studio** (visualiza e testa o fluxo) |
 | `make graph` | Exporta o grafo em Mermaid → `docs/agent-graph.mmd` |
@@ -64,15 +65,28 @@ make dev            # backend :8000 + frontend :5173
 | `POTO_DB_PATH` | `backend/poto.db` | Caminho do SQLite |
 | `POTO_STT_PROVIDER` | `none` | `none` ou `faster-whisper` (transcrição de voz) |
 | `POTO_WHISPER_MODEL` | `base` | Modelo Whisper (`tiny`/`base`/`small`...) |
+| `POTO_EVIDENCIA_ENABLED` | `true` | Liga o registro de evidência em vídeo |
+| `POTO_EVIDENCIA_DIR` | `backend/evidencias` | Pasta das evidências gravadas |
+| `POTO_STUN_URL` | `stun:stun.l.google.com:19302` | STUN para WebRTC (LAN dispensa) |
+| `POTO_TURN_URL` / `_USER` / `_PASS` | — | TURN (só para NAT simétrico) |
 
 No frontend, o endpoint da API pode ser sobrescrito em `localStorage.poto_api`.
 
 ## Voz / áudio no totem
 
-A tela **"Descrever a situação"** (totem → "Não sei classificar") aceita **fala**.
-Fluxo: gravar → enviar ao backend (`POST /transcrever`) → texto na caixa → triagem.
+Dois modos de voz:
 
-A interface mostra uma **animação branda** do microfone com estados claros e um
+- **Conversa hands-free** (botão "🎙️ Falar com o atendimento") — totalmente por voz:
+  um detector de atividade de voz (VAD) capta cada fala → Whisper transcreve
+  (`/transcrever`) → o agente decide a próxima pergunta ou conclui (`/conversa`) →
+  resposta falada por **síntese de voz (TTS, pt-BR)** → repete. Em sinal crítico
+  conclui de imediato e escala; senão faz até ~3 perguntas de acolhimento. Mostra o
+  diálogo transcrito em tela. **Requer STT ativo** (ver abaixo); no modo discreto a
+  voz não é iniciada automaticamente.
+- **Descrever por voz** (botão "Prefiro escrever") — grava uma fala única →
+  transcreve → preenche o campo → triagem.
+
+A interface mostra uma **animação branda** do microfone/orbe com estados claros e um
 painel de **logs** ao vivo:
 
 | Estado | UI | Quando |
@@ -88,6 +102,23 @@ painel de **logs** ao vivo:
 > de STT local: `make stt-setup` e depois `POTO_STT_PROVIDER=faster-whisper` no
 > `backend/.env`. Sem provedor, o áudio é recebido e a UI pede o texto digitado
 > (degradação graciosa — nenhuma fala sai da máquina).
+
+## Vídeo: registro e transmissão
+
+O totem captura vídeo da câmera e pode **transmitir ao vivo para a central** (WebRTC)
+além de **registrar evidência** local enviada ao backend.
+
+- **Transmissão (WebRTC):** o backend faz só a **sinalização** (SDP/ICE) em
+  `ws /api/v1/rtc/{sala}`, com `sala = chamado_id`; o vídeo trafega peer-to-peer.
+  ICE em `GET /api/v1/rtc/config`. No totem, na tela de confirmação (fora do modo
+  discreto), toque em **"Abrir vídeo com a central"**. Na central, o chamado mostra
+  **"● vídeo ao vivo"** e o botão **"Ver vídeo"** abre o visualizador.
+- **Evidência:** ao encerrar a chamada, o clipe é enviado a `POST /api/v1/evidencia`
+  e salvo em `backend/evidencias/` com metadados (gravação sob política).
+
+> Requer **contexto seguro**: funciona em `localhost`; em rede/IP, use HTTPS (exigência
+> do `getUserMedia`). Em LAN os *host candidates* bastam; STUN ajuda atrás de NAT.
+> No **modo discreto** (trilha mulher) o vídeo não é iniciado automaticamente (privacidade).
 
 ## Visualizar e testar o fluxo agêntico (LangGraph Studio)
 

@@ -1,5 +1,8 @@
 // Painel institucional: chamados em tempo real, ACK e mudança de estado.
 import { apiBase } from "./api";
+import { assistir, type SessaoRTC } from "./video";
+
+const videoAtivo = new Set<string>();
 
 const lista = document.getElementById("lista")!;
 const statusEl = document.getElementById("status")!;
@@ -41,12 +44,14 @@ function render() {
         <span class="chip">${c.gravidade.replace("_", " ")}</span>
         ${c.modo === "discreto" ? `<span class="chip">discreto</span>` : ""}
         <span class="chip">${c.totem_id}</span>
+        ${videoAtivo.has(c.chamado_id) ? `<span class="chip rust">● vídeo ao vivo</span>` : ""}
       </div>
       <div style="font-size:14px;color:var(--muted)">
         Canal: <strong>${CANAL_NOME[c.canal_roteado] || c.canal_roteado}</strong> · estado: ${c.status}
       </div>
       <div class="acts">
         <button class="ack" data-ack="${c.chamado_id}">Reconhecer</button>
+        <button data-video="${c.chamado_id}">${videoAtivo.has(c.chamado_id) ? "📹 Ver vídeo" : "📹 Vídeo"}</button>
         <select data-st="${c.chamado_id}">
           ${ESTADOS.map((e) => `<option value="${e}" ${e === c.status ? "selected" : ""}>${e}</option>`).join("")}
         </select>
@@ -60,6 +65,40 @@ function render() {
   lista.querySelectorAll<HTMLSelectElement>("[data-st]").forEach((sel) =>
     sel.addEventListener("change", () => mudarEstado(sel.dataset.st!, sel.value)),
   );
+  lista.querySelectorAll<HTMLButtonElement>("[data-video]").forEach((b) =>
+    b.addEventListener("click", () => abrirVideo(b.dataset.video!)),
+  );
+}
+
+// Modal de visualização do vídeo do totem (sala = chamado_id).
+function abrirVideo(chamadoId: string) {
+  let sessao: SessaoRTC | null = null;
+  const ov = document.createElement("div");
+  ov.className = "vmodal";
+  ov.innerHTML = `
+    <div class="vbox">
+      <div class="vhead">
+        <span>Vídeo · ${chamadoId}</span>
+        <button class="vclose" aria-label="Fechar">✕</button>
+      </div>
+      <video class="vstream" autoplay playsinline></video>
+      <div class="vstatus">Aguardando o totem iniciar o vídeo…</div>
+    </div>`;
+  document.body.appendChild(ov);
+  const vid = ov.querySelector(".vstream") as HTMLVideoElement;
+  const st = ov.querySelector(".vstatus") as HTMLElement;
+  const fechar = () => { sessao?.encerrar(); ov.remove(); };
+  ov.querySelector(".vclose")!.addEventListener("click", fechar);
+  ov.addEventListener("click", (e) => { if (e.target === ov) fechar(); });
+
+  assistir(chamadoId, vid, {
+    onStream: () => { st.textContent = "Recebendo vídeo do totem."; },
+    onEstado: (e) => {
+      if (e === "connected") st.textContent = "Conectado.";
+      else if (e === "failed") st.textContent = "Falha na conexão.";
+      else if (e === "disconnected") st.textContent = "Totem desconectou.";
+    },
+  }).then((s) => { sessao = s; });
 }
 
 async function carregar() {
@@ -102,6 +141,10 @@ function conectarWS() {
   ws.onmessage = (e) => {
     const m = JSON.parse(e.data);
     if (m.evento === "novo_chamado" || m.evento === "atualizado") upsert(m.dados);
+    else if (m.evento === "video_ativo" && m.dados?.chamado_id) {
+      videoAtivo.add(m.dados.chamado_id);
+      render();
+    }
   };
 }
 

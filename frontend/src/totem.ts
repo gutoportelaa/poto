@@ -5,6 +5,10 @@ import {
   apiBase, type EventoOut, type Modo, type TipoOcorrencia,
 } from "./api";
 import { GravadorAudio, transcrever, type EstadoAudio } from "./audio";
+import { CameraController, enviarEvidencia, publicar, type SessaoRTC } from "./video";
+import { ConversaVoz, type EstadoConversa } from "./voice";
+
+const TOTEM_ID = localStorage.getItem("poto_totem_id") || "TOTEM-CCS-01";
 
 const app = document.getElementById("app")!;
 const statusEl = document.getElementById("status")!;
@@ -42,7 +46,8 @@ function home() {
         </button>`).join("")}
     </div>
     <button class="panic" id="panic"><span class="ic">⚠️</span> EMERGÊNCIA — acionar segurança</button>
-    <div class="minor"><button class="linkbtn" id="describe">Não sei classificar — descrever a situação</button></div>
+    <button class="btn voz-cta" id="voz">🎙️ Falar com o atendimento (voz)</button>
+    <div class="minor"><button class="linkbtn" id="describe">Prefiro escrever a situação</button></div>
   `;
   app.querySelectorAll<HTMLButtonElement>(".choice").forEach((b) =>
     b.addEventListener("click", () => {
@@ -53,7 +58,81 @@ function home() {
   document.getElementById("panic")!.addEventListener("click", () =>
     acionar(novoEvento("seguranca", "normal", "botao_fisico")),
   );
+  document.getElementById("voz")!.addEventListener("click", conversaVoz);
   document.getElementById("describe")!.addEventListener("click", describe);
+}
+
+// Mapeia o estado da conversa para o visual do orbe (reutiliza o CSS do microfone).
+const ESTADO_ORB: Record<EstadoConversa, string> = {
+  ocioso: "ocioso", ouvindo: "gravando", processando: "processando",
+  falando: "falando", encerrado: "concluido", erro: "erro",
+};
+
+async function conversaVoz() {
+  // A conversa por voz depende de STT (Whisper). Avisa se estiver indisponível.
+  let sttOk = false;
+  try {
+    const h = await fetch(`${apiBase()}/health`).then((r) => r.json());
+    sttOk = !!h?.stt?.disponivel;
+  } catch { /* trata como indisponível */ }
+
+  if (!sttOk) {
+    app.innerHTML = `
+      <h1>Atendimento por voz</h1>
+      <p class="sub">O reconhecimento de fala (STT) não está ativo neste servidor.</p>
+      <div class="row">
+        <button class="btn" id="ir-descrever">Escrever a situação</button>
+        <button class="btn ghost" id="voltar">Voltar</button>
+      </div>
+      <p class="note-offline" style="margin-top:16px">Para habilitar a voz: <code>make stt-setup</code> e <code>POTO_STT_PROVIDER=faster-whisper</code>.</p>
+    `;
+    document.getElementById("ir-descrever")!.addEventListener("click", describe);
+    document.getElementById("voltar")!.addEventListener("click", home);
+    return;
+  }
+
+  app.innerHTML = `
+    <h1>Atendimento por voz</h1>
+    <p class="sub">Fale naturalmente. Eu ouço, respondo e encaminho.</p>
+    <div class="mic-zone">
+      <div class="mic" id="orb" data-estado="ocioso"><span class="orb"><span class="wave"></span><span class="ic">🎙️</span></span></div>
+      <div class="mic-status" id="cstatus">Iniciando…</div>
+    </div>
+    <ul class="dialog" id="dialog" aria-live="polite"></ul>
+    <div class="row" style="justify-content:center"><button class="btn ghost" id="parar">Encerrar</button></div>
+  `;
+  const orb = document.getElementById("orb")!;
+  const orbEl = orb.querySelector(".orb") as HTMLElement;
+  const cstatus = document.getElementById("cstatus")!;
+  const dialog = document.getElementById("dialog")!;
+
+  const conversa = new ConversaVoz({
+    onEstado: (e, det) => {
+      orb.setAttribute("data-estado", ESTADO_ORB[e]);
+      cstatus.textContent = det || (
+        e === "ouvindo" ? "Pode falar…" :
+        e === "falando" ? "…" :
+        e === "encerrado" ? "Encaminhando seu pedido…" : ""
+      );
+    },
+    onNivel: (n) => orbEl.style.setProperty("--nivel", String(0.9 + n * 0.9)),
+    onFala: (papel, texto) => {
+      const li = document.createElement("li");
+      li.className = "fala " + papel;
+      li.textContent = (papel === "voce" ? "Você: " : "P.O.T.O: ") + texto;
+      dialog.appendChild(li);
+      dialog.scrollTop = dialog.scrollHeight;
+    },
+    onLog: (m) => console.log("[voz]", m),
+    onConcluido: (r, transcricao) => {
+      const tipo = (r.tipo_sugerido as TipoOcorrencia) || "ouvidoria";
+      const modo: Modo = tipo === "mulher" ? "discreto" : "normal";
+      acionar(novoEvento(tipo, modo, "touch", transcricao || undefined));
+    },
+  });
+
+  document.getElementById("parar")!.addEventListener("click", () => { conversa.parar(); home(); });
+  conversa.iniciar("normal");
 }
 
 const ESTADO_TEXTO: Record<EstadoAudio, string> = {
@@ -164,17 +243,92 @@ async function acionar(ev: ReturnType<typeof novoEvento>) {
 
 function confirmar(out: EventoOut) {
   const neutro = out.instrucao_totem.tela_neutra;
+  // Vídeo só fora do modo discreto, online e com chamado válido (não offline).
+  const podeVideo = !neutro && !out._offline && !out.chamado_id.startsWith("LOCAL-");
   app.innerHTML = `
     <div class="confirm ${neutro ? "neutral" : ""}">
       <div class="mark">${neutro ? "•" : "✓"}</div>
       <h2>${out.instrucao_totem.mensagem_tela}</h2>
       ${neutro ? "" : `<p>Protocolo <strong>${out.chamado_id}</strong></p>`}
       ${out._offline ? `<div class="note-offline">Sem rede agora — registrado no totem e será enviado automaticamente.</div>` : ""}
+      ${podeVideo ? `<div class="row" style="justify-content:center"><button class="btn" id="abrir-video">📹 Abrir vídeo com a central</button></div>` : ""}
       <p class="meta">Esta tela volta ao início em instantes.</p>
     </div>
   `;
   if (out.instrucao_totem.feedback_sonoro) beep();
-  setTimeout(home, neutro ? 6000 : 9000);
+  const voltar = setTimeout(home, neutro ? 6000 : 12000);
+  if (podeVideo) {
+    document.getElementById("abrir-video")!.addEventListener("click", () => {
+      clearTimeout(voltar);
+      videoChamada(out.chamado_id);
+    });
+  }
+}
+
+// Tela de chamada de vídeo: publica a câmera na central e grava evidência local.
+async function videoChamada(chamadoId: string) {
+  const camera = new CameraController();
+  let sessao: SessaoRTC | null = null;
+  app.innerHTML = `
+    <div class="callscreen">
+      <h1>Vídeo com a central</h1>
+      <video id="local" autoplay muted playsinline></video>
+      <div class="call-status" id="call-status">Conectando…</div>
+      <ul class="logs" id="vlogs" aria-live="polite"></ul>
+      <div class="row" style="justify-content:center">
+        <button class="btn" id="encerrar">Encerrar chamada</button>
+      </div>
+    </div>
+  `;
+  const statusEl2 = document.getElementById("call-status")!;
+  const vlogs = document.getElementById("vlogs")!;
+  const localVideo = document.getElementById("local") as HTMLVideoElement;
+  const vlog = (m: string) => {
+    const li = document.createElement("li");
+    const h = new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    li.innerHTML = `<span class="t">${h}</span> ${m}`;
+    vlogs.prepend(li);
+    while (vlogs.childElementCount > 6) vlogs.lastElementChild!.remove();
+  };
+
+  const encerrar = async () => {
+    sessao?.encerrar();
+    vlog("Encerrando e salvando evidência…");
+    const blob = await camera.pararGravacao();
+    camera.parar();
+    if (blob) {
+      try { const m = await enviarEvidencia(blob, chamadoId, TOTEM_ID); vlog(`Evidência registrada (${Math.max(1, m.bytes / 1024 | 0)} KB).`); }
+      catch (e: any) { vlog("Falha ao enviar evidência: " + (e?.message || e)); }
+    }
+    setTimeout(home, 1200);
+  };
+  document.getElementById("encerrar")!.addEventListener("click", encerrar);
+
+  if (!camera.suportada) {
+    statusEl2.textContent = "Câmera indisponível neste dispositivo.";
+    vlog("getUserMedia indisponível (use HTTPS ou localhost).");
+    return;
+  }
+  try {
+    vlog("Solicitando câmera e microfone…");
+    const stream = await camera.iniciar(true);
+    localVideo.srcObject = stream;
+    camera.gravar();
+    vlog("Gravando evidência localmente.");
+    sessao = await publicar(chamadoId, stream, TOTEM_ID, {
+      onEstado: (e) => {
+        statusEl2.textContent =
+          e === "connected" ? "Conectado à central" :
+          e === "connecting" ? "Conectando…" :
+          e === "failed" ? "Falha na conexão (evidência segue gravando)" : e;
+        vlog("Estado da conexão: " + e);
+      },
+    });
+    vlog("Transmitindo para a central…");
+  } catch (e: any) {
+    statusEl2.textContent = "Não foi possível acessar a câmera.";
+    vlog("Erro: " + (e?.message || e));
+  }
 }
 
 function beep() {

@@ -163,6 +163,7 @@
       <tr><td>RC-02</td><td>Triagem por trilha</td><td>Segurança / Mulher / Saúde / Ouvidoria roteiam ao canal correto.</td></tr>
       <tr><td>RE-04</td><td>Chat por texto (agentes)</td><td>Descrever situação → triagem sugere tipo/gravidade com merge protetivo.</td></tr>
       <tr><td>RE-04</td><td>Chat por voz (STT)</td><td>Gravar fala → transcrição → triagem. Animação e logs do microfone.</td></tr>
+      <tr><td>RE-04</td><td>Conversa hands-free (voz)</td><td>VAD → Whisper → agente (pergunta ou conclui) → resposta por TTS. Diálogo em tela; conclui na hora em sinal crítico.</td></tr>
       <tr><td>RC-06</td><td>Modo discreto</td><td>Trilha mulher: sem som, tela neutra, mensagem genérica.</td></tr>
       <tr><td>RC-08</td><td>Store-and-forward</td><td>Desligar a rede: evento enfileira e sincroniza ao reconectar (idempotente).</td></tr>
       <tr><td>RO-02</td><td>Central em tempo real</td><td>Chamado novo aparece via WebSocket; ACK e troca de estado refletem na hora.</td></tr>
@@ -274,7 +275,7 @@ flowchart TD
       <tr><td><b>Fallback</b></td><td>Tela de chamada (voz/texto) + gravação local de evidência sob política.</td><td><span class="no">Vídeo só como registro</span></td></tr>
     </tbody>
   </table>
-  <p class="note key"><b>Plano de validação:</b> implementar a chamada WebRTC do totem para o operador da central (caminho garantido, pois a central é nossa). A integração de vídeo com WhatsApp/telefonia da CSV e da Sala Lilás é a incógnita — alinhar com cada unidade. Até lá, a câmera serve como <b>evidência</b> (gravação local sob política), nunca como transmissão sem respaldo.</p>
+  <p class="note key"><b>Implementado:</b> chamada <b>WebRTC totem → central</b> (sinalização SDP/ICE pelo backend em <code>/rtc/{sala}</code>, vídeo peer-to-peer) e <b>registro de evidência</b> local enviado a <code>/evidencia</code> ao encerrar. A integração de vídeo com WhatsApp/telefonia da CSV e da Sala Lilás permanece como incógnita a alinhar com cada unidade — por isso, fora da central, a câmera serve como <b>evidência</b> (gravação sob política), nunca como transmissão sem respaldo.</p>
 </section>
 
 <section id="p7">
@@ -321,7 +322,7 @@ flowchart TD
         <li>Totem PWA (botão/touch, texto, voz) — <span class="yes">pronto</span>.</li>
         <li>Agentes LangGraph + Ollama — <span class="yes">pronto</span>.</li>
         <li>STT (Whisper local) — ativar com <code>make stt-setup</code>.</li>
-        <li>Vídeo WebRTC totem → central — a implementar.</li>
+        <li>Vídeo WebRTC totem → central + registro de evidência — <span class="yes">pronto</span>.</li>
       </ol>
     </div>
     <div>

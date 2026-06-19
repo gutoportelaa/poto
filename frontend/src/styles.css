@@ -111,6 +111,9 @@ button { font-family: inherit; cursor: pointer; }
 /* processando: brilho suave girando */
 .mic[data-estado="processando"] .orb { animation: respira 1.1s ease-in-out infinite; }
 .mic[data-estado="processando"] .wave { opacity: .35; border-style: dashed; animation: girar 1.6s linear infinite; }
+/* falando (TTS): brilho suave e contínuo */
+.mic[data-estado="falando"] .orb { background: var(--rust-soft); border-color: var(--rust-d); color: var(--rust-d); animation: respira 2s ease-in-out infinite; }
+.mic[data-estado="falando"] .wave { opacity: .3; animation: eco 2.4s ease-out infinite; }
 /* concluído */
 .mic[data-estado="concluido"] .orb { background: #eaf4ee; border-color: var(--ok); color: var(--ok); }
 /* erro */
@@ -120,6 +123,13 @@ button { font-family: inherit; cursor: pointer; }
 @keyframes eco { 0% { opacity: .55; } 70% { opacity: .12; } 100% { opacity: 0; transform: scale(calc(var(--nivel) * 1.5)); } }
 @keyframes girar { to { transform: rotate(360deg); } }
 @keyframes tremor { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+
+/* conversa por voz: CTA na home + área de diálogo */
+.voz-cta { width: 100%; margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.dialog { list-style: none; margin: 18px 0 0; padding: 0; max-height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+.dialog .fala { padding: 10px 14px; border-radius: 14px; font-size: 15px; max-width: 85%; }
+.dialog .fala.voce { align-self: flex-end; background: var(--ink); color: #fff; border-bottom-right-radius: 4px; }
+.dialog .fala.poto { align-self: flex-start; background: var(--paper); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
 
 .logs { list-style: none; margin: 10px 0 0; padding: 0; font-size: 13px; color: var(--muted); }
 .logs li { padding: 4px 0; border-top: 1px dashed var(--line); }
@@ -151,6 +161,34 @@ button { font-family: inherit; cursor: pointer; }
   margin-top: 16px; font-size: 14px; color: var(--rust-d);
   background: var(--rust-soft); border-radius: 10px; padding: 10px 14px; display: inline-block;
 }
+
+/* ---- Tela de chamada de vídeo (totem) ---- */
+.callscreen { text-align: center; }
+.callscreen h1 { font-family: "Zilla Slab", serif; font-weight: 600; font-size: 26px; margin: 4px 0 14px; }
+.callscreen video {
+  width: 100%; max-width: 560px; aspect-ratio: 16/9; background: #000;
+  border-radius: var(--radius); border: 1.5px solid var(--line); object-fit: cover;
+  transform: scaleX(-1); /* espelho, como selfie */
+}
+.call-status { margin: 12px 0 4px; font-size: 16px; color: var(--muted); }
+
+/* ---- Modal de vídeo (central) ---- */
+.vmodal {
+  position: fixed; inset: 0; background: rgba(20, 15, 5, .55);
+  display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 50;
+}
+.vbox {
+  background: #fff; border-radius: var(--radius); border: 1.5px solid var(--line);
+  width: min(760px, 100%); overflow: hidden; box-shadow: var(--shadow);
+}
+.vhead {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; border-bottom: 1px solid var(--line);
+  font-family: "Zilla Slab", serif; font-weight: 600;
+}
+.vclose { border: none; background: none; font-size: 18px; cursor: pointer; color: var(--muted); }
+.vstream { width: 100%; aspect-ratio: 16/9; background: #000; object-fit: cover; display: block; }
+.vstatus { padding: 12px 16px; font-size: 14px; color: var(--muted); }
 
 /* ---- Painel ---- */
 .panel-wrap { max-width: 1040px; margin: 0 auto; padding: 22px 24px 60px; }

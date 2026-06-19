@@ -289,6 +289,62 @@ def triagem_conversacional(texto: str, modo: Modo = Modo.normal) -> dict:
         return _heuristica(texto, modo)
 
 
+def conversa_voz(historico: list[dict], modo: Modo = Modo.normal) -> dict:
+    """Conversa de triagem por voz (multi-turno).
+
+    Decide a próxima fala do atendimento e se já há informação suficiente para
+    concluir (com tipo/gravidade/canal). Em sinal crítico, conclui de imediato —
+    em emergência não se fica perguntando.
+    """
+    usuario = [h.get("texto", "") for h in historico if h.get("papel") == "usuario"]
+    texto_total = " ".join(t for t in usuario if t).strip()
+    if not texto_total:
+        return {"fala": "Pode falar. Estou ouvindo você.", "concluido": False,
+                "escalonar_humano": False}
+
+    seed = _heuristica(texto_total, modo)
+    critico = seed["escalonar_humano"] or _RANK_GRAV.get(seed["gravidade"], 1) == 3
+    n_turnos = len(usuario)
+
+    def concluir(fala: str) -> dict:
+        final = triagem_conversacional(texto_total, modo)  # aplica o merge protetivo
+        return {
+            "fala": fala,
+            "concluido": True,
+            "tipo_sugerido": final["tipo_sugerido"],
+            "gravidade": final["gravidade"],
+            "canal_sugerido": final["canal_sugerido"],
+            "escalonar_humano": final["escalonar_humano"],
+        }
+
+    if critico:
+        return concluir("Entendi, isto é urgente. Já estou acionando ajuda agora. "
+                        "Fique em um local seguro se for possível.")
+    # Sem LLM ou após 3 turnos, conclui para não cansar quem pede ajuda.
+    if not (AGENTS_ENABLED and LANGGRAPH_OK) or n_turnos >= 3:
+        return concluir(seed["mensagem_acolhimento"] + " Já vou encaminhar o seu pedido.")
+
+    # LLM gera a próxima pergunta de acolhimento (ou sinaliza PRONTO).
+    historico_txt = "\n".join(
+        ("Pessoa: " if h.get("papel") == "usuario" else "Atendente: ") + h.get("texto", "")
+        for h in historico
+    )
+    prompt = (
+        "Você é o atendente de acolhimento de um totem de emergência universitário. "
+        "Em português, faça UMA pergunta curta, calma e acolhedora para entender melhor "
+        "a situação (sem dar instrução clínica ou jurídica). Se já houver informação "
+        "suficiente para encaminhar, responda apenas a palavra PRONTO.\n\n"
+        f"{historico_txt}\nAtendente:"
+    )
+    try:
+        resposta = _chat().invoke(prompt).content.strip()
+        if "PRONTO" in resposta.upper() or len(resposta) < 2:
+            return concluir(seed["mensagem_acolhimento"] + " Já vou encaminhar o seu pedido.")
+        return {"fala": resposta[:240], "concluido": False, "escalonar_humano": False}
+    except Exception:
+        return concluir(seed["mensagem_acolhimento"] + " Já vou encaminhar o seu pedido.")
+
+
 def status_agentes() -> dict:
     return {
         "agents_enabled": AGENTS_ENABLED,

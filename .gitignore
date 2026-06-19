@@ -3,6 +3,7 @@ backend/.venv/
 __pycache__/
 *.pyc
 backend/poto.db
+backend/evidencias/
 .pytest_cache/
 .ruff_cache/
 

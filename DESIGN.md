@@ -158,8 +158,9 @@ A fonte de display é **Michroma** — herdeira open-source direta do DNA **Mich
 
 ## 6. Iconografia
 
-- Estilo **outline, traço 2px, cantos arredondados** (alinhado às curvas). Bibliotecas-base: Lucide ou Phosphor.
-- Tamanhos: 24 (UI), 30–36 (totem), 26 (pânico).
+- Estilo **outline, traço 2px, cantos arredondados** (alinhado às curvas). Biblioteca-base: **Material Symbols Rounded** (`FILL 0`, `wght 400`) — combina com a linguagem de curva e é o conjunto usado no protótipo; Lucide/Phosphor como alternativas equivalentes.
+- Tamanhos: 24 (UI), 30–36 (totem padrão), **até 72 nos cartões de escolha do totem** (leitura à distância), 26–40 (pânico).
+- Glifos validados (tela inicial): `stethoscope` (médica), `security`/`shield` (segurança), `female` (Sala Lilás), `info` (outros), `mic` (voz), `emergency` (pânico).
 - Cor segue o texto do contexto; ferrugem só em ícones de ação/alerta.
 - **Mascote:** a silhueta do potó é reservada à marca e a ilustrações de tela vazia/onboarding — **nunca** como ícone funcional (evita confundir com "praga/erro").
 
@@ -252,7 +253,7 @@ Quando a triagem retorna **Imediato** / pânico acionado:
 > **Contexto:** *Totem de emergência num campus universitário (UFPI Teresina). Identidade "P.O.T.O": preto-tinta `#17150F` + laranja-ferrugem `#C0392B` sobre papel quente `#FBF9F6`. Fonte de títulos **Michroma** + corpo **Inter** (Google Fonts); onde precisar de negrito de display, **Orbitron**. Cantos arredondados (raio 14px; ações primárias em cápsula). Botões grandes, alto contraste, calmo em repouso e inequívoco na emergência. Acessível AA, alvos ≥ 64px.*
 
 ### 11.1 Tela inicial — disposição dos botões
-> *Tela de totem em paisagem. Cabeçalho com wordmark "P.O.T.O" (pontos em laranja) + tagline e pill de status "Online" verde à direita. Título grande: "Como podemos ajudar?". Abaixo, grade 2×2 de botões-cartão grandes (ícone + título + 1 linha de descrição): "Emergência médica", "Segurança", "Assédio / Ouvidoria", "Não sei classificar". Sob a grade, um botão de PÂNICO em largura total, laranja-ferrugem sólido, texto branco. Link discreto "Descrever a situação por voz". Variante mobile: grade em 1 coluna.*
+> *Tela de totem em paisagem. Cabeçalho com wordmark "P.O.T.O" (pontos em laranja) + tagline e pill de status "Online" verde à direita. Título grande: "Como podemos ajudar?". Abaixo, grade 2×2 de botões-cartão grandes (ícone centralizado no topo + título centralizado): "Emergência médica", "Segurança", "Assédio / Sala Lilás", "Outros". Sob a grade, sub-ação "Descrever por voz" (ícone de microfone em círculo + texto) e, abaixo, um botão de PÂNICO em largura total, cápsula laranja-ferrugem sólida, texto branco. Variante mobile: grade em 1 coluna. (Layout fixado em §12.)*
 
 ### 11.2 Caso de alerta (emergência crítica)
 > *Tela de confirmação pós-acionamento, em estado crítico: fundo laranja-ferrugem (gradiente sutil para tom escuro), texto branco. Ícone grande de confirmação, mensagem "Pedido enviado. Ajuda a caminho." e número de protocolo em tipografia tabular grande. Um único botão branco "Falar com atendente agora". Microcópia de tranquilização. Sem elementos competindo por atenção. Mostrar também a variante "modo offline": mesma tela com aviso calmo em faixa clara "Sem internet — seu pedido foi salvo e será enviado automaticamente".*
@@ -275,7 +276,72 @@ Quando a triagem retorna **Imediato** / pânico acionado:
 
 ---
 
-## 12. Resumo de tokens (copiar para o projeto)
+## 12. Blueprint de layout — Tela inicial do totem
+
+Esta seção fixa a **disposição dos elementos** validada no protótipo (`referencia/screen.png` + `referencia/code.html`). É a referência canônica de arranjo espacial para a tela inicial; demais telas herdam as mesmas zonas (cabeçalho / conteúdo / rodapé de ação).
+
+### Estrutura em três zonas (totem full-screen, paisagem)
+
+```
+┌───────────────────────────────────────────────────────────────┐
+│  ▸ margem segura (--space-totem 64px) em toda a borda          │
+│                                                                 │
+│  P.O.T.O                                          ● ONLINE      │  ← HEADER
+│  (wordmark, pontos rust)                  (status pill, ping)    │
+│                                                                 │
+│                  Como podemos ajudar?                           │  ← MAIN
+│                     (headline display)                          │   (centro
+│        ┌───────────────────┐ ┌───────────────────┐             │    vertical)
+│        │   [ícone 72]      │ │   [ícone 72]      │             │
+│        │ Emergência médica │ │   Segurança       │             │
+│        └───────────────────┘ └───────────────────┘             │
+│        ┌───────────────────┐ ┌───────────────────┐             │
+│        │   [ícone 72]      │ │   [ícone 72]      │             │
+│        │ Assédio/Sala Lilás│ │   Outros          │             │
+│        └───────────────────┘ └───────────────────┘             │
+│                                                                 │
+│                ( 🎙 )  Descrever por voz                         │  ← FOOTER
+│        ╭───────────────────────────────────────────╮            │   (mt-auto)
+│        │   ✱   BOTÃO DE PÂNICO                       │            │
+│        ╰───────────────────────────────────────────╯            │
+└───────────────────────────────────────────────────────────────┘
+```
+
+- **Container:** ocupa a tela inteira, `overflow: hidden`, `user-select: none` (kiosk), coluna central `max-width ~1280px`, margem segura uniforme de **64px** (`--space-totem`).
+- **Header** (`space-between`): wordmark à esquerda, status pill à direita; ambos fixos (`shrink: 0`).
+- **Main** (`flex-grow`, centrado V/H): headline + grade 2×2; respira com o espaço disponível.
+- **Footer** (`margin-top: auto`, fixo embaixo): sub-ação de voz acima do botão de pânico — o pânico é sempre o último e mais pesado elemento.
+
+### Medidas-chave (mapeadas aos nossos tokens)
+
+| Elemento | Especificação |
+|---|---|
+| Margem segura | `64px` (`--space-totem`) |
+| Headline | display (Michroma), ~`48–64px`, `line-height: 1`, centrado |
+| Grade | 2 colunas, `gap` `24px` (`--space-lg`), `max-width ~896px` |
+| Cartão de escolha | branco (`--bg`), borda `1.5px --line`, raio **`--r-lg` (20px)**, altura `~220px`, conteúdo centrado, padding `48px` |
+| Ícone do cartão | `72px`, `--rust` (o "Outros" em `--muted`) |
+| Rótulo do cartão | display, `24px`, centrado |
+| Hover do cartão | fundo `--rust-soft`, borda realça, ícone escala `1.1`, sombra `--shadow`; `active` escala `0.95` |
+| Sub-ação voz | círculo `56px` com ícone `mic` + texto `20px` `--muted` |
+| Botão de pânico | cápsula (`--r-pill`), `--rust`, texto branco, largura plena (`max-width ~896px`), rótulo UPPERCASE com tracking, ícone `40px` |
+
+### Reconciliações com o DESIGN.md (o protótipo divergiu — vale o documento)
+
+| Ponto | Protótipo (Stitch) | **Canônico (este doc)** |
+|---|---|---|
+| Fonte display | Space Grotesk | **Michroma** (linhagem Eurostile, §4). Como é mais larga, reduzir headline para ~48–56px e manter tracking nos rótulos UPPERCASE |
+| Ícones | Material Symbols **filled** | **Material Symbols Rounded** `FILL 0` (§6) — alinha à linguagem de curva/outline |
+| Raio dos cartões | `xl` = 12px | **`--r-lg` 20px** para superfícies grandes do totem (§2) |
+| Conteúdo do cartão | ícone + título centrados, **sem descrição** | Adotado como **variante "cartão de escolha do totem"** (centrada, sem descrição); a variante à esquerda com descrição de §7.1 fica para listas/painel |
+| Pulso do pânico | `pulse-ready` (halo 3s) sem guarda | Aceito como pulso **único e sutil**, mas **deve respeitar `prefers-reduced-motion`** (§8) |
+| Fundo | `surface #fff8f6` | `--paper #FBF9F6` no corpo, `--bg #FFFFFF` nos cartões (§3) |
+
+> **Para o Stitch nas próximas telas:** reaproveitar exatamente estas três zonas (header/main/footer) e estes tokens; trocar Space Grotesk por Michroma e os ícones por Material Symbols Rounded na exportação final.
+
+---
+
+## 13. Resumo de tokens (copiar para o projeto)
 
 ```css
 :root {
@@ -287,6 +353,9 @@ Quando a triagem retorna **Imediato** / pânico acionado:
   /* curva */
   --r-xs:8px; --r-sm:10px; --r-md:14px; --r-lg:20px; --r-xl:28px; --r-pill:999px;
   --radius:var(--r-md);
+  /* espaço (base 4) */
+  --space-xs:8px; --space-sm:12px; --space-md:16px; --space-lg:24px;
+  --space-xl:32px; --space-xxl:48px; --space-totem:64px;
   /* tipografia */
   --font-display:"Michroma","Orbitron","Saira",system-ui,sans-serif;
   --font-display-bold:"Eurostile Extended","Orbitron","Michroma",sans-serif;

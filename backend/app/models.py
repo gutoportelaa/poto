@@ -86,6 +86,26 @@ class TriagemOut(BaseModel):
     fonte: str = Field(description="'agentes' (LLM) ou 'heuristica' (fallback).")
 
 
+# --- Conversa por voz (triagem multi-turno) ------------------------------
+class ConversaTurn(BaseModel):
+    papel: str = Field(description="'usuario' ou 'assistente'.")
+    texto: str
+
+
+class ConversaIn(BaseModel):
+    historico: list[ConversaTurn]
+    modo: Modo = Modo.normal
+
+
+class ConversaOut(BaseModel):
+    fala: str = Field(description="O que o atendimento deve falar em seguida (TTS).")
+    concluido: bool
+    tipo_sugerido: TipoOcorrencia | None = None
+    gravidade: Gravidade | None = None
+    canal_sugerido: str | None = None
+    escalonar_humano: bool = False
+
+
 # --- Painel ---------------------------------------------------------------
 class ChamadoUpdate(BaseModel):
     status: StatusChamado | None = None

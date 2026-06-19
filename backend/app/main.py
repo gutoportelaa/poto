@@ -11,16 +11,26 @@ import json
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, File, HTTPException, UploadFile, WebSocket, WebSocketDisconnect
+from fastapi import (
+    FastAPI,
+    File,
+    Form,
+    HTTPException,
+    UploadFile,
+    WebSocket,
+    WebSocketDisconnect,
+)
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import db, stt
-from .agents.graph import status_agentes, triagem_conversacional
+from . import db, stt, video
+from .agents.graph import conversa_voz, status_agentes, triagem_conversacional
 from .config import FRONTEND_DIST
 from .models import (
     ChamadoUpdate,
+    ConversaIn,
+    ConversaOut,
     EventoIn,
     EventoOut,
     Gravidade,
@@ -82,9 +92,46 @@ class Hub:
 hub = Hub()
 
 
+# --- Sinalização WebRTC: salas (1 por chamado) ----------------------------
+class SignalingHub:
+    """Relé de SDP/ICE entre pares de uma mesma sala. O vídeo é peer-to-peer;
+    o backend só intermedia a negociação."""
+
+    def __init__(self) -> None:
+        self._salas: dict[str, set[WebSocket]] = {}
+
+    async def entrar(self, sala: str, ws: WebSocket) -> None:
+        await ws.accept()
+        self._salas.setdefault(sala, set()).add(ws)
+
+    def sair(self, sala: str, ws: WebSocket) -> None:
+        peers = self._salas.get(sala)
+        if peers:
+            peers.discard(ws)
+            if not peers:
+                self._salas.pop(sala, None)
+
+    async def rele(self, sala: str, remetente: WebSocket, raw: str) -> None:
+        for peer in list(self._salas.get(sala, set())):
+            if peer is remetente:
+                continue
+            try:
+                await peer.send_text(raw)
+            except Exception:
+                self.sair(sala, peer)
+
+
+rtc = SignalingHub()
+
+
 @app.get(f"{API}/health")
 def health() -> dict:
-    return {"status": "ok", "agentes": status_agentes(), "stt": stt.status()}
+    return {
+        "status": "ok",
+        "agentes": status_agentes(),
+        "stt": stt.status(),
+        "video": video.status(),
+    }
 
 
 @app.get(f"{API}/canais")
@@ -128,6 +175,13 @@ def triagem(req: TriagemIn) -> TriagemOut:
     return TriagemOut(**triagem_conversacional(req.texto, req.modo))
 
 
+@app.post(f"{API}/conversa", response_model=ConversaOut)
+def conversa(req: ConversaIn) -> ConversaOut:
+    """Triagem conversacional por voz (multi-turno): próxima fala + conclusão."""
+    historico = [t.model_dump() for t in req.historico]
+    return ConversaOut(**conversa_voz(historico, req.modo))
+
+
 # --- Recepção de áudio (STT) ----------------------------------------------
 @app.post(f"{API}/transcrever")
 async def transcrever(audio: UploadFile = File(...)) -> dict:
@@ -148,6 +202,60 @@ async def transcrever(audio: UploadFile = File(...)) -> dict:
         return {"texto": texto, "transcricao_disponivel": True, "tamanho_bytes": tamanho}
     except Exception as e:  # falha real de transcrição -> erro para a UI
         raise HTTPException(503, f"Falha na transcrição: {e}")
+
+
+# --- Vídeo: registro (evidência) e transmissão (WebRTC) -------------------
+@app.get(f"{API}/rtc/config")
+def rtc_config() -> dict:
+    """Servidores ICE para o WebRTC (consumido pelo totem e pela central)."""
+    return {"iceServers": video.ice_servers()}
+
+
+@app.post(f"{API}/evidencia")
+async def evidencia(
+    video_file: UploadFile = File(..., alias="video"),
+    chamado_id: str = Form("sem-chamado"),
+    totem_id: str = Form("TOTEM-CCS-01"),
+) -> dict:
+    dados = await video_file.read()
+    sufixo = "." + ((video_file.filename or "evidencia.webm").rsplit(".", 1)[-1])
+    try:
+        meta = video.salvar_evidencia(dados, chamado_id, totem_id, sufixo=sufixo)
+    except video.EvidenciaDesativada as e:
+        raise HTTPException(403, str(e))
+    await hub.broadcast("evidencia", meta)
+    return meta
+
+
+@app.get(f"{API}/evidencias")
+def evidencias() -> list[dict]:
+    return video.listar_evidencias()
+
+
+@app.websocket(f"{API}/rtc/{{sala}}")
+async def rtc_ws(ws: WebSocket, sala: str) -> None:
+    """Canal de sinalização. Mensagens trafegam cruas entre os pares da sala;
+    'publicando' avisa a central (painel) que há vídeo ativo para o chamado."""
+    await rtc.entrar(sala, ws)
+    try:
+        await rtc.rele(sala, ws, json.dumps({"tipo": "peer-entrou"}))
+        while True:
+            raw = await ws.receive_text()
+            try:
+                msg = json.loads(raw)
+            except json.JSONDecodeError:
+                continue
+            if msg.get("tipo") == "publicando":
+                await hub.broadcast(
+                    "video_ativo",
+                    {"chamado_id": sala, "totem_id": msg.get("totem_id")},
+                )
+            await rtc.rele(sala, ws, raw)
+    except WebSocketDisconnect:
+        rtc.sair(sala, ws)
+        await rtc.rele(sala, ws, json.dumps({"tipo": "peer-saiu"}))
+    except Exception:
+        rtc.sair(sala, ws)
 
 
 # --- Heartbeat ------------------------------------------------------------

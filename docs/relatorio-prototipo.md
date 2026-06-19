@@ -60,6 +60,7 @@ Demonstrar, em **um único totem de bancada**, o fluxo ponta-a-ponta do P.O.T.O:
 | RC-02 | Triagem por trilha | Segurança / Mulher / Saúde / Ouvidoria roteiam ao canal correto. |
 | RE-04 | Chat por texto (agentes) | Descrever situação → triagem sugere tipo/gravidade com merge protetivo. |
 | RE-04 | Chat por voz (STT) | Gravar fala → transcrição → triagem. Animação e logs do microfone. |
+| RE-04 | Conversa hands-free (voz) | VAD → Whisper → agente (pergunta ou conclui) → resposta por TTS. Diálogo em tela; conclui na hora em sinal crítico. |
 | RC-06 | Modo discreto | Trilha mulher: sem som, tela neutra, mensagem genérica. |
 | RC-08 | Store-and-forward | Desligar a rede: evento enfileira e sincroniza ao reconectar (idempotente). |
 | RO-02 | Central em tempo real | Chamado novo aparece via WebSocket; ACK e troca de estado refletem na hora. |
@@ -156,7 +157,7 @@ flowchart TD
 | **Bidirecional** | WebRTC totem → operador da central (que vê e fala). | Sim, na central |
 | **Fallback** | Tela de chamada (voz/texto) + gravação local de evidência sob política. | Vídeo só como registro |
 
-> **Plano de validação:** implementar a chamada WebRTC do totem para o operador da central (caminho garantido, pois a central é nossa). A integração de vídeo com WhatsApp/telefonia da CSV e da Sala Lilás é a incógnita — alinhar com cada unidade. Até lá, a câmera serve como **evidência** (gravação local sob política), nunca como transmissão sem respaldo.
+> **Implementado:** chamada **WebRTC totem → central** (sinalização SDP/ICE pelo backend em `/rtc/{sala}`, vídeo peer-to-peer) e **registro de evidência** local enviado a `/evidencia` ao encerrar. A integração de vídeo com WhatsApp/telefonia da CSV e da Sala Lilás permanece como incógnita a alinhar com cada unidade — por isso, fora da central, a câmera serve como **evidência** (gravação sob política), nunca como transmissão sem respaldo.
 
 ---
 
@@ -197,7 +198,7 @@ Os demais caminhos entram como **upgrade** na projeção final, na ordem da esca
 2. Totem PWA (botão/touch, texto, voz) — ✅ pronto.
 3. Agentes LangGraph + Ollama — ✅ pronto.
 4. STT (Whisper local) — ativar com `make stt-setup`.
-5. Vídeo WebRTC totem → central — a implementar.
+5. Vídeo WebRTC totem → central + registro de evidência — ✅ pronto.
 
 **Hardware / montagem**
 1. Adquirir BOM do núcleo (§5.1–5.2).

@@ -40,3 +40,15 @@ SLA_SEGUNDOS = {
     "risco_potencial": 600,
     "orientacao": None,
 }
+
+# --- Vídeo: registro (evidência) e transmissão (WebRTC) -------------------
+EVIDENCIA_ENABLED = _bool("POTO_EVIDENCIA_ENABLED", True)
+EVIDENCIA_DIR = os.getenv("POTO_EVIDENCIA_DIR", str(BASE_DIR / "evidencias"))
+EVIDENCIA_MAX_MB = int(os.getenv("POTO_EVIDENCIA_MAX_MB", "80"))
+
+# ICE servers para WebRTC. Em LAN/localhost os "host candidates" bastam; o STUN
+# ajuda atrás de NAT. TURN só é necessário em NAT simétrico (deixar vazio no PoC).
+STUN_URL = os.getenv("POTO_STUN_URL", "stun:stun.l.google.com:19302")
+TURN_URL = os.getenv("POTO_TURN_URL", "")
+TURN_USER = os.getenv("POTO_TURN_USER", "")
+TURN_PASS = os.getenv("POTO_TURN_PASS", "")
