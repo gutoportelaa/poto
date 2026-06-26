@@ -67,6 +67,60 @@ def montar_mensagem(
     )
 
 
+# --- Locução de voz (TwiML/SSML, Polly pt-BR) -----------------------------
+_GRAV_FALADA = {
+    "risco_imediato": "imediata",
+    "risco_potencial": "potencial",
+    "orientacao": "orientação",
+}
+
+
+def _totem_falado(totem_id: str) -> str:
+    """Identificador do totem legível pela TTS: tira o prefixo 'TOTEM-' e troca
+    hifens por espaços para ser soletrado com clareza ao telefone."""
+    ident = totem_id or ""
+    up = ident.upper()
+    for pre in ("TOTEM-", "TOTEM_", "TOTEM "):
+        if up.startswith(pre):
+            ident = ident[len(pre):]
+            break
+    return ident.replace("-", " ").replace("_", " ").strip() or (totem_id or "")
+
+
+def _twiml_simples(texto: str) -> str:
+    """Fallback de voz: lê o texto puro (sem SSML)."""
+    return (
+        f'<?xml version="1.0" encoding="UTF-8"?>'
+        f'<Response><Say voice="{html.escape(TWILIO_VOICE)}" language="pt-BR">'
+        f"{html.escape(texto)}</Say></Response>"
+    )
+
+
+def montar_twiml(
+    chamado: dict, canal: str, *, escalonamento: bool = False, prefixo: str | None = None
+) -> str:
+    """Locução de voz do alerta (TwiML/SSML, Polly pt-BR). Roteiro único e enxuto —
+    só os valores mudam. Protocolo lido em dígitos, totem soletrado e pausas curtas
+    entre os campos, para precisão e clareza ao telefone."""
+    e = html.escape
+    tipo = TIPO_NOME.get(
+        chamado.get("tipo_ocorrencia", ""), chamado.get("tipo_ocorrencia") or "ocorrência"
+    )
+    grav = _GRAV_FALADA.get(chamado.get("gravidade", ""), chamado.get("gravidade") or "")
+    totem = _totem_falado(chamado.get("totem_id", ""))
+    proto = (chamado.get("chamado_id", "") or "").rsplit("-", 1)[-1]
+    proto_as = "digits" if proto.isdigit() else "characters"
+    return (
+        f'<?xml version="1.0" encoding="UTF-8"?>'
+        f'<Response><Say voice="{e(TWILIO_VOICE)}" language="pt-BR"><prosody rate="95%">'
+        f'Alerta, P O T O. <break time="400ms"/>'
+        f'{e(tipo)}, gravidade {e(grav)}. <break time="400ms"/>'
+        f'Totem <say-as interpret-as="characters">{e(totem)}</say-as>. <break time="450ms"/>'
+        f'Protocolo <say-as interpret-as="{proto_as}">{e(proto)}</say-as>.'
+        f"</prosody></Say></Response>"
+    )
+
+
 def _format_e164(destino: str) -> str | None:
     """Normaliza número para E.164 (+5586…). Retorna None se não for telefone."""
     if "@" in destino:
@@ -141,12 +195,8 @@ class TwilioProvider:
                         data={"To": to, "From": TWILIO_FROM, "Body": mensagem},
                     )
                 else:
-                    fala = html.escape(mensagem)
-                    voice = html.escape(TWILIO_VOICE)
-                    twiml = (
-                        f'<?xml version="1.0" encoding="UTF-8"?>'
-                        f'<Response><Say voice="{voice}" language="pt-BR">{fala}</Say></Response>'
-                    )
+                    # SSML pré-montado (montar_twiml) chega via meta; fallback = texto puro.
+                    twiml = meta.get("twiml") or _twiml_simples(mensagem)
                     data: dict = {"To": to, "From": TWILIO_FROM, "Twiml": twiml}
                     # statusCallback ao vivo (tocando/atendida/encerrada) — exige URL pública.
                     # httpx encoda o valor-lista como parâmetro repetido (StatusCallbackEvent).
@@ -197,6 +247,7 @@ async def enviar_para_canal(
         "canal": canal,
         "destino": destino,
         "escalonamento": escalonamento,
+        "twiml": montar_twiml(chamado, canal, escalonamento=escalonamento, prefixo=prefixo),
     }
     prov = _provider()
     ok, detalhe = await prov.enviar(destino, mensagem, meta)
