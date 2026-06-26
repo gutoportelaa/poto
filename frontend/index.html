@@ -7,21 +7,23 @@
   <meta name="theme-color" content="#c0392b" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="icon" href="/poto-logo-3.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Michroma&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
-  <link rel="stylesheet" href="/src/styles.css" />
+  <link rel="stylesheet" href="/src/styles.css?v=9" />
 </head>
 <body class="totem-body">
   <div class="totem-shell">
     <header class="totem-header">
-      <div class="brand">
+      <button class="brand brand-home" id="brand-home" type="button" aria-label="Voltar ao início">
         <div class="wm">P<span class="d">.</span>O<span class="d">.</span>T<span class="d">.</span>O</div>
-      </div>
+      </button>
       <span id="status" class="status"><span class="dot"></span>…</span>
     </header>
     <main class="totem-main" id="app"></main>
     <footer class="totem-footer" id="footer-actions" hidden></footer>
   </div>
-  <script type="module" src="/dist/totem.js"></script>
+  <script type="module" src="/dist/totem.js?v=9"></script>
 </body>
 </html>

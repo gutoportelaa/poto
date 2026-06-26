@@ -22,6 +22,7 @@ class Modo(str, Enum):
 class OrigemAcionamento(str, Enum):
     botao_fisico = "botao_fisico"
     touch = "touch"
+    panico = "panico"
 
 
 class Gravidade(str, Enum):
@@ -34,6 +35,7 @@ class StatusChamado(str, Enum):
     recebido = "recebido"
     roteado = "roteado"
     notificado = "notificado"
+    alerta_ativo = "alerta_ativo"  # pânico em curso, persistente até atendimento
     reconhecido = "reconhecido"
     em_atendimento = "em_atendimento"
     encerrado = "encerrado"
@@ -70,6 +72,41 @@ class EventoOut(BaseModel):
     duplicado: bool = False
 
 
+# --- Pânico (broadcast + escalonamento manual, DESIGN.md §13.2) -----------
+class PanicoIn(BaseModel):
+    evento_id: str = Field(..., description="UUID v4 gerado no totem (idempotência).")
+    totem_id: str = Field(..., examples=["TOTEM-CCS-01"])
+    modo: Modo = Modo.normal
+    timestamp_local: str | None = None
+
+
+class CanalResultado(BaseModel):
+    canal: str
+    nome: str
+    destino: str
+    sucesso: bool
+    detalhe: str | None = None
+
+
+class CanalOpcao(BaseModel):
+    canal: str
+    nome: str
+    destino: str
+
+
+class PanicoOut(BaseModel):
+    chamado_id: str
+    status: StatusChamado
+    gravidade: Gravidade
+    resultados: list[CanalResultado] = Field(default_factory=list)
+    escalonamento_disponivel: list[CanalOpcao] = Field(default_factory=list)
+    duplicado: bool = False
+
+
+class EscalonamentoIn(BaseModel):
+    canal: str = Field(..., description="Canal de autoridade do estado (ex.: samu_192).")
+
+
 # --- Triagem por agentes (conversacional) --------------------------------
 class TriagemIn(BaseModel):
     texto: str
@@ -104,6 +141,14 @@ class ConversaOut(BaseModel):
     gravidade: Gravidade | None = None
     canal_sugerido: str | None = None
     escalonar_humano: bool = False
+
+
+class AbandonoIn(BaseModel):
+    """Registro de abandono da conversa (sem o texto — minimização LGPD)."""
+
+    totem_id: str = "TOTEM-?"
+    motivo: str = Field("desistencia", description="'desistencia' (manual) ou 'inatividade' (10 min).")
+    turnos: int = 0
 
 
 # --- Painel ---------------------------------------------------------------
