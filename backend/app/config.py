@@ -41,6 +41,11 @@ SLA_SEGUNDOS = {
     "orientacao": None,
 }
 
+# --- Totens / heartbeat ----------------------------------------------------
+# Um totem é considerado offline se o último heartbeat for mais antigo que isto.
+# Deve ser folgado o bastante para o intervalo de envio do totem (15s).
+TOTEM_OFFLINE_SEG = int(os.getenv("POTO_TOTEM_OFFLINE_SEG", "45"))
+
 # --- Vídeo: registro (evidência) e transmissão (WebRTC) -------------------
 EVIDENCIA_ENABLED = _bool("POTO_EVIDENCIA_ENABLED", True)
 EVIDENCIA_DIR = os.getenv("POTO_EVIDENCIA_DIR", str(BASE_DIR / "evidencias"))
@@ -68,6 +73,13 @@ TWILIO_ACCOUNT_SID = os.getenv("POTO_TWILIO_ACCOUNT_SID", "").strip()
 TWILIO_AUTH_TOKEN = os.getenv("POTO_TWILIO_AUTH_TOKEN", "").strip()
 TWILIO_FROM = os.getenv("POTO_TWILIO_FROM", "").strip()
 TWILIO_MODE = os.getenv("POTO_TWILIO_MODE", "voice").strip().lower()  # voice | sms
+# Voz da locução do alerta (TwiML <Say>). Polly pt-BR soa bem melhor que a voz
+# padrão; troque por "Polly.Camila-Neural" se a conta tiver vozes neurais.
+TWILIO_VOICE = os.getenv("POTO_TWILIO_VOICE", "Polly.Camila").strip()
+
+# URL pública do backend (túnel cloudflared/ngrok) para os callbacks do Twilio.
+# Sem ela, a ligação ainda sai, mas não há status ao vivo (statusCallback).
+PUBLIC_BASE_URL = os.getenv("POTO_PUBLIC_BASE_URL", "").strip().rstrip("/")
 
 # Contatos por canal (E.164 ou e-mail). Usados quando CONTACT_OVERRIDE está vazio.
 _CONTACTS_RAW = {
@@ -77,6 +89,7 @@ _CONTACTS_RAW = {
     "ouvidoria": os.getenv("POTO_CONTACT_OUVIDORIA", "ouvidoria@ufpi.br"),
     "samu_192": os.getenv("POTO_CONTACT_SAMU", "192"),
     "pm_190": os.getenv("POTO_CONTACT_PM", "190"),
+    "bombeiros_193": os.getenv("POTO_CONTACT_BOMBEIROS", "193"),
     "central_180": os.getenv("POTO_CONTACT_180", "180"),
 }
 
@@ -89,9 +102,22 @@ CANAIS = {
         ("ouvidoria", "Ouvidoria UFPI / Fala.BR"),
         ("samu_192", "SAMU"),
         ("pm_190", "Polícia Militar"),
+        ("bombeiros_193", "Corpo de Bombeiros"),
         ("central_180", "Central de Atendimento à Mulher"),
     ]
 }
+
+# Grupos para o fluxo de PÂNICO (DESIGN.md §13.2):
+# - INTERNOS: autoridades da universidade acionadas no broadcast (P1).
+# - ESTADO: autoridades externas oferecidas para escalonamento manual (P3).
+# O broadcast usa, por padrão, os canais internos alcançáveis por voz; ajustável
+# por POTO_PANICO_CANAIS (lista separada por vírgula).
+CANAIS_INTERNOS = [
+    c.strip()
+    for c in os.getenv("POTO_PANICO_CANAIS", "csv,sala_lilas").split(",")
+    if c.strip() in _CONTACTS_RAW
+]
+CANAIS_ESTADO = ["pm_190", "samu_192", "bombeiros_193", "central_180"]
 
 
 def contato_canal(canal: str) -> str:

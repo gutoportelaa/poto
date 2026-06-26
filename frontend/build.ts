@@ -14,4 +14,5 @@ if (!out.success) {
   for (const log of out.logs) console.error(log);
   process.exit(1);
 }
+await Bun.write("./dist/build-id.txt", new Date().toISOString());
 console.log(`Build OK — ${out.outputs.length} artefatos em ./dist`);

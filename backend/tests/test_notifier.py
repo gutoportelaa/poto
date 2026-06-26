@@ -39,6 +39,23 @@ def test_montar_mensagem_sem_dados_sensiveis():
     assert "TOTEM-TEST" in msg
 
 
+def test_montar_mensagem_prefixo_panico():
+    c = _chamado()
+    msg = notifier.montar_mensagem(c, "csv", prefixo="PANICO")
+    assert msg.startswith("POTO PANICO.")
+
+
+@pytest.mark.asyncio
+async def test_disparar_panico_aciona_todos_canais(monkeypatch):
+    monkeypatch.setattr("app.config.NOTIF_PROVIDER", "log")
+    monkeypatch.setattr("app.notifier.CANAIS_INTERNOS", ["csv", "sala_lilas"])
+    c = _chamado()
+    resultados = await notifier.disparar_panico(c)
+    assert {r["canal"] for r in resultados} == {"csv", "sala_lilas"}
+    assert all(r["sucesso"] for r in resultados)
+    assert len(db.list_notificacoes(c["chamado_id"])) == 2
+
+
 @pytest.mark.asyncio
 async def test_notificar_chamado_atualiza_status(monkeypatch):
     monkeypatch.setattr("app.config.NOTIF_PROVIDER", "log")

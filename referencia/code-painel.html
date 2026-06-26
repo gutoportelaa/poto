@@ -1,0 +1,408 @@
+<!DOCTYPE html><html class="light" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>P.O.T.O - NOC Dashboard</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Space+Grotesk:wght@400;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#ccc6bc",
+                    "rust": "#C0392B",
+                    "on-secondary-fixed-variant": "#4a463f",
+                    "tertiary-fixed-dim": "#80d0f8",
+                    "surface-container-high": "#fce2de",
+                    "on-primary-container": "#ffe5e1",
+                    "secondary-fixed": "#e8e2d7",
+                    "outline": "#8d706c",
+                    "tertiary-fixed": "#c0e8ff",
+                    "u2-warning": "#D68A2E",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#e8e2d7",
+                    "tertiary-container": "#007296",
+                    "tertiary": "#005875",
+                    "on-surface": "#261816",
+                    "line": "#E8E3DD",
+                    "surface-container-highest": "#f7ddd9",
+                    "on-tertiary-fixed-variant": "#004d66",
+                    "surface-bright": "#fff8f6",
+                    "u1-critical": "#C0392B",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#3c2d2a",
+                    "surface-tint": "#b02d21",
+                    "surface-variant": "#f7ddd9",
+                    "on-primary-fixed": "#410000",
+                    "primary-fixed": "#ffdad5",
+                    "on-background": "#261816",
+                    "muted": "#6F6862",
+                    "surface-dim": "#eed4d1",
+                    "background": "#fff8f6",
+                    "u4-success": "#2F7D4F",
+                    "u3-info": "#9A938B",
+                    "surface": "#fff8f6",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#c0392b",
+                    "on-surface-variant": "#59413d",
+                    "surface-container-low": "#fff0ee",
+                    "on-tertiary-container": "#d3eeff",
+                    "inverse-on-surface": "#ffedea",
+                    "on-tertiary": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#ffb4a9",
+                    "inverse-primary": "#ffb4a9",
+                    "on-tertiary-fixed": "#001e2b",
+                    "on-secondary-container": "#68645c",
+                    "outline-variant": "#e1bfb9",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "ink": "#17150F",
+                    "on-secondary-fixed": "#1e1b15",
+                    "rust-dark": "#8F2A17",
+                    "paper": "#FBF9F6",
+                    "on-primary-fixed-variant": "#8e130c",
+                    "rust-soft": "#F6E7E3",
+                    "secondary": "#625e56",
+                    "primary": "#9e2016",
+                    "surface-container": "#ffe9e6",
+                    "faint": "#9A938B"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "xxl": "48px",
+                    "md": "16px",
+                    "base": "4px",
+                    "xs": "8px",
+                    "xl": "32px",
+                    "totem-margin": "64px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "body-lg": ["inter"],
+                    "label-bold": ["inter"],
+                    "display-totem": ["spaceGrotesk"],
+                    "headline-lg": ["spaceGrotesk"],
+                    "headline-md": ["spaceGrotesk"],
+                    "body-md": ["inter"],
+                    "caption": ["inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "display-totem": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.paper');
+            color: theme('colors.on-surface');
+            margin: 0;
+            overflow: hidden; /* App-like layout */
+        }
+        
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* U1 Critical Pulse Animation */
+        @keyframes pulse-rust {
+            0% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(192, 57, 43, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0); }
+        }
+        .pulse-critical {
+            animation: pulse-rust 2s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+
+        /* Custom Scrollbar for NOC density */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: theme('colors.line');
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: theme('colors.muted');
+        }
+    </style>
+</head>
+<body class="flex h-screen font-body-md text-body-md">
+<!-- SideNavBar (From Shared Components) -->
+<aside class="bg-paper border-r border-line flex flex-col h-screen py-lg w-64 flex-shrink-0 z-20">
+<!-- Header -->
+<div class="px-lg mb-xl flex flex-col gap-base">
+<h1 class="font-display-totem text-headline-md text-rust tracking-tight flex items-center gap-xs">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">bug_report</span>
+                NOC Panel
+            </h1>
+<div class="flex items-center gap-xs text-u4-success font-label-bold text-label-bold uppercase">
+<div class="w-2 h-2 rounded-full bg-u4-success"></div>
+                System Active
+            </div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 flex flex-col gap-base">
+<!-- Active Tab -->
+<a class="bg-rust text-on-primary rounded-lg mx-2 my-1 flex items-center gap-md px-md py-sm opacity-80 transition-opacity duration-200 group relative overflow-hidden" href="#">
+<span class="material-symbols-outlined z-10">dashboard</span>
+<span class="font-label-bold text-label-bold z-10">Dashboard</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="text-ink hover:bg-rust-soft rounded-lg mx-2 my-1 flex items-center gap-md px-md py-sm transition-all" href="#">
+<span class="material-symbols-outlined text-muted">emergency</span>
+<span class="font-label-bold text-label-bold">Incidents</span>
+</a>
+<a class="text-ink hover:bg-rust-soft rounded-lg mx-2 my-1 flex items-center gap-md px-md py-sm transition-all" href="#">
+<span class="material-symbols-outlined text-muted">settings_remote</span>
+<span class="font-label-bold text-label-bold">Totems</span>
+</a>
+<a class="text-ink hover:bg-rust-soft rounded-lg mx-2 my-1 flex items-center gap-md px-md py-sm transition-all" href="#">
+<span class="material-symbols-outlined text-muted">analytics</span>
+<span class="font-label-bold text-label-bold">Analytics</span>
+</a>
+</nav>
+<!-- Footer / Operator Info -->
+<div class="mt-auto px-lg pt-lg border-t border-line">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center text-on-surface-variant font-label-bold text-label-bold border border-line">
+                    OP
+                </div>
+<div class="flex flex-col">
+<span class="font-label-bold text-label-bold">Operador 04</span>
+<span class="font-caption text-caption text-muted">Turno: Alpha</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden bg-background relative">
+<!-- TopAppBar (From Shared Components) -->
+<header class="bg-paper border-b border-line flex justify-between items-center w-full px-totem-margin py-md flex-shrink-0 z-10">
+<div class="flex items-center gap-lg">
+<h2 class="font-display-totem text-display-totem text-ink tracking-tighter leading-none">P.O.T.O</h2>
+<span class="font-label-bold text-label-bold text-muted border-l border-line pl-lg mt-2">Plataforma de Orientação, Triagem e Ouvidoria</span>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-12 h-12 rounded-full flex items-center justify-center text-rust hover:bg-rust-soft transition-colors scale-95 duration-150 relative">
+<span class="material-symbols-outlined text-[28px]">sensors</span>
+<span class="absolute top-2 right-2 w-3 h-3 bg-u1-critical rounded-full border-2 border-paper"></span>
+</button>
+</div>
+</header>
+<!-- NOC Specific Controls & Filters -->
+<div class="bg-surface border-b border-line px-xl py-md flex flex-wrap items-center justify-between gap-lg flex-shrink-0 sticky top-0 z-10">
+<!-- Search / Filter Input -->
+<div class="flex-1 max-w-md relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-muted">search</span>
+<input class="w-full bg-surface-container-lowest border border-line rounded-lg py-sm pl-[40px] pr-md font-body-md text-body-md text-ink placeholder:text-muted focus:outline-none focus:border-rust focus:ring-1 focus:ring-rust transition-shadow" placeholder="Buscar ID de Ocorrência, Local ou Totem..." type="text">
+</div>
+<!-- Gravity Filters -->
+<div class="flex items-center gap-sm">
+<span class="font-label-bold text-label-bold text-muted uppercase mr-sm">Filtros de Triagem</span>
+<button class="bg-u1-critical text-on-primary border border-u1-critical rounded-full px-md py-xs font-label-bold text-label-bold shadow-sm hover:opacity-90 transition-opacity flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-white"></span>
+                    Imediato (3)
+                </button>
+<button class="bg-surface-container-lowest text-on-surface border border-line rounded-full px-md py-xs font-label-bold text-label-bold hover:bg-surface-variant transition-colors flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-u2-warning"></span>
+                    Potencial (12)
+                </button>
+<button class="bg-surface-container-lowest text-on-surface border border-line rounded-full px-md py-xs font-label-bold text-label-bold hover:bg-surface-variant transition-colors flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-u3-info"></span>
+                    Orientação (45)
+                </button>
+</div>
+</div>
+<!-- Triage Cards Grid (Scrollable) -->
+<div class="flex-1 overflow-y-auto p-xl">
+<div class="grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-lg">
+<!-- U1 CRITICAL CARD (Immediate) - Pulsing -->
+<article class="bg-surface-container-lowest border border-line rounded-xl overflow-hidden flex flex-col relative shadow-sm pulse-critical group">
+<!-- Left Risk Border -->
+<div class="absolute left-0 top-0 bottom-0 w-[5px] bg-u1-critical"></div>
+<div class="p-lg pl-[21px] flex flex-col gap-md h-full">
+<!-- Card Header -->
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<div class="flex items-center gap-sm mb-1">
+<span class="bg-error-container text-on-error-container px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">U1 Crítico</span>
+<span class="font-label-bold text-label-bold text-u1-critical tabular-nums">#PTR-9021</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-ink">Botão de Pânico Acionado</h3>
+</div>
+<span class="font-body-md text-body-md text-muted tabular-nums flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+                                14:32:05
+                            </span>
+</div>
+<!-- Card Body Details -->
+<div class="flex flex-col gap-sm mt-2">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-muted">location_on</span>
+<span class="font-body-md text-body-md text-ink">Estação Central - Setor Norte (T-04)</span>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-muted mt-1">mic</span>
+<p class="font-body-md text-body-md text-muted italic line-clamp-2">"Áudio captado: Gritos e ruído de quebra de vidro. Nenhuma resposta vocal ao atendente virtual..."</p>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="mt-auto pt-lg flex items-center justify-between border-t border-line">
+<div class="flex items-center gap-xs text-muted font-caption text-caption">
+<span class="material-symbols-outlined text-[16px]">videocam</span>
+                                Câmera Ativa
+                            </div>
+<button class="bg-rust text-on-primary font-label-bold text-label-bold px-lg py-sm rounded-lg hover:bg-rust-dark transition-colors shadow-sm flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">shield_person</span>
+                                Reconhecer
+                            </button>
+</div>
+</div>
+</article>
+<!-- U1 CRITICAL CARD 2 -->
+<article class="bg-surface-container-lowest border border-line rounded-xl overflow-hidden flex flex-col relative shadow-sm pulse-critical">
+<div class="absolute left-0 top-0 bottom-0 w-[5px] bg-u1-critical"></div>
+<div class="p-lg pl-[21px] flex flex-col gap-md h-full">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<div class="flex items-center gap-sm mb-1">
+<span class="bg-error-container text-on-error-container px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">U1 Crítico</span>
+<span class="font-label-bold text-label-bold text-u1-critical tabular-nums">#PTR-9018</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-ink">Falha de Energia e Conexão</h3>
+</div>
+<span class="font-body-md text-body-md text-muted tabular-nums flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+                                14:28:11
+                            </span>
+</div>
+<div class="flex flex-col gap-sm mt-2">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-muted">location_on</span>
+<span class="font-body-md text-body-md text-ink">Campus Leste - Bloco C (T-12)</span>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-muted mt-1">warning</span>
+<p class="font-body-md text-body-md text-muted line-clamp-2">Perda súbita de heartbeat e telemetria. Bateria de backup não respondeu. Risco de vandalismo.</p>
+</div>
+</div>
+<div class="mt-auto pt-lg flex items-center justify-between border-t border-line">
+<div class="flex items-center gap-xs text-u1-critical font-caption text-caption">
+<span class="material-symbols-outlined text-[16px]">videocam_off</span>
+                                Sem Imagem
+                            </div>
+<button class="bg-rust text-on-primary font-label-bold text-label-bold px-lg py-sm rounded-lg hover:bg-rust-dark transition-colors shadow-sm flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">assignment_late</span>
+                                Despachar Viatura
+                            </button>
+</div>
+</div>
+</article>
+<!-- U2 WARNING CARD (Potential) -->
+<article class="bg-surface-container-lowest border border-line rounded-xl overflow-hidden flex flex-col relative opacity-90 hover:opacity-100 transition-opacity">
+<div class="absolute left-0 top-0 bottom-0 w-[5px] bg-u2-warning"></div>
+<div class="p-lg pl-[21px] flex flex-col gap-md h-full">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<div class="flex items-center gap-sm mb-1">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">U2 Potencial</span>
+<span class="font-label-bold text-label-bold text-u2-warning tabular-nums">#PTR-8955</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-ink text-[20px]">Aglomeração Detectada</h3>
+</div>
+<span class="font-body-md text-body-md text-muted tabular-nums flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+                                13:45:00
+                            </span>
+</div>
+<div class="flex flex-col gap-sm mt-2">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-muted">location_on</span>
+<span class="font-body-md text-body-md text-ink">Praça de Alimentação (T-02)</span>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-muted mt-1">groups</span>
+<p class="font-body-md text-body-md text-muted line-clamp-2">Análise de vídeo indica grupo de 15+ pessoas com comportamento atípico perto do totem.</p>
+</div>
+</div>
+<div class="mt-auto pt-lg flex items-center justify-between border-t border-line">
+<div class="flex items-center gap-xs text-muted font-caption text-caption">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+                                Visão Computacional
+                            </div>
+<button class="border border-line text-ink font-label-bold text-label-bold px-lg py-sm rounded-lg hover:bg-surface-variant transition-colors">
+                                Monitorar
+                            </button>
+</div>
+</div>
+</article>
+<!-- U3 INFO CARD (Orientation) -->
+<article class="bg-surface-container-lowest border border-line rounded-xl overflow-hidden flex flex-col relative opacity-80 hover:opacity-100 transition-opacity">
+<div class="absolute left-0 top-0 bottom-0 w-[5px] bg-u3-info"></div>
+<div class="p-lg pl-[21px] flex flex-col gap-md h-full">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<div class="flex items-center gap-sm mb-1">
+<span class="bg-surface-variant text-on-surface-variant px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">U3 Info</span>
+<span class="font-label-bold text-label-bold text-u3-info tabular-nums">#PTR-8910</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-ink text-[20px]">Dúvida sobre Localização</h3>
+</div>
+<span class="font-body-md text-body-md text-muted tabular-nums flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+                                12:15:22
+                            </span>
+</div>
+<div class="flex flex-col gap-sm mt-2">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-muted">location_on</span>
+<span class="font-body-md text-body-md text-ink">Entrada Principal (T-01)</span>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-muted mt-1">support_agent</span>
+<p class="font-body-md text-body-md text-muted line-clamp-2">Usuário solicitou direções para a ala médica. Atendimento via IA concluído com sucesso.</p>
+</div>
+</div>
+<div class="mt-auto pt-lg flex items-center justify-between border-t border-line">
+<div class="flex items-center gap-xs text-u4-success font-caption text-caption">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+                                Resolvido
+                            </div>
+<button class="text-muted font-label-bold text-label-bold px-sm py-sm rounded-lg hover:bg-surface-variant transition-colors flex items-center gap-1">
+                                Detalhes <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+</body></html>

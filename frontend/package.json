@@ -7,7 +7,7 @@
   "scripts": {
     "build": "bun run build.ts",
     "serve": "bun run server.ts",
-    "dev": "bun run build.ts && bun run server.ts"
+    "dev": "bun run build.ts && bun run watch-build.ts & bun run server.ts"
   },
   "devDependencies": {
     "typescript": "^5.5.0",

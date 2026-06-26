@@ -5,26 +5,31 @@ Payload mínimo (LGPD): protocolo, tipo, gravidade, totem — sem relato detalha
 
 from __future__ import annotations
 
+import asyncio
 import html
 import logging
 import re
 from typing import Protocol
+from urllib.parse import urlencode
 
 import httpx
 
 from . import db
 from .config import (
     CANAIS,
+    CANAIS_INTERNOS,
     CONTACT_OVERRIDE,
     NOTIF_PROVIDER,
     NOTIF_WEBHOOK_TOKEN,
     NOTIF_WEBHOOK_URL,
+    PUBLIC_BASE_URL,
     TELEGRAM_BOT_TOKEN,
     TELEGRAM_CHAT_ID,
     TWILIO_ACCOUNT_SID,
     TWILIO_AUTH_TOKEN,
     TWILIO_FROM,
     TWILIO_MODE,
+    TWILIO_VOICE,
     contato_canal,
 )
 
@@ -47,9 +52,12 @@ class NotificationProvider(Protocol):
     async def enviar(self, destino: str, mensagem: str, meta: dict) -> tuple[bool, str | None]: ...
 
 
-def montar_mensagem(chamado: dict, canal: str, *, escalonamento: bool = False) -> str:
+def montar_mensagem(
+    chamado: dict, canal: str, *, escalonamento: bool = False, prefixo: str | None = None
+) -> str:
     info = CANAIS.get(canal, {"nome": canal})
-    prefixo = "ESCALONADO" if escalonamento else "ALERTA"
+    if prefixo is None:
+        prefixo = "ESCALONADO" if escalonamento else "ALERTA"
     tipo = TIPO_NOME.get(chamado.get("tipo_ocorrencia", ""), chamado.get("tipo_ocorrencia"))
     grav = GRAV_NOME.get(chamado.get("gravidade", ""), chamado.get("gravidade"))
     return (
@@ -134,15 +142,23 @@ class TwilioProvider:
                     )
                 else:
                     fala = html.escape(mensagem)
+                    voice = html.escape(TWILIO_VOICE)
                     twiml = (
                         f'<?xml version="1.0" encoding="UTF-8"?>'
-                        f"<Response><Say language=\"pt-BR\">{fala}</Say></Response>"
+                        f'<Response><Say voice="{voice}" language="pt-BR">{fala}</Say></Response>'
                     )
-                    r = await client.post(
-                        f"{base}/Calls.json",
-                        auth=auth,
-                        data={"To": to, "From": TWILIO_FROM, "Twiml": twiml},
-                    )
+                    data: dict = {"To": to, "From": TWILIO_FROM, "Twiml": twiml}
+                    # statusCallback ao vivo (tocando/atendida/encerrada) — exige URL pública.
+                    # httpx encoda o valor-lista como parâmetro repetido (StatusCallbackEvent).
+                    if PUBLIC_BASE_URL:
+                        q = urlencode({
+                            "chamado_id": meta.get("chamado_id", ""),
+                            "canal": meta.get("canal", ""),
+                            "escalonamento": int(bool(meta.get("escalonamento"))),
+                        })
+                        data["StatusCallback"] = f"{PUBLIC_BASE_URL}/api/v1/twilio/status?{q}"
+                        data["StatusCallbackEvent"] = ["initiated", "ringing", "answered", "completed"]
+                    r = await client.post(f"{base}/Calls.json", auth=auth, data=data)
                 r.raise_for_status()
                 data = r.json()
                 sid = data.get("sid", "?")
@@ -170,9 +186,12 @@ async def enviar_para_canal(
     canal: str,
     *,
     escalonamento: bool = False,
-) -> bool:
+    prefixo: str | None = None,
+) -> tuple[bool, str | None]:
     destino = contato_canal(canal)
-    mensagem = montar_mensagem(chamado, canal, escalonamento=escalonamento)
+    mensagem = montar_mensagem(
+        chamado, canal, escalonamento=escalonamento, prefixo=prefixo
+    )
     meta = {
         "chamado_id": chamado["chamado_id"],
         "canal": canal,
@@ -191,15 +210,43 @@ async def enviar_para_canal(
         detalhe=detalhe,
         escalonamento=escalonamento,
     )
-    return ok
+    return ok, detalhe
 
 
 async def notificar_chamado(chamado: dict) -> tuple[bool, dict]:
     """Notifica o canal primário e atualiza o status do chamado."""
-    ok = await enviar_para_canal(chamado, chamado["canal_roteado"])
+    ok, _ = await enviar_para_canal(chamado, chamado["canal_roteado"])
     novo_status = "notificado" if ok else "falha_notificacao"
     atualizado = db.update_chamado(chamado["chamado_id"], status=novo_status)
     return ok, atualizado or chamado
+
+
+async def disparar_panico(
+    chamado: dict, canais: list[str] | None = None
+) -> list[dict]:
+    """Broadcast de PÂNICO (P1, §13.2): aciona em paralelo todas as autoridades
+    internas da universidade. Retorna um resultado por canal (não altera o status —
+    quem o faz é o endpoint, que marca o chamado como 'alerta_ativo')."""
+    canais = canais if canais is not None else CANAIS_INTERNOS
+
+    async def _um(canal: str) -> dict:
+        ok, detalhe = await enviar_para_canal(chamado, canal, prefixo="PANICO")
+        return {
+            "canal": canal,
+            "nome": CANAIS.get(canal, {}).get("nome", canal),
+            "destino": contato_canal(canal),
+            "sucesso": ok,
+            "detalhe": detalhe,
+        }
+
+    return list(await asyncio.gather(*(_um(c) for c in canais)))
+
+
+async def escalonar_manual(chamado: dict, canal: str) -> tuple[bool, str | None]:
+    """Escalonamento manual (P3, §13.2): a central/totem aciona uma autoridade do
+    estado a partir da tela de alerta. Registra a notificação e mantém o alerta
+    ativo (não rebaixa o status do chamado)."""
+    return await enviar_para_canal(chamado, canal, escalonamento=True, prefixo="ESTADO")
 
 
 async def escalonar_chamado(chamado: dict) -> dict | None:
@@ -213,7 +260,7 @@ async def escalonar_chamado(chamado: dict) -> dict | None:
         )
     db.update_chamado(chamado["chamado_id"], status="escalonado")
     escalado = db.get_chamado(chamado["chamado_id"]) or chamado
-    ok = await enviar_para_canal(escalado, fallback, escalonamento=True)
+    ok, _ = await enviar_para_canal(escalado, fallback, escalonamento=True)
     status = "notificado" if ok else "falha_notificacao"
     return db.update_chamado(chamado["chamado_id"], status=status)
 
@@ -226,4 +273,5 @@ def status() -> dict:
         "telegram_configurado": bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID),
         "twilio_configurado": bool(TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN and TWILIO_FROM),
         "twilio_modo": TWILIO_MODE if NOTIF_PROVIDER == "twilio" else None,
+        "panico_canais": CANAIS_INTERNOS,
     }
