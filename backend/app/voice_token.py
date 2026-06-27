@@ -9,7 +9,10 @@ from __future__ import annotations
 
 import time
 
-import jwt
+try:
+    import jwt
+except ModuleNotFoundError:  # PyJWT é opcional: sem ela, só o Voice SDK fica indisponível
+    jwt = None
 
 from .config import (
     TWILIO_ACCOUNT_SID,
@@ -20,11 +23,13 @@ from .config import (
 
 
 def configurado() -> bool:
-    return bool(TWILIO_API_KEY_SID and TWILIO_API_KEY_SECRET and TWILIO_TWIML_APP_SID)
+    return bool(jwt and TWILIO_API_KEY_SID and TWILIO_API_KEY_SECRET and TWILIO_TWIML_APP_SID)
 
 
 def gerar_access_token(identity: str, ttl: int = 3600) -> str:
     """JWT de Access Token do Voice SDK para `identity` (válido por `ttl` s)."""
+    if jwt is None:
+        raise RuntimeError("PyJWT não instalado — rode 'uv sync' no backend")
     now = int(time.time())
     payload = {
         "jti": f"{TWILIO_API_KEY_SID}-{now}",
