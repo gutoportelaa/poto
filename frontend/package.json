@@ -12,5 +12,8 @@
   "devDependencies": {
     "typescript": "^5.5.0",
     "@types/bun": "latest"
+  },
+  "dependencies": {
+    "@twilio/voice-sdk": "^2.18.3"
   }
 }

@@ -1,6 +1,7 @@
 // Central NOC — fila densa, auditoria e ações claras.
 import { apiBase } from "./api";
 import { assistir, type SessaoRTC } from "./video";
+import { registrarCentral, type Call } from "./voicesdk";
 import { SYM, sym } from "./icons";
 
 const videoAtivo = new Set<string>();
@@ -599,5 +600,41 @@ document.querySelectorAll<HTMLAnchorElement>("[data-soon]").forEach((a) =>
 );
 carregar();
 conectarWS();
+
+// ---- Voz ao vivo: a central recebe chamadas do totem (Twilio Voice SDK) -----
+function bannerChamada(call: Call) {
+  const el = document.createElement("div");
+  el.className = "voz-incoming";
+  const ident = (call.parameters?.From || "totem").replace(/^client:/, "");
+  el.innerHTML = `
+    <div class="voz-card chamando">
+      <span class="sym sym-md" aria-hidden="true">call</span>
+      <div class="voz-info"><strong>Chamada do totem</strong><span>${ident}</span></div>
+      <div class="voz-acts">
+        <button class="btn-ack voz-aceitar" type="button">${sym("call", "xs")}Atender</button>
+        <button class="btn-ghost voz-rejeitar" type="button">Recusar</button>
+      </div>
+    </div>`;
+  document.body.appendChild(el);
+  const fechar = () => el.remove();
+  call.on("disconnect", fechar);
+  call.on("cancel", fechar);
+  el.querySelector(".voz-rejeitar")!.addEventListener("click", () => { call.reject(); fechar(); });
+  el.querySelector(".voz-aceitar")!.addEventListener("click", () => {
+    call.accept();
+    el.querySelector(".voz-card")!.outerHTML = `
+      <div class="voz-card em-chamada">
+        <span class="sym sym-md" aria-hidden="true">call</span>
+        <div class="voz-info"><strong>Em chamada</strong><span>${ident}</span></div>
+        <div class="voz-acts"><button class="btn-end voz-encerrar" type="button">Encerrar</button></div>
+      </div>`;
+    el.querySelector(".voz-encerrar")!.addEventListener("click", () => { call.disconnect(); fechar(); });
+  });
+}
+
+(async () => {
+  try { await registrarCentral("central", bannerChamada); }
+  catch { /* Voice SDK indisponível (sem credenciais/HTTPS) — painel segue sem voz */ }
+})();
 setInterval(carregar, 20_000);
 setInterval(() => { render(); if (view === "totens") renderTotens(); }, 1000); // SLA + liveness dos totens

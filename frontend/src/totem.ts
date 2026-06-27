@@ -6,6 +6,7 @@ import {
 import { CameraController, enviarEvidencia, publicar, type SessaoRTC } from "./video";
 import { ConversaVoz, type EstadoConversa } from "./voice";
 import { chatTexto } from "./chat";
+import { ligar, type ControleChamada } from "./voicesdk";
 import { SYM, sym } from "./icons";
 import { initServiceWorker } from "./sw-register";
 
@@ -317,15 +318,70 @@ function confirmar(out: EventoOut) {
       <h2>${msg}</h2>
       ${neutro ? "" : `<div class="protocolo">${out.chamado_id}</div>`}
       ${out._offline ? `<div class="note-offline">Sem internet — salvo e enviado ao reconectar.</div>` : ""}
-      ${podeVideo ? `<button class="btn-primary" type="button" id="video" style="max-width:320px;margin:0 auto">Falar com atendente</button>` : ""}
+      ${podeVideo ? `
+      <button class="btn-primary" type="button" id="voz" style="max-width:320px;margin:0 auto">${sym("call", "sm")} Falar com a central</button>
+      <button class="btn-ghost" type="button" id="video" style="max-width:320px;margin:8px auto 0">${sym(SYM.video, "sm")} Vídeo</button>` : ""}
     </div>
   `;
   if (out.instrucao_totem.feedback_sonoro) beep();
   const t = setTimeout(home, neutro ? 5_000 : critico ? 12_000 : 9_000);
+  document.getElementById("voz")?.addEventListener("click", () => {
+    clearTimeout(t);
+    chamadaVoz();
+  });
   document.getElementById("video")?.addEventListener("click", () => {
     clearTimeout(t);
     videoChamada(out.chamado_id);
   });
+}
+
+// Chamada de voz ao vivo com a central (Twilio Voice SDK, navegador↔navegador).
+async function chamadaVoz() {
+  footer("");
+  app.innerHTML = `
+    <div class="vozcall" id="vozcall" data-estado="chamando">
+      <div class="poto-orb" aria-hidden="true"><img src="/poto-icon.png" alt="" /></div>
+      <p class="vozcall-status" id="vz-status">Chamando a central…</p>
+      <div class="vozcall-acts">
+        <button class="btn-icon" type="button" id="vz-mute" aria-label="Mudo">${sym(SYM.mic, "md")}</button>
+        <button class="btn-end" type="button" id="vz-end">Encerrar</button>
+      </div>
+    </div>`;
+  const status = document.getElementById("vz-status")!;
+  const wrap = document.getElementById("vozcall")!;
+  const muteBtn = document.getElementById("vz-mute")!;
+  let mutado = false;
+  let saiu = false;
+  let ctrl: ControleChamada | null = null;
+  const sair = () => {
+    if (saiu) return;
+    saiu = true;
+    ctrl?.encerrar();
+    home();
+  };
+  document.getElementById("vz-end")!.addEventListener("click", sair);
+  muteBtn.addEventListener("click", () => {
+    if (!ctrl) return;
+    mutado = !mutado;
+    ctrl.mutar(mutado);
+    muteBtn.setAttribute("data-on", String(mutado));
+  });
+  try {
+    ctrl = await ligar(TOTEM_ID, "central", {
+      onEstado: (e, det) => {
+        wrap.setAttribute("data-estado", e);
+        status.textContent =
+          e === "chamando" ? "Chamando a central…" :
+          e === "em_chamada" ? "Conectado à central" :
+          e === "erro" ? "Falha: " + (det || "tente de novo") :
+          "Chamada encerrada";
+        if (e === "encerrada") setTimeout(sair, 2200);
+      },
+    });
+  } catch {
+    status.textContent = "Não foi possível chamar a central.";
+    setTimeout(sair, 2500);
+  }
 }
 
 async function videoChamada(chamadoId: string) {
