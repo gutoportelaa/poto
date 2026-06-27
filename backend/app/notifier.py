@@ -16,6 +16,7 @@ import httpx
 
 from . import db, voz
 from .config import (
+    ALERTA_PSTN_ENABLED,
     CANAIS,
     CANAIS_INTERNOS,
     CONTACT_OVERRIDE,
@@ -264,8 +265,12 @@ async def enviar_para_canal(
             chamado, canal, audio_url=audio_url, escalonamento=escalonamento, prefixo=prefixo
         ),
     }
-    prov = _provider()
-    ok, detalhe = await prov.enviar(destino, mensagem, meta)
+    # Alerta PSTN desligado (demos de voz): não disca, registra como suprimido.
+    if NOTIF_PROVIDER == "twilio" and not ALERTA_PSTN_ENABLED:
+        ok, detalhe = False, "alerta PSTN desativado (POTO_ALERTA_PSTN=off)"
+    else:
+        prov = _provider()
+        ok, detalhe = await prov.enviar(destino, mensagem, meta)
     db.add_notificacao(
         chamado["chamado_id"],
         canal,
@@ -339,5 +344,6 @@ def status() -> dict:
         "telegram_configurado": bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID),
         "twilio_configurado": bool(TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN and TWILIO_FROM),
         "twilio_modo": TWILIO_MODE if NOTIF_PROVIDER == "twilio" else None,
+        "alerta_pstn": ALERTA_PSTN_ENABLED,
         "panico_canais": CANAIS_INTERNOS,
     }

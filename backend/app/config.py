@@ -76,6 +76,12 @@ TWILIO_MODE = os.getenv("POTO_TWILIO_MODE", "voice").strip().lower()  # voice | 
 # Voz da locução do alerta (TwiML <Say>). Polly pt-BR soa bem melhor que a voz
 # padrão; troque por "Polly.Camila-Neural" se a conta tiver vozes neurais.
 TWILIO_VOICE = os.getenv("POTO_TWILIO_VOICE", "Polly.Camila").strip()
+# Alerta PSTN (ligação ao celular do contato). Em demos de chamada ao vivo
+# (Voice SDK navegador↔navegador) convém desligar para não gastar crédito do
+# trial a cada ocorrência: POTO_ALERTA_PSTN=off. A chamada ao vivo não é afetada.
+ALERTA_PSTN_ENABLED = os.getenv("POTO_ALERTA_PSTN", "on").strip().lower() not in (
+    "off", "0", "false", "no", "nao", "não",
+)
 
 # URL pública do backend (túnel cloudflared/ngrok) para os callbacks do Twilio.
 # Sem ela, a ligação ainda sai, mas não há status ao vivo (statusCallback).
