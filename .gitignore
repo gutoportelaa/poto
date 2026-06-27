@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 backend/poto.db
 backend/evidencias/
+backend/audio_cache/
 .pytest_cache/
 .ruff_cache/
 

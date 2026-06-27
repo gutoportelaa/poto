@@ -2,7 +2,7 @@
 
 import pytest
 
-from app import db, notifier
+from app import db, notifier, voz
 from app.config import CANAIS, contato_canal
 from app.models import Modo, TipoOcorrencia
 from app.router_engine import rotear
@@ -125,3 +125,33 @@ async def test_twilio_voice(monkeypatch):
     assert "CA123" in (det or "")
     assert calls[0]["data"]["To"] == "+5586981804692"
     assert "<Say" in calls[0]["data"]["Twiml"]
+
+
+def test_montar_twiml_say_por_padrao():
+    c = _chamado()
+    tw = notifier.montar_twiml(c, "csv")
+    assert "<Say" in tw and "<Play" not in tw
+    assert "Polly" in tw or "voice=" in tw
+
+
+def test_montar_twiml_play_com_audio_local():
+    c = _chamado()
+    url = "https://exemplo.trycloudflare.com/api/v1/audio/alerta-abc.wav"
+    tw = notifier.montar_twiml(c, "csv", audio_url=url)
+    assert "<Play>" in tw and url in tw
+    assert "<Say" not in tw  # áudio pré-gerado substitui a TTS do Twilio
+
+
+def test_texto_falado_soletra_protocolo():
+    c = _chamado()
+    falado = voz.texto_falado(c)
+    # protocolo termina em ...000001 -> dígitos por extenso
+    assert "Segurança" in falado
+    assert "zero" in falado and "Protocolo" in falado
+
+
+def test_voz_local_indisponivel_por_padrao(monkeypatch):
+    # Sem modo 'local'/modelo, a geração devolve None (notifier cai para <Say>).
+    monkeypatch.setattr("app.voz.VOICE_TTS", "say")
+    assert voz.disponivel() is False
+    assert voz.gerar_audio_local("teste") is None

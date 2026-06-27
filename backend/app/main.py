@@ -23,12 +23,12 @@ from fastapi import (
     WebSocketDisconnect,
 )
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import db, notifier, sla, stt, video
+from . import db, notifier, sla, stt, video, voz
 from .agents.graph import conversa_voz, status_agentes, triagem_conversacional
-from .config import CANAIS_ESTADO, FRONTEND_DIST, contato_canal
+from .config import AUDIO_DIR, CANAIS_ESTADO, FRONTEND_DIST, contato_canal
 from .models import (
     AbandonoIn,
     CanalOpcao,
@@ -146,6 +146,7 @@ def health() -> dict:
         "stt": stt.status(),
         "video": video.status(),
         "notificacao": notifier.status(),
+        "voz": voz.status(),
     }
 
 
@@ -307,6 +308,17 @@ async def twilio_status(request: Request) -> Response:
     })
     # Twilio espera 2xx; corpo vazio basta (sem novo TwiML).
     return Response(status_code=204)
+
+
+@app.get(f"{API}/audio/{{nome}}")
+def audio(nome: str) -> FileResponse:
+    """Serve o WAV da locução gerada na borda (Piper). O Twilio busca esta URL
+    pelo <Play>. Proteção de path: só arquivos diretos do diretório de áudio."""
+    base = Path(AUDIO_DIR).resolve()
+    alvo = (base / nome).resolve()
+    if alvo.parent != base or not alvo.is_file():
+        raise HTTPException(404, "áudio não encontrado")
+    return FileResponse(str(alvo), media_type="audio/wav")
 
 
 # --- Recepção de áudio (STT) ----------------------------------------------

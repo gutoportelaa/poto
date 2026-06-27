@@ -81,6 +81,16 @@ TWILIO_VOICE = os.getenv("POTO_TWILIO_VOICE", "Polly.Camila").strip()
 # Sem ela, a ligação ainda sai, mas não há status ao vivo (statusCallback).
 PUBLIC_BASE_URL = os.getenv("POTO_PUBLIC_BASE_URL", "").strip().rstrip("/")
 
+# --- Locução de voz: como o áudio da ligação é gerado ----------------------
+# say   = TwiML <Say> (Polly/básica; depende de POTO_TWILIO_VOICE)
+# local = TTS offline (Piper) na borda; o Twilio só toca o WAV via <Play>
+#         (custo de TTS zero). Exige POTO_PUBLIC_BASE_URL (o Twilio busca o áudio).
+VOICE_TTS = os.getenv("POTO_VOICE_TTS", "say").strip().lower()
+PIPER_BIN = os.getenv("POTO_PIPER_BIN", "piper").strip()
+PIPER_MODEL = os.getenv("POTO_PIPER_MODEL", "").strip()  # caminho do .onnx
+AUDIO_DIR = os.getenv("POTO_AUDIO_DIR", str(BASE_DIR / "audio_cache"))
+AUDIO_TTL_SEG = int(os.getenv("POTO_AUDIO_TTL_SEG", "900"))  # limpa WAVs antigos
+
 # Contatos por canal (E.164 ou e-mail). Usados quando CONTACT_OVERRIDE está vazio.
 _CONTACTS_RAW = {
     "csv": os.getenv("POTO_CONTACT_CSV", "558632155591"),
