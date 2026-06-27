@@ -7,6 +7,7 @@ Banco de Ocorrências -> Painel (tempo real por WebSocket). Agentes de IA opcion
 from __future__ import annotations
 
 import asyncio
+import html
 import json
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -26,9 +27,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import db, notifier, sla, stt, video, voz
+from . import db, notifier, sla, stt, video, voice_token, voz
 from .agents.graph import conversa_voz, status_agentes, triagem_conversacional
-from .config import AUDIO_DIR, CANAIS_ESTADO, FRONTEND_DIST, contato_canal
+from .config import (
+    AUDIO_DIR,
+    CANAIS_ESTADO,
+    FRONTEND_DIST,
+    VOICE_CENTRAL_IDENTITY,
+    contato_canal,
+)
 from .models import (
     AbandonoIn,
     CanalOpcao,
@@ -147,6 +154,7 @@ def health() -> dict:
         "video": video.status(),
         "notificacao": notifier.status(),
         "voz": voz.status(),
+        "voice_sdk": voice_token.status(),
     }
 
 
@@ -319,6 +327,28 @@ def audio(nome: str) -> FileResponse:
     if alvo.parent != base or not alvo.is_file():
         raise HTTPException(404, "áudio não encontrado")
     return FileResponse(str(alvo), media_type="audio/wav")
+
+
+# --- Voice JS SDK: chamada ao vivo navegador↔navegador (totem↔atendente) ----
+@app.get(f"{API}/voice/token")
+def voice_token_endpoint(identity: str = "totem") -> dict:
+    """Access Token para o navegador originar/receber chamadas pelo Voice SDK."""
+    if not voice_token.configurado():
+        raise HTTPException(503, "Voice SDK não configurado (API Key/TwiML App ausentes).")
+    return {"token": voice_token.gerar_access_token(identity), "identity": identity}
+
+
+@app.post(f"{API}/voice/twiml")
+def voice_twiml(To: str = Form(default="")) -> Response:
+    """Webhook do TwiML App (chamado pelo Twilio quando o totem conecta): roteia
+    para o cliente alvo (atendente da central). Cliente↔cliente, sem PSTN."""
+    alvo = (To or VOICE_CENTRAL_IDENTITY).strip()
+    twiml = (
+        '<?xml version="1.0" encoding="UTF-8"?>'
+        '<Response><Dial answerOnBridge="true" timeout="30">'
+        f"<Client>{html.escape(alvo)}</Client></Dial></Response>"
+    )
+    return Response(content=twiml, media_type="text/xml")
 
 
 # --- Recepção de áudio (STT) ----------------------------------------------
