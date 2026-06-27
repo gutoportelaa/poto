@@ -317,7 +317,19 @@ async function carregar() {
   }
 }
 async function ack(id: string) {
-  await fetch(`${apiBase()}/chamados/${id}/ack`, { method: "POST" });
+  // Atualiza direto da resposta (não depende do WS chegar) — feedback imediato.
+  try {
+    // Corpo mínimo de propósito: um POST sem corpo atravessa o túnel cloudflared
+    // como chunked-vazio e é rejeitado (400) antes de chegar ao backend.
+    const r = await fetch(`${apiBase()}/chamados/${id}/ack`, {
+      method: "POST", headers: { "content-type": "application/json" }, body: "{}",
+    });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    upsert(await r.json());
+  } catch {
+    statusEl.className = "status offline";
+    statusEl.innerHTML = `<span class="dot"></span>Falha ao reconhecer`;
+  }
 }
 async function mudarEstado(id: string, status: string) {
   await fetch(`${apiBase()}/chamados/${id}`, {

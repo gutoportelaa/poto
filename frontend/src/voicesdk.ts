@@ -10,8 +10,21 @@ async function obterToken(identity: string): Promise<string> {
   return (await r.json()).token as string;
 }
 
+// Garante a captura do microfone (e a permissão do navegador) ANTES de conectar.
+// Sem isto, o originador pode entrar na chamada antes de a trilha de áudio existir
+// e o outro lado não o ouve (sintoma: áudio só num sentido). Adquire, valida e
+// libera — a permissão persiste e o SDK readquire o mic ao conectar.
+async function prepararMicrofone(): Promise<void> {
+  const s = await navigator.mediaDevices.getUserMedia({ audio: true });
+  s.getTracks().forEach((t) => t.stop());
+}
+
 export async function criarDevice(identity: string): Promise<Device> {
-  const device = new Device(await obterToken(identity), { logLevel: "error" });
+  const device = new Device(await obterToken(identity), {
+    logLevel: "error",
+    // Opus (HD) com fallback PCMU — negociação de codec mais previsível entre navegadores.
+    codecPreferences: ["opus", "pcmu"] as unknown as Device.Options["codecPreferences"],
+  });
   device.on("tokenWillExpire", async () => {
     try {
       device.updateToken(await obterToken(identity));
@@ -47,6 +60,7 @@ function ligarEventos(call: Call, device: Device, cb: CallbacksChamada): void {
 export async function ligar(
   identity: string, alvo: string, cb: CallbacksChamada,
 ): Promise<ControleChamada> {
+  await prepararMicrofone();
   const device = await criarDevice(identity);
   const call = await device.connect({ params: { To: alvo } });
   ligarEventos(call, device, cb);
@@ -66,6 +80,7 @@ export async function ligar(
 export async function registrarCentral(
   identity: string, onIncoming: (call: Call) => void,
 ): Promise<Device> {
+  await prepararMicrofone();
   const device = await criarDevice(identity);
   device.on("incoming", onIncoming);
   await device.register();
