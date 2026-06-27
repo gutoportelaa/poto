@@ -20,8 +20,10 @@ set -euo pipefail
 # ---- localizar a raiz do repo (este script vive em scripts/) -------------
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+# O túnel aponta para o FRONTEND (Bun 5173), que serve as páginas/assets e faz
+# reverse-proxy de /api/* (HTTP+WS) para o backend. Assim uma origem só serve tudo.
 ENV_FILE="$ROOT/backend/.env"
-PORT="${POTO_BACKEND_PORT:-8000}"
+PORT="${POTO_FRONTEND_PORT:-5173}"
 
 [ -f "$ENV_FILE" ] || { echo "ERRO: $ENV_FILE não encontrado." >&2; exit 1; }
 command -v cloudflared >/dev/null || { echo "ERRO: cloudflared não está no PATH." >&2; exit 1; }
