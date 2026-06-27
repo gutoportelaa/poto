@@ -41,6 +41,11 @@ SLA_SEGUNDOS = {
     "orientacao": None,
 }
 
+# --- Totens / heartbeat ----------------------------------------------------
+# Um totem é considerado offline se o último heartbeat for mais antigo que isto.
+# Deve ser folgado o bastante para o intervalo de envio do totem (15s).
+TOTEM_OFFLINE_SEG = int(os.getenv("POTO_TOTEM_OFFLINE_SEG", "45"))
+
 # --- Vídeo: registro (evidência) e transmissão (WebRTC) -------------------
 EVIDENCIA_ENABLED = _bool("POTO_EVIDENCIA_ENABLED", True)
 EVIDENCIA_DIR = os.getenv("POTO_EVIDENCIA_DIR", str(BASE_DIR / "evidencias"))
@@ -52,3 +57,71 @@ STUN_URL = os.getenv("POTO_STUN_URL", "stun:stun.l.google.com:19302")
 TURN_URL = os.getenv("POTO_TURN_URL", "")
 TURN_USER = os.getenv("POTO_TURN_USER", "")
 TURN_PASS = os.getenv("POTO_TURN_PASS", "")
+
+# --- Notificação externa ---------------------------------------------------
+# Redireciona todos os destinos para um número (testes em bancada).
+CONTACT_OVERRIDE = os.getenv("POTO_CONTACT_OVERRIDE", "").strip()
+NOTIF_PROVIDER = os.getenv("POTO_NOTIF_PROVIDER", "log").strip().lower()
+NOTIF_WEBHOOK_URL = os.getenv("POTO_NOTIF_WEBHOOK_URL", "").strip()
+NOTIF_WEBHOOK_TOKEN = os.getenv("POTO_NOTIF_WEBHOOK_TOKEN", "").strip()
+TELEGRAM_BOT_TOKEN = os.getenv("POTO_TELEGRAM_BOT_TOKEN", "").strip()
+TELEGRAM_CHAT_ID = os.getenv("POTO_TELEGRAM_CHAT_ID", "").strip()
+SLA_CHECK_INTERVAL = int(os.getenv("POTO_SLA_CHECK_INTERVAL", "30"))
+
+# Twilio (voz ou SMS)
+TWILIO_ACCOUNT_SID = os.getenv("POTO_TWILIO_ACCOUNT_SID", "").strip()
+TWILIO_AUTH_TOKEN = os.getenv("POTO_TWILIO_AUTH_TOKEN", "").strip()
+TWILIO_FROM = os.getenv("POTO_TWILIO_FROM", "").strip()
+TWILIO_MODE = os.getenv("POTO_TWILIO_MODE", "voice").strip().lower()  # voice | sms
+# Voz da locução do alerta (TwiML <Say>). Polly pt-BR soa bem melhor que a voz
+# padrão; troque por "Polly.Camila-Neural" se a conta tiver vozes neurais.
+TWILIO_VOICE = os.getenv("POTO_TWILIO_VOICE", "Polly.Camila").strip()
+
+# URL pública do backend (túnel cloudflared/ngrok) para os callbacks do Twilio.
+# Sem ela, a ligação ainda sai, mas não há status ao vivo (statusCallback).
+PUBLIC_BASE_URL = os.getenv("POTO_PUBLIC_BASE_URL", "").strip().rstrip("/")
+
+# Contatos por canal (E.164 ou e-mail). Usados quando CONTACT_OVERRIDE está vazio.
+_CONTACTS_RAW = {
+    "csv": os.getenv("POTO_CONTACT_CSV", "558632155591"),
+    "sala_lilas": os.getenv("POTO_CONTACT_SALA_LILAS", "5586994287263"),
+    "sapsi": os.getenv("POTO_CONTACT_SAPSI", "sapsi@ufpi.edu.br"),
+    "ouvidoria": os.getenv("POTO_CONTACT_OUVIDORIA", "ouvidoria@ufpi.br"),
+    "samu_192": os.getenv("POTO_CONTACT_SAMU", "192"),
+    "pm_190": os.getenv("POTO_CONTACT_PM", "190"),
+    "bombeiros_193": os.getenv("POTO_CONTACT_BOMBEIROS", "193"),
+    "central_180": os.getenv("POTO_CONTACT_180", "180"),
+}
+
+CANAIS = {
+    key: {"nome": nome, "contato": _CONTACTS_RAW[key]}
+    for key, nome in [
+        ("csv", "CSV / PREUNI"),
+        ("sala_lilas", "Sala Lilás"),
+        ("sapsi", "SAPSI / PRAEC"),
+        ("ouvidoria", "Ouvidoria UFPI / Fala.BR"),
+        ("samu_192", "SAMU"),
+        ("pm_190", "Polícia Militar"),
+        ("bombeiros_193", "Corpo de Bombeiros"),
+        ("central_180", "Central de Atendimento à Mulher"),
+    ]
+}
+
+# Grupos para o fluxo de PÂNICO (DESIGN.md §13.2):
+# - INTERNOS: autoridades da universidade acionadas no broadcast (P1).
+# - ESTADO: autoridades externas oferecidas para escalonamento manual (P3).
+# O broadcast usa, por padrão, os canais internos alcançáveis por voz; ajustável
+# por POTO_PANICO_CANAIS (lista separada por vírgula).
+CANAIS_INTERNOS = [
+    c.strip()
+    for c in os.getenv("POTO_PANICO_CANAIS", "csv,sala_lilas").split(",")
+    if c.strip() in _CONTACTS_RAW
+]
+CANAIS_ESTADO = ["pm_190", "samu_192", "bombeiros_193", "central_180"]
+
+
+def contato_canal(canal: str) -> str:
+    """Resolve o destino efetivo (override de testes ou contato do canal)."""
+    if CONTACT_OVERRIDE:
+        return CONTACT_OVERRIDE
+    return _CONTACTS_RAW.get(canal, canal)

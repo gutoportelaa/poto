@@ -233,6 +233,8 @@ Quando a triagem retorna **Imediato** / pânico acionado:
 - Botão único de ação/contato; nada que exija decisão.
 - No painel correspondente: card sobe ao topo, borda `--crit`, badge pulsante discreto, som opcional.
 
+**Variante "alerta ativo" (pânico, §13.2):** diferente da confirmação comum, este estado é **persistente** (não some sozinho), traz **cronômetro de tempo decorrido** e expõe os **botões de escalonamento** para autoridades do estado (Polícia/SAMU/Bombeiros/Central 180), cada um com retorno inline "acionado ✓".
+
 ---
 
 ## 10. Acessibilidade (não-negociável)
@@ -261,10 +263,37 @@ Quando a triagem retorna **Imediato** / pânico acionado:
 ### 11.3 Tela de chat (animação)
 > *Interface de conversa de triagem assistida por IA. Bolhas arredondadas: usuário em laranja-ferrugem (texto branco, alinhado à direita), assistente em papel claro (texto tinta, à esquerda). Indicador de "digitando" com três pontos pulsando. Topo com título e status do agente. Rodapé com campo de texto arredondado + botão de microfone circular (o "orb"). Mostrar 3 quadros: (a) repouso — orb com respiração lenta; (b) gravando — orb laranja com anel pulsante reativo ao volume; (c) processando — orb com anel tracejado girando. Painel lateral opcional de "logs ao vivo" da triagem.*
 
-### 11.4 Tela de monitoramento (painel central)
-> *Dashboard em tempo real para a central de atendimento (desktop, paisagem). Cabeçalho com título "Painel — Chamados" e filtros em cápsula (gravidade, tipo, status). Grade fluida de cards de chamado: cada card com borda esquerda colorida pela gravidade (vermelho-ferrugem = Imediato, âmbar = Potencial, neutro = Orientação), id em destaque, horário, chips de classificação (tipo, canal) e ações "Reconhecer" / "Atribuir". Cards "Imediato" no topo com badge pulsante discreto. Barra lateral ou topo com contadores por gravidade. Tom institucional, denso porém legível.*
+### 11.4 Tela de monitoramento (painel central / NOC)
+> *Dashboard NOC em tempo real (desktop, paisagem), inspirado em `referencia/screen-painel.png`. Layout em três áreas:*
+>
+> - **Barra lateral fixa (≈256px):** marca "NOC" no topo com pill "Sistema ativo" (verde), navegação (`Dashboard` ativo em ferrugem, `Incidentes`, `Totens`, `Analytics`) e, no rodapé, o operador logado (avatar + turno).
+> - **Topo:** wordmark "P.O.T.O" + tagline; à direita, sino de alertas com badge crítico.
+> - **Barra de controles (sticky):** **busca** ("Buscar ID de Ocorrência, Local ou Totem…") + **filtros de triagem em cápsula com contadores** — `Imediato (n)` em ferrugem sólido, `Potencial (n)` âmbar, `Orientação (n)` neutro.
+> - **Grade de cards rolável** (1→2→3 colunas conforme a largura): cada card com **borda esquerda 5px** na cor da gravidade, **badge** `U1 Crítico`/`U2 Potencial`/`U3 Info` + **protocolo tabular**, título da ocorrência, **horário** (ícone `schedule`), **local/totem** (`location_on`), trecho de **contexto/áudio** (`mic`, itálico, 2 linhas), e rodapé com **status** (`Câmera ativa`/`Sem imagem`/`Resolvido`) + **ação** (`Reconhecer`, `Despachar viatura`, `Monitorar`, `Detalhes`). Cards **Imediato** sobem ao topo e pulsam (`pulse-critical`, halo ferrugem 2s).*
+>
+> **Reconciliação:** seguir as decisões da §12 (Michroma no lugar de Space Grotesk; Material Symbols Rounded; raio `--r-lg` em cards; cores via tokens). Densidade do NOC pode usar raio menor (`--r-md`) nos cards e scrollbar fina.
+
+### 11.4.2 Totens — frota / saúde dos dispositivos (consome `GET /totens`)
+> *Aba acessível pela barra lateral (`settings_remote`). Cabeçalho "Frota de totens" + resumo (`n online · n offline · n violação`, com pontos coloridos). Grade de **cards de dispositivo**, um por Raspberry Pi: pill **Online/Offline** (verde/cinza), identificador do totem, e três métricas em caixa — **bateria** (âmbar quando ≤20%), **conexão** (wifi/cellular/ethernet) e **tamper** (vermelho "Violado" quando aberto). Rodapé com "visto há …" (recalculado ao vivo) e nº de chamados originados. Totens com **violação no topo**, depois offline, depois online. Offline esmaecido; tamper com borda vermelha pulsante.*
+>
+> *Tempo real: o totem bate heartbeat (`POST /totens/{id}/heartbeat`) a cada 15s com `online`/`bateria`/`conectividade`; o painel atualiza o card via evento WS `heartbeat` e deriva offline pela ausência de batidas (> `POTO_TOTEM_OFFLINE_SEG`, 45s). Totens vistos só em chamados aparecem offline/sem telemetria.*
+
+### 11.4.3 Incidentes — registro / arquivo (consome `GET /chamados`)
+> *Aba `emergency`. Visão de **registro** (densa, em tabela) de todas as ocorrências, inclusive encerradas/canceladas — complementa o Painel (operacional). Busca por ID/totem/canal, filtros de **gravidade** e **estado** (com atalho "Em aberto"), e **Exportar CSV** (LGPD/prestação de contas, gerado no cliente). Colunas: Triagem (badge U1/U2/U3), Protocolo (com marcador `!` de emergência), Ocorrência, Totem, Estado (ponto verde/cinza), Aberto em, e ação **Auditoria** que abre o mesmo drawer da §11.4.1.*
+
+### 11.4.4 Análises — métricas (consome `GET /metricas`)
+> *Aba `analytics`. Faixa de **KPIs**: total, emergências (destaque ferrugem), tempo médio até ACK, % de SLA cumprido, taxa de escalonamento, contatos acionados. Abaixo, **cartões de barras** (CSS puro, sem lib — offline-friendly): por gravidade (cores do semáforo), por tipo de ocorrência, volume por dia (7d) e totens mais acionados. Tudo agregado no backend (`db.metricas()`) a partir de chamados/notificações; sem dado sensível.*
+
+### 11.4.1 Detalhe & Auditoria do chamado (consome `GET /chamados/{id}/auditoria`)
+> *Painel/drawer de detalhe aberto a partir de "Detalhes"/"Reconhecer". Cabeçalho com protocolo, badge de gravidade e **selo de emergência** quando `emergencia=true`. Bloco de **tempos**: tempo total em aberto e tempo até o ACK (tabular). Corpo = **linha do tempo vertical** unificada e cronológica, com dois tipos de evento:*
+> - ***Estado** (ícone de fluxo): `de → para` e **duração do estado** (ex.: "alerta_ativo · em curso há 1m44s"); o estado corrente fica destacado.*
+> - ***Contato acionado** (ícone do canal): **nome + identificador do canal** (ex.: "SAMU · samu_192"), destino, ✓/✗ de sucesso, e marcador **"escalonamento"** quando aplicável (distingue broadcast de pânico de acionamento manual ao estado).*
+>
+> *Tom de auditoria: legível, tabular, sem cor decorativa — a cor só marca gravidade e sucesso/falha. Tudo o que aparece vem de campos reais da API (`estados[].duracao_segundos`, `contatos_acionados[].canal/destino/sucesso/detalhe`, `tempo_*`).*
 
 ### 11.5 Tela de chamada (voz/vídeo com atendente)
+> **Dois modelos a prototipar — ver §13.3** (A: status de acionamento passivo; B: chamada ao vivo). O brief abaixo descreve o Modelo B; para o Modelo A, reaproveitar o layout removendo controles de microfone e trocando o estado por "Ligando para [canal]…".
+>
 > *Tela de chamada ao vivo entre solicitante e atendente da central. Layout em paisagem: área principal de vídeo/avatar do atendente, miniatura do solicitante no canto. Barra inferior com controles circulares grandes: mudo, alto-falante, encerrar (vermelho-ferrugem). Cronômetro da chamada em tipografia tabular no topo, com status "Conectado". Faixa de contexto mostrando o protocolo e a classificação da triagem. Versão "chamando…" com avatar pulsando e botão de cancelar. Alto contraste, controles ≥ 64px.*
 
 ### 11.6 Demais telas
@@ -341,7 +370,93 @@ Esta seção fixa a **disposição dos elementos** validada no protótipo (`refe
 
 ---
 
-## 13. Resumo de tokens (copiar para o projeto)
+## 13. Userflow & estados (fluxo de acionamento)
+
+Esta seção dá a **espinha** que conecta as telas (§11) aos estados reais do backend e ao caminho do Twilio (`backend/app/notifier.py`). É a referência de *fluxo*; as telas são os *quadros* desse fluxo.
+
+> **Contexto de teste atual:** `POTO_NOTIF_PROVIDER=twilio` e `POTO_CONTACT_OVERRIDE=5586981804692` redirecionam **todos** os canais para um único número de bancada. A mensagem é o alerta institucional lido por voz (TwiML `<Say>`). Tudo abaixo vale com o override ligado (teste) ou desligado (canais reais).
+
+### 13.1 Mapa de estados — fluxo padrão (categoria / voz)
+
+```
+S0 Standby ──toque──▶ S1 Home "Como podemos ajudar?"
+                          │
+        ┌─────────────────┼───────────────────┐
+   [categoria]        [descrever voz]       [PÂNICO] ──▶ §13.2
+        │                 │
+        ▼                 ▼
+   S2 Triagem ◀───── (transcrição STT)
+   (router + agents: tipo · gravidade · canal_roteado · fallback)
+        │
+        ▼
+   S3 Acionamento ── notifier → Twilio liga p/ o canal roteado
+        │
+        ▼
+   S4 Confirmação
+     • crítico    → "Pedido enviado. Ajuda a caminho." + protocolo  (§11.2)
+     • não-crítico→ "Recebido. Procure a orientação."               (§11.6)
+     • offline    → "Salvo. Será enviado ao reconectar." (store-and-forward)
+```
+
+### 13.2 Fluxo do PÂNICO (caminho dedicado)
+
+O pânico **não passa pela triagem** — é crítico por definição. Decisão de produto:
+
+```
+[PÂNICO] ──▶ P1 Broadcast interno
+             dispara alerta a TODAS as autoridades da universidade
+             (ex.: Segurança/CSV, Sala Lilás, demais canais internos)
+                  │
+                  ▼
+             P2 ALERTA ATIVO em tela  (persistente — não sai sozinho)
+             tela cheia rust, protocolo grande, pulso único, cronômetro
+                  │
+                  ▼
+             P3 Escalonar autoridades do estado  (botões que surgem na tela)
+             [ Polícia 190 ] [ SAMU 192 ] [ Bombeiros 193 ] [ Central 180 ]
+             cada botão = nova ligação Twilio para aquele canal externo
+```
+
+- **P1 (broadcast):** `POST /api/v1/panico` → `notifier.disparar_panico()` aciona em paralelo os canais internos (`POTO_PANICO_CANAIS`, padrão `csv,sala_lilas`). Com o override de teste, todas as pernas caem no número de bancada — esperado.
+- **P3 (escalonamento):** `POST /api/v1/chamados/{id}/escalonar` `{ "canal": "samu_192" }` → liga para a autoridade do estado sem rebaixar o `alerta_ativo`. Opções devolvidas em `escalonamento_disponivel` (PM 190, SAMU 192, Bombeiros 193, Central 180).
+- **P2 (alerta ativo):** estado **persistente** — só encerra por ação da central ou atendimento confirmado. Visual = §9 (tela cheia crítica) com cronômetro de tempo decorrido. **Implementado** no totem (`alertaAtivo`): assina o `/ws` e reflete ao vivo `alerta_ativo → reconhecido → em_atendimento` ("A central recebeu seu alerta." etc.).
+- **P3 (escalonamento manual):** botões grandes, cada um dispara o canal estatal correspondente via `POST /chamados/{id}/escalonar`. Confirmação inline por botão (✓ verde), sem sair da tela de alerta.
+
+### 13.3 Os dois modelos de chamada — prototipar ambos
+
+A "Tela de chamada" (§11.5) depende de qual modelo adotamos. **No protótipo, apresentar os dois**, com o trade-off explícito:
+
+| | **Modelo A — Confirmar & alertar** *(estado atual do backend)* | **Modelo B — Ponte de voz ao vivo** |
+|---|---|---|
+| **O que a pessoa no totem vive** | Vê confirmação ("ajuda a caminho"); **não fala** na ligação | Entra na ligação e **conversa** com o atendente/responsável |
+| **Twilio** | 1 perna de voz, TwiML `<Say>` lê o alerta p/ o responsável | 2 pernas + `<Dial>`/Voice JS SDK, microfone do totem na call |
+| **Tela** | §11.2 (confirmação) → §11.5 vira **"status de acionamento"** ("Ligando para SAMU…") | §11.5 **real**: chamando → em chamada (cronômetro, mudo, viva-voz, encerrar) |
+| **Vantagens** | Simples, já implementado; robusto **offline** (store-and-forward); custo Twilio baixo; não exige rede boa nem atendente ao vivo | Conversa real → atendente colhe contexto; mais humano na crise; reusa `video.ts` (caminho p/ vídeo/WebRTC) |
+| **Custos / limites** | Responsável recebe só dados, sem contexto ao vivo; sem prova de que humano atendeu (só status da API) | Complexidade (token server, SDK, Dial); ~2× custo Twilio; **não funciona offline**; exige atendente 24/7; áudio ambiente do totem (privacidade) |
+| **Quando** | Padrão e **fallback** sempre disponível | Opt-in onde houver rede + plantão; ideal p/ Sala Lilás / acolhimento |
+
+**Recomendação:** tratar A como base/fallback e B como camada opcional (modelo *híbrido*): a tela de confirmação §11.2 sempre aparece; quando B estiver disponível, ela ganha um botão **"Falar com atendente agora"** que abre a §11.5. Assim a estilização cobre os dois sem bifurcar o fluxo principal.
+
+**"Descrever" híbrido por urgência — implementado** (`enviarDescricao`): a descrição (texto/voz) é triada e o caminho **adapta-se à urgência**: emergência (`risco_imediato`) ou pedido explícito de humano (`escalonar_humano`) **dispara imediatamente** (confirmação crítica, sem interstício); quando os *agentes* ficam genuinamente em dúvida (`fonte=agentes` e `confiança < 0.5`), oferece **detalhar por voz** (conversa multi-turno) ou "enviar assim mesmo"; demais casos enviam direto. O fallback heurístico nunca gera o interstício (despacha), para não atrasar nem incomodar. *Limitação:* a acurácia depende do modelo — o `llama3.2:3b` às vezes subclassifica frases longas (cai em baixa confiança), e nesse caso o sistema corretamente pede esclarecimento em vez de mis-rotear.
+
+### 13.4 Tela → estado → Twilio (rastreabilidade)
+
+| Tela (§) | Estado | Ação de backend / Twilio |
+|---|---|---|
+| Standby §11.6 | S0 | — |
+| Home §11.1 / §12 | S1 | — |
+| Voz §11.6 | S2 (entrada) | `POST /transcrever` (STT) → triagem |
+| *(sem tela)* | S2 | router + agents classificam |
+| Confirmação §11.2/§11.6 | S4 | `notificar_chamado` → Twilio (Modelo A) |
+| Status/Chamada §11.5 | S3→S4 | "Ligando…" (A) **ou** ponte de voz (B) |
+| Alerta ativo §9 *(nova variante)* | P2 | broadcast interno disparado |
+| Botões de escalonamento §13.2 | P3 | `enviar_para_canal` por canal estatal |
+
+> **Implicações de estilização:** (1) §11.2 ganha duas variantes — confirmação comum e **alerta ativo persistente** do pânico com botões de escalonamento; (2) §11.5 deve existir em duas versões (status passivo / chamada ao vivo); (3) precisamos de um componente novo de **botão de escalonamento** com estado "acionado ✓".
+
+---
+
+## 14. Resumo de tokens (copiar para o projeto)
 
 ```css
 :root {

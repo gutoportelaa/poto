@@ -53,6 +53,7 @@ make dev            # backend :8000 + frontend :5173
 | `make stt-setup` | Instala o Whisper local (faster-whisper) p/ transcrição |
 | `make smoke` | Roteia um evento sem subir servidor |
 | `make test` | Testes do backend (pytest) |
+| `make acceptance` | Critérios de aceite automatizados (§8 do protótipo) |
 | `make clean` | Remove `dist/`, venv e banco local |
 
 ## Configuração (variáveis de ambiente)
@@ -63,14 +64,41 @@ make dev            # backend :8000 + frontend :5173
 | `POTO_OLLAMA_URL` | `http://localhost:11434` | Endpoint do Ollama |
 | `POTO_AGENTS_ENABLED` | `true` | Liga/desliga a camada de IA |
 | `POTO_DB_PATH` | `backend/poto.db` | Caminho do SQLite |
-| `POTO_STT_PROVIDER` | `none` | `none` ou `faster-whisper` (transcrição de voz) |
+| `POTO_STT_PROVIDER` | `faster-whisper` | `none` ou `faster-whisper` (transcrição de voz) |
 | `POTO_WHISPER_MODEL` | `base` | Modelo Whisper (`tiny`/`base`/`small`...) |
 | `POTO_EVIDENCIA_ENABLED` | `true` | Liga o registro de evidência em vídeo |
 | `POTO_EVIDENCIA_DIR` | `backend/evidencias` | Pasta das evidências gravadas |
 | `POTO_STUN_URL` | `stun:stun.l.google.com:19302` | STUN para WebRTC (LAN dispensa) |
 | `POTO_TURN_URL` / `_USER` / `_PASS` | — | TURN (só para NAT simétrico) |
+| `POTO_CONTACT_OVERRIDE` | — | Redireciona todos os alertas (ex.: `5586981804692`) |
+| `POTO_NOTIF_PROVIDER` | `log` | `log`, `webhook`, `telegram` ou `twilio` |
+| `POTO_NOTIF_WEBHOOK_URL` | — | URL do webhook (Evolution API, n8n…) |
+| `POTO_TWILIO_ACCOUNT_SID` | — | Account SID Twilio |
+| `POTO_TWILIO_AUTH_TOKEN` | — | Auth Token (nunca commitar) |
+| `POTO_TWILIO_FROM` | — | Número remetente E.164 (ex.: `+14179224849`) |
+| `POTO_TWILIO_MODE` | `voice` | `voice` (liga e fala alerta) ou `sms` |
+| `POTO_SLA_CHECK_INTERVAL` | `30` | Segundos entre verificações de SLA |
 
 No frontend, o endpoint da API pode ser sobrescrito em `localStorage.poto_api`.
+
+## Notificação externa
+
+Após cada evento, o backend notifica o destino roteado (CSV, Lilás, etc.) via adapter
+plugável. Payload mínimo (LGPD): protocolo, tipo, gravidade e totem — sem relato.
+
+```env
+POTO_CONTACT_OVERRIDE=5586981804692   # testes: tudo vai para seu número
+POTO_NOTIF_PROVIDER=log               # log | webhook | telegram
+```
+
+- **log** (padrão): registra no console e na tabela `notificacoes` do SQLite.
+- **twilio**: liga (`voice`) ou envia SMS com o alerta — ideal para testes reais.
+- **webhook**: POST JSON `{ number, text, meta }` — compatível com Evolution API.
+- **telegram**: usa `POTO_TELEGRAM_BOT_TOKEN` + `POTO_TELEGRAM_CHAT_ID`.
+
+SLA: chamados `notificado` sem ACK dentro do prazo (2 min imediato / 10 min potencial)
+escalonam automaticamente para o canal fallback.
+
 
 ## Voz / áudio no totem
 

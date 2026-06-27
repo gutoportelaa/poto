@@ -9,22 +9,11 @@ from __future__ import annotations
 
 from datetime import datetime, timezone, timedelta
 
-from .config import HORARIO_COMERCIAL
+from .config import CANAIS, HORARIO_COMERCIAL
 from .models import Gravidade, InstrucaoTotem, Modo, TipoOcorrencia
 
 # Fuso de Teresina (sem horário de verão): UTC-3.
 FUSO_PI = timezone(timedelta(hours=-3))
-
-# Catálogo de canais (espelha os contatos validados no relatório).
-CANAIS = {
-    "csv": {"nome": "CSV / PREUNI", "contato": "(86) 3215-5591"},
-    "sala_lilas": {"nome": "Sala Lilás", "contato": "(86) 99428-7263"},
-    "sapsi": {"nome": "SAPSI / PRAEC", "contato": "sapsi@ufpi.edu.br"},
-    "ouvidoria": {"nome": "Ouvidoria UFPI / Fala.BR", "contato": "ouvidoria@ufpi.br"},
-    "samu_192": {"nome": "SAMU", "contato": "192"},
-    "pm_190": {"nome": "Polícia Militar", "contato": "190"},
-    "central_180": {"nome": "Central de Atendimento à Mulher", "contato": "180"},
-}
 
 
 def _em_horario_comercial(agora: datetime) -> bool:
