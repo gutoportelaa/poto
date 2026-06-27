@@ -12,7 +12,6 @@ dependencies = [
     "langgraph>=0.2.50",
     "langchain-core>=0.3",
     "langchain-ollama>=0.2",
-    "pyjwt>=2.8",
 ]
 
 [project.optional-dependencies]

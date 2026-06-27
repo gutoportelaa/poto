@@ -1,7 +1,6 @@
 // Central NOC — fila densa, auditoria e ações claras.
 import { apiBase } from "./api";
 import { assistir, type SessaoRTC } from "./video";
-import { registrarCentral, type Call } from "./voicesdk";
 import { SYM, sym } from "./icons";
 
 const videoAtivo = new Set<string>();
@@ -283,8 +282,16 @@ function renderDrawer(a: any) {
 }
 
 // ---- Vídeo ------------------------------------------------------------------
-function abrirVideo(chamadoId: string) {
+async function abrirVideo(chamadoId: string) {
   let sessao: SessaoRTC | null = null;
+  // A central também envia A/V (mic obrigatório, câmera melhor-esforço) — chamada
+  // bidirecional. Se não houver mic/câmera, cai para só assistir (mão única).
+  let local: MediaStream | undefined;
+  try {
+    local = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+  } catch {
+    try { local = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch { local = undefined; }
+  }
   const ov = document.createElement("div");
   ov.className = "vmodal";
   ov.innerHTML = `
@@ -292,18 +299,25 @@ function abrirVideo(chamadoId: string) {
       <div class="vhead"><span>${chamadoId}</span>
         <button class="vclose" type="button" aria-label="Fechar">${sym(SYM.close, "sm")}</button></div>
       <video class="vstream" autoplay playsinline></video>
-      <div class="vstatus">Aguardando totem…</div>
+      <video class="vpip" autoplay muted playsinline></video>
+      <div class="vstatus">Conectando…</div>
     </div>`;
   document.body.appendChild(ov);
   const vid = ov.querySelector(".vstream") as HTMLVideoElement;
+  const pip = ov.querySelector(".vpip") as HTMLVideoElement;
   const st = ov.querySelector(".vstatus") as HTMLElement;
-  const fechar = () => { sessao?.encerrar(); ov.remove(); };
+  if (local) pip.srcObject = local; else pip.hidden = true;
+  const fechar = () => {
+    sessao?.encerrar();
+    local?.getTracks().forEach((t) => t.stop());
+    ov.remove();
+  };
   ov.querySelector(".vclose")!.addEventListener("click", fechar);
   ov.addEventListener("click", (e) => { if (e.target === ov) fechar(); });
   assistir(chamadoId, vid, {
-    onStream: () => { st.textContent = "Recebendo vídeo."; },
-    onEstado: (e) => { st.textContent = e === "connected" ? "Conectado." : e === "failed" ? "Falha na conexão." : st.textContent; },
-  }).then((s) => { sessao = s; });
+    onStream: () => { st.textContent = "Em chamada."; },
+    onEstado: (e) => { st.textContent = e === "connected" ? "Em chamada." : e === "failed" ? "Falha na conexão." : st.textContent; },
+  }, local).then((s) => { sessao = s; });
 }
 
 // ---- API --------------------------------------------------------------------
@@ -389,7 +403,10 @@ function conectarWS() {
   ws.onmessage = (e) => {
     const m = JSON.parse(e.data);
     if (m.evento === "novo_chamado" || m.evento === "atualizado") upsert(m.dados);
-    else if (m.evento === "video_ativo" && m.dados?.chamado_id) { videoAtivo.add(m.dados.chamado_id); render(); }
+    else if (m.evento === "video_ativo" && m.dados?.chamado_id) {
+      videoAtivo.add(m.dados.chamado_id); render();
+      bannerChamadaAoVivo(m.dados.chamado_id, m.dados.totem_id);
+    }
     else if (m.evento === "heartbeat" && m.dados?.totem_id) upsertTotem(m.dados);
     else if (m.evento === "ligacao" && m.dados?.chamado_id) {
       const id = m.dados.chamado_id as string;
@@ -613,40 +630,33 @@ document.querySelectorAll<HTMLAnchorElement>("[data-soon]").forEach((a) =>
 carregar();
 conectarWS();
 
-// ---- Voz ao vivo: a central recebe chamadas do totem (Twilio Voice SDK) -----
-function bannerChamada(call: Call) {
+// ---- Chamada A/V ao vivo: a central recebe a chamada do totem (WebRTC nativo) --
+// O totem publica na sala (=chamado_id) e o backend emite "video_ativo"; mostramos
+// um banner de chamada recebida → Atender abre o vídeo bidirecional.
+const chamadasAtivas = new Set<string>();
+function bannerChamadaAoVivo(chamadoId: string, totemId?: string) {
+  if (chamadasAtivas.has(chamadoId)) return; // já há banner/atendimento p/ este chamado
+  chamadasAtivas.add(chamadoId);
   const el = document.createElement("div");
   el.className = "voz-incoming";
-  const ident = (call.parameters?.From || "totem").replace(/^client:/, "");
   el.innerHTML = `
     <div class="voz-card chamando">
       <span class="sym sym-md" aria-hidden="true">call</span>
-      <div class="voz-info"><strong>Chamada do totem</strong><span>${ident}</span></div>
+      <div class="voz-info"><strong>Chamada do totem</strong><span>${totemId || chamadoId}</span></div>
       <div class="voz-acts">
         <button class="btn-ack voz-aceitar" type="button">${sym("call", "xs")}Atender</button>
         <button class="btn-ghost voz-rejeitar" type="button">Recusar</button>
       </div>
     </div>`;
   document.body.appendChild(el);
-  const fechar = () => el.remove();
-  call.on("disconnect", fechar);
-  call.on("cancel", fechar);
-  el.querySelector(".voz-rejeitar")!.addEventListener("click", () => { call.reject(); fechar(); });
+  const fechar = () => { el.remove(); chamadasAtivas.delete(chamadoId); };
+  el.querySelector(".voz-rejeitar")!.addEventListener("click", fechar);
   el.querySelector(".voz-aceitar")!.addEventListener("click", () => {
-    call.accept();
-    el.querySelector(".voz-card")!.outerHTML = `
-      <div class="voz-card em-chamada">
-        <span class="sym sym-md" aria-hidden="true">call</span>
-        <div class="voz-info"><strong>Em chamada</strong><span>${ident}</span></div>
-        <div class="voz-acts"><button class="btn-end voz-encerrar" type="button">Encerrar</button></div>
-      </div>`;
-    el.querySelector(".voz-encerrar")!.addEventListener("click", () => { call.disconnect(); fechar(); });
+    el.remove(); // o overlay de vídeo assume; mantém o chamado em chamadasAtivas
+    abrirVideo(chamadoId).catch(() => {});
+    chamadasAtivas.delete(chamadoId);
   });
 }
 
-(async () => {
-  try { await registrarCentral("central", bannerChamada); }
-  catch { /* Voice SDK indisponível (sem credenciais/HTTPS) — painel segue sem voz */ }
-})();
 setInterval(carregar, 20_000);
 setInterval(() => { render(); if (view === "totens") renderTotens(); }, 1000); // SLA + liveness dos totens

@@ -97,14 +97,8 @@ PIPER_MODEL = os.getenv("POTO_PIPER_MODEL", "").strip()  # caminho do .onnx
 AUDIO_DIR = os.getenv("POTO_AUDIO_DIR", str(BASE_DIR / "audio_cache"))
 AUDIO_TTL_SEG = int(os.getenv("POTO_AUDIO_TTL_SEG", "900"))  # limpa WAVs antigos
 
-# --- Voice JS SDK: chamada ao vivo navegador↔navegador (totem↔atendente) ----
-# Cliente↔cliente não toca PSTN: sem preâmbulo de trial nem limite de número.
-# O webhook do TwiML App (Voice URL) deve apontar para {PUBLIC_BASE_URL}/api/v1/voice/twiml.
-TWILIO_API_KEY_SID = os.getenv("POTO_TWILIO_API_KEY_SID", "").strip()
-TWILIO_API_KEY_SECRET = os.getenv("POTO_TWILIO_API_KEY_SECRET", "").strip()
-TWILIO_TWIML_APP_SID = os.getenv("POTO_TWILIO_TWIML_APP_SID", "").strip()
-# Identidade do atendente da central que recebe as chamadas do totem.
-VOICE_CENTRAL_IDENTITY = os.getenv("POTO_VOICE_CENTRAL_IDENTITY", "central").strip()
+# Chamada A/V ao vivo totem↔central = WebRTC P2P nativo (ver video.ts / SignalingHub).
+# Twilio é usado apenas na perna de alerta PSTN (notifier).
 
 # Contatos por canal (E.164 ou e-mail). Usados quando CONTACT_OVERRIDE está vazio.
 _CONTACTS_RAW = {

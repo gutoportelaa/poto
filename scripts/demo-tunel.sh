@@ -28,12 +28,6 @@ PORT="${POTO_FRONTEND_PORT:-5173}"
 [ -f "$ENV_FILE" ] || { echo "ERRO: $ENV_FILE não encontrado." >&2; exit 1; }
 command -v cloudflared >/dev/null || { echo "ERRO: cloudflared não está no PATH." >&2; exit 1; }
 
-# ---- carregar credenciais do Twilio do .env ------------------------------
-set -a; . "$ENV_FILE"; set +a
-SID="${POTO_TWILIO_ACCOUNT_SID:-}"
-TOKEN="${POTO_TWILIO_AUTH_TOKEN:-}"
-APP="${POTO_TWILIO_TWIML_APP_SID:-}"
-
 # ---- subir o túnel e capturar a URL --------------------------------------
 LOG="$(mktemp -t poto-tunel-XXXX.log)"
 echo "› Subindo cloudflared (http2) → http://localhost:$PORT ..."
@@ -57,23 +51,8 @@ grep -v '^POTO_PUBLIC_BASE_URL=' "$ENV_FILE" > "$TMP" || true
 echo "POTO_PUBLIC_BASE_URL=$URL" >> "$TMP"
 cp "$TMP" "$ENV_FILE"; rm -f "$TMP"
 echo "✓ .env: POTO_PUBLIC_BASE_URL atualizado"
-
-# ---- atualizar o Voice URL do TwiML App no Twilio ------------------------
-if [ -n "$SID" ] && [ -n "$TOKEN" ] && [ -n "$APP" ]; then
-  RESP="$(curl -s -X POST \
-    "https://api.twilio.com/2010-04-01/Accounts/$SID/Applications/$APP.json" \
-    -u "$SID:$TOKEN" \
-    -d "VoiceUrl=$URL/api/v1/voice/twiml" \
-    -d "VoiceMethod=POST")"
-  if echo "$RESP" | grep -q "$APP"; then
-    echo "✓ TwiML App $APP → VoiceUrl = $URL/api/v1/voice/twiml"
-  else
-    echo "⚠ TwiML App pode não ter atualizado. Resposta do Twilio:" >&2
-    echo "$RESP" >&2
-  fi
-else
-  echo "⚠ Credenciais do Twilio incompletas no .env — pulei o TwiML App."
-fi
+# Obs.: a chamada A/V ao vivo é WebRTC P2P nativo (não depende de túnel/Twilio).
+# O POTO_PUBLIC_BASE_URL acima serve só ao alerta PSTN (statusCallback + áudio).
 
 # ---- pronto --------------------------------------------------------------
 cat <<EOF

@@ -48,25 +48,6 @@ def test_health_inclui_notificacao():
         assert "voz" in r.json()
 
 
-def test_voice_token_e_twiml(monkeypatch):
-    import jwt
-
-    for mod in ("app.config", "app.voice_token"):
-        monkeypatch.setattr(f"{mod}.TWILIO_API_KEY_SID", "SKtest")
-        monkeypatch.setattr(f"{mod}.TWILIO_API_KEY_SECRET", "secret")
-        monkeypatch.setattr(f"{mod}.TWILIO_TWIML_APP_SID", "APtest")
-    monkeypatch.setattr("app.voice_token.TWILIO_ACCOUNT_SID", "ACtest")
-    with TestClient(app) as client:
-        r = client.get("/api/v1/voice/token?identity=TOTEM-X")
-        assert r.status_code == 200
-        pl = jwt.decode(r.json()["token"], options={"verify_signature": False})
-        assert pl["grants"]["identity"] == "TOTEM-X"
-        assert pl["grants"]["voice"]["outgoing"]["application_sid"] == "APtest"
-        tw = client.post("/api/v1/voice/twiml", data={"To": "central"})
-        assert tw.status_code == 200
-        assert "<Dial" in tw.text and "<Client>central</Client>" in tw.text
-
-
 def test_audio_endpoint_serve_e_protege_path(tmp_path, monkeypatch):
     monkeypatch.setattr("app.main.AUDIO_DIR", str(tmp_path))
     (tmp_path / "alerta-ok.wav").write_bytes(b"RIFF....WAVE")
