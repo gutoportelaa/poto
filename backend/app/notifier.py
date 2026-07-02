@@ -14,8 +14,9 @@ from urllib.parse import urlencode
 
 import httpx
 
-from . import db
+from . import db, voz
 from .config import (
+    ALERTA_PSTN_ENABLED,
     CANAIS,
     CANAIS_INTERNOS,
     CONTACT_OVERRIDE,
@@ -97,12 +98,18 @@ def _twiml_simples(texto: str) -> str:
 
 
 def montar_twiml(
-    chamado: dict, canal: str, *, escalonamento: bool = False, prefixo: str | None = None
+    chamado: dict, canal: str, *, audio_url: str | None = None,
+    escalonamento: bool = False, prefixo: str | None = None
 ) -> str:
-    """Locução de voz do alerta (TwiML/SSML, Polly pt-BR). Roteiro único e enxuto —
-    só os valores mudam. Protocolo lido em dígitos, totem soletrado e pausas curtas
-    entre os campos, para precisão e clareza ao telefone."""
+    """Locução de voz do alerta. Com `audio_url`, toca o WAV pré-gerado na borda
+    (Piper) via <Play> — custo de TTS zero. Sem ele, usa <Say>/SSML (Polly/básica):
+    roteiro único e enxuto, protocolo em dígitos e totem soletrado."""
     e = html.escape
+    if audio_url:
+        return (
+            f'<?xml version="1.0" encoding="UTF-8"?>'
+            f"<Response><Play>{e(audio_url)}</Play></Response>"
+        )
     tipo = TIPO_NOME.get(
         chamado.get("tipo_ocorrencia", ""), chamado.get("tipo_ocorrencia") or "ocorrência"
     )
@@ -242,15 +249,28 @@ async def enviar_para_canal(
     mensagem = montar_mensagem(
         chamado, canal, escalonamento=escalonamento, prefixo=prefixo
     )
+    # Locução: TTS local (Piper) na borda + <Play> quando pronto e houver túnel
+    # (custo de TTS zero); senão cai para <Say>. A síntese roda fora do event loop.
+    audio_url = None
+    if voz.disponivel() and PUBLIC_BASE_URL:
+        nome = await asyncio.to_thread(voz.gerar_audio_local, voz.texto_falado(chamado))
+        if nome:
+            audio_url = f"{PUBLIC_BASE_URL}/api/v1/audio/{nome}"
     meta = {
         "chamado_id": chamado["chamado_id"],
         "canal": canal,
         "destino": destino,
         "escalonamento": escalonamento,
-        "twiml": montar_twiml(chamado, canal, escalonamento=escalonamento, prefixo=prefixo),
+        "twiml": montar_twiml(
+            chamado, canal, audio_url=audio_url, escalonamento=escalonamento, prefixo=prefixo
+        ),
     }
-    prov = _provider()
-    ok, detalhe = await prov.enviar(destino, mensagem, meta)
+    # Alerta PSTN desligado (demos de voz): não disca, registra como suprimido.
+    if NOTIF_PROVIDER == "twilio" and not ALERTA_PSTN_ENABLED:
+        ok, detalhe = False, "alerta PSTN desativado (POTO_ALERTA_PSTN=off)"
+    else:
+        prov = _provider()
+        ok, detalhe = await prov.enviar(destino, mensagem, meta)
     db.add_notificacao(
         chamado["chamado_id"],
         canal,
@@ -324,5 +344,6 @@ def status() -> dict:
         "telegram_configurado": bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID),
         "twilio_configurado": bool(TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN and TWILIO_FROM),
         "twilio_modo": TWILIO_MODE if NOTIF_PROVIDER == "twilio" else None,
+        "alerta_pstn": ALERTA_PSTN_ENABLED,
         "panico_canais": CANAIS_INTERNOS,
     }

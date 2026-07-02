@@ -317,17 +317,20 @@ function confirmar(out: EventoOut) {
       <h2>${msg}</h2>
       ${neutro ? "" : `<div class="protocolo">${out.chamado_id}</div>`}
       ${out._offline ? `<div class="note-offline">Sem internet — salvo e enviado ao reconectar.</div>` : ""}
-      ${podeVideo ? `<button class="btn-primary" type="button" id="video" style="max-width:320px;margin:0 auto">Falar com atendente</button>` : ""}
+      ${podeVideo ? `
+      <button class="btn-primary" type="button" id="chamar" style="max-width:320px;margin:0 auto">${sym("call", "sm")} Falar com a central</button>` : ""}
     </div>
   `;
   if (out.instrucao_totem.feedback_sonoro) beep();
   const t = setTimeout(home, neutro ? 5_000 : critico ? 12_000 : 9_000);
-  document.getElementById("video")?.addEventListener("click", () => {
+  document.getElementById("chamar")?.addEventListener("click", () => {
     clearTimeout(t);
     videoChamada(out.chamado_id);
   });
 }
 
+// Chamada A/V ao vivo com a central (WebRTC P2P nativo, bidirecional). O totem
+// publica câmera+mic e toca o A/V que a central devolve ao atender.
 async function videoChamada(chamadoId: string) {
   footer("");
   const camera = new CameraController();
@@ -335,13 +338,15 @@ async function videoChamada(chamadoId: string) {
 
   app.innerHTML = `
     <div class="call-layout">
-      <video id="local" autoplay muted playsinline></video>
-      <p class="call-caption" id="call-status">Conectando…</p>
+      <video id="remoto" autoplay playsinline></video>
+      <video id="local" class="pip" autoplay muted playsinline></video>
+      <p class="call-caption" id="call-status">Chamando a central…</p>
       <button class="btn-end" type="button" id="encerrar">Encerrar</button>
     </div>
   `;
   const status = document.getElementById("call-status")!;
   const localVideo = document.getElementById("local") as HTMLVideoElement;
+  const remotoVideo = document.getElementById("remoto") as HTMLVideoElement;
 
   const encerrar = async () => {
     sessao?.encerrar();
@@ -363,10 +368,10 @@ async function videoChamada(chamadoId: string) {
     localVideo.srcObject = stream;
     camera.gravar();
     sessao = await publicar(chamadoId, stream, TOTEM_ID, {
+      onRemoteStream: (s) => { remotoVideo.srcObject = s; status.textContent = "Conectado à central"; },
       onEstado: (e) => {
-        status.textContent =
-          e === "connected" ? "Conectado à central" :
-          e === "failed" ? "Falha na conexão" : "Conectando…";
+        if (e === "connected") status.textContent = "Conectado à central";
+        else if (e === "failed") status.textContent = "Falha na conexão";
       },
     });
   } catch {

@@ -76,10 +76,29 @@ TWILIO_MODE = os.getenv("POTO_TWILIO_MODE", "voice").strip().lower()  # voice | 
 # Voz da locução do alerta (TwiML <Say>). Polly pt-BR soa bem melhor que a voz
 # padrão; troque por "Polly.Camila-Neural" se a conta tiver vozes neurais.
 TWILIO_VOICE = os.getenv("POTO_TWILIO_VOICE", "Polly.Camila").strip()
+# Alerta PSTN (ligação ao celular do contato). Em demos de chamada ao vivo
+# (Voice SDK navegador↔navegador) convém desligar para não gastar crédito do
+# trial a cada ocorrência: POTO_ALERTA_PSTN=off. A chamada ao vivo não é afetada.
+ALERTA_PSTN_ENABLED = os.getenv("POTO_ALERTA_PSTN", "on").strip().lower() not in (
+    "off", "0", "false", "no", "nao", "não",
+)
 
 # URL pública do backend (túnel cloudflared/ngrok) para os callbacks do Twilio.
 # Sem ela, a ligação ainda sai, mas não há status ao vivo (statusCallback).
 PUBLIC_BASE_URL = os.getenv("POTO_PUBLIC_BASE_URL", "").strip().rstrip("/")
+
+# --- Locução de voz: como o áudio da ligação é gerado ----------------------
+# say   = TwiML <Say> (Polly/básica; depende de POTO_TWILIO_VOICE)
+# local = TTS offline (Piper) na borda; o Twilio só toca o WAV via <Play>
+#         (custo de TTS zero). Exige POTO_PUBLIC_BASE_URL (o Twilio busca o áudio).
+VOICE_TTS = os.getenv("POTO_VOICE_TTS", "say").strip().lower()
+PIPER_BIN = os.getenv("POTO_PIPER_BIN", "piper").strip()
+PIPER_MODEL = os.getenv("POTO_PIPER_MODEL", "").strip()  # caminho do .onnx
+AUDIO_DIR = os.getenv("POTO_AUDIO_DIR", str(BASE_DIR / "audio_cache"))
+AUDIO_TTL_SEG = int(os.getenv("POTO_AUDIO_TTL_SEG", "900"))  # limpa WAVs antigos
+
+# Chamada A/V ao vivo totem↔central = WebRTC P2P nativo (ver video.ts / SignalingHub).
+# Twilio é usado apenas na perna de alerta PSTN (notifier).
 
 # Contatos por canal (E.164 ou e-mail). Usados quando CONTACT_OVERRIDE está vazio.
 _CONTACTS_RAW = {

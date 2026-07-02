@@ -79,7 +79,10 @@ export interface SessaoRTC {
   onEstado?: (estado: RTCPeerConnectionState) => void;
 }
 
-interface CBPub { onEstado?: (e: RTCPeerConnectionState) => void; }
+interface CBPub {
+  onEstado?: (e: RTCPeerConnectionState) => void;
+  onRemoteStream?: (s: MediaStream) => void; // A/V de volta da central (chamada bidirecional)
+}
 interface CBView { onStream?: () => void; onEstado?: (e: RTCPeerConnectionState) => void; }
 
 function montar(ws: WebSocket, pc: RTCPeerConnection): SessaoRTC {
@@ -102,6 +105,8 @@ export async function publicar(
 ): Promise<SessaoRTC> {
   const pc = new RTCPeerConnection(await rtcConfig());
   stream.getTracks().forEach((t) => pc.addTrack(t, stream));
+  // A central pode devolver A/V (chamada bidirecional): tocamos o stream dela.
+  pc.ontrack = (e) => cb.onRemoteStream?.(e.streams[0]);
   const ws = new WebSocket(salaWS(sala));
   pc.onicecandidate = (e) => { if (e.candidate) env(ws, { tipo: "ice", candidate: e.candidate }); };
   pc.onconnectionstatechange = () => cb.onEstado?.(pc.connectionState);
@@ -124,9 +129,10 @@ export async function publicar(
   return montar(ws, pc);
 }
 
-// Central assiste à sala.
+// Central assiste à sala. Se `localStream` for passado, a central também envia
+// seu A/V (mic+câmera) — a chamada vira bidirecional (atendimento ao vivo).
 export async function assistir(
-  sala: string, videoEl: HTMLVideoElement, cb: CBView = {},
+  sala: string, videoEl: HTMLVideoElement, cb: CBView = {}, localStream?: MediaStream,
 ): Promise<SessaoRTC> {
   const pc = new RTCPeerConnection(await rtcConfig());
   // Não pré-criamos transceivers: a oferta do totem dita as m-lines (evita
@@ -142,6 +148,8 @@ export async function assistir(
       env(ws, { tipo: "operador-pronto" });
     } else if (m.tipo === "offer") {
       await pc.setRemoteDescription(m.sdp);
+      // Anexa o A/V da central às m-lines da oferta (recvonly → sendrecv).
+      if (localStream) localStream.getTracks().forEach((t) => pc.addTrack(t, localStream));
       const ans = await pc.createAnswer();
       await pc.setLocalDescription(ans);
       env(ws, { tipo: "answer", sdp: pc.localDescription });

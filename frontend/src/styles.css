@@ -415,6 +415,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   object-fit: cover;
   transform: scaleX(-1);
 }
+/* Chamada A/V bidirecional: vídeo remoto (central) ocupa o quadro; o local
+   (a própria câmera do totem) fica em miniatura sobreposta (picture-in-picture). */
+.call-layout { position: relative; }
+.call-layout video.pip {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30%;
+  max-width: 150px;
+  aspect-ratio: 3 / 4;
+  border: 2px solid #fff;
+  box-shadow: var(--shadow);
+  z-index: 2;
+}
 .call-caption { margin: 16px 0 24px; color: var(--muted); font-size: 15px; }
 .btn-end {
   min-height: var(--touch);
@@ -570,7 +584,23 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-weight: 600;
 }
 .vclose { font-size: 20px; color: var(--muted); min-width: 44px; min-height: 44px; }
+.vbox { position: relative; }
 .vstream { width: 100%; aspect-ratio: 16/9; background: #000; display: block; object-fit: cover; }
+/* Miniatura do operador (câmera da central) sobreposta ao vídeo do totem. */
+.vpip {
+  position: absolute;
+  right: 14px;
+  bottom: 54px;
+  width: 22%;
+  max-width: 140px;
+  aspect-ratio: 3 / 4;
+  background: #000;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, .8);
+  box-shadow: var(--shadow);
+  z-index: 2;
+}
 .vstatus { padding: 12px 16px; font-size: 13px; color: var(--muted); }
 
 @media (max-width: 560px) {
@@ -1142,3 +1172,35 @@ button.noc-logo { width: 100%; text-align: left; }
 .noc-lig.atendida, .noc-lig.atendida b { color: var(--ok); }
 .noc-lig.falhou, .noc-lig.falhou b { color: var(--rust); border-color: var(--rust); }
 .noc-lig.encerrada { opacity: .7; }
+
+/* ===========================================================================
+   Chamada de voz ao vivo (Twilio Voice SDK) — totem chama, central atende
+   =========================================================================== */
+.vozcall {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 26px; text-align: center;
+}
+.vozcall[data-estado="chamando"] .poto-orb { animation: respira 1.6s ease-in-out infinite; }
+.vozcall-status { font-size: 20px; color: var(--ink); margin: 0; min-height: 26px; }
+.vozcall-acts { display: flex; gap: 18px; align-items: center; }
+.vozcall .btn-icon {
+  width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center;
+  border: 1.5px solid var(--line); background: var(--bg); color: var(--ink);
+}
+.vozcall .btn-icon[data-on="true"] { background: var(--rust); color: #fff; border-color: var(--rust); }
+
+/* Banner de chamada recebida no painel (central) */
+.voz-incoming { position: fixed; right: 20px; bottom: 20px; z-index: 1000; animation: voz-sobe .2s ease; }
+@keyframes voz-sobe { from { transform: translateY(12px); opacity: 0; } }
+.voz-card {
+  display: flex; align-items: center; gap: 14px; min-width: 320px;
+  background: var(--bg); border: 1.5px solid var(--line); border-left: 5px solid var(--rust);
+  border-radius: var(--r-md); padding: 14px 18px; box-shadow: var(--shadow);
+}
+.voz-card.chamando { border-left-color: var(--warn); }
+.voz-card.em-chamada { border-left-color: var(--ok); }
+.voz-card .sym { color: var(--rust); }
+.voz-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.voz-info strong { font-size: 14px; }
+.voz-info span { font-size: 12px; color: var(--muted); }
+.voz-acts { display: flex; gap: 8px; align-items: center; }

@@ -45,6 +45,17 @@ def test_health_inclui_notificacao():
         r = client.get("/api/v1/health")
         assert r.status_code == 200
         assert "notificacao" in r.json()
+        assert "voz" in r.json()
+
+
+def test_audio_endpoint_serve_e_protege_path(tmp_path, monkeypatch):
+    monkeypatch.setattr("app.main.AUDIO_DIR", str(tmp_path))
+    (tmp_path / "alerta-ok.wav").write_bytes(b"RIFF....WAVE")
+    with TestClient(app) as client:
+        assert client.get("/api/v1/audio/alerta-ok.wav").status_code == 200
+        assert client.get("/api/v1/audio/nao-existe.wav").status_code == 404
+        # traversal não escapa do diretório de áudio
+        assert client.get("/api/v1/audio/..%2f..%2fpoto.db").status_code == 404
 
 
 def test_panico_broadcast_e_alerta_ativo():

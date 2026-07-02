@@ -4,6 +4,7 @@ __pycache__/
 *.pyc
 backend/poto.db
 backend/evidencias/
+backend/audio_cache/
 .pytest_cache/
 .ruff_cache/
 
@@ -19,3 +20,5 @@ bun.lockb
 .agents/
 skills-lock.json
 *.pdf
+# Artefatos "mark of the web" do Windows/WSL
+*:Zone.Identifier
