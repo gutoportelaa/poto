@@ -9,14 +9,16 @@ import asyncio
 import html
 import logging
 import re
+from pathlib import Path
 from typing import Protocol
 from urllib.parse import urlencode
 
 import httpx
 
-from . import db, voz
+from . import db, simcom, voz
 from .config import (
     ALERTA_PSTN_ENABLED,
+    AUDIO_DIR,
     CANAIS,
     CANAIS_INTERNOS,
     CONTACT_OVERRIDE,
@@ -228,6 +230,19 @@ class TwilioProvider:
             return False, str(e)
 
 
+class SimcomProvider:
+    """Canal GSM/2G real via módulo SIMCom A7670SA (AT/serial), sem número virtual.
+    Disca de verdade (voz por fallback 2G) e/ou manda SMS, conforme SIMCOM_MODE.
+    A locução pt-BR (WAV do Piper) toca na ligação se `meta['audio_wav']` existir
+    e POTO_SIMCOM_AUDIO_CMD estiver configurado."""
+
+    async def enviar(self, destino: str, mensagem: str, meta: dict) -> tuple[bool, str | None]:
+        to = _format_e164(destino) or destino  # ATD aceita curto (190) e E.164
+        wav = meta.get("audio_wav")
+        # A sessão serial é bloqueante (discagem + espera no ar) — sai do event loop.
+        return await asyncio.to_thread(simcom.executar, to, mensagem, wav)
+
+
 def _provider() -> NotificationProvider:
     if NOTIF_PROVIDER == "webhook":
         return WebhookProvider()
@@ -235,6 +250,8 @@ def _provider() -> NotificationProvider:
         return TelegramProvider()
     if NOTIF_PROVIDER == "twilio":
         return TwilioProvider()
+    if NOTIF_PROVIDER == "simcom":
+        return SimcomProvider()
     return LogProvider()
 
 
@@ -249,24 +266,30 @@ async def enviar_para_canal(
     mensagem = montar_mensagem(
         chamado, canal, escalonamento=escalonamento, prefixo=prefixo
     )
-    # Locução: TTS local (Piper) na borda + <Play> quando pronto e houver túnel
-    # (custo de TTS zero); senão cai para <Say>. A síntese roda fora do event loop.
+    # Locução: TTS local (Piper) na borda. No Twilio vira <Play> via túnel público;
+    # no SIMCom o WAV é tocado direto na ligação (caminho local, sem URL). A síntese
+    # roda fora do event loop. Gera se o Piper estiver pronto e algum consumidor usar.
     audio_url = None
-    if voz.disponivel() and PUBLIC_BASE_URL:
+    audio_wav = None
+    if voz.disponivel() and (PUBLIC_BASE_URL or NOTIF_PROVIDER == "simcom"):
         nome = await asyncio.to_thread(voz.gerar_audio_local, voz.texto_falado(chamado))
         if nome:
-            audio_url = f"{PUBLIC_BASE_URL}/api/v1/audio/{nome}"
+            audio_wav = str(Path(AUDIO_DIR) / nome)
+            if PUBLIC_BASE_URL:
+                audio_url = f"{PUBLIC_BASE_URL}/api/v1/audio/{nome}"
     meta = {
         "chamado_id": chamado["chamado_id"],
         "canal": canal,
         "destino": destino,
         "escalonamento": escalonamento,
+        "audio_wav": audio_wav,
         "twiml": montar_twiml(
             chamado, canal, audio_url=audio_url, escalonamento=escalonamento, prefixo=prefixo
         ),
     }
     # Alerta PSTN desligado (demos de voz): não disca, registra como suprimido.
-    if NOTIF_PROVIDER == "twilio" and not ALERTA_PSTN_ENABLED:
+    # Vale para Twilio e SIMCom — ambos são ligação real (gastam crédito do SIM).
+    if NOTIF_PROVIDER in ("twilio", "simcom") and not ALERTA_PSTN_ENABLED:
         ok, detalhe = False, "alerta PSTN desativado (POTO_ALERTA_PSTN=off)"
     else:
         prov = _provider()
@@ -344,6 +367,7 @@ def status() -> dict:
         "telegram_configurado": bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID),
         "twilio_configurado": bool(TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN and TWILIO_FROM),
         "twilio_modo": TWILIO_MODE if NOTIF_PROVIDER == "twilio" else None,
+        "simcom": simcom.status() if NOTIF_PROVIDER == "simcom" else None,
         "alerta_pstn": ALERTA_PSTN_ENABLED,
         "panico_canais": CANAIS_INTERNOS,
     }
