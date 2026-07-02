@@ -39,7 +39,13 @@ def at(ser, cmd: str, wait: float = 2.0) -> str:
     fim = time.monotonic() + wait
     buf = b""
     while time.monotonic() < fim:
-        buf += ser.read(256)
+        try:
+            buf += ser.read(256)
+        except serial.SerialException:
+            # Leitura vazia transitória — em geral ModemManager disputando a porta.
+            # Ver docs/hardware-simcom.md (mascare o ModemManager). Tenta de novo.
+            time.sleep(0.2)
+            continue
         if b"OK" in buf or b"ERROR" in buf or b">" in buf:
             break
     return buf.decode("utf-8", "ignore").strip()

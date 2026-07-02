@@ -41,6 +41,26 @@ Garanta permissão de acesso à serial:
 sudo usermod -aG dialout "$USER"   # relogar depois
 ```
 
+### ModemManager disputa a porta (IMPORTANTE)
+
+No Raspberry Pi OS o **ModemManager** sonda automaticamente portas de modem e
+**disputa a serial** com o nosso provider. Sintoma: `AT` responde `OK` mas o comando
+seguinte estoura `device reports readiness to read but returned no data
+(... multiple access on port?)`. Resolva de uma das formas:
+
+```bash
+# A) simples — se você NÃO usa o ModemManager para a conexão de dados:
+sudo systemctl mask --now ModemManager
+
+# B) cirúrgico — manda o MM ignorar só este módulo (SimTech 1e0e), preservando-o
+#    para outros usos. Crie /etc/udev/rules.d/99-poto-simcom.rules com:
+#      SUBSYSTEM=="usb", ATTRS{idVendor}=="1e0e", ENV{ID_MM_DEVICE_IGNORE}="1"
+#    depois:  sudo udevadm control --reload && replugue o módulo
+```
+
+Confirme que a porta ficou livre: `mmcli -L` não deve listar o modem (opção A) ou
+não deve reivindicá-lo (opção B).
+
 ## 3. Dependência de software
 
 Só na rasp (o `pyserial` é extra opcional; o backend roda sem ele nas demos sem módulo):
