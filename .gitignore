@@ -20,3 +20,5 @@ bun.lockb
 .agents/
 skills-lock.json
 *.pdf
+# Artefatos "mark of the web" do Windows/WSL
+*:Zone.Identifier
