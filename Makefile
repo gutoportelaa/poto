@@ -88,6 +88,10 @@ acceptance: ## Critérios de aceite automatizados (relatorio-prototipo §8)
 doctor: ## Verifica módulos do setup (ferramentas, agentes, STT, câmera, microfone, serviços)
 	bash scripts/doctor.sh
 
+.PHONY: selftest
+selftest: ## Auto-teste MODULAR: exercita cada componente isolado (PASS/FAIL/SKIP)
+	cd $(BACKEND) && uv run python ../scripts/selftest.py $(ARGS)
+
 .PHONY: smoke
 smoke: ## Teste de fumaça: importa app e roteia um evento sem subir servidor
 	cd $(BACKEND) && uv run python -c "from app.router_engine import rotear; from app.models import TipoOcorrencia, Modo; print(rotear(TipoOcorrencia.mulher, Modo.normal))"
