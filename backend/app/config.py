@@ -87,6 +87,28 @@ ALERTA_PSTN_ENABLED = os.getenv("POTO_ALERTA_PSTN", "on").strip().lower() not in
 # Sem ela, a ligação ainda sai, mas não há status ao vivo (statusCallback).
 PUBLIC_BASE_URL = os.getenv("POTO_PUBLIC_BASE_URL", "").strip().rstrip("/")
 
+# --- SIMCom A7670SA: canal GSM/2G real (voz + SMS via AT/serial) -----------
+# Provider notifier alternativo ao Twilio: com um SIM real o totem ganha número
+# próprio e disca de verdade — sem número virtual. O A7670SA NÃO tem VoLTE, então
+# a VOZ só sai via fallback 2G/GSM (por isso FORCE_GSM manda AT+CNMP=13). SMS sai
+# tanto em LTE quanto em GSM. O módulo enumera vários /dev/ttyUSB*; PORT é a porta AT.
+SIMCOM_PORT = os.getenv("POTO_SIMCOM_PORT", "/dev/ttyUSB2").strip()
+SIMCOM_BAUD = int(os.getenv("POTO_SIMCOM_BAUD", "115200"))
+# voice = só liga (ATD)  | sms = só SMS  | both = liga E manda SMS com os detalhes.
+# "both" é o mais robusto: a ligação chama atenção e o SMS carrega o protocolo.
+SIMCOM_MODE = os.getenv("POTO_SIMCOM_MODE", "both").strip().lower()
+# Quanto tempo manter a ligação no ar (toca/toca a locução) antes de AT+CHUP.
+SIMCOM_CALL_SEG = int(os.getenv("POTO_SIMCOM_CALL_SEG", "20"))
+# Forçar 2G-only (AT+CNMP=13) na inicialização — necessário p/ voz confiável (CSFB).
+SIMCOM_FORCE_GSM = _bool("POTO_SIMCOM_FORCE_GSM", True)
+SIMCOM_AT_TIMEOUT = float(os.getenv("POTO_SIMCOM_AT_TIMEOUT", "10"))
+# Como tocar a locução pt-BR (WAV do Piper) DENTRO da ligação. Template com {wav}.
+# Ex.: "aplay -D plughw:CARD=Module,DEV=0 {wav}" quando o A7670SA expõe áudio USB,
+# ou um alto-falante ligado à saída SPK analógica do módulo. Vazio = só toca (ring).
+SIMCOM_AUDIO_CMD = os.getenv("POTO_SIMCOM_AUDIO_CMD", "").strip()
+# Dispositivo de voz do módulo (AT+CSDVC): 1=handset, 3=viva-voz. Vazio = não mexe.
+SIMCOM_SPK_DEVICE = os.getenv("POTO_SIMCOM_SPK_DEVICE", "").strip()
+
 # --- Locução de voz: como o áudio da ligação é gerado ----------------------
 # say   = TwiML <Say> (Polly/básica; depende de POTO_TWILIO_VOICE)
 # local = TTS offline (Piper) na borda; o Twilio só toca o WAV via <Play>
