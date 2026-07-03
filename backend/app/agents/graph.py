@@ -14,13 +14,20 @@ import json
 import re
 from typing import TypedDict
 
-from ..config import AGENTS_ENABLED, OLLAMA_BASE_URL, OLLAMA_MODEL, OLLAMA_TIMEOUT
+from ..config import (
+    AGENTS_ENABLED,
+    CONVERSA_MODEL,
+    OLLAMA_BASE_URL,
+    OLLAMA_MODEL,
+    OLLAMA_TIMEOUT,
+    TRIAGEM_MODEL,
+)
 from ..models import Gravidade, Modo, TipoOcorrencia
 from ..router_engine import rotear
 
 # --- Detecção de disponibilidade do stack de IA --------------------------
 LANGGRAPH_OK = False
-_llm = None
+_llms: dict = {}  # cache de ChatOllama por nome de modelo (triagem/conversa/bench)
 try:  # pragma: no cover - depende do ambiente
     from langgraph.graph import END, StateGraph
     from langchain_ollama import ChatOllama
@@ -122,16 +129,20 @@ class _Estado(TypedDict, total=False):
     escalonar_humano: bool
 
 
-def _chat() -> "ChatOllama | None":
-    global _llm
+def _chat(model: str | None = None) -> "ChatOllama | None":
+    """ChatOllama por modelo (cache). `model=None` usa o padrão global. Permite
+    modelo por tarefa (triagem vs conversa) e troca de modelo no benchmark."""
     if not LANGGRAPH_OK:
         return None
-    if _llm is None:
-        _llm = ChatOllama(
-            model=OLLAMA_MODEL, base_url=OLLAMA_BASE_URL,
+    m = model or OLLAMA_MODEL
+    llm = _llms.get(m)
+    if llm is None:
+        llm = ChatOllama(
+            model=m, base_url=OLLAMA_BASE_URL,
             temperature=0, num_predict=200, timeout=OLLAMA_TIMEOUT,
         )
-    return _llm
+        _llms[m] = llm
+    return llm
 
 
 def _parse_json(raw: str) -> dict | None:
@@ -146,7 +157,7 @@ def _parse_json(raw: str) -> dict | None:
 
 def _node_conversa(state: _Estado) -> _Estado:
     modo = Modo(state.get("modo", "normal"))
-    llm = _chat()
+    llm = _chat(CONVERSA_MODEL)  # conversa roda sempre local (offline total)
     if llm is None:
         return state
     prompt = (
@@ -164,26 +175,42 @@ def _node_conversa(state: _Estado) -> _Estado:
     return state
 
 
-def _node_triagem(state: _Estado) -> _Estado:
-    llm = _chat()
+# Prefixo fixo do prompt de triagem (contém chaves JSON literais — por isso é
+# concatenado com a mensagem, nunca formatado com str.format).
+_PROMPT_TRIAGEM_PREFIXO = (
+    "Classifique a mensagem de um totem de emergência. Responda APENAS JSON: "
+    '{"tipo": "seguranca|mulher|saude|ouvidoria", '
+    '"gravidade": "risco_imediato|risco_potencial|orientacao", '
+    '"confianca": 0.0}. Mensagem: '
+)
+
+
+def classificar_triagem(texto: str, modelo: str | None = None) -> dict | None:
+    """Uma chamada de classificação (tipo/gravidade/confianca) com o modelo de
+    triagem (ou `modelo` explícito, p/ benchmark). Retorna o JSON validado ou None.
+    Isola a etapa de classificação da conversa/guardrails — usada pelo `make bench`."""
+    llm = _chat(modelo or TRIAGEM_MODEL)
     if llm is None:
-        return state
-    prompt = (
-        "Classifique a mensagem de um totem de emergência. Responda APENAS JSON: "
-        '{"tipo": "seguranca|mulher|saude|ouvidoria", '
-        '"gravidade": "risco_imediato|risco_potencial|orientacao", '
-        '"confianca": 0.0}. '
-        f'Mensagem: "{state.get("texto", "")}"'
-    )
+        return None
     try:
-        data = _parse_json(llm.invoke(prompt).content)
-        if data and data.get("tipo") in TipoOcorrencia._value2member_map_:
-            state["tipo"] = data["tipo"]
-            if data.get("gravidade") in Gravidade._value2member_map_:
-                state["gravidade"] = data["gravidade"]
-            state["confianca"] = float(data.get("confianca", 0.6))
+        data = _parse_json(llm.invoke(_PROMPT_TRIAGEM_PREFIXO + f'"{texto}"').content)
     except Exception:
-        pass
+        return None
+    if not data or data.get("tipo") not in TipoOcorrencia._value2member_map_:
+        return None
+    out = {"tipo": data["tipo"], "confianca": float(data.get("confianca", 0.6))}
+    if data.get("gravidade") in Gravidade._value2member_map_:
+        out["gravidade"] = data["gravidade"]
+    return out
+
+
+def _node_triagem(state: _Estado) -> _Estado:
+    data = classificar_triagem(state.get("texto", ""))
+    if data:
+        state["tipo"] = data["tipo"]
+        if "gravidade" in data:
+            state["gravidade"] = data["gravidade"]
+        state["confianca"] = data["confianca"]
     return state
 
 
@@ -351,6 +378,8 @@ def status_agentes() -> dict:
         "langgraph_disponivel": LANGGRAPH_OK,
         "ollama_url": OLLAMA_BASE_URL,
         "modelo": OLLAMA_MODEL,
+        "triagem_modelo": TRIAGEM_MODEL,
+        "conversa_modelo": CONVERSA_MODEL,
         "modo": "agentes" if (AGENTS_ENABLED and LANGGRAPH_OK) else "heuristica",
     }
 

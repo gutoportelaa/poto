@@ -23,6 +23,12 @@ OLLAMA_BASE_URL = os.getenv("POTO_OLLAMA_URL", "http://localhost:11434")
 # Modelo pequeno e presente por padrão; troque por qwen2.5:14b para mais qualidade.
 OLLAMA_MODEL = os.getenv("POTO_OLLAMA_MODEL", "llama3.2:3b")
 OLLAMA_TIMEOUT = float(os.getenv("POTO_OLLAMA_TIMEOUT", "20"))
+# Modelo POR TAREFA (decisão sem Hailo: triagem e conversa podem usar modelos
+# diferentes, priorizando mini/nano na CPU da Pi). Vazio = usa POTO_OLLAMA_MODEL.
+# A CONVERSA roda sempre local (offline total); use `make bench` para escolher a
+# triagem por dados. Ver docs/inferencia.md.
+TRIAGEM_MODEL = os.getenv("POTO_TRIAGEM_MODEL", "").strip() or OLLAMA_MODEL
+CONVERSA_MODEL = os.getenv("POTO_CONVERSA_MODEL", "").strip() or OLLAMA_MODEL
 
 # --- Frontend estático (modo standalone: o backend serve a PWA) ----------
 FRONTEND_DIST = os.getenv("POTO_FRONTEND_DIST", str(BASE_DIR.parent / "frontend" / "dist"))

@@ -92,6 +92,10 @@ doctor: ## Verifica módulos do setup (ferramentas, agentes, STT, câmera, micro
 selftest: ## Auto-teste MODULAR: exercita cada componente isolado (PASS/FAIL/SKIP)
 	cd $(BACKEND) && uv run python ../scripts/selftest.py $(ARGS)
 
+.PHONY: bench
+bench: ## Benchmark de modelos de triagem (latência + acurácia na CPU) — escolher sem Hailo
+	cd $(BACKEND) && uv run python ../scripts/bench.py $(ARGS)
+
 .PHONY: smoke
 smoke: ## Teste de fumaça: importa app e roteia um evento sem subir servidor
 	cd $(BACKEND) && uv run python -c "from app.router_engine import rotear; from app.models import TipoOcorrencia, Modo; print(rotear(TipoOcorrencia.mulher, Modo.normal))"
