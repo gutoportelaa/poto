@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import re
+import unicodedata
 from typing import TypedDict
 
 from ..config import (
@@ -129,30 +130,41 @@ class _Estado(TypedDict, total=False):
     escalonar_humano: bool
 
 
-def _chat(model: str | None = None) -> "ChatOllama | None":
-    """ChatOllama por modelo (cache). `model=None` usa o padrão global. Permite
-    modelo por tarefa (triagem vs conversa) e troca de modelo no benchmark."""
+def _chat(model: str | None = None, fmt: str | None = None) -> "ChatOllama | None":
+    """ChatOllama por (modelo, formato) com cache. `fmt="json"` força o Ollama a
+    devolver JSON válido — decisivo para a robustez dos modelos nano na triagem.
+    `model=None` usa o padrão global."""
     if not LANGGRAPH_OK:
         return None
     m = model or OLLAMA_MODEL
-    llm = _llms.get(m)
+    chave = (m, fmt)
+    llm = _llms.get(chave)
     if llm is None:
-        llm = ChatOllama(
-            model=m, base_url=OLLAMA_BASE_URL,
-            temperature=0, num_predict=200, timeout=OLLAMA_TIMEOUT,
-        )
-        _llms[m] = llm
+        kwargs = {"model": m, "base_url": OLLAMA_BASE_URL, "temperature": 0,
+                  "num_predict": 200, "timeout": OLLAMA_TIMEOUT}
+        if fmt:
+            kwargs["format"] = fmt
+        llm = ChatOllama(**kwargs)
+        _llms[chave] = llm
     return llm
 
 
 def _parse_json(raw: str) -> dict | None:
-    m = re.search(r"\{.*\}", raw, re.DOTALL)
+    """Extrai o primeiro objeto JSON da resposta, tolerando cercas markdown
+    (```json), texto ao redor e aspas simples ocasionais dos modelos pequenos."""
+    if not raw:
+        return None
+    txt = raw.strip().removeprefix("```json").removeprefix("```").removesuffix("```")
+    m = re.search(r"\{.*\}", txt, re.DOTALL)
     if not m:
         return None
-    try:
-        return json.loads(m.group(0))
-    except json.JSONDecodeError:
-        return None
+    bloco = m.group(0)
+    for tentativa in (bloco, bloco.replace("'", '"')):
+        try:
+            return json.loads(tentativa)
+        except json.JSONDecodeError:
+            continue
+    return None
 
 
 def _node_conversa(state: _Estado) -> _Estado:
@@ -175,32 +187,83 @@ def _node_conversa(state: _Estado) -> _Estado:
     return state
 
 
-# Prefixo fixo do prompt de triagem (contém chaves JSON literais — por isso é
-# concatenado com a mensagem, nunca formatado com str.format).
+# Prompt de triagem com few-shot: exemplos ancoram os modelos nano (0.5–2B) a
+# devolver o rótulo e o JSON certos. Os exemplos NÃO se sobrepõem ao bench_dataset
+# (evita vazamento). Contém chaves JSON literais — concatenado, nunca .format().
 _PROMPT_TRIAGEM_PREFIXO = (
-    "Classifique a mensagem de um totem de emergência. Responda APENAS JSON: "
-    '{"tipo": "seguranca|mulher|saude|ouvidoria", '
-    '"gravidade": "risco_imediato|risco_potencial|orientacao", '
-    '"confianca": 0.0}. Mensagem: '
+    "Você classifica mensagens de um totem de emergência universitário. "
+    "Responda SOMENTE um objeto JSON com as chaves tipo, gravidade, confianca.\n"
+    "- tipo: seguranca | mulher | saude | ouvidoria\n"
+    "- gravidade: risco_imediato | risco_potencial | orientacao\n"
+    "- confianca: número de 0.0 a 1.0\n"
+    "Regra: mulher = violência/assédio de gênero; seguranca = ameaça/furto/geral; "
+    "saude = mal-estar/emergência clínica; ouvidoria = reclamação/sugestão/elogio.\n\n"
+    'Mensagem: "vi uma pessoa quebrando as janelas do laboratório"\n'
+    '{"tipo":"seguranca","gravidade":"risco_potencial","confianca":0.8}\n'
+    'Mensagem: "meu namorado me bateu e está me esperando na saída"\n'
+    '{"tipo":"mulher","gravidade":"risco_imediato","confianca":0.95}\n'
+    'Mensagem: "estou com muita falta de ar e dor no peito"\n'
+    '{"tipo":"saude","gravidade":"risco_imediato","confianca":0.9}\n'
+    'Mensagem: "gostaria de sugerir mais bancos no pátio"\n'
+    '{"tipo":"ouvidoria","gravidade":"orientacao","confianca":0.7}\n\n'
+    "Mensagem: "
 )
+
+
+def _sem_acento(s: str) -> str:
+    return "".join(c for c in unicodedata.normalize("NFKD", s) if not unicodedata.combining(c))
+
+
+# Sinônimos comuns que os modelos pequenos devolvem, mapeados para os rótulos.
+_TIPO_ALIAS = {
+    "seguranca": "seguranca", "violencia": "seguranca", "assalto": "seguranca",
+    "furto": "seguranca", "roubo": "seguranca", "ameaca": "seguranca",
+    "mulher": "mulher", "genero": "mulher", "assedio": "mulher", "violencia_mulher": "mulher",
+    "saude": "saude", "medico": "saude", "emergencia_medica": "saude", "clinica": "saude",
+    "ouvidoria": "ouvidoria", "reclamacao": "ouvidoria", "denuncia": "ouvidoria",
+    "sugestao": "ouvidoria", "elogio": "ouvidoria",
+}
+_GRAV_ALIAS = {
+    "risco_imediato": "risco_imediato", "imediato": "risco_imediato", "alta": "risco_imediato",
+    "alto": "risco_imediato", "critico": "risco_imediato", "emergencia": "risco_imediato",
+    "risco_potencial": "risco_potencial", "potencial": "risco_potencial", "media": "risco_potencial",
+    "medio": "risco_potencial", "moderado": "risco_potencial",
+    "orientacao": "orientacao", "baixa": "orientacao", "baixo": "orientacao",
+    "informacao": "orientacao", "duvida": "orientacao",
+}
+
+
+def _norm(valor, alias: dict, validos) -> str | None:
+    """Normaliza o rótulo do modelo (sem acento, minúsculo) contra os aliases/enum."""
+    if not isinstance(valor, str):
+        return None
+    chave = _sem_acento(valor).strip().lower().replace(" ", "_").replace("-", "_")
+    if chave in validos:
+        return chave
+    return alias.get(chave)
 
 
 def classificar_triagem(texto: str, modelo: str | None = None) -> dict | None:
     """Uma chamada de classificação (tipo/gravidade/confianca) com o modelo de
-    triagem (ou `modelo` explícito, p/ benchmark). Retorna o JSON validado ou None.
+    triagem (ou `modelo` explícito, p/ benchmark). `format=json` + few-shot +
+    normalização de rótulos para robustez nos nano. Retorna o JSON validado ou None.
     Isola a etapa de classificação da conversa/guardrails — usada pelo `make bench`."""
-    llm = _chat(modelo or TRIAGEM_MODEL)
+    llm = _chat(modelo or TRIAGEM_MODEL, fmt="json")
     if llm is None:
         return None
     try:
         data = _parse_json(llm.invoke(_PROMPT_TRIAGEM_PREFIXO + f'"{texto}"').content)
     except Exception:
         return None
-    if not data or data.get("tipo") not in TipoOcorrencia._value2member_map_:
+    if not data:
         return None
-    out = {"tipo": data["tipo"], "confianca": float(data.get("confianca", 0.6))}
-    if data.get("gravidade") in Gravidade._value2member_map_:
-        out["gravidade"] = data["gravidade"]
+    tipo = _norm(data.get("tipo"), _TIPO_ALIAS, TipoOcorrencia._value2member_map_)
+    if not tipo:
+        return None
+    out = {"tipo": tipo, "confianca": float(data.get("confianca", 0.6) or 0.6)}
+    grav = _norm(data.get("gravidade"), _GRAV_ALIAS, Gravidade._value2member_map_)
+    if grav:
+        out["gravidade"] = grav
     return out
 
 

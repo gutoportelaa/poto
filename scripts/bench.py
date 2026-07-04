@@ -106,7 +106,14 @@ def main() -> None:
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args()
 
-    dataset = json.loads(Path(args.dataset).read_text("utf-8")) if args.dataset else DATASET
+    # Dataset: --dataset explícito > scripts/bench_dataset.json (ampliado) > embutido.
+    _ds_padrao = ROOT / "scripts" / "bench_dataset.json"
+    if args.dataset:
+        dataset = json.loads(Path(args.dataset).read_text("utf-8"))
+    elif _ds_padrao.exists():
+        dataset = json.loads(_ds_padrao.read_text("utf-8"))
+    else:
+        dataset = DATASET
     modelos = [m.strip() for m in args.models.split(",")] if args.models else MODELOS_PADRAO
 
     presentes = _modelos_ollama()
