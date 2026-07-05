@@ -23,6 +23,7 @@ from ..config import (
     OLLAMA_TIMEOUT,
     TRIAGEM_MODEL,
 )
+from .. import classificador
 from ..models import Gravidade, Modo, TipoOcorrencia
 from ..router_engine import rotear
 
@@ -328,9 +329,10 @@ _RANK_GRAV = {
 }
 
 
-def _merge_protetivo(seed: dict, out: _Estado, modo: Modo) -> dict:
-    """A IA pode refinar o acolhimento e a classificação, mas NUNCA rebaixar a
-    proteção: vale sempre a categoria/gravidade mais protetiva entre heurística e LLM."""
+def _merge_protetivo(seed: dict, out: _Estado, modo: Modo, fonte: str = "agentes") -> dict:
+    """A IA/classificador pode refinar o acolhimento e a classificação, mas NUNCA
+    rebaixar a proteção: vale sempre a categoria/gravidade mais protetiva entre a
+    heurística e a fonte (`fonte` identifica quem classificou: classificador|agentes)."""
     tipo_llm = out.get("tipo", seed["tipo_sugerido"])
     crise = seed["escalonar_humano"] or _RANK_GRAV.get(seed["gravidade"], 1) == 3
     if crise:
@@ -358,16 +360,33 @@ def _merge_protetivo(seed: dict, out: _Estado, modo: Modo) -> dict:
         "mensagem_acolhimento": out.get("mensagem_acolhimento", seed["mensagem_acolhimento"]),
         "canal_sugerido": r["canal_roteado"],
         "escalonar_humano": escalonar,
-        "fonte": "agentes",
+        "fonte": fonte,
     }
 
 
 def triagem_conversacional(texto: str, modo: Modo = Modo.normal) -> dict:
-    """Executa o pipeline de agentes. Sempre retorna um resultado válido."""
+    """Executa a triagem. Sempre retorna um resultado válido, com merge protetivo.
+
+    Ordem de precedência (sem Hailo):
+    1. Classificador especializado local (governa; offline, ~ms) — não depende de
+       LangGraph/Ollama. O merge protetivo garante que ele não rebaixe a proteção
+       (sinais críticos da heurística e gravidade mais protetiva prevalecem).
+    2. LLM via LangGraph (refino facilitado, ex.: Ollama remoto) — só quando o
+       classificador não está treinado/disponível.
+    3. Heurística determinística — rede de segurança final.
+    """
+    seed = _heuristica(texto, modo)  # base segura (inclui sinais críticos)
+
+    clf = classificador.classificar(texto)
+    if clf:
+        out: _Estado = {"tipo": clf["tipo"], "confianca": clf["confianca"]}
+        if clf.get("gravidade"):
+            out["gravidade"] = clf["gravidade"]
+        return _merge_protetivo(seed, out, modo, fonte="classificador")
+
     if not (AGENTS_ENABLED and LANGGRAPH_OK):
-        return _heuristica(texto, modo)
+        return seed
     try:
-        seed = _heuristica(texto, modo)  # base segura
         estado: _Estado = {
             "texto": texto, "modo": modo.value,
             "tipo": seed["tipo_sugerido"], "gravidade": seed["gravidade"],
@@ -443,7 +462,9 @@ def status_agentes() -> dict:
         "modelo": OLLAMA_MODEL,
         "triagem_modelo": TRIAGEM_MODEL,
         "conversa_modelo": CONVERSA_MODEL,
-        "modo": "agentes" if (AGENTS_ENABLED and LANGGRAPH_OK) else "heuristica",
+        "classificador": classificador.status(),
+        "modo": "classificador" if classificador.disponivel()
+                else ("agentes" if (AGENTS_ENABLED and LANGGRAPH_OK) else "heuristica"),
     }
 
 

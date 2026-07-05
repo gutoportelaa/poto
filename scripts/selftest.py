@@ -177,6 +177,16 @@ def t_microfone(audio: bool) -> str:
     return f"{n} dispositivo(s) de captura (use --audio p/ gravar 1s)"
 
 
+def t_classificador() -> str:
+    from app import classificador
+    if not classificador.disponivel():
+        raise Skip("sem sklearn ou modelo treinado (uv sync --extra clf && make train-clf)")
+    r = classificador.classificar("estou com dor no peito e sem ar")
+    if not r or r["tipo"] != "saude":
+        raise RuntimeError(f"classificação inesperada: {r}")
+    return f"tipo={r['tipo']} grav={r.get('gravidade')} conf={r['confianca']} (governa a triagem)"
+
+
 def t_camera() -> str:
     vids = sorted(Path("/dev").glob("video*"))
     if not vids:
@@ -231,6 +241,7 @@ TESTES = {
     "config": t_config,
     "db": t_db,
     "router": t_router,
+    "classificador": t_classificador,
     "agentes": t_agentes,
     "stt": t_stt,
     "voz": t_voz,

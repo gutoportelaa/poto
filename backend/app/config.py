@@ -29,6 +29,9 @@ OLLAMA_TIMEOUT = float(os.getenv("POTO_OLLAMA_TIMEOUT", "20"))
 # triagem por dados. Ver docs/inferencia.md.
 TRIAGEM_MODEL = os.getenv("POTO_TRIAGEM_MODEL", "").strip() or OLLAMA_MODEL
 CONVERSA_MODEL = os.getenv("POTO_CONVERSA_MODEL", "").strip() or OLLAMA_MODEL
+# Classificador especializado de triagem (TF-IDF+LogReg, CPU/offline). Artefato
+# treinado por scripts/train_classificador.py. É o "governante" local da triagem.
+CLF_PATH = os.getenv("POTO_CLF_PATH", str(BASE_DIR / "app" / "data" / "triagem_clf.joblib"))
 
 # --- Frontend estático (modo standalone: o backend serve a PWA) ----------
 FRONTEND_DIST = os.getenv("POTO_FRONTEND_DIST", str(BASE_DIR.parent / "frontend" / "dist"))

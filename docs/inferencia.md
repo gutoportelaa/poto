@@ -1,50 +1,65 @@
-# Inferência sem Hailo — modelos por tarefa na CPU da Pi
+# Inferência sem Hailo — classificador especializado governa a triagem
 
-Decisão de projeto (02/07/2026): **descartar o Hailo** e priorizar modelos
-**mini/nano ou especializados** rodando na **CPU da Raspberry Pi 5 (8GB)**. O papel
-que o Hailo ocuparia (classificador de borda) passa a ser cumprido por um modelo
-pequeno na CPU — escolhido **por dados**, não por chute.
+Decisão de projeto: **descartar o Hailo** e rodar a triagem na **CPU da Raspberry
+Pi 5**. Medimos os modelos nano na Pi e eles **não serviram** (lentos e imprecisos);
+o dado levou a um **classificador especializado** como governante local, com o LLM
+(local ou remoto) como refino facilitado por cima.
 
-## Dois papéis, hoje separados
+## Dados que motivaram (medido no held-out `scripts/bench_dataset.json`)
 
-O totem tem duas tarefas de IA, com exigências diferentes:
+| Abordagem | acc.tipo | acc.grav | latência | onde |
+|---|---|---|---|---|
+| qwen2.5:0.5b | 29% | 27% | ~5800 ms | CPU do Pi 5 |
+| qwen2.5:1.5b | 45% | 48% | ~6100 ms | CPU do Pi 5 |
+| llama3.2:3b | 86% | 60% | ~2000 ms | workstation |
+| **classificador especializado** | **83%** | **86%** | **~6 ms** | qualquer CPU |
 
-| Tarefa | Natureza | Rede de segurança | Modelo |
-|---|---|---|---|
-| **Triagem** | classificação (tipo × gravidade), label space fixo | roteador determinístico (`router_engine.py`) | `POTO_TRIAGEM_MODEL` |
-| **Conversa** | generativa (acolhimento, follow-up) | — | `POTO_CONVERSA_MODEL` (**sempre local**) |
+O classificador empata o 3B em tipo, **ganha em gravidade** e é **centenas de vezes
+mais rápido** — offline, ~400 KB. Os nano na Pi ficaram perto do acaso e a ~6 s.
 
-Ambas caem no `POTO_OLLAMA_MODEL` se as vars por tarefa ficarem vazias. A **conversa
-roda sempre local** (offline total) — nunca depende de rede.
+## Arquitetura
 
-No código: `app/agents/graph.py` seleciona o modelo por tarefa via `_chat(model)`
-(cache por modelo); `classificar_triagem(texto, modelo=...)` isola a etapa de
-classificação (sem os guardrails determinísticos) e é o que o benchmark mede.
+Triagem (`app/agents/graph.py :: triagem_conversacional`), em ordem de precedência:
 
-## Escolher a triagem por dados: `make bench`
+1. **Classificador especializado** (`app/classificador.py`) — TF-IDF (palavra + char
+   n-grams) + Regressão Logística. **Governa** a classificação; roda offline, sem
+   LangGraph/Ollama.
+2. **LLM via LangGraph** (`POTO_TRIAGEM_MODEL`; Ollama local ou remoto) — refino/
+   fallback, só quando o classificador não está treinado.
+3. **Heurística determinística** — rede de segurança final.
+
+Sobre tudo isso roda o **merge protetivo**: nenhuma fonte rebaixa a proteção — em
+sinal crítico prevalece a heurística e a gravidade mais alta. A **conversa**
+generativa segue por `POTO_CONVERSA_MODEL` (local, offline por padrão).
+
+`status_agentes()` e `make selftest` reportam `modo` (`classificador`/`agentes`/
+`heuristica`) e o estado do classificador.
+
+## Treinar / avaliar
 
 ```bash
-# na Pi, com Ollama no ar e os modelos baixados
-make bench
-make bench ARGS="--models qwen2.5:0.5b,qwen2.5:1.5b,llama3.2:1b,gemma2:2b"
-make bench ARGS="--json"
+cd backend && uv sync --extra clf
+make train-clf          # treina em scripts/triagem_dataset.json e avalia no held-out
+make bench              # tabela comparando classificador* vs modelos do Ollama
 ```
 
-Mede, sobre um conjunto rotulado de frases pt-BR (`scripts/bench.py`, embutido ou
-`--dataset`), para cada modelo presente: **acurácia de tipo**, **acurácia de
-gravidade**, **falhas** (JSON inválido) e **latência** (média / p95) na CPU.
+- **Treino**: `scripts/triagem_dataset.json` (rotulado, pt-BR). O artefato
+  (`app/data/triagem_clf.joblib`, ~400 KB) é **gerado**, não versionado (gitignore) —
+  sempre em sincronia com o dataset. Melhorou? Amplie o dataset e rode `make train-clf`.
+- **Avaliação honesta**: mede-se no `bench_dataset.json` (conjunto SEPARADO do treino).
+- **Degradação graciosa**: sem `scikit-learn` ou sem o artefato, `disponivel()` é
+  False e a triagem cai no LLM/heurística.
 
-> Já observado no workstation: `llama3.2:3b` acerta ~27% do tipo com muitas falhas
-> de JSON — fraco para classificação. Rode o bench na Pi para comparar com os nano
-> (`qwen2.5:0.5b/1.5b`, `llama3.2:1b`, `gemma2:2b`) e definir o `POTO_TRIAGEM_MODEL`.
+## Modelo por tarefa (LLM, quando usado)
 
-## Próximo passo possível (se os nano não bastarem)
+`POTO_TRIAGEM_MODEL` / `POTO_CONVERSA_MODEL` (vazio = `POTO_OLLAMA_MODEL`). A conversa
+roda local por padrão; o modo remoto (ex.: `qwen2.5:14b` via túnel) é fácil de ligar
+apontando `POTO_OLLAMA_URL`, sempre subordinado ao classificador na triagem.
 
-Classificador **especializado** de CPU: embeddings pt multilingues (MiniLM em ONNX,
-~20ms) + cabeça linear, ou fastText/TF-IDF+LogReg — latência de milissegundos e
-determinístico. Entra como mais um "modelo" comparável no mesmo `make bench`.
+## Próximos passos possíveis
 
-## Acompanhamento
-
-`make selftest` (auto-teste modular) reporta, no módulo `agentes`, o modo, o modelo
-e a latência da triagem — use para ver o impacto de cada troca de modelo.
+- Ampliar `triagem_dataset.json` (mais frases, gírias regionais) para subir a
+  acurácia de tipo acima de 83%.
+- Embeddings ONNX (MiniLM) como vetor alternativo ao TF-IDF, se valer o ~100 MB.
+- Refino ativo: consultar o LLM só quando a confiança do classificador for baixa,
+  sem rebaixar (merge protetivo).

@@ -22,7 +22,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import statistics
 import sys
 import time
 from pathlib import Path
@@ -69,34 +68,49 @@ def _modelos_ollama() -> set[str] | None:
         return None
 
 
-def _avaliar(modelo: str, dataset: list[dict]) -> dict:
-    from app.agents.graph import classificar_triagem
-    classificar_triagem(dataset[0]["texto"], modelo=modelo)  # warm-up (carrega o modelo)
+def _avaliar_fn(nome: str, prever, dataset: list[dict]) -> dict:
+    """Avalia uma função de predição `prever(texto)->{tipo,gravidade?}` sobre o
+    dataset. Compartilhado por LLMs (via graph) e pelo classificador especializado."""
+    prever(dataset[0]["texto"])  # warm-up
     lat: list[float] = []
     acertos_tipo = acertos_grav = com_grav = falhas = 0
     for item in dataset:
         t0 = time.perf_counter()
-        r = classificar_triagem(item["texto"], modelo=modelo)
+        r = prever(item["texto"])
         lat.append((time.perf_counter() - t0) * 1000)
         if not r:
             falhas += 1
             continue
         if r.get("tipo") == item["tipo"]:
             acertos_tipo += 1
-        if "gravidade" in r:
+        if r.get("gravidade"):
             com_grav += 1
             if r["gravidade"] == item["gravidade"]:
                 acertos_grav += 1
     n = len(dataset)
+    lat.sort()
     return {
-        "modelo": modelo,
+        "modelo": nome,
         "acuracia_tipo": acertos_tipo / n,
         "acuracia_gravidade": (acertos_grav / com_grav) if com_grav else 0.0,
         "falhas": falhas,
-        "lat_media_ms": round(statistics.mean(lat), 1),
-        "lat_p95_ms": round(sorted(lat)[int(len(lat) * 0.95) - 1], 1),
+        "lat_media_ms": round(sum(lat) / n, 1),
+        "lat_p95_ms": round(lat[int(n * 0.95) - 1], 1),
         "n": n,
     }
+
+
+def _avaliar(modelo: str, dataset: list[dict]) -> dict:
+    from app.agents.graph import classificar_triagem
+    return _avaliar_fn(modelo, lambda t: classificar_triagem(t, modelo=modelo), dataset)
+
+
+def _avaliar_classificador(dataset: list[dict]) -> dict | None:
+    """Avalia o classificador especializado (se treinado) — a linha 'governante'."""
+    from app import classificador
+    if not classificador.disponivel():
+        return None
+    return _avaliar_fn("classificador*", classificador.classificar, dataset)
 
 
 def main() -> None:
@@ -117,15 +131,22 @@ def main() -> None:
     modelos = [m.strip() for m in args.models.split(",")] if args.models else MODELOS_PADRAO
 
     presentes = _modelos_ollama()
-    if presentes is None:
-        sys.exit("Ollama fora do ar — suba o serviço (ollama serve) e tente de novo.")
+    ollama_ok = presentes is not None
+    presentes = presentes or set()
 
     resultados, pulados = [], []
+    clf_res = _avaliar_classificador(dataset)  # o governante, se treinado
+    if clf_res:
+        resultados.append(clf_res)
     for m in modelos:
-        if m not in presentes:
+        if not ollama_ok or m not in presentes:
             pulados.append(m)
             continue
         resultados.append(_avaliar(m, dataset))
+
+    if not resultados:
+        sys.exit("Nada a avaliar: Ollama fora do ar e classificador não treinado "
+                 "(make train-clf ou suba o Ollama).")
 
     if args.json:
         print(json.dumps({"resultados": resultados, "pulados": pulados}, ensure_ascii=False, indent=2))
@@ -139,6 +160,10 @@ def main() -> None:
         print(f"  {r['modelo']:<16}{cor}{r['acuracia_tipo']*100:>7.0f}%{RST}"
               f"{r['acuracia_gravidade']*100:>8.0f}%{r['falhas']:>8}"
               f"{r['lat_media_ms']:>8.0f}ms{r['lat_p95_ms']:>7.0f}ms")
+    if clf_res:
+        print(f"  {DIM}* classificador especializado (held-out); LLMs medidos no mesmo conjunto.{RST}")
+    if not ollama_ok:
+        print(f"  {YELLOW}Ollama fora do ar — só o classificador foi avaliado.{RST}")
     if pulados:
         print(f"\n  {YELLOW}pulados (ausentes no Ollama):{RST} {', '.join(pulados)}")
         print(f"  {DIM}baixe com: ollama pull <modelo>{RST}")
