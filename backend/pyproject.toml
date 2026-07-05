@@ -19,6 +19,8 @@ dev = ["pytest>=8", "pytest-asyncio>=0.24", "ruff>=0.6", "langgraph-cli[inmem]>=
 stt = ["faster-whisper>=1.0"]
 # Canal GSM/2G real (SIMCom A7670SA) — só na rasp com o módulo plugado.
 simcom = ["pyserial>=3.5"]
+# Classificador especializado de triagem (CPU/offline), o governante local.
+clf = ["scikit-learn>=1.4", "joblib>=1.3"]
 
 [tool.uv]
 package = false

@@ -22,3 +22,6 @@ skills-lock.json
 *.pdf
 # Artefatos "mark of the web" do Windows/WSL
 *:Zone.Identifier
+
+# Artefato treinado do classificador (gerado por make train-clf)
+backend/app/data/*.joblib
