@@ -100,6 +100,10 @@ bench: ## Benchmark de modelos de triagem (latência + acurácia na CPU) — esc
 train-clf: ## Treina o classificador especializado de triagem (governante local, offline)
 	cd $(BACKEND) && uv sync --extra clf && uv run python ../scripts/train_classificador.py
 
+.PHONY: rtc-smoke
+rtc-smoke: ## Smoke-test da sinalização WebRTC (/rtc) — via da faixa de áudio
+	cd $(BACKEND) && uv run python ../scripts/rtc_smoke.py
+
 .PHONY: smoke
 smoke: ## Teste de fumaça: importa app e roteia um evento sem subir servidor
 	cd $(BACKEND) && uv run python -c "from app.router_engine import rotear; from app.models import TipoOcorrencia, Modo; print(rotear(TipoOcorrencia.mulher, Modo.normal))"
