@@ -337,10 +337,18 @@ async def disparar_panico(
 
 
 async def escalonar_manual(chamado: dict, canal: str) -> tuple[bool, str | None]:
-    """Escalonamento manual (P3, §13.2): a central/totem aciona uma autoridade do
-    estado a partir da tela de alerta. Registra a notificação e mantém o alerta
-    ativo (não rebaixa o status do chamado)."""
-    return await enviar_para_canal(chamado, canal, escalonamento=True, prefixo="ESTADO")
+    """Acionamento MANUAL de autoridade externa (190/192/193/180) pelo OPERADOR
+    (P3, §13.2). REGISTRA a ação na auditoria, mas NÃO disca nem envia SMS ao PSAP:
+    a ligação é feita por um humano (click-to-call no painel). Serviços de emergência
+    exigem contato humano — o sistema nunca robo-disca 190/SAMU. Mantém o alerta ativo."""
+    nome = CANAIS.get(canal, {}).get("nome", canal)
+    destino = contato_canal(canal)
+    detalhe = "acionado pelo operador (ligação humana / click-to-call)"
+    db.add_notificacao(
+        chamado["chamado_id"], canal, destino, "operador", True,
+        f"Operador acionou {nome}", detalhe=detalhe, escalonamento=True,
+    )
+    return True, detalhe
 
 
 async def escalonar_chamado(chamado: dict) -> dict | None:

@@ -27,6 +27,9 @@ const STATUS: Record<string, string> = {
 };
 // Autoridades do estado oferecidas para escalonamento manual (DESIGN.md §13.2 / P3).
 const CANAIS_ESTADO = ["pm_190", "samu_192", "bombeiros_193", "central_180"];
+// Números nacionais fixos — o operador liga do próprio aparelho (click-to-call).
+// O sistema NUNCA robo-disca serviços de emergência; aqui só facilita o humano.
+const TEL: Record<string, string> = { pm_190: "190", samu_192: "192", bombeiros_193: "193", central_180: "180" };
 const GRAV = {
   risco_imediato: { rotulo: "Imediato", badge: "U1 Crítico", classe: "imediato", rank: 0 },
   risco_potencial: { rotulo: "Potencial", badge: "U2 Potencial", classe: "potencial", rank: 1 },
@@ -262,8 +265,9 @@ function renderDrawer(a: any) {
 
       ${podeEscalonar ? `
       <div class="desc">
-        <div class="dlabel">Escalonar autoridade do estado</div>
+        <div class="dlabel">Acionar autoridade (ligação do operador)</div>
         <div class="esc-grid">${escBtns}</div>
+        <div class="despacho" id="despacho" hidden></div>
       </div>` : ""}
 
       <div class="dlabel">Linha do tempo (auditoria)</div>
@@ -277,8 +281,46 @@ function renderDrawer(a: any) {
   );
   panel.querySelector("#d-video")?.addEventListener("click", () => abrirVideo(a.chamado_id));
   panel.querySelectorAll<HTMLButtonElement>("[data-esc]").forEach((b) =>
-    b.addEventListener("click", () => escalonar(a.chamado_id, b.dataset.esc!, b)),
+    b.addEventListener("click", () => mostrarDespacho(a, b.dataset.esc!)),
   );
+}
+
+// Click-to-call: o operador liga do próprio aparelho (tel:) com um roteiro pronto.
+// Não robo-discamos o PSAP — só facilitamos e registramos a ação na auditoria.
+function mostrarDespacho(a: any, canal: string) {
+  const box = document.getElementById("despacho") as HTMLElement | null;
+  if (!box) return;
+  const num = TEL[canal] || "";
+  const tipo = TIPO[a.tipo_ocorrencia] || a.tipo_ocorrencia || "ocorrência";
+  const grav = (GRAV[a.gravidade as GravKey] || GRAV.orientacao).rotulo.toLowerCase();
+  const emerg = a.emergencia ? " Emergência em curso." : "";
+  const roteiro =
+    `P.O.T.O, protocolo ${a.chamado_id}. Totem ${a.totem_id}. `
+    + `Ocorrência de ${tipo}, gravidade ${grav}.${emerg} Há áudio ao vivo com a pessoa no totem.`;
+  box.hidden = false;
+  box.innerHTML = `
+    <div class="despacho-num">Ligar para ${CANAL[canal]} — <strong>${num}</strong></div>
+    <p class="roteiro" id="roteiro-txt">${roteiro}</p>
+    <div class="despacho-acoes">
+      <a class="btn-primary" id="discar" href="tel:${num}">${sym("call", "xs")}Discar ${num}</a>
+      <button class="btn-ghost" type="button" id="copiar-roteiro">Copiar roteiro</button>
+    </div>`;
+  box.querySelector("#discar")!.addEventListener("click", () => registrarAcionamento(a.chamado_id, canal));
+  box.querySelector("#copiar-roteiro")!.addEventListener("click", () => {
+    navigator.clipboard?.writeText(roteiro).catch(() => {});
+    (box.querySelector("#copiar-roteiro") as HTMLElement).textContent = "Roteiro copiado";
+  });
+}
+
+// Registra na auditoria que o operador acionou a autoridade (não disca o PSAP).
+async function registrarAcionamento(id: string, canal: string) {
+  try {
+    await fetch(`${apiBase()}/chamados/${id}/escalonar`, {
+      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ canal }),
+    });
+    const a = await fetch(`${apiBase()}/chamados/${id}/auditoria`).then((x) => x.json());
+    renderDrawer(a); // reflete o acionamento na linha do tempo
+  } catch { /* a ligação (tel:) segue mesmo se o log falhar */ }
 }
 
 // ---- Vídeo ------------------------------------------------------------------
@@ -349,21 +391,6 @@ async function mudarEstado(id: string, status: string) {
   await fetch(`${apiBase()}/chamados/${id}`, {
     method: "PATCH", headers: { "content-type": "application/json" }, body: JSON.stringify({ status }),
   });
-}
-async function escalonar(id: string, canal: string, btn: HTMLButtonElement) {
-  btn.disabled = true;
-  try {
-    const r = await fetch(`${apiBase()}/chamados/${id}/escalonar`, {
-      method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ canal }),
-    }).then((x) => x.json());
-    btn.classList.add(r.sucesso ? "done" : "fail");
-    btn.innerHTML = `${sym(r.sucesso ? "check" : "error", "xs")}${CANAL[canal]}`;
-    const a = await fetch(`${apiBase()}/chamados/${id}/auditoria`).then((x) => x.json());
-    renderDrawer(a); // reflete o novo contato na linha do tempo
-  } catch {
-    btn.disabled = false;
-    btn.classList.add("fail");
-  }
 }
 
 function upsert(c: any) {
