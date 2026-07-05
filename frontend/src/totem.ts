@@ -3,7 +3,7 @@ import {
   enviarEvento, estaOnline, novoEvento, pendentes, sincronizar,
   apiBase, type EventoOut, type Modo, type TipoOcorrencia,
 } from "./api";
-import { CameraController, enviarEvidencia, publicar, type SessaoRTC } from "./video";
+import { CameraController, capturarAudio, enviarEvidencia, publicar, type SessaoRTC } from "./video";
 import { ConversaVoz, type EstadoConversa } from "./voice";
 import { chatTexto } from "./chat";
 import { SYM, sym } from "./icons";
@@ -325,57 +325,78 @@ function confirmar(out: EventoOut) {
   const t = setTimeout(home, neutro ? 5_000 : critico ? 12_000 : 9_000);
   document.getElementById("chamar")?.addEventListener("click", () => {
     clearTimeout(t);
-    videoChamada(out.chamado_id);
+    chamadaAoVivo(out.chamado_id);
   });
 }
 
-// Chamada A/V ao vivo com a central (WebRTC P2P nativo, bidirecional). O totem
-// publica câmera+mic e toca o A/V que a central devolve ao atender.
-async function videoChamada(chamadoId: string) {
+// Chamada ao vivo com a central (WebRTC P2P nativo, bidirecional). Tenta A/V com
+// câmera+mic; SEM câmera cai para ÁUDIO-ONLY (a faixa de áudio isolada — o pivô:
+// sem voz PSTN, a conversa vai por áudio sobre IP). A central devolve seu áudio/vídeo.
+async function chamadaAoVivo(chamadoId: string) {
   footer("");
   const camera = new CameraController();
   let sessao: SessaoRTC | null = null;
+  let stream: MediaStream | null = null;
+  let soAudio = false;
+
+  // Captura: A/V se houver câmera; senão, só a faixa de áudio (basta o mic).
+  try {
+    stream = await camera.iniciar(true);
+  } catch {
+    try { stream = await capturarAudio(); soAudio = true; } catch { stream = null; }
+  }
 
   app.innerHTML = `
-    <div class="call-layout">
-      <video id="remoto" autoplay playsinline></video>
-      <video id="local" class="pip" autoplay muted playsinline></video>
+    <div class="call-layout ${soAudio ? "audio-only" : ""}">
+      ${soAudio
+        ? `<div class="call-orb">${sym("call", "md")}</div>`
+        : `<video id="remoto" autoplay playsinline></video>
+           <video id="local" class="pip" autoplay muted playsinline></video>`}
+      <audio id="remoto-audio" autoplay ${soAudio ? "" : "hidden"}></audio>
       <p class="call-caption" id="call-status">Chamando a central…</p>
       <button class="btn-end" type="button" id="encerrar">Encerrar</button>
     </div>
   `;
   const status = document.getElementById("call-status")!;
-  const localVideo = document.getElementById("local") as HTMLVideoElement;
-  const remotoVideo = document.getElementById("remoto") as HTMLVideoElement;
 
   const encerrar = async () => {
     sessao?.encerrar();
-    const blob = await camera.pararGravacao();
-    camera.parar();
-    if (blob) {
-      try { await enviarEvidencia(blob, chamadoId, TOTEM_ID); } catch { /* silencioso */ }
+    if (soAudio) {
+      stream?.getTracks().forEach((tk) => tk.stop());
+    } else {
+      const blob = await camera.pararGravacao();
+      camera.parar();
+      if (blob) { try { await enviarEvidencia(blob, chamadoId, TOTEM_ID); } catch { /* silencioso */ } }
     }
     home();
   };
   document.getElementById("encerrar")!.addEventListener("click", encerrar);
 
-  if (!camera.suportada) {
-    status.textContent = "Câmera indisponível neste dispositivo.";
+  if (!stream) {
+    status.textContent = "Áudio e câmera indisponíveis neste dispositivo.";
     return;
   }
-  try {
-    const stream = await camera.iniciar(true);
-    localVideo.srcObject = stream;
+
+  const remotoAudio = document.getElementById("remoto-audio") as HTMLAudioElement;
+  const remotoVideo = soAudio ? null : (document.getElementById("remoto") as HTMLVideoElement);
+  if (!soAudio) {
+    (document.getElementById("local") as HTMLVideoElement).srcObject = stream;
     camera.gravar();
+  }
+
+  try {
     sessao = await publicar(chamadoId, stream, TOTEM_ID, {
-      onRemoteStream: (s) => { remotoVideo.srcObject = s; status.textContent = "Conectado à central"; },
+      onRemoteStream: (s) => {
+        if (remotoVideo) remotoVideo.srcObject = s; else remotoAudio.srcObject = s;
+        status.textContent = "Conectado à central";
+      },
       onEstado: (e) => {
         if (e === "connected") status.textContent = "Conectado à central";
         else if (e === "failed") status.textContent = "Falha na conexão";
       },
     });
   } catch {
-    status.textContent = "Não foi possível acessar a câmera.";
+    status.textContent = "Não foi possível iniciar a chamada.";
   }
 }
 

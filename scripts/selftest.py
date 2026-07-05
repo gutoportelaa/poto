@@ -167,7 +167,7 @@ def t_microfone(audio: bool) -> str:
         raise Skip("arecord ausente (instale alsa-utils)")
     n = _count_cards(subprocess.run(["arecord", "-l"], capture_output=True, text=True).stdout)
     if n == 0:
-        raise RuntimeError("nenhum dispositivo de captura")
+        raise Skip("nenhum dispositivo de captura (microfone ausente/não plugado)")
     if audio:
         out = Path(tempfile.gettempdir()) / "poto-selftest-mic.wav"
         subprocess.run(["arecord", "-d", "1", "-f", "cd", str(out)],

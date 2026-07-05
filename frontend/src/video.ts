@@ -63,6 +63,12 @@ export class CameraController {
   }
 }
 
+// Captura SÓ áudio — a faixa de áudio isolada. Funciona no totem sem câmera
+// (o pivô: sem voz PSTN, a conversa ao vivo vai por WebRTC/áudio sobre IP).
+export async function capturarAudio(): Promise<MediaStream> {
+  return navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+}
+
 export async function enviarEvidencia(blob: Blob, chamadoId: string, totemId: string): Promise<any> {
   const fd = new FormData();
   fd.append("video", blob, "evidencia.webm");
@@ -132,12 +138,13 @@ export async function publicar(
 // Central assiste à sala. Se `localStream` for passado, a central também envia
 // seu A/V (mic+câmera) — a chamada vira bidirecional (atendimento ao vivo).
 export async function assistir(
-  sala: string, videoEl: HTMLVideoElement, cb: CBView = {}, localStream?: MediaStream,
+  sala: string, midiaEl: HTMLMediaElement, cb: CBView = {}, localStream?: MediaStream,
 ): Promise<SessaoRTC> {
   const pc = new RTCPeerConnection(await rtcConfig());
   // Não pré-criamos transceivers: a oferta do totem dita as m-lines (evita
   // descasamento). O ontrack dispara ao receber as faixas do publicador.
-  pc.ontrack = (e) => { videoEl.srcObject = e.streams[0]; cb.onStream?.(); };
+  // `midiaEl` pode ser <video> ou <audio> (chamada só-áudio): ambos têm srcObject.
+  pc.ontrack = (e) => { midiaEl.srcObject = e.streams[0]; cb.onStream?.(); };
   const ws = new WebSocket(salaWS(sala));
   pc.onicecandidate = (e) => { if (e.candidate) env(ws, { tipo: "ice", candidate: e.candidate }); };
   pc.onconnectionstatechange = () => cb.onEstado?.(pc.connectionState);
