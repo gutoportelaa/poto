@@ -34,6 +34,7 @@ class Gravidade(str, Enum):
 class StatusChamado(str, Enum):
     recebido = "recebido"
     roteado = "roteado"
+    pendente_validacao = "pendente_validacao"  # "suposto perigo": aguarda o operador confirmar
     notificado = "notificado"
     alerta_ativo = "alerta_ativo"  # pânico em curso, persistente até atendimento
     reconhecido = "reconhecido"
@@ -42,6 +43,20 @@ class StatusChamado(str, Enum):
     escalonado = "escalonado"
     falha_notificacao = "falha_notificacao"
     cancelado = "cancelado"
+
+
+class NivelRisco(str, Enum):
+    """Regime de autonomia da triagem (Fase 1 — validação humana em 3 níveis).
+
+    - claro: sinal crítico/risco_imediato -> aciona já, humano acompanha (não é gate).
+    - suposto: risco_potencial/ameaça difusa/baixa confiança -> aguarda validação humana,
+      com escalonamento automático por timeout (fail-safe protetivo).
+    - normal: orientação com confiança alta -> bot conduz e encaminha sozinho.
+    """
+
+    claro = "claro"
+    suposto = "suposto"
+    normal = "normal"
 
 
 # --- Entrada: evento do totem --------------------------------------------
@@ -107,6 +122,16 @@ class EscalonamentoIn(BaseModel):
     canal: str = Field(..., description="Canal de autoridade do estado (ex.: samu_192).")
 
 
+class ValidacaoIn(BaseModel):
+    """Decisão do operador sobre um chamado em 'pendente_validacao' (nível suposto)."""
+
+    decisao: str = Field(..., description="'confirmar' | 'reclassificar' | 'falso_alarme'")
+    tipo_ocorrencia: TipoOcorrencia | None = Field(
+        None, description="Novo tipo, obrigatório quando decisao='reclassificar'."
+    )
+    observacao: str | None = None
+
+
 # --- Triagem por agentes (conversacional) --------------------------------
 class TriagemIn(BaseModel):
     texto: str
@@ -121,6 +146,10 @@ class TriagemOut(BaseModel):
     canal_sugerido: str
     escalonar_humano: bool
     fonte: str = Field(description="'agentes' (LLM) ou 'heuristica' (fallback).")
+    nivel: NivelRisco = Field(
+        NivelRisco.normal,
+        description="Regime de autonomia: claro (aciona já) | suposto (gate humano) | normal (autônomo).",
+    )
 
 
 # --- Conversa por voz (triagem multi-turno) ------------------------------
@@ -141,6 +170,7 @@ class ConversaOut(BaseModel):
     gravidade: Gravidade | None = None
     canal_sugerido: str | None = None
     escalonar_humano: bool = False
+    nivel: NivelRisco | None = None
 
 
 class AbandonoIn(BaseModel):

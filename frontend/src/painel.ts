@@ -12,7 +12,7 @@ const drawerEl = document.getElementById("drawer")!;
 const totensLista = document.getElementById("totens-lista")!;
 const totensResumo = document.getElementById("totens-resumo")!;
 
-const ESTADOS = ["roteado", "notificado", "alerta_ativo", "reconhecido", "em_atendimento", "encerrado", "escalonado", "cancelado"];
+const ESTADOS = ["roteado", "pendente_validacao", "notificado", "alerta_ativo", "reconhecido", "em_atendimento", "encerrado", "escalonado", "cancelado"];
 const CANAL: Record<string, string> = {
   csv: "CSV / PREUNI", sala_lilas: "Sala Lilás", sapsi: "SAPSI", ouvidoria: "Ouvidoria",
   samu_192: "SAMU", pm_190: "Polícia Militar", bombeiros_193: "Bombeiros", central_180: "Central 180",
@@ -21,10 +21,14 @@ const TIPO: Record<string, string> = {
   seguranca: "Segurança", mulher: "Atendimento à Mulher", saude: "Saúde", ouvidoria: "Ouvidoria",
 };
 const STATUS: Record<string, string> = {
-  roteado: "Roteado", notificado: "Aguardando", alerta_ativo: "Alerta ativo", reconhecido: "Reconhecido",
+  roteado: "Roteado", pendente_validacao: "Aguardando validação", notificado: "Aguardando",
+  alerta_ativo: "Alerta ativo", reconhecido: "Reconhecido",
   em_atendimento: "Em atendimento", encerrado: "Encerrado", escalonado: "Escalonado",
   cancelado: "Cancelado", falha_notificacao: "Falha no envio",
 };
+// Espelha POTO_VALIDACAO_SLA_SEGUNDOS: tempo que o operador tem para validar um
+// chamado de "suposto perigo" antes do escalonamento automático (fail-safe).
+const VALIDACAO_SLA_SEG = 90;
 // Autoridades do estado oferecidas para escalonamento manual (DESIGN.md §13.2 / P3).
 const CANAIS_ESTADO = ["pm_190", "samu_192", "bombeiros_193", "central_180"];
 // Números nacionais fixos — o operador liga do próprio aparelho (click-to-call).
@@ -100,6 +104,15 @@ function slaRestante(c: any): string | null {
   return `Responder em ${Math.floor(rest / 60)}:${String(rest % 60).padStart(2, "0")}`;
 }
 
+// Contador do nível "suposto perigo": tempo restante até o escalonamento
+// automático (fail-safe) caso o operador não valide.
+function validacaoRestante(c: any): { texto: string; expirado: boolean } | null {
+  if (c.status !== "pendente_validacao") return null;
+  const rest = VALIDACAO_SLA_SEG - Math.floor((Date.now() - new Date(c.updated_at || c.created_at).getTime()) / 1000);
+  if (rest <= 0) return { texto: "Escalonando automaticamente…", expirado: true };
+  return { texto: `Valide em ${Math.floor(rest / 60)}:${String(rest % 60).padStart(2, "0")}`, expirado: false };
+}
+
 function aplicarBuscaGravidade(): any[] {
   const q = busca.trim().toLowerCase();
   return chamados.filter((c) => {
@@ -154,17 +167,19 @@ function render() {
     const ativo = !ENCERRADOS.has(c.status);
     const critico = c.gravidade === "risco_imediato" && ativo;
     const sla = slaRestante(c);
+    const val = validacaoRestante(c);
     const pend = PENDENTES.has(c.status);
     const statChip = live
       ? `<span class="noc-stat live">${sym("videocam", "xs")}Câmera ativa</span>`
       : `<span class="noc-stat">${STATUS[c.status] || c.status}</span>`;
     return `
-      <article class="noc-card ${g.classe}${critico ? " pulse-crit" : ""}" data-card="${c.chamado_id}">
+      <article class="noc-card ${g.classe}${critico ? " pulse-crit" : ""}${val ? " suposto" : ""}" data-card="${c.chamado_id}">
         <header class="noc-card-top">
           <div>
             <div class="noc-card-tags">
               <span class="ubadge ${g.classe}">${g.badge}</span>
               <span class="noc-id ${g.classe}">${c.chamado_id}</span>
+              ${val ? `<span class="ubadge mini">Suposto perigo</span>` : ""}
             </div>
             <h3 class="noc-card-title">${tituloCard(c)}</h3>
           </div>
@@ -174,12 +189,16 @@ function render() {
           <div class="noc-line">${sym("location_on", "xs")}<span>${c.totem_id}</span></div>
           <div class="noc-line ctx">${sym("forum", "xs")}<p>${contextoCard(c)}</p></div>
           ${sla ? `<div class="noc-sla${sla === "SLA expirado" ? " exp" : ""}">${sla}</div>` : ""}
+          ${val ? `<div class="noc-sla${val.expirado ? " exp" : ""}">${val.texto}</div>` : ""}
           ${ligacoesCard(c.chamado_id)}
         </div>
         <footer class="noc-card-foot">
           ${statChip}
           <div class="noc-card-acts">
-            ${pend ? `<button class="btn-ack" type="button" data-ack="${c.chamado_id}">${sym("shield_person", "xs")}Reconhecer</button>` : ""}
+            ${val ? `
+              <button class="btn-ghost" type="button" data-falso="${c.chamado_id}">Falso alarme</button>
+              <button class="btn-ack" type="button" data-confirmar="${c.chamado_id}">${sym("shield_person", "xs")}Confirmar e acionar</button>
+            ` : pend ? `<button class="btn-ack" type="button" data-ack="${c.chamado_id}">${sym("shield_person", "xs")}Reconhecer</button>` : ""}
             <button class="btn-ghost" type="button" data-det="${c.chamado_id}">Detalhes ${sym("chevron_right", "xs")}</button>
           </div>
         </footer>
@@ -188,6 +207,17 @@ function render() {
 
   lista.querySelectorAll<HTMLButtonElement>("[data-ack]").forEach((b) =>
     b.addEventListener("click", (e) => { e.stopPropagation(); ack(b.dataset.ack!); }),
+  );
+  lista.querySelectorAll<HTMLButtonElement>("[data-confirmar]").forEach((b) =>
+    b.addEventListener("click", (e) => { e.stopPropagation(); validar(b.dataset.confirmar!, "confirmar"); }),
+  );
+  lista.querySelectorAll<HTMLButtonElement>("[data-falso]").forEach((b) =>
+    b.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (confirm("Marcar este chamado como falso alarme? Ele será cancelado sem acionar o canal.")) {
+        validar(b.dataset.falso!, "falso_alarme");
+      }
+    }),
   );
   lista.querySelectorAll<HTMLElement>("[data-det]").forEach((b) =>
     b.addEventListener("click", () => abrirDrawer(b.dataset.det!)),
@@ -385,6 +415,22 @@ async function ack(id: string) {
   } catch {
     statusEl.className = "status offline";
     statusEl.innerHTML = `<span class="dot"></span>Falha ao reconhecer`;
+  }
+}
+// Validação humana do nível "suposto perigo" (Fase 1): confirma (aciona o canal
+// já roteado) ou marca falso alarme (cancela sem acionar). Reclassificar tipo
+// fica disponível via API (POST .../validar com decisao=reclassificar).
+async function validar(id: string, decisao: "confirmar" | "falso_alarme") {
+  try {
+    const r = await fetch(`${apiBase()}/chamados/${id}/validar`, {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ decisao }),
+    });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    upsert(await r.json());
+  } catch {
+    statusEl.className = "status offline";
+    statusEl.innerHTML = `<span class="dot"></span>Falha ao validar`;
   }
 }
 async function mudarEstado(id: string, status: string) {

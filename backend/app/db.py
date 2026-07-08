@@ -11,7 +11,7 @@ import sqlite3
 import threading
 from datetime import datetime, timezone
 
-from .config import DB_PATH, SLA_SEGUNDOS, TOTEM_OFFLINE_SEG
+from .config import DB_PATH, SLA_SEGUNDOS, TOTEM_OFFLINE_SEG, VALIDACAO_SLA_SEGUNDOS
 
 _lock = threading.Lock()
 _conn: sqlite3.Connection | None = None
@@ -174,6 +174,23 @@ def chamados_sla_expirado() -> list[dict]:
     return expirados
 
 
+def chamados_validacao_expirada() -> list[dict]:
+    """Chamados em 'pendente_validacao' (nível suposto) sem resposta do operador
+    dentro do SLA de validação — fail-safe: escalona sozinho em vez de arquivar."""
+    with _lock:
+        rows = conn().execute(
+            "SELECT * FROM chamados WHERE status = 'pendente_validacao' ORDER BY created_at ASC"
+        ).fetchall()
+        candidatos = [row_to_dict(r) for r in rows]
+    agora = datetime.now(timezone.utc)
+    expirados: list[dict] = []
+    for chamado in candidatos:
+        ref = _parse_ts(chamado["updated_at"])
+        if (agora - ref).total_seconds() >= VALIDACAO_SLA_SEGUNDOS:
+            expirados.append(chamado)
+    return expirados
+
+
 def row_to_dict(r: sqlite3.Row) -> dict:
     d = dict(r)
     if d.get("triagem_json"):
@@ -319,6 +336,22 @@ def update_chamado(
         )
         c.commit()
     return get_chamado(chamado_id)
+
+
+def reclassificar_chamado(
+    chamado_id: str, tipo_ocorrencia: str, canal_roteado: str, fallback: str | None,
+    *, observacao: str | None = None,
+) -> None:
+    """Aplica a reclassificação manual do operador (validação humana, nível suposto)
+    antes do acionamento — mantém o mesmo chamado_id/protocolo para auditoria."""
+    with _lock:
+        c = conn()
+        c.execute(
+            "UPDATE chamados SET tipo_ocorrencia = ?, canal_roteado = ?, fallback = ?, "
+            "observacao = COALESCE(?, observacao), updated_at = ? WHERE chamado_id = ?",
+            (tipo_ocorrencia, canal_roteado, fallback, observacao, _now(), chamado_id),
+        )
+        c.commit()
 
 
 def ack_chamado(chamado_id: str) -> dict | None:

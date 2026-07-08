@@ -52,6 +52,7 @@ from .models import (
     TipoOcorrencia,
     TriagemIn,
     TriagemOut,
+    ValidacaoIn,
 )
 from .router_engine import CANAIS, rotear
 
@@ -169,12 +170,15 @@ def metricas() -> dict:
 # --- API de Eventos (acionamento do totem) --------------------------------
 @app.post(f"{API}/eventos", response_model=EventoOut, status_code=201)
 async def criar_evento(evento: EventoIn) -> EventoOut:
-    # Triagem opcional por agentes quando há texto livre; senão, roteamento direto.
+    # Triagem opcional por agentes quando há texto livre; senão, roteamento direto
+    # (trilha fixa do totem: o humano já escolheu a categoria — sem gate de validação).
     triagem = None
     emergencia = False
+    nivel = "normal"
     if evento.texto_livre:
         triagem = triagem_conversacional(evento.texto_livre, evento.modo)
         emergencia = triagem.get("gravidade") == Gravidade.risco_imediato.value
+        nivel = triagem.get("nivel", "normal")
 
     routing = rotear(evento.tipo_ocorrencia, evento.modo, emergencia=emergencia)
     if triagem and triagem.get("gravidade"):
@@ -185,7 +189,13 @@ async def criar_evento(evento: EventoIn) -> EventoOut:
 
     if not duplicado:
         await hub.broadcast("novo_chamado", chamado)
-        _, chamado = await notifier.notificar_chamado(chamado)
+        if nivel == "suposto":
+            # Suposto perigo: segura o acionamento para validação humana (com SLA
+            # de fail-safe em sla.verificar_validacao — silêncio não arquiva).
+            chamado = db.update_chamado(chamado["chamado_id"], status="pendente_validacao") or chamado
+        else:
+            # Claro (aciona já, humano acompanha em paralelo) ou normal (autônomo).
+            _, chamado = await notifier.notificar_chamado(chamado)
         await hub.broadcast("atualizado", chamado)
 
     return EventoOut(
@@ -486,6 +496,53 @@ def auditoria(chamado_id: str) -> dict:
         "contatos_acionados": notifs,
         "linha_do_tempo": linha,
     }
+
+
+@app.post(f"{API}/chamados/{{chamado_id}}/validar")
+async def validar(chamado_id: str, req: ValidacaoIn) -> dict:
+    """Validação humana de um chamado em 'pendente_validacao' (nível suposto).
+
+    - confirmar: aciona o canal já roteado.
+    - reclassificar: reroteia para o tipo indicado pelo operador e aciona.
+    - falso_alarme: cancela sem acionar (fica auditado).
+    Se o operador não decidir a tempo, sla.verificar_validacao escalona sozinho.
+    """
+    c = db.get_chamado(chamado_id)
+    if not c:
+        raise HTTPException(404, "Chamado não encontrado")
+    if c["status"] != "pendente_validacao":
+        raise HTTPException(409, f"Chamado não está pendente de validação (status={c['status']})")
+
+    if req.decisao == "falso_alarme":
+        c = db.update_chamado(
+            chamado_id, status="cancelado",
+            observacao=req.observacao or "Marcado como falso alarme pelo operador.",
+        ) or c
+        await hub.broadcast("atualizado", c)
+        return c
+
+    if req.decisao == "reclassificar":
+        if not req.tipo_ocorrencia:
+            raise HTTPException(422, "tipo_ocorrencia é obrigatório para reclassificar")
+        modo = c["modo"]
+        routing = rotear(TipoOcorrencia(req.tipo_ocorrencia), modo, emergencia=c["gravidade"] == "risco_imediato")
+        with_new_tipo = dict(c)
+        with_new_tipo["tipo_ocorrencia"] = req.tipo_ocorrencia.value
+        with_new_tipo["canal_roteado"] = routing["canal_roteado"]
+        with_new_tipo["fallback"] = routing["fallback"]
+        # Persiste a reclassificação antes de notificar (o notifier lê do banco via chamado_id).
+        db.reclassificar_chamado(
+            chamado_id, req.tipo_ocorrencia.value, routing["canal_roteado"], routing["fallback"],
+            observacao=req.observacao,
+        )
+        c = db.get_chamado(chamado_id) or c
+
+    elif req.decisao != "confirmar":
+        raise HTTPException(422, "decisao deve ser 'confirmar', 'reclassificar' ou 'falso_alarme'")
+
+    _, c = await notifier.notificar_chamado(c)
+    await hub.broadcast("atualizado", c)
+    return c
 
 
 @app.post(f"{API}/chamados/{{chamado_id}}/ack")

@@ -722,6 +722,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .noc-card.imediato { border-left-color: var(--rust); }
 .noc-card.potencial { border-left-color: var(--warn); }
 .noc-card.orientacao { border-left-color: var(--faint); opacity: .92; }
+.noc-card.suposto { background: #fdf8ee; }
 .noc-card:hover { border-color: var(--muted); opacity: 1; }
 .noc-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
 .noc-card-tags { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }

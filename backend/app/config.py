@@ -50,6 +50,10 @@ SLA_SEGUNDOS = {
     "orientacao": None,
 }
 
+# Nível "suposto perigo": tempo que o operador tem para validar antes do
+# escalonamento automático (fail-safe protetivo — silêncio humano nunca arquiva).
+VALIDACAO_SLA_SEGUNDOS = int(os.getenv("POTO_VALIDACAO_SLA_SEGUNDOS", "90"))
+
 # --- Totens / heartbeat ----------------------------------------------------
 # Um totem é considerado offline se o último heartbeat for mais antigo que isto.
 # Deve ser folgado o bastante para o intervalo de envio do totem (15s).

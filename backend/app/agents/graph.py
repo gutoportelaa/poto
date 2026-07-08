@@ -105,7 +105,26 @@ def _heuristica(texto: str, modo: Modo) -> dict:
         "canal_sugerido": r["canal_roteado"],
         "escalonar_humano": critico,
         "fonte": "heuristica",
+        "nivel": _nivel(gravidade.value, confianca, critico),
     }
+
+
+# Confiança mínima para o "normal" andar sozinho — abaixo disso, mesmo uma
+# triagem de baixo risco pede validação humana (nível "suposto").
+CONFIANCA_MIN_AUTONOMA = 0.6
+
+
+def _nivel(gravidade: str, confianca: float, escalonar_humano: bool) -> str:
+    """3 regimes de autonomia (validação humana):
+    claro   -> risco_imediato/sinal crítico: aciona já, humano acompanha (não é gate).
+    suposto -> risco_potencial ou confiança baixa: aguarda validação humana com SLA.
+    normal  -> orientação com confiança alta: bot conduz e encaminha sozinho.
+    """
+    if escalonar_humano or gravidade == Gravidade.risco_imediato.value:
+        return "claro"
+    if gravidade == Gravidade.risco_potencial.value or confianca < CONFIANCA_MIN_AUTONOMA:
+        return "suposto"
+    return "normal"
 
 
 def _acolhimento(tipo: TipoOcorrencia, modo: Modo) -> str:
@@ -353,14 +372,16 @@ def _merge_protetivo(seed: dict, out: _Estado, modo: Modo, fonte: str = "agentes
     # Canal coerente com o tipo final.
     emergencia = grav_final == Gravidade.risco_imediato.value
     r = rotear(TipoOcorrencia(tipo_final), modo, emergencia=emergencia)
+    confianca_final = round(float(out.get("confianca", seed["confianca"])), 2)
     return {
         "tipo_sugerido": tipo_final,
         "gravidade": grav_final,
-        "confianca": round(float(out.get("confianca", seed["confianca"])), 2),
+        "confianca": confianca_final,
         "mensagem_acolhimento": out.get("mensagem_acolhimento", seed["mensagem_acolhimento"]),
         "canal_sugerido": r["canal_roteado"],
         "escalonar_humano": escalonar,
         "fonte": fonte,
+        "nivel": _nivel(grav_final, confianca_final, escalonar),
     }
 
 
@@ -424,6 +445,7 @@ def conversa_voz(historico: list[dict], modo: Modo = Modo.normal) -> dict:
             "gravidade": final["gravidade"],
             "canal_sugerido": final["canal_sugerido"],
             "escalonar_humano": final["escalonar_humano"],
+            "nivel": final["nivel"],
         }
 
     if critico:
