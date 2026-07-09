@@ -468,7 +468,7 @@ def conversa_voz(historico: list[dict], modo: Modo = Modo.normal) -> dict:
         f"{historico_txt}\nAtendente:"
     )
     try:
-        resposta = _chat().invoke(prompt).content.strip()
+        resposta = _chat(CONVERSA_MODEL).invoke(prompt).content.strip()
         if "PRONTO" in resposta.upper() or len(resposta) < 2:
             return concluir(seed["mensagem_acolhimento"] + " Já vou encaminhar o seu pedido.")
         return {"fala": resposta[:240], "concluido": False, "escalonar_humano": False}
