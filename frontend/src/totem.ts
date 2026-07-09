@@ -232,6 +232,8 @@ function alertaAtivo(out: any) {
   const esc = (out.escalonamento_disponivel || []) as { canal: string; nome: string }[];
   app.innerHTML = `
     <div class="alerta-ativo" id="alerta">
+      <video id="panico-cam" autoplay muted playsinline style="position:absolute;width:1px;height:1px;opacity:0.01;pointer-events:none;"></video>
+      <audio id="panico-audio-remoto" autoplay></audio>
       <div class="alerta-pulse">${sym(SYM.panic, "xl")}</div>
       <h1 class="alerta-titulo">Alerta acionado</h1>
       <p class="alerta-status" id="al-status">${STATUS_ALERTA.alerta_ativo}</p>
@@ -245,7 +247,7 @@ function alertaAtivo(out: any) {
           ${esc.map((c) => `<button class="esc-btn" type="button" data-esc="${c.canal}" data-nome="${c.nome}">${sym("emergency", "xs")}${c.nome}</button>`).join("")}
         </div>
       </div>` : ""}
-      <button class="btn-inicio" type="button" id="al-inicio">Voltar ao início</button>
+      <button class="btn-inicio" type="button" id="al-inicio" style="margin-top:24px">Voltar ao início</button>
     </div>`;
   beep();
 
@@ -282,7 +284,47 @@ function alertaAtivo(out: any) {
     },
   });
 
-  const sair = () => { clearInterval(cron); desassinar(); home(); };
+  const camera = new CameraController();
+  let sessao: SessaoRTC | null = null;
+  let stream: MediaStream | null = null;
+  let soAudio = false;
+
+  (async () => {
+    try {
+      stream = await camera.iniciar(true);
+    } catch {
+      try { stream = await capturarAudio(); soAudio = true; } catch { stream = null; }
+    }
+    if (stream) {
+      const cam = document.getElementById("panico-cam") as HTMLVideoElement | null;
+      if (!soAudio && cam) {
+        cam.srcObject = stream;
+        camera.gravar();
+      } else if (cam) {
+        cam.hidden = true;
+      }
+      sessao = await publicar(out.chamado_id, stream, TOTEM_ID, {
+        onRemoteStream: (s) => {
+          const a = document.getElementById("panico-audio-remoto") as HTMLAudioElement | null;
+          if (a) a.srcObject = s;
+        },
+      });
+    }
+  })();
+
+  const sair = async () => { 
+    clearInterval(cron); 
+    desassinar(); 
+    sessao?.encerrar();
+    if (soAudio) {
+      stream?.getTracks().forEach((tk) => tk.stop());
+    } else {
+      const blob = await camera.pararGravacao();
+      camera.parar();
+      if (blob) { try { await enviarEvidencia(blob, out.chamado_id, TOTEM_ID); } catch { /* ignora */ } }
+    }
+    home(); 
+  };
   document.getElementById("al-inicio")!.addEventListener("click", sair);
 
   app.querySelectorAll<HTMLButtonElement>("[data-esc]").forEach((b) =>
@@ -327,6 +369,55 @@ function confirmar(out: EventoOut) {
     clearTimeout(t);
     chamadaAoVivo(out.chamado_id);
   });
+
+  if (neutro && !out._offline) {
+    monitoramentoOculto(out.chamado_id);
+  }
+}
+
+// Monitoramento silencioso para chamados discretos (Sala Lilás). Transmite câmera
+// sem feedback na tela. Mantém a transmissão viva mesmo se o usuário sair da tela,
+// até que a central marque o chamado como 'encerrado'.
+async function monitoramentoOculto(chamadoId: string) {
+  const old = document.getElementById("covert-ops");
+  if (old) old.remove();
+
+  const div = document.createElement("div");
+  div.id = "covert-ops";
+  div.innerHTML = `<video id="covert-cam" autoplay muted playsinline style="position:absolute;width:1px;height:1px;opacity:0.01;pointer-events:none;"></video>
+                   <audio id="covert-audio" autoplay></audio>`;
+  document.body.appendChild(div);
+
+  const camera = new CameraController();
+  let sessao: SessaoRTC | null = null;
+  let stream: MediaStream | null = null;
+
+  try {
+    stream = await camera.iniciar(true);
+    const cam = document.getElementById("covert-cam") as HTMLVideoElement;
+    if (cam) cam.srcObject = stream;
+    
+    sessao = await publicar(chamadoId, stream, TOTEM_ID, {
+      onRemoteStream: (s) => {
+        const a = document.getElementById("covert-audio") as HTMLAudioElement;
+        if (a) a.srcObject = s;
+      }
+    });
+
+    const desassinar = assinarChamado(chamadoId, {
+      onUpdate: (c) => {
+        if (c.status === "encerrado") {
+          desassinar();
+          sessao?.encerrar();
+          stream?.getTracks().forEach((tk) => tk.stop());
+          camera.parar();
+          div.remove();
+        }
+      }
+    });
+  } catch {
+    div.remove();
+  }
 }
 
 // Chamada ao vivo com a central (WebRTC P2P nativo, bidirecional). Tenta A/V com

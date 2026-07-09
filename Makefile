@@ -21,7 +21,7 @@ setup: setup-backend setup-frontend ## Instala dependências de backend e fronte
 
 .PHONY: setup-backend
 setup-backend: ## Cria o venv e instala deps do backend (uv)
-	cd $(BACKEND) && uv sync
+	cd $(BACKEND) && uv sync --all-extras
 
 .PHONY: setup-frontend
 setup-frontend: ## Instala deps do frontend (bun)
@@ -71,18 +71,18 @@ dev: ## Sobe backend e frontend juntos
 	@echo "Backend :$(BACKEND_PORT) | Frontend :$(FRONTEND_PORT) | Ctrl+C encerra ambos"
 	@cd $(BACKEND) && ([ -f .env ] || cp .env.example .env)
 	@trap 'kill 0' INT TERM; \
-	( cd $(BACKEND) && uv run --env-file .env uvicorn app.main:app --reload --port $(BACKEND_PORT) ) & \
+	( cd $(BACKEND) && uv run --all-extras --env-file .env uvicorn app.main:app --reload --port $(BACKEND_PORT) ) & \
 	( cd $(FRONTEND) && bun run dev ) & \
 	wait
 
 # ----------------------------------------------------------------- test ----
 .PHONY: test
 test: ## Roda os testes do backend
-	cd $(BACKEND) && uv sync --extra dev && uv run pytest -q
+	cd $(BACKEND) && uv sync --all-extras && uv run pytest -q
 
 .PHONY: acceptance
 acceptance: ## Critérios de aceite automatizados (relatorio-prototipo §8)
-	cd $(BACKEND) && uv sync --extra dev && uv run pytest tests/test_acceptance.py tests/test_router.py -q
+	cd $(BACKEND) && uv sync --all-extras && uv run pytest tests/test_acceptance.py tests/test_router.py -q
 
 .PHONY: doctor
 doctor: ## Verifica módulos do setup (ferramentas, agentes, STT, câmera, microfone, serviços)
