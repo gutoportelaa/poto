@@ -94,7 +94,7 @@
   <div class="wordmark">P<span class="dot">.</span>O<span class="dot">.</span>T<span class="dot">.</span>O &nbsp;— PLATAFORMA DE ORIENTAÇÃO, TRIAGEM E OUVIDORIA</div>
   <h1>Protótipo — Entrega Inicial (1 totem)</h1>
   <p class="sub">Recorte mínimo para validar as funcionalidades em bancada: um totem com controlador, câmera e microfone, emissão via API e central web. Sem TPU e sem gabinete nesta fase.</p>
-  <div class="meta">Campus Ministro Petrônio Portella · Teresina–PI &nbsp;·&nbsp; Documento de execução &nbsp;·&nbsp; Atualizado em 14/06/2026</div>
+  <div class="meta">Campus Ministro Petrônio Portella · Teresina–PI &nbsp;·&nbsp; Documento de execução &nbsp;·&nbsp; Atualizado em 09/07/2026</div>
   <div class="docnav">
     <a href="relatorio-poto.html">← Projeção final</a>
     <a class="active" href="relatorio-prototipo.html">Protótipo (entrega inicial)</a>
@@ -113,6 +113,7 @@
     <li><span class="n">7</span><a href="#p7">Emissão de alerta</a></li>
     <li><span class="n">8</span><a href="#p8">Critérios de aceite</a></li>
     <li><span class="n">9</span><a href="#p9">Plano até a entrega</a></li>
+    <li><span class="n">10</span><a href="#p10">Ferramentas e stack de software</a></li>
   </ol>
 </nav>
 
@@ -183,29 +184,32 @@ flowchart LR
     CAM["Camera"]
     MIC["Microfone"]
     TOUCH["Tela touch + botao"]
-    PWA["PWA kiosk (Bun)"]
+    PWA["PWA kiosk (Chromium)"]
     CAM --> PWA
     MIC --> PWA
     TOUCH --> PWA
   end
   subgraph SRV["Servidor (notebook/PC)"]
     direction TB
+    BUN["Bun · static + proxy"]:::accent
     API["FastAPI · API de Eventos"]
     AG["Agentes · LangGraph + Ollama"]
     STT["STT · Whisper"]
     DB[("SQLite")]
+    BUN -->|"reverse proxy /api/*"| API
     API --> DB
     API -.-> AG
     API -.-> STT
   end
-  PWA -->|"HTTP / WS"| API
-  API --> CENTRAL["Central web (PWA)"]
+  TUNEL["Tunel cloudflared (HTTPS)"]:::accent
+  PWA -->|"HTTPS"| TUNEL
+  TUNEL -->|"HTTP"| BUN
+  CENTRAL["Central web (PWA)"] -->|"HTTPS"| TUNEL
   classDef accent stroke:#c0392b,stroke-width:2px;
-  class API accent;
     </div>
-    <div class="cap">Figura 1 — Protótipo: totem fino (Pi) + servidor com agentes/STT + central web.</div>
+    <div class="cap">Figura 1 — Protótipo: totem fino (Pi) → túnel HTTPS (cloudflared) → servidor com proxy Bun, API, agentes/STT e central web.</div>
   </div>
-  <p>Stack já implementada: <code>backend/</code> (FastAPI, uv), <code>frontend/</code> (Bun: totem + central). O totem é apenas cliente da API — o mesmo backend servirá o Pi+TPU na projeção final, sem reescrita.</p>
+  <p>Stack já implementada: <code>backend/</code> (FastAPI, uv), <code>frontend/</code> (Bun: servidor estático + reverse proxy de <code>/api/*</code> para o backend). O totem é apenas cliente que acessa via HTTPS através de um túnel <code>cloudflared</code> efêmero — a mesma URL serve as páginas, a API REST, os WebSockets (tempo real e sinalização WebRTC) e os callbacks de provedores externos (Twilio). Detalhes na <a href="#p10">§10</a>.</p>
 </section>
 
 <section id="p5">
@@ -337,6 +341,87 @@ flowchart TD
     </div>
   </div>
   <p class="note key">Pendências de governança antes de testes com usuários: validar recepção de vídeo com CSV/Lilás, política de evidência (PROJUR) e pontos focais de cada serviço.</p>
+</section>
+
+<section id="p10">
+  <div class="eyebrow">10 — Ferramentas</div>
+  <h2 class="sec">Ferramentas e stack de software</h2>
+  <p>Relação das ferramentas utilizadas no protótipo, com ênfase na infraestrutura de rede (túnel) que viabiliza a demonstração com hardware distribuído (totem na Raspberry Pi, servidor no notebook do desenvolvedor).</p>
+
+  <h3>10.1 Stack principal</h3>
+  <table>
+    <thead><tr><th>Camada</th><th>Ferramenta</th><th>Versão / detalhe</th><th>Papel</th></tr></thead>
+    <tbody>
+      <tr><td>Backend / API</td><td><b>FastAPI</b> + Uvicorn</td><td>Python 3.12, gerenciado por <code>uv</code></td><td>API de Eventos, WebSocket (broadcast + sinalização WebRTC), SLA, auditoria</td></tr>
+      <tr><td>Persistência</td><td><b>SQLite</b> (stdlib)</td><td>Sem ORM, append-friendly</td><td>Chamados, notificações, evidências, heartbeats (minimização LGPD)</td></tr>
+      <tr><td>Agentes de IA</td><td><b>LangGraph</b> + <b>langchain-ollama</b></td><td>Ollama local ou remoto</td><td>Triagem conversacional, merge protetivo, guardrails</td></tr>
+      <tr><td>STT</td><td><b>faster-whisper</b></td><td>Plugável (<code>POTO_STT_PROVIDER</code>)</td><td>Transcrição de voz pt-BR (local, sem custo)</td></tr>
+      <tr><td>TTS</td><td><b>Piper</b></td><td>Offline, WAV na borda</td><td>Locução de alerta (PSTN via Twilio/SIMCom)</td></tr>
+      <tr><td>Frontend</td><td><b>Bun</b> + TypeScript</td><td>Servidor estático + reverse proxy <code>/api/*</code></td><td>Totem (kiosk PWA) e Painel (central NOC) numa mesma origem</td></tr>
+      <tr><td>Notificação</td><td>Adapters plugáveis</td><td><code>log</code> · <code>webhook</code> · <code>telegram</code> · <code>twilio</code> · <code>simcom</code></td><td>Alerta externo; provider selecionável por <code>POTO_NOTIF_PROVIDER</code></td></tr>
+      <tr><td>Vídeo / chamada</td><td><b>WebRTC</b> nativo (P2P)</td><td>Sinalização SDP/ICE via <code>WS /rtc/{sala}</code></td><td>Chamada A/V bidirecional totem ↔ central; STUN público</td></tr>
+      <tr><td>Testes</td><td><b>pytest</b></td><td><code>make test</code> / <code>make acceptance</code></td><td>Suíte automatizada (smoke, roteamento, SIMCom com link fake)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>10.2 Túnel HTTPS — Cloudflare Quick Tunnel (<code>cloudflared</code>)</h3>
+  <p>A peça-chave que viabiliza a demonstração distribuída (totem na Raspberry Pi, servidor no notebook) sem necessidade de domínio próprio, certificado SSL ou configuração de firewall.</p>
+
+  <h4>O que é</h4>
+  <p><code>cloudflared tunnel --url http://localhost:5173</code> cria um <b>túnel efêmero</b> que expõe o frontend local (Bun, porta 5173) numa URL pública <code>https://&lt;slug&gt;.trycloudflare.com</code>. O script <code>scripts/demo-tunel.sh</code> automatiza: sobe o túnel, captura a URL, grava <code>POTO_PUBLIC_BASE_URL</code> no <code>backend/.env</code> e segura o processo em primeiro plano.</p>
+
+  <h4>Por que é necessário</h4>
+  <table>
+    <thead><tr><th>Requisito</th><th>Problema sem túnel</th><th>Como o túnel resolve</th></tr></thead>
+    <tbody>
+      <tr><td><b>HTTPS para câmera/microfone</b></td><td>Navegadores bloqueiam <code>getUserMedia()</code> em origens <code>http://</code> fora de <code>localhost</code>. Sem câmera, não há WebRTC nem STT por voz.</td><td>A URL <code>https://…trycloudflare.com</code> é um contexto seguro válido; o Chromium da Pi libera câmera e microfone sem flags especiais.</td></tr>
+      <tr><td><b>Origem única (API + WS + páginas)</b></td><td>Sem o túnel, o totem na Pi precisa saber o IP do servidor para o backend (porta 8000) e outro para o frontend (porta 5173), com CORS aberto e WebSocket cruzando origens.</td><td>O servidor Bun serve as páginas <b>e</b> faz reverse proxy de <code>/api/*</code> (HTTP e WebSocket) para o FastAPI. Uma URL serve tudo — sem CORS cross-origin e sem configuração de <code>localStorage</code> no cliente.</td></tr>
+      <tr><td><b>Webhooks de provedores externos</b></td><td>O Twilio (ou qualquer callback HTTP) precisa alcançar o backend para postar <code>statusCallback</code> da ligação. Um <code>localhost</code> é invisível à internet.</td><td>O túnel torna o backend acessível; <code>POTO_PUBLIC_BASE_URL</code> é usado pelo notifier para montar a URL de callback.</td></tr>
+      <tr><td><b>Acesso remoto para demonstração</b></td><td>Apresentar o painel para um orientador ou banca exige que o sistema esteja acessível fora da LAN do desenvolvedor.</td><td>Qualquer pessoa com a URL do túnel acessa o totem ou o painel — sem VPN, sem Tailscale no dispositivo do avaliador.</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Fluxo de rede no protótipo</h4>
+  <div class="fig">
+    <div class="mermaid">
+flowchart LR
+  PI["Raspberry Pi (Chromium kiosk)"] -->|"HTTPS"| CF["cloudflared tunnel"]:::accent
+  OPER["Notebook (Painel/Central)"] -->|"HTTPS ou localhost"| CF
+  TWILIO["Twilio statusCallback"] -->|"HTTPS POST"| CF
+  CF -->|"HTTP :5173"| BUN["Bun (static + proxy)"]
+  BUN -->|"HTTP :8000"| FAST["FastAPI (backend)"]
+  classDef accent stroke:#c0392b,stroke-width:2px;
+    </div>
+    <div class="cap">Figura 3 — Fluxo de rede: todos os acessos convergem pelo túnel HTTPS até o frontend Bun, que faz proxy para o backend FastAPI.</div>
+  </div>
+
+  <h4>Implicações da decisão</h4>
+  <ul>
+    <li><b>URL efêmera:</b> cada execução de <code>cloudflared</code> gera uma URL diferente. Se o túnel cair ou for reiniciado, o totem (e qualquer webhook configurado) precisa ser atualizado. Para uma demonstração controlada isso é aceitável; para operação contínua, não.</li>
+    <li><b>Dependência de internet:</b> o túnel exige que o servidor (notebook) tenha acesso à internet. Em queda de rede externa, o totem na Pi ainda alcança o backend pela rede local (Tailscale ou LAN), mas perde HTTPS — e, portanto, perde acesso à câmera. A fila local (store-and-forward) garante que os chamados não se percam.</li>
+    <li><b>Latência adicional:</b> o tráfego faz um "hairpin" (Pi → nuvem Cloudflare → volta ao notebook na mesma rede). Em LAN, a latência adicionada é de ~20–50 ms, imperceptível para a chamada WebRTC (que é P2P após a sinalização).</li>
+    <li><b>Dados em trânsito:</b> o túnel Cloudflare descriptografa o TLS na borda e re-encaminha em HTTP para o localhost. Dados sensíveis passam pela infraestrutura da Cloudflare. Aceitável para protótipo; na operação final, a criptografia ponta-a-ponta exige infraestrutura própria.</li>
+  </ul>
+
+  <h3>10.3 Projeção futura — migração do túnel efêmero</h3>
+  <p>O túnel efêmero é uma solução de prototipação. A evolução segue uma escada de maturidade:</p>
+  <table>
+    <thead><tr><th>Fase</th><th>Solução</th><th>Vantagem</th><th>Quando</th></tr></thead>
+    <tbody>
+      <tr><td><b>Atual (protótipo)</b></td><td>Quick Tunnel (<code>cloudflared --url</code>)</td><td>Zero configuração, zero custo, funciona em qualquer rede</td><td>Demonstração e desenvolvimento</td></tr>
+      <tr><td><b>Piloto</b></td><td>Túnel nomeado Cloudflare (<code>cloudflared tunnel create poto</code>) com subdomínio fixo</td><td>URL estável (ex.: <code>poto.seudominio.com</code>); reconexão automática; pode rodar como serviço systemd</td><td>Testes prolongados, validação com a CSV/Lilás</td></tr>
+      <tr><td><b>Produção campus (opção A)</b></td><td>Reverse proxy institucional (Caddy/nginx) + certificado Let's Encrypt no domínio da UFPI</td><td>Sem dependência externa; dados ficam na rede da UFPI; latência mínima</td><td>Servidor alocado na UFPI com IP institucional</td></tr>
+      <tr><td><b>Produção campus (opção B)</b></td><td>Tailscale com HTTPS (MagicDNS + certificados)</td><td>Mesh VPN entre totens e servidor; HTTPS automático; zero firewall; funciona sem IP público</td><td>Se a UFPI preferir não expor o serviço à internet pública</td></tr>
+    </tbody>
+  </table>
+  <p class="note key"><b>Decisão de arquitetura (ADR-009):</b> o túnel efêmero é explicitamente temporário. Nenhuma funcionalidade do P.O.T.O depende do Cloudflare — apenas da presença de HTTPS. A migração para qualquer das opções acima é transparente: basta apontar o totem para a nova URL e atualizar <code>POTO_PUBLIC_BASE_URL</code> no <code>.env</code>.</p>
+
+  <h3>10.4 Acesso alternativo sem túnel (Tailscale)</h3>
+  <p>Para testes rápidos sem internet externa, o acesso direto via Tailscale (<code>http://IP_TAILSCALE:5173</code>) funciona para a API e o painel, mas <b>não</b> para a câmera/microfone (porque não há HTTPS). Para contornar temporariamente, inicie o Chromium na Pi com a flag:</p>
+  <pre><code>DISPLAY=:0 chromium-browser \
+  --unsafely-treat-insecure-origin-as-secure="http://IP_TAILSCALE:5173" \
+  "http://IP_TAILSCALE:5173"</code></pre>
+  <p class="note">Esta flag é uma gambiarra de desenvolvimento e <b>não deve ser usada em produção</b>. Ela desativa proteções do navegador. O caminho correto é sempre HTTPS (via túnel ou certificado).</p>
 </section>
 
 <footer>
