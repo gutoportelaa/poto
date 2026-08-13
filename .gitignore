@@ -19,7 +19,17 @@ bun.lockb
 
 .agents/
 skills-lock.json
+
+# PDFs: ignorados por padrão, exceto os documentos institucionais do projeto
 *.pdf
+!Edital_*.pdf
+!docs/*.pdf
+
+# Dados pessoais da equipe (currículos etc.) — nunca no repositório
+equipe/
+
+# Código de terceiros baixado para consulta
+api-de-agentes-main/
 # Artefatos "mark of the web" do Windows/WSL
 *:Zone.Identifier
 

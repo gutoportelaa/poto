@@ -52,7 +52,7 @@ stt-setup: ## Instala o Whisper local (faster-whisper) para transcrição
 # --------------------------------------------------------------- runtime ----
 .PHONY: backend
 backend: ## Sobe a API FastAPI (porta 8000)
-	cd $(BACKEND) && ([ -f .env ] || cp .env.example .env) && uv run --env-file .env uvicorn app.main:app --reload --port $(BACKEND_PORT)
+	cd $(BACKEND) && ([ -f .env ] || cp .env.example .env) && uv run --env-file .env uvicorn app.main:app --reload --host 0.0.0.0 --port $(BACKEND_PORT)
 
 .PHONY: frontend
 frontend: ## Builda e serve o frontend (porta 5173)
@@ -71,7 +71,7 @@ dev: ## Sobe backend e frontend juntos
 	@echo "Backend :$(BACKEND_PORT) | Frontend :$(FRONTEND_PORT) | Ctrl+C encerra ambos"
 	@cd $(BACKEND) && ([ -f .env ] || cp .env.example .env)
 	@trap 'kill 0' INT TERM; \
-	( cd $(BACKEND) && uv run --all-extras --env-file .env uvicorn app.main:app --reload --port $(BACKEND_PORT) ) & \
+	( cd $(BACKEND) && uv run --all-extras --env-file .env uvicorn app.main:app --reload --host 0.0.0.0 --port $(BACKEND_PORT) ) & \
 	( cd $(FRONTEND) && bun run dev ) & \
 	wait
 
