@@ -402,31 +402,6 @@ Montagem completa: [`docs/hardware-pi.md`](docs/hardware-pi.md) ·
 
 ---
 
-## 🔭 Projeção final (não implementado)
-
-O protótipo acima é o que roda hoje. A visão de produto é uma **central NOC**
-monitorando uma malha de totens do campus:
-
-<p align="center">
-  <img src="docs/img/projecao-noc.png" alt="Projeção da central NOC" width="820">
-</p>
-
-⚠️ **Isto é um mockup de design, não o sistema.** Os recursos abaixo aparecem na
-imagem e **não existem no código**:
-
-| Na imagem | Situação real |
-|---|---|
-| "Aglomeração detectada" / Visão Computacional | ❌ não há visão computacional |
-| "Despachar viatura" | ❌ não há integração de despacho |
-| Telemetria de energia e bateria do totem | ❌ só há heartbeat de presença |
-| Analytics | ❌ há `/metricas`, sem interface analítica |
-
-A separação é proposital: o que está em `docs/img/tela-*.png` é evidência do que
-funciona; isto aqui é para onde o projeto aponta. Confundir os dois é o jeito
-mais rápido de perder a confiança de quem avalia.
-
----
-
 ## 📁 Estrutura
 
 ```
