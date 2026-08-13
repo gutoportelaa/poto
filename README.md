@@ -42,6 +42,30 @@ as duas seções mais importantes deste documento.
 
 ---
 
+## 🖼️ As telas
+
+**Totem** — a pergunta é "como podemos ajudar?", não "selecione uma categoria".
+Quatro alvos grandes o suficiente para serem acertados com a mão trêmula, a
+conversa por voz como alternativa a ler qualquer coisa, e o pânico sempre
+visível, sem exigir escolha nenhuma.
+
+<p align="center">
+  <img src="docs/img/tela-totem.png" alt="Tela inicial do totem" width="640">
+</p>
+
+**Painel da central** — chamados em tempo real com o **SLA correndo na tela**
+(`Responder em 0:53`). Quando o prazo estoura, o cartão ganha a faixa
+`SLA expirado` e o escalonamento dispara sozinho — é o fail-safe da seção
+anterior, visível. `Falha no envio` marca o que precisa de outro canal.
+
+<p align="center">
+  <img src="docs/img/tela-painel.png" alt="Painel da central em tempo real" width="820">
+</p>
+
+> Capturas do protótipo em execução, com dados de teste (`make seed`).
+
+---
+
 ## ✨ O que ele faz
 
 ### Quatro trilhas de atendimento
@@ -375,6 +399,31 @@ linha de áudio.
 
 Montagem completa: [`docs/hardware-pi.md`](docs/hardware-pi.md) ·
 [`docs/hardware-simcom.md`](docs/hardware-simcom.md)
+
+---
+
+## 🔭 Projeção final (não implementado)
+
+O protótipo acima é o que roda hoje. A visão de produto é uma **central NOC**
+monitorando uma malha de totens do campus:
+
+<p align="center">
+  <img src="docs/img/projecao-noc.png" alt="Projeção da central NOC" width="820">
+</p>
+
+⚠️ **Isto é um mockup de design, não o sistema.** Os recursos abaixo aparecem na
+imagem e **não existem no código**:
+
+| Na imagem | Situação real |
+|---|---|
+| "Aglomeração detectada" / Visão Computacional | ❌ não há visão computacional |
+| "Despachar viatura" | ❌ não há integração de despacho |
+| Telemetria de energia e bateria do totem | ❌ só há heartbeat de presença |
+| Analytics | ❌ há `/metricas`, sem interface analítica |
+
+A separação é proposital: o que está em `docs/img/tela-*.png` é evidência do que
+funciona; isto aqui é para onde o projeto aponta. Confundir os dois é o jeito
+mais rápido de perder a confiança de quem avalia.
 
 ---
 
