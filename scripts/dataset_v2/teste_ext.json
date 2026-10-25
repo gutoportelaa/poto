@@ -1,0 +1,668 @@
+[
+ {
+  "texto": "Socorro tô presa na mangueira atrás da biblioteca, não consigo sair e tá vindo gente esquisita por aqui me ajuda urgente",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Puta que pariu a pracinha tá caindo tudo fogo! Fumaça pra caramba alguém chama o corpo de bombeiros pelo amorzinho",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Socorro! briga feia perto do bloco E! galeras se machucando!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Fogo na biblioteca central! fumaça saindo, preciso q venham logo!!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Alguém arrombou o laboratório de quimica! cara armado! to escondido.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Deslizamento na encosta perto do estacionamento! pedras caindo, corre perigo!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Há fumaça saindo do depósito de materiais do CCS! Acredito que seja um princípio de incêndio, pois o cheiro é forte e já consigo ver chamas baixas saindo da porta. Por favor, acionem os bombeiros e a segurança!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Alguém arrombando o laboratório de quimica! Preciso q venha agora!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Briga feia perto da biblioteca, socos e gritos! Alguem por favor!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Fumaça saindo do bloco administrativo!!! Incendio??",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Prezados, informo que há um princípio de incêndio na área dos laboratórios do Departamento de Engenharia Civil. Solicitamos urgente o acionamento do corpo de bombeiros e a avaliação da situação.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Comunica-se que, neste momento, uma confusão envolvendo alunos está acontecendo no pátio central. A situação parece escalar rapidamente e pode gerar ferimentos. Solicitamos intervenção urgente para cessar o conflito.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Alguém rondando bloco H! Parece estranho... vestimenta escura.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Barulho forte perto do estacionamento da reitoria. Tipo pancada?",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Cheiro queimado no lab. de quimica! Ninguém notou???",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Viram a discussão na frente do centro? Tomara q n vire briga...",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Portão lateral aberto... não devia estar, medo.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "E aí galera, tão vendo uns moleques estranhos perto do bloco jurídico? Parecem que tão fuçando em algo, mó nervoso viu",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Mano, tô vendo fumaça saindo do laboratório de química, não sei se é nada grave mas tá meio esquisito",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Putz, andei escutando uns boatos sinistros sobre alguém pintando os muros da engenharia de novo. Precisamos avisar pra galera ficar ligada",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Alô, me disseram que teve uma confusão feia perto do estacionamento da faculdade. Tá tudo bem por lá? Devem estar acionando a polícia já.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Por favor, enviem segurança! Estou sendo importunada sexualmente perto do restaurante universitário (RU), ele me impede de ir embora e está me ameaçando; preciso que alguém intervenha o mais rápido possível.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Corredor da biblioteca! Homem me tocando sem parar. Não consigo escapar!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ai gente tô apavorada! Tô aqui perto do prédio de humanas e um cara não me larga vem falando coisas pesadas e me seguindo já tentei sair mas ele tá bloqueando o caminho preciso de ajuda urgente por favor!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ai totem tô te avisando aquele cara da pós agr tá me seguindo lá perto do bloco jurídico mó nervoso já falei com ele mas não adianta",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Socorro gente to me sentindo super insegura, uns moleques tão fazendo barulho e olhando de um jeito esquisito na frente do ifpi. Tô assustada pra chegar em casa",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Totem tô precisando de uma força, andei ouvindo uns comentários bem feios no corredor da faculdade sobre mim. Me sinto meio acuada sabe?",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Me ajuda por favor. Uma pessoa tá me mandando mensagens estranhas no insta com fotos e talz, to com medo do que pode acontecer",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Socorro! Palavras ofensivas. grupo de homens perto do bloco D, me olhando...",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Me ajuda! Me sentindo insegura, homem estranho insistindo p/ conversa",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "To assustada... alguem sabe onde fica a central da mulher? urgente.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ele tá falando coisas q não devia... como devo agir?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Gostaria de saber se a UFPI possui algum programa ou iniciativa voltada para promover a igualdade de gênero e combater o assédio no ambiente acadêmico e profissional, especialmente direcionado a mulheres.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Socorro preciso saber como funciona a rede de apoio aqui na UFPI tô precisando conversar com alguém de confiança",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "E aí galera posso falar com alguém? Me sentindo meio desconfortável com uns comentários que tão fazendo sobre mim to precisando desabafar",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Alô alô to aqui no portão 3 me sinto intimidada por um grupo de homem pode me dar alguma orientação?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Qdo chegar ambulancia? Caí da escada, tornozelo torto DEMAIS!",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Preciso de ajuda urgente! Ataque panico, nao consigo respirar",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Sangramento forte! Corte no braço, muito sangue. Socorro urgente!",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ai meu deus! Qdo cairia? Não consigo respirar! Preciso urgente!",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Tomei uma injeção e tô com alergia horrível!! Rosto todo inchado, por favor me ajudem!",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Sinto muita angústia, quase não consigo falar... preciso de alguém urgente, me sff ajudem!",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Prezados, necessito de assistência médica urgente. Sofri uma queda durante um experimento no laboratório e suspeito de fratura na perna esquerda. Localização: Laboratório de Física, sala 204. Aguardo retorno.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ai totem to te avisando já tô passando mal na frente do prédio de humanas me sinto fraca e tonta acho q vou desmaiar socorro",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Mano cade o samu? Me deram um tombo feio no campo da fundação a perna tá arriscando pra fora urgente",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Tô com uma crise aqui na biblioteca quase não consigo respirar parece que tô afogando preciso de ajuda rapidooo",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Totem socorro minha amiga tá desmaiada na escadaria do CCBA ela caiu e bateu a cabeça não tá respondendo nada me ajudaaa",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Eita apavoro total! Me sentir dizzy aqui no bloco jurídico acho q vou piraia preciso de uma assistente urgente por favor",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Aconteceu uma confusão generalizada no RU durante o almoço e alguém desmaiou – parece que teve um ferimento na cabeça, está inconsciente! Por favor, enviem socorro ao RU, urgente!",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Estou sentindo muita dor no peito e tontura severa aqui no CT, acho que estou tendo algum problema cardíaco. Preciso de atendimento médico imediatamente para evitar uma piora, por favor me ajudem.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ai totem tô passando mal duma forma feia aqui perto do prédio de humanas sinto q vou desmaiar socorro",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Mano trombei na escada caída do alto to com a perna torta e dor forte preciso de alguém urgente por favor",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Galera tô com uma alergia que tá feião a cara toda inchada e difícil respirar tô no dom Pedro qual ajuda?",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ai meu Deus...tontura q nao passa! sinto fraqueza mto, preciso ajuda",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Totem socorro! Minha prima ficou meio estranha agora, falando umas coisas sem sentido e com olhar perdido achei melhor avisar antes que piore",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "E aí galera to mto tonta aqui perto do prédio de humanas, caindo o sol na mente e tô com uma enxurrada de calor, alguém pode me ajudar?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Socorro viu? Acho que torci o pé na escada da biblioteca, tá doendo pra caramba! Preciso de um olhar ali rapidinho",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ô totém, queria saber se tem algum plantão de saúde hoje à noite né? Tô com uma dor chata na cabeça já faz umas horas",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Aê totem tô sentindo o corpo estranho sinto que vou passar mal, será que é ansiedade msm? Tem como conversar com alguém?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ai meu deus to tonta q qdo fazer?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Qd posso ir na urgencia? Tenho febre alta",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Preciso saber se tem psicologo pra atender hj!",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Caí! Torci o tornozelo, dói d+! Onde pego ajuda?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Esqueci os remédios!!!  Posso pegar na farmácia universitária?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Prezados, bom dia. Gostaria de saber se o serviço de saúde da universidade realiza exames laboratoriais para funcionários públicos, especificamente hemograma completo e perfil lipídico. Agradeço a informação.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Boa tarde. Como servidor público vinculado à UFPI, venho solicitar informações sobre como proceder em caso de emergência médica que ocorra dentro do campus. Há algum protocolo específico a seguir?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Prezada equipe do totem, gostaria de saber se existe atendimento psicológico disponível para os docentes da universidade e quais os critérios para acesso a este serviço. Atenciosamente.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Bom dia. Venho por meio deste solicitar informações sobre o funcionamento do posto de saúde durante o período de férias acadêmicas. Há alguma alteração no horário de atendimento ou nos serviços oferecidos?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Boa tarde. Gostaria de saber se a universidade possui algum programa de acompanhamento para funcionários que buscam melhorar sua qualidade de vida e bem-estar, como por exemplo, atividades físicas orientadas.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "alguém sabe como funciona o Fala.BR? to tentando relatar um problema e não sei se chegou.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "preciso saber qm é responsável pela manutenção dos bebedouros da área azul. estão imundos!",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "parabéns à equipe de limpeza do restaurante universitário! nota 10 tudo limpo e organizado",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "oi, preciso de ajuda pra entender como acompanhar minha solicitação na ouvidoria... tem algum numeração?",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Prezados responsáveis pelo totem, gostaria de saber se existe algum procedimento específico para solicitar acesso a documentos referentes a licitações do departamento de manutenção predial. Agradeço a orientação.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Boa tarde. Estou tendo dificuldades para localizar informações sobre os prazos para a entrega do relatório final de estágio obrigatório deste ano. Poderiam me direcionar ao local correto?",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Parabenizo a iniciativa da instalação dos totens de emergência. Considero uma ferramenta valiosa para facilitar o contato entre a comunidade acadêmica e a administração central.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Gostaria de saber se é possível utilizar a plataforma Fala.BR para registrar sugestões sobre a melhoria da sinalização interna do campus, especificamente na área do Restaurante Universitário. Obrigado.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "E aí galera da ouvidoria to precisando saber como funciona pra registrar umas coisas aqui do curso de eng civil tá pegando fogo viu?",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ôi vida, esqueci a senha do Fala.BR, alguém me ajuda urgente senão tô lost total!",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Amei a iniciativa de ter essa ouvidoria, muito fácil de usar e me sinto mais ouvido pela UFPI. Parabéns!",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "To achando o processo de inscrição no Prouni meio confuso, alguém do Fala.BR pode dar um helpzinho por favor?",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Socorro tô no portão 3, tipo, ele veio falar q queria me ajudar a subir mas tá me agarrando e falando bobagem. Juro que não pedi nada. Me tira daqui urgente!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Estou no bloco de Ciências Sociais, ele está me seguindo e falando coisas muito ofensivas, não consigo escapar dele – preciso que alguém venha me ajudar urgente.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Estou correndo do CCS para o CT, ele começou a me tocar e está tentando me agarrar – preciso de proteção imediata!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Aconteceu algo terrível no RU, preciso de apoio imediato. Uma pessoa tentou me agarrar e estou em choque, não sei o que fazer.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Estou no CT, dentro do laboratório de química, um colega começou a fazer toques inadequados e ameaças verbais. Preciso de alguém para me proteger.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Denúncia! Várias pessoas recebendo bolsa, não comprovam necessidade financeira. Desvio??!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Eita sô... Tô aqui pra fazer uma denúncia anônima. Tenho visto uns professores dando tratamento diferenciado pra aluno que paga mais caro na mensalidade, mó injustiça isso, né? Ninguém merece.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Eita totém socorro me sinto meio tonta, cabeça girando mó chateza to aqui na biblioteca acho que vou desmaiar",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Totem tô nervosíssima me sentindo super ansiosa hoje, um pânico daqueles e to precisando conversar com alguém urgente por favor",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Alô totem queria saber se tem enfermeiro aqui na facul pra dar um jeito numa picada de abelha me deu alergia e tô inchando toda",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ai meu deus to passando mal mto vertigem e náuseas preciso ajuda",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Caiu da escada, acho q quebrei o tornozelo dói d+ não consigo andar",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ansiedade atacou de novo. N consigo respirar me socorro!",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ai meu Deus, tontura forte, quase caí! Preciso de ajuda, não sei o que fazer.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Dor peito latejando, qto tempo demora ambulância?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Aí ó tô com uma dor de cabeça braba já faz umas horas não consigo nem enxergar direito preciso de socorro",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Acabei escorregando na escada do CCS e torci o tornozelo, não consigo andar direito e sinto bastante dor; por favor, podem me ajudar a chegar ao posto de saúde?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Tenho sentido muita ansiedade e dificuldade para respirar desde que comecei a fazer prova no CT, preciso conversar com alguém antes que fique pior.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Prezados, gostaria de saber quais os procedimentos da UFPI em caso de assédio moral sofrido por servidoras docentes. Agradeço a atenção.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Aí totem to querendo saber se tem algum lugar aqui na UFPI que presta apoio pras mulheres tipo com psicóloga sabe? Me sinto meio pra baixo",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Eita totem tô precisando saber os contatos da rede de proteção à mulher da UFPI pra passar pro meu amigo ela tá precisando de apoio urgente",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Aiii me ajuda tô perdida aqui na facul alguém pode me dar o caminho do setor de apoio à mulher por favorzinho?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Ôi td bem? Queria saber se tem alguma palestra ou evento sobre igualdade de gênero rolando esses dias tô precisando trocar ideia com alguém.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "E aí galera? Tô querendo entender mais meus direitos como mulher na faculdade tem algum material ou contato que vocês podem indicar?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Preciso saber como funciona o apoio jurídico pra mulheres aqui na UFPI. urgente!",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Alguém sabe como denunciar assédio moral no ambiente acadêmico?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Tô vendo uns moleques jogando bola perto do laboratório de informática, quase acertaram a janela vai ver se dá pra falar com eles",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Boa tarde. Tenho dúvida sobre o procedimento correto a seguir em caso de detecção de fumaça nos corredores do Centro de Ciências. Poderiam me fornecer informações claras e objetivas sobre o plano de evacuação?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Sei lá galera achei uma mochila abandonada perto da biblioteca pode ser de quem? Melhor dar um aviso né?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ },
+ {
+  "texto": "Gostaria de saber se o estacionamento do bloco III é seguro para deixar meu carro durante a aula da tarde, pois ouvi alguns relatos sobre furtas na região.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama"
+ }
+]

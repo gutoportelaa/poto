@@ -1,0 +1,1742 @@
+[
+ {
+  "texto": "Atenção galera tem um bagulho estranho rolando perto do bloco jurídico parece uns caras armados mó sinistro",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Mano olha essa confusão no estacionamento, mó briga generalizada parece que vai ter correria galera se cuida",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "E aí vizinhal preciso de uma força tô vendo um buraco gigante na rua perto do portão 3 pode ser perigo pra quem passa avisa a segurança pfvr",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Aii tô vendo uns mlk brigando feio lá perto do bloco E mó confusão parece que vai ter violência",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Socorro to no estacionamento da fazendinha e um carro tá tentando furar a barreira os seguranças tão tentando impedir mas a situação tá tensa",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Mano que cheiro estranho aqui na área de convivência parece queimando alguma coisa tbm tá muito fumaça",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Eita senhora to no portão 3 e tem um bicho enorme correndo ali dentro não sei o que é pode ser perigoso",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Urgente urgente! Tem uns caras estranhos rondando o lab center parecem suspeitos to com medo viu!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Pessoa estranha rondando a área do morro azul. parece q vai fazer algo ruim!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Homem estranho rondando a área do estacionamento feminino. Parece ameaçador!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Caiu uma luz no corredor A, preciso de ajuda urgente!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Gostaria de alertar sobre um vazamento de gás com cheiro forte detectado no corredor do bloco D. Acredito ser um risco iminente à saúde dos ocupantes e requer atenção urgente da equipe responsável.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Acho q ouvi um barulhão vindo da área de convivência, tipo trampo e gritaria. Vale a pena dar uma olhada?",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Boa tarde. Tenho dúvidas sobre o procedimento correto para relatar uma situação de potencial risco na área dos laboratórios do ICB. Poderiam me indicar um canal específico ou contato responsável?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Prezados, durante a noite, ouço ruídos suspeitos próximos ao estacionamento da Reitoria. Não consigo identificar a origem com precisão e gostaria que fosse feita uma verificação para descartar qualquer problema.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Senhores, informo que detectei um forte odor de gás na área próxima à cantina do Centro de Ciências Humanas. Solicito urgência na avaliação e possível evacuação preventiva da região.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "E aí galera to aqui perto do bloco D parece q ta rolando um barraco feio uns gritos e talz vamo verificar?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Mano cuidado no estacionamento da AAD a moto tá pegando fogo fumegando tudo já liguei pro corpo de bombeiros mas avisa os vizinhos",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Alguém sabe se é seguro passar pelo mato do fundão do Ciências Sociais? Vi uns caras estranhos lá, tô meio assustada",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Preciso de uma ajudinha to perdida aqui no campus não achego o prédio da biblioteca alguém me indica?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Aí galera parece q tão pulando a grade da Reitoria já vi umas pessoas entrando rapidinho vamo dar um perdido pra ver quem é?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Socorro! Barulho estranho atrás da biblioteca, parece algm entrando!",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Incêndio no bloco D! Fumaça saindo pelas janelas, preciso q alguém veja!",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Vi um cara rondando o estacionamento oeste, mó cara suspeito, não tirei foto.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Alguém briga perto do campo de futebol! Gritos e tudo...",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Onde fica a saída de emergência do prédio da engenharia? Tô perdido!",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "orientacao",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Me ajuda! Ele me seguiu até o bloco E, tá gritando coisas horríveis... preciso sair daqui AGORA!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Por favor, tô sendo impedida de entrar no ônibus. Um homem me agarrou e não me deixa passar! Tô perto da reitoria.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Estou presa no banheiro do departamento de biologia! Ele bateu na porta e tá falando que vai me pegar... socorro!!!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Ele apareceu de novo… No corredor do bloco F… Me sentindo ameaçada, muito medo. Por favor, alguém!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Alguém vem! Tô sendo seguida em direção ao estacionamento. Não consigo escapar. Placa vermelha na moto… urgente!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Por favor, preciso de ajuda urgente! Estou no bloco administrativo do CCS e um homem está me seguindo insistentemente, ignorando meus pedidos para que ele se afaste; sinto que ele pode me agredir.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Estou presa no banheiro da biblioteca central, alguém trancou a porta por dentro e não consigo sair sozinha. Tem um homem batendo na porta, estou muito assustada e com medo do que pode acontecer.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Ai meu Deus tô presa num bar aqui perto da facul, ele não me larga pavorzinho! Socorro",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Me ajuda por favor tô correndo atrás desse cara q tá me seguindo mto insistente, acho q vai tentar agarrar, to no portão 3",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "To muito assustada, uns caras tão me encarando na rua da faculdade, sinto que vão fazer alguma comigo, preciso sair daqui urgente",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Mãe tô chorando, ele pegou meu braço e tá falando coisas feias, to aqui no cruzamento com a Barão. Por favor manda alguém",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Urgente! Me sinto insegura na área do restaurante universitário, um homem estranho começou a me incomodar, não sei o que fazer!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Me ajuda! Ele me seguindo prédio central. Tenho medo!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Socorro! No estacionamento, me empurrando gritos. Por favor vem!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Tô presa no lab. Bioquímica. Ameaçando. Pelo amor de Deus.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Perto do anfiteatro. Está vindo pra cima. Alguém, por favor!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Mano to muito assustada! Um tiozão pegou no meu braço na praça da UFPI me chamando de gata não consigo passar tô com medo que ele venha atrás de mim socorro",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Tô chorando aqui na frente do Restaurante Universitário um cara tá me perseguindo desde a biblioteca tava me filmando sem minha permissão agora sumiu não sei onde ele foi me sinto insegura demais",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Gente preciso de ajuda urgente! Tô presa no banheiro da Fatec o guarda veio me incomodando falando bobagem tô com pânico e não consigo sair por favor mandem alguém!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Oi totem tudo bem? Queria saber se tem algum lugar aqui perto onde eu possa conversar sobre algumas coisas, tipo receber apoio de alguém.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Preciso falar! cara segurando minha mao nao quero q ele toque em mim",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Alerma! Pessoa me seguindo na faculdade, sinto q vai acontecer algo ruim",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Ai meu deus! Me senti sendo seguida… o que posso fazer?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Preciso saber, tem alguém pra me ajudar? Me sinto insegura.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Socorro! Não sei pra quem mais pedir. Me sentindo desconfortável perto dele.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Urgente! Tem algum lugar seguro aqui na UFPI que eu possa ir agora?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Ôi tô aqui no bloco E me sentindo super insegura um cara tá me seguindo e eu não sei o que fazer pode me ajudar?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Aii gente to precisando de informação urgente qual o telefone da ouvidoria pra registrar uma situação chata que aconteceu comigo?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Ai meu deus to c muita dor peito! Acho q vou passar mal!",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Me sinto tonta e fraca, quase desmaiei na biblioteca. Alguém?",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Caí da escada! Torci o pé. Dor muito forte! N consigu subir",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Me socam! Alguém tá me seguindo!!! Pavor!!!!  Preciso q venham me buscar agora!",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Tô nervosíssima demais pra aguentar mais me sentindo super angustiada aqui no campus pode mandar um psicólogo?",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Eita trem tô com uma dor de barriga insuportável crente sai nada da boca acho q tô intoxicado me ajuda urgente",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Qdo chego no posto? to confusa e nervosa, achei q ia desmaiar!",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Alergia piorou dms. inchaço na garganta. oq fazer??",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Ansiedade atacando.  nao consigo respirar direito... alguem pode falar cmg?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Caí no corredor! Torci o tornozelo, dói muito, consigo andar mas com dificuldade.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Ô totem rapidinho to me sentindo meio tonta sinto um frio na barriga feio e uns lapsos de memória acho que preciso checar algo viu?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "E aí galera do totem? Sofri uma quedinha forte agora no campus to com a perna inchada e latejando muito será que devo ir pro posto ou espera?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Aiii pai to nervosa demais pra fazer a prova, a ansiedade tá me corroendo não consigo respirar direito. Tem algum apoio psicológico por perto?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Sei lá galera to com uma dor de cabeça qnd tá apertando o peito. Não sei se é só canseira mas tô bem abobalhado. Alguém me indica um lugar pra dar um check?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Mano tô tenso demais não consigo respirar direito sinto q vou desmaiar, alguem por favor me responde, to pirando aqui",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Preciso saber se tem como cancelar minha inscrição pra o mestrado. Sistema travou! Tô desesperada.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Alguém sabe pq as bolsas de iniciação científica tão atrasadas? Já faz um mês!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Sugestão: mais bebedouros nos corredores do IC, por favor! Desidratação é real!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Parabéns à equipe da biblioteca central! Super atenciosos e prestativos. Valeu!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Dúvida: meu relato no Fala.BR cadê? Já passou a data limite de resposta.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Ô Totem, tu viu que o pessoal da limpeza tá sumindo com as plantas do corredor? Parece até coisa pra assustar a galera, né? Poderia dar um jeito nisso aí?",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Eita apressado! Tô tentando usar o Fala.BR mas não tô conseguindo cadastrar minha conta, mó trampo isso viu. Alguém podia me ajudar por favorzinho?",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Maneiro que botaram esse totem pra gente falar, saca? Mas andei ouvindo uns boatos feios sobre como a ouvidoria tá lidando com as denúncias de assédio… Será que é verdade mesmo?",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Aê galera do totem! Parabéns pela iniciativa, muito bom poder mandar um recado assim. Só acho q podia ter wi-fi pra gente usar o celular sem gastar mó internet.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Sério isso? Tô vendo que a fila da cantina tá cada vez mais demorada e a comida sumindo rapidinho… Será que não tão pegando uma grana extra, sei lá?",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "urgente! falta água no bloco E há 3 dias! ninguém resolve nda!",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Mano, vi uns caras mexendo em material do laboratório depois do horário ontem à noite, acho que deviam dar um jeito nisso né? só pra vocês saberem",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Preciso ajuda! Ele me seguindo prédio ciências!! Socorro!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Estou presa banheiro feminino da biblioteca, homem dentro! Não consigo sair!!!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Me agrediram no estacionamento do campus. Por favor, envie alguém urgente!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Ele está vindo… estava na pracinha agora atrás de mim… ajudaaa",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "To me sentindo insegura perto do bloco jurídico. Um cara me encarando, parece q vai me pegar.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Ai tô aqui no bloco D desesperada! Um cara tá me seguindo faz umas duas horas e agora pegou no meu braço pra não deixar eu passar. Tô com medo de levar um forta! Alguém por favor?",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Tô no cursinho nervoso, alguém tá me encarando de um jeito estranho e já faz um tempão. Sinto que vai acontecer alguma coisa ruim. Pode olhar as câmeras?",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Mano tô na praça dos estudantes! Um senhor começou a fazer comentários muito pesados sobre a minha roupa e agora tá vindo mais perto. Tô com muita agonia, me ajuda!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Poxa tô perdida no campus e um homem tá insistindo em 'me acompanhar'. Não conheço ele de nada né? Fiquei apavorada. É seguro eu ir pro centro de apoio à mulher?",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Ai meu Deus tô numa festa da república aqui perto do campus e um cara não tá me largando, já falei que não quero mas ele fica grudado tipo sinistro, to com medo de ir embora sozinha",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Socorro tô no estacionamento do centro de saúde, achei que ia encontrar a minha amiga mas veio um homem falando coisas estranhas e tentando segurar meu braço, preciso de ajuda urgente!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Mãe to precisando muito da sua ajuda tô presa num ônibus na rodoviária, o motorista tá fazendo comentários muito ofensivos sobre mim e sinto que ele vai fazer algo pior",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Aí galera to desesperada, fui pra casa de uma amiga no bairro primavera e um vizinho dela começou a me seguir, não consigo voltar pra UFPI sozinha tô apavorada",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Tô num barzinho perto do campus, me senti desconfortável com a forma que fui abordada por um homem, ele tá insistindo em me dar bebida e eu preciso sair daqui. Me ajuda?",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Socorro! Ele me seguiu até o bloco E, está me agarrando! preciso sair daqui!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Por favor, ajuda! No estacionamento da reitoria... ele ameaçou. Tenho medo que volte.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Emergência! Corredor do IF... um homem me encurralou, não consigo passar. Alguém por favor?",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Estou no lab. de biologia. Um professor está me assediando verbalmente, sinto q vai piorar!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Me ajudem!!! Próximo à biblioteca, fui empurrada e me senti refém! preciso de segurança urgente.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Por favor, estou presa no banheiro da biblioteca, um homem trancou a porta e não me deixa sair; sinto muito medo e não sei o que fazer.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Aconteceu algo horrível no RU, um homem tentou forçar a entrada no meu quarto; estou em choque e com muito medo, por favor, enviem alguém.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Estou na frente do Hospital Universitário, uma pessoa está me ameaçando e me impedindo de ir embora – preciso que a segurança venha agora, estou desesperada.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Por favor, preciso de ajuda urgente! Estou no bloco A do CCS, um homem está me seguindo e fazendo comentários ofensivos, parece que ele não vai parar.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Estou com muito medo e preciso sair do local. Estou na frente da biblioteca central, alguém pode me ajudar a chegar ao portão principal?",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Não consigo respirar, por favor! Estou na emergência da HU e fui agredida verbalmente e fisicamente, preciso de ajuda urgente.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Preciso saber se tem como ver o andamento do processo de bolsa! N passo pra frente, to desesperada!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Alguém viu a falta de limpeza na biblioteca central?? Mto lixo, insalubridade total. Urgente!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Sugestão: mais bebedouros com água filtrada nos prédios antigos. Obrigado!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Dúvida: como funciona o processo de recurso das notas? Não achei nada no site.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Opa, boa tarde! Queria dar um toque aqui sobre a divulgação dos resultados do concurso pro monitoria do curso X. Tá super confuso na página da UFPI, falta informação, viu? A galera tá perdidíssima.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Ôi, tudo bem? Só queria elogiar o atendimento de vocês no Fala.BR! Respondem rapidinho e são muito atenciosos, mó boa a iniciativa essa de ouvir a gente!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Alô! Queria tirar uma dúvida rapidinho. Como funciona o processo de responder a uma manifestação registrada aqui? É automático ou tem alguém analisando as coisas?",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Professor sumiu! N aula não aparece nd. Alguem sabe oq aconteceu?",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Contas do laboratório de química... numeros estranhos. Preciso investigado!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Pensem em mais bebedouros nos corredores, muito calor!! Sugestão simples.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Agradeço a atenção da ouvidoria com meu problema anterior. Resolvido rapidinho! Parabéns!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Como faço pra saber se minha reclamação foi vista? Fala.BR não me dá info.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Ôi ouvidoria to te mandando um alô aqui pra reclamar da falta de limpeza na facul do Delta, tá uma zona sinistro a galera joga lixo em tudo mó feio e fedorzo tmb né",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "E aí vizão preciso saber se vocês podem me ajudar. Tô vendo uns professores dando preferência pros alunos que pagam mais caro na mensalidade, mó chato isso parece favorecimento pra mim viu?",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Seguinte galera da ouvidoria, queria dar um parabéns pro pessoal da biblioteca central a organização tá show de bola e os atendentes super atenciosos. Nota 10",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "E aí fala br preciso esclarecer uma parada. Eu mandei mensagem faz uns dias e nada de resposta, qual o tempo médio de retorno? Tô precisando muito dessa informação",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Alô galera tô numa dúvida cruel aqui. Se eu quiser fazer uma denúncia anônima posso usar a ouvidoria né? Preciso garantir que ninguém vai descobrir que fui eu.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Ôpa totem preciso de uma ajuda rapidinho meu cachorro atropelado perto do prédio da engenharia tá sangrando muito e eu não sei o que fazer",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Sei lá totem to com uma dor de barriga sinistra já faz uns 2 dias, sinto febrezinha também será que devo ir no posto?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Bom dia. Tenho notado um aumento significativo nos níveis de estresse nas últimas semanas. Existe algum serviço de apoio psicológico ou acompanhamento para servidores da UFPI? Agradeço a atenção.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Esqueci meus remédios p prolapso. Onde consigo comprar urgente?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Sinto uma dor forte no peito. Pode ser gravíssimo? Preciso ser visto.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Ansiedade atacou, falta ar. Perto tem farmácia? Alguém pode me ajudar?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Caiu da bike, braço doendo muito. Acho q to com trauma, urgente!",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Me sinto fraco e confuso. Não consigo lembrar o nome da rua... socorro!",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "E aí galera to meio tonta aqui na biblioteca sinto q vou passar mal alguém pode me ajudar?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Mano to super ansioso pra prova de cálculo tô quase entrando em pânico alguém do atendimento psicológico podia dar um toque",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Socorro gente me machuquei na escada do bloco D tá sangrando bastante alguém pode vir ver isso?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Pô fiquei preocupado com a minha vó ela tava bem ontem e hoje acordou meio confusa queria saber se tem algum médico no campus pra dar uma olhada",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Estou me sentindo muito tonta e com a cabeça leve há cerca de uma hora, acho que preciso verificar minha pressão; estou no bloco Administrativo, perto do elevador principal.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Estou com uma forte dor abdominal e náuseas há algumas horas, sem conseguir comer nada; estou na biblioteca tentando estudar, mas não me sinto bem.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Preciso entender como funciona o agendamento para consulta com um clínico geral no HU, estou confuso sobre os requisitos e documentos necessários.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Bom dia! Sou professora do curso X e gostaria de recomendar uma colega que tem enfrentado dificuldades. Ela me solicitou informações sobre o serviço de apoio psicológico da UFPI para mulheres. Como posso direcioná-la?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "saude",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Ô totem to passando um desconforto sinistro aqui na facul o cara não para de me olhar e fazer comentario asqueroso alguém pode me ajudar?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Me ajuda por favor tô perdida nesse campus e queria saber onde fica a ouvidoria pra registrar uma situação chata que aconteceu comigo",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Socorro totem to me sentindo muito insegura um cara veio atrás de mim no estacionamento parece q tá me seguindo o que eu faço?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Mano to nervosa um cara não para de me olhar estranho aqui no campus queria saber como faço pra registrar uma ocorrência ou algo assim",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Socorro to assustada um tio tá me seguindo desde a porta da facul queria saber se existe algum segurança que eu possa acionar agora",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Ele não me toca mais, mas fala coisas horríveis... posso fazer algo?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Me senti insegura perto do portão 3, tem um homem me seguindo. qm devo avisar?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Onde acho a ouvidoria da universidade? preciso registrar uma situação",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Preciso saber como denunciar... ele me seguiu td o caminho",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Alguém pode me ajudar? Me sinto insegura perto do bloco E, por favor.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Onde encontro apoio jurídico na UFPI? Aconteceu uma coisa...",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "ouvidoria",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "Socorro! Um homem tá me olhando de forma estranha no estacionamento. Q fazer?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Não sei pra quem mais perguntar... tem um colego q não para de me incomodar.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "mulher",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "ajuda! briga perto do bloco jurídico!!",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "fogo na area dos estacionamentos, cheiro forte!",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "vi um cara estranho rondando o lab de informatica... nao conheço.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "cade a seguranca? alguem invadiu a pracinha e tá tirando fotos!",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "perdi meu crachá perto da biblioteca, to com medo de alguem se passar por mim.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "E aí galera to aqui perto do prédio de engenharia, ouvi um barulhão feio mto estranho parece discussão acalorada tá tudo bem?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Mano to perdido no campus agr, alguem pode me ajudar a achar o bloco H? Tô com medo de me perder de novo",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "orientacao",
+   "gravidade": "orientacao"
+  }
+ },
+ {
+  "texto": "A luz apagou na rua da facu e tem gente esquisita olhando pro portão principal melhor dar uma olhada rapidinho",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Socorro! Tem um carro dando voltas no estacionamento já faz meia hora, parece suspeito viu?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Prezados, venho comunicar que identifiquei uma janela danificada no laboratório de Química, aparentemente forçada. Solicito verificação da área para evitar invasões e possíveis furtas de materiais.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Mano to perdido na área da reitoria achei umas pessoas estranhas rondando, normal isso?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Aiii socorro viu! Fumaça saindo do laboratório de química alguém sabe o que é?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Fala patrão to vendo uns moleques jogando bola no meio dos carros do estacionamento tá seguro pra passar por lá?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Alguém arrombando o lab de informatica! preciso q venha urgente!",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Barulho estranho pró agrário... parece discussão séria! pode ser perigoso?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Fogo no estacionamento da faculdade de direito! pequenas chamas!",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Vi uma pessoa desconhecida rondando a biblioteca, com cara suspeita. precisa verificar.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Portão do fundao abertoo!!! Alguem viu?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Estou vendo um grupo de pessoas suspeitas rondando a entrada do CCS, eles parecem estar tentando forçar a porta; poderiam verificar, por favor?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_imediato"
+  }
+ },
+ {
+  "texto": "Aconteceu uma discussão acalorada perto do RU, com gritos e ameaças. Temo que possa escalar para algo mais grave, seria bom se alguém pudesse ir conferir.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Percebi um forte cheiro de queimado vindo da área dos laboratórios do CT; não sei a origem, mas parece preocupante e sugiro uma inspeção urgente.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ },
+ {
+  "texto": "Encontrei um objeto estranho no chão próximo à biblioteca, com fios saindo. Não o toquei, mas acho que pode ser perigoso para quem passar por perto.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama",
+  "verificador": {
+   "tipo": "seguranca",
+   "gravidade": "risco_potencial"
+  }
+ }
+]
