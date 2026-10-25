@@ -65,9 +65,22 @@ PALAVRAS = {
     ],
 }
 SINAIS_CRITICOS = [
-    "suicíd", "suicid", "me matar", "tirar minha vida", "arma", "sangrando",
+    "suicíd", "suicid", "me matar", "tirar minha vida", "sangrando",
     "não respira", "nao respira", "desmaiou", "convulsão", "convulsao", "estupro",
 ]
+# Padrões (regex, sobre texto minúsculo e sem acento) de risco imediato que a lista
+# acima não cobria. Ancorados em início de palavra: "arma" casa arma/armado mas NÃO
+# "armário"; "incêndio" sozinho fica de fora (perguntas de procedimento são orientação).
+PADROES_CRITICOS = [
+    r"\barma(s|d[oa]s?)?\b", r"\bfaca\b", r"\btiros?\b", r"\bfumaca\b",
+    r"\bpegando fogo\b", r"\bem chamas\b", r"\bfogo (no|na|nos|nas|em)\b",
+    r"\bexplo(diu|sao|dindo)\b", r"\bme machuc(ar|ou)\b", r"\bme agarr",
+    r"\bagarrando\b", r"\ba forca\b", r"\bme (bateu|bate|batendo|espanc)",
+    r"\bespanc", r"\bsequestr", r"\benforc", r"\bme trancou\b", r"\binconsciente\b",
+    r"\binfarto\b", r"\bengasg", r"\boverdose\b", r"\bme ameacou de morte\b",
+    r"\barrombou\b.*\b(entrou|invadiu)\b", r"\binvadiu\b",
+]
+_RE_CRITICOS = re.compile("|".join(PADROES_CRITICOS))
 SINAIS_EMERGENCIA_SAUDE = [
     "desmaio", "desmaiou", "convulsão", "convulsao", "dor no peito", "não respira",
     "nao respira", "sangrando", "suicíd", "suicid", "me matar",
@@ -77,6 +90,12 @@ SINAIS_AMEACA = [
     "medo", "seguindo", "me seguindo", "atrás de mim", "atras de mim", "sozinha",
     "sozinho", "estranho", "me siga", "fugindo", "escondida", "escondido",
 ]
+
+
+def _eh_critico(texto: str) -> bool:
+    """Sinal crítico (risco imediato) por lista de substrings OU padrão ancorado."""
+    t = (texto or "").lower()
+    return any(s in t for s in SINAIS_CRITICOS) or bool(_RE_CRITICOS.search(_sem_acento(t)))
 
 
 def _heuristica(texto: str, modo: Modo) -> dict:
@@ -91,7 +110,7 @@ def _heuristica(texto: str, modo: Modo) -> dict:
             if any(s in t for s in SINAIS_AMEACA)
             else TipoOcorrencia.ouvidoria
         )
-    critico = any(s in t for s in SINAIS_CRITICOS)
+    critico = _eh_critico(t)
     emergencia = any(s in t for s in SINAIS_EMERGENCIA_SAUDE)
 
     r = rotear(tipo, modo, emergencia=emergencia)
@@ -299,7 +318,7 @@ def _node_triagem(state: _Estado) -> _Estado:
 
 def _node_guardrails(state: _Estado) -> _Estado:
     t = (state.get("texto") or "").lower()
-    critico = any(s in t for s in SINAIS_CRITICOS)
+    critico = _eh_critico(t)
     if critico:
         state["escalonar_humano"] = True
         state["gravidade"] = Gravidade.risco_imediato.value
@@ -355,8 +374,16 @@ def _merge_protetivo(seed: dict, out: _Estado, modo: Modo, fonte: str = "agentes
     tipo_llm = out.get("tipo", seed["tipo_sugerido"])
     crise = seed["escalonar_humano"] or _RANK_GRAV.get(seed["gravidade"], 1) == 3
     if crise:
-        # Em crise, o roteamento segue a rede determinística (o LLM só acolhe).
-        tipo_final = seed["tipo_sugerido"]
+        # Em crise, o roteamento segue a rede determinística (o LLM só acolhe) — mas só
+        # quando a heurística de fato reconheceu uma categoria (confiança > 0.3). Sem
+        # palavra-chave ela cai em "ouvidoria" por omissão, e um risco imediato nunca
+        # deve ser roteado para a Ouvidoria: usa-se o tipo da fonte, e "ouvidoria"
+        # vira "seguranca" (canal 24/7).
+        if seed["confianca"] > 0.3:
+            tipo_final = seed["tipo_sugerido"]
+        else:
+            tipo_final = (TipoOcorrencia.seguranca.value
+                          if tipo_llm == TipoOcorrencia.ouvidoria.value else tipo_llm)
     elif tipo_llm == TipoOcorrencia.ouvidoria.value and seed["tipo_sugerido"] != TipoOcorrencia.ouvidoria.value:
         # LLM rebaixou para 'ouvidoria', mas a heurística viu algo mais sério.
         tipo_final = seed["tipo_sugerido"]
