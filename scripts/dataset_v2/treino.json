@@ -1,0 +1,1259 @@
+[
+ {
+  "texto": "tem um cara com um revólver na entrada da biblioteca",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "estão me roubando o celular agora no corredor",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "um grupo está batendo em um aluno no pátio",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "invadiram a sala e estão quebrando tudo",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "socorro, um homem está me ameaçando com um objeto",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "há um princípio de incêndio no laboratório",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "alguém puxou uma arma durante a discussão",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "estão arrombando os armários do vestiário agora",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "um desconhecido fica observando as alunas na saída",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "sumiram vários notebooks do laboratório esta semana",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "um carro estranho parou e ficou filmando o campus",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "recebi uma ameaça anônima no meu armário",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "tem gente estranha entrando sem crachá no prédio",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "o portão dos fundos está sempre aberto e sem vigia",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "onde eu registro um boletim de furto no campus?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "qual o número da guarda universitária?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "existe escolta noturna até o estacionamento?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "como funciona o achados e perdidos daqui?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "quero saber se há câmeras no bloco de aulas",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "meu marido chegou aqui e está me batendo",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "um homem me encurralou no banheiro feminino",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "estou sendo agarrada e não consigo me soltar",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "meu agressor descobriu onde estudo e veio atrás",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "ele disse que vai me matar e está no corredor",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "estão tentando me levar à força para um carro",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "um professor insiste em me tocar durante o atendimento",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "um colega me persegue e manda mensagens obscenas",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "estão chantageando com fotos minhas para eu sair com ele",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "meu ex fica me esperando na porta da faculdade",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "sofri cantadas insistentes de um funcionário",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "um monitor faz piadas de cunho sexual comigo",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "como agendo atendimento na sala lilás?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "quais meus direitos em caso de assédio no campus?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "existe acompanhamento psicológico para vítimas de violência?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "onde denuncio importunação sexual na universidade?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "gostaria de conversar em sigilo sobre uma situação de assédio",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "tem uma cartilha sobre a lei maria da penha aqui?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "um aluno caiu e está desmaiado sem responder",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "estou com dor forte no peito e formigando o braço",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "tem alguém tendo um ataque epiléptico agora",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "cortei profundo e não para de sangrar",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "engasguei e estou sem conseguir respirar",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "uma pessoa está tendo reação alérgica grave e inchando",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "me sinto muito mal, com vontade de sumir do mundo",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "estou com tontura e visão embaçada há uma hora",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "levei uma pancada no joelho e mal consigo andar",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "estou com náusea e febre desde ontem",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "me cortei na cozinha do RU, acho que precisa de curativo",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "estou com uma crise de ansiedade e falta de ar leve",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "torci o pulso na aula de educação física",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "qual o horário de funcionamento do posto de saúde?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "onde consigo a carteira de vacinação atualizada?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "tem atendimento odontológico no campus?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "como marco consulta com o médico da universidade?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "preciso de informação sobre apoio psicológico estudantil",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "quero denunciar um professor que vende notas",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "há desvio de verba na coordenação do curso",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "sofri perseguição administrativa por reclamar do chefe",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "um servidor humilha os alunos repetidamente",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "quero reclamar da demora no atendimento da secretaria",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "a comida do restaurante universitário está péssima",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "gostaria de elogiar o professor de cálculo",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "sugiro instalar bebedouros no bloco novo",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "o elevador do prédio vive quebrado, quero reportar",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "como faço uma reclamação formal pela ouvidoria?",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "quero registrar uma sugestão sobre o horário da biblioteca",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "o wifi do campus não funciona há semanas",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "reclamação: banheiros do bloco C sempre sujos",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "gostaria de dar um feedback sobre o portal do aluno",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "quero parabenizar a equipe de limpeza pelo trabalho",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "onde envio uma denúncia sobre irregularidade em licitação?",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "vi uma pessoa caída na escada, parece ter batido a cabeça",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "tem um homem seguindo as meninas até o ponto de ônibus",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1"
+ },
+ {
+  "texto": "estão ateando fogo nas lixeiras do estacionamento",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "quero informações sobre auxílio moradia estudantil",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1"
+ },
+ {
+  "texto": "um estranho está tentando arrombar minha moto",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "não aguento mais, estou pensando em me machucar",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1"
+ },
+ {
+  "texto": "como funciona o acolhimento para mulheres no campus",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como faço para acompanhar uma amiga que sofreu violência",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem alguma palestra ou roda de conversa sobre violência contra a mulher",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "a sala lilás atende alunas e servidoras",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "quero saber o que é considerado importunação sexual",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "preciso de orientação jurídica para uma situação de violência",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como encaminhar o caso de uma colega para a rede de proteção",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "dá pra pedir atendimento da sala lilás por telefone",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "existe apoio psicológico para vítimas de violência de gênero",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como a universidade protege quem faz a denúncia",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "a sala lilás fica em qual prédio",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "onde faço exame de corpo de delito depois de uma agressão",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "um cara me prendeu no elevador e está me tocando",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "um colega bêbado me derrubou no chão e não me solta",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "estou sendo estuprada, preciso de ajuda",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "um homem tirou a roupa na minha frente e está me impedindo de sair",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "ele disse que vai me esperar na saída pra me bater de novo",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "fui drogada na festa e um homem está me levando embora",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "um homem está me agarrando à força perto do banheiro",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "meu ex quebrou o vidro da sala e está vindo pra cima de mim",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem um cara me seguindo desde a biblioteca e já tentou me puxar",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "ele me enforcou e eu consegui sair da sala, ajuda",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "meu namorado está me batendo no estacionamento",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "meu ex está aqui na universidade e disse que vai me matar",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "sofro importunação todo dia no ônibus do campus",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "um professor faz piadas de cunho sexual comigo em sala",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "fronteira": true
+ },
+ {
+  "texto": "recebo ligações anônimas com ameaças desde que terminei o relacionamento",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "me sinto perseguida por um aluno que aparece em todos os lugares onde eu vou",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "estou com medo de um colega que ficou obcecado por mim",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "um segurança fica me cantando toda vez que passo na portaria",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "um veterano me pressionou para sair com ele em troca de uma nota",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "recebi fotos íntimas de um desconhecido pelo grupo da turma",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "alguém colou cartazes me expondo no corredor do curso",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "um professor disse que mulher não serve pra engenharia e me deixou de lado",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "fronteira": true
+ },
+ {
+  "texto": "meu ex fica mandando recado ameaçando me expor",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "fui tocada sem consentimento numa festa da atlética",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "o ar condicionado da sala 12 está quebrado há meses",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como faço uma reclamação sobre a limpeza dos banheiros",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "o wifi do bloco 4 não funciona direito, onde reclamo",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "o que é o simplifique e como faço uma solicitação",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "reclamo da demora na entrega do meu diploma",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "sugiro ampliar o horário de funcionamento da biblioteca",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "qual o e-mail da ouvidoria",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como acompanho uma manifestação já aberta",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "quero saber o andamento do meu protocolo",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "a ouvidoria atende presencialmente",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "qual o prazo de resposta da ouvidoria",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "onde fica a ouvidoria da UFPI",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "tenho informações de nepotismo em um setor da universidade",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "quero denunciar um funcionário terceirizado que maltrata os estudantes",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "denúncia de plágio de tcc por um orientador",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "há irregularidade na seleção do edital de monitoria",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "um professor falta quase todas as aulas e ninguém toma providência",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "o responsável pelo almoxarifado está vendendo material público",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "tenho provas de fraude na compra de material do departamento",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "quero denunciar um servidor que cobra propina de alunos",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "preciso denunciar perseguição por parte da chefia por motivo político",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "quero denunciar assédio moral que sofro do meu chefe de setor",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "fronteira": true
+ },
+ {
+  "texto": "preciso denunciar discriminação racial na minha turma",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "uma coordenação está cobrando taxa que não existe",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "como solicitar auxílio saúde da PRAEC",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "onde fica o posto médico do campus",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como marco consulta com psicólogo na universidade",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "preciso de um local para amamentar no campus",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem nutricionista para estudantes",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "onde fica a farmácia mais próxima do campus",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "onde posso tomar vacina no campus",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como funciona o atendimento psicológico gratuito",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem enfermaria aberta à noite",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "quais horários o psicólogo atende",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como funciona o atendimento do SAPSI",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "o HU atende estudantes da UFPI",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "um aluno caiu da moto na frente do campus e está inconsciente",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "um colega desmaiou no corredor e não acorda",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "meu amigo disse que vai se matar e tomou vários comprimidos",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "meu colega cortou o pulso no banheiro",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "estou tendo uma crise alérgica forte e a garganta está fechando",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "estou pensando em acabar com a minha vida agora",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem uma pessoa sangrando muito depois de cair da escada",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "uma colega está tendo um ataque de pânico e desmaiou",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "alguém se queimou feio no laboratório",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "um senhor engasgou no RU e não consegue falar",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "estou passando muito mal, com falta de ar e a visão escurecendo",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem um homem caído no chão da biblioteca e parece que parou de respirar",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "uma colega falou que está se cortando e preciso ajudar",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "um aluno passou mal no calor da quadra, já está consciente mas fraco",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "estou há dias sem comer direito e sinto fraqueza",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "estou com muita febre e tontura desde de manhã",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "machuquei o olho no laboratório e está ardendo muito",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "estou muito deprimida e sem forças para vir às aulas",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "tive uma crise de ansiedade e ainda estou tremendo",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "minha pressão subiu e sinto o rosto formigando",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "bati a cabeça e estou com um pouco de tontura",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "estou com crise de asma e a bombinha acabou",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "torci o pé feio na quadra e não consigo apoiar",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "sinto uma pressão no peito quando faço esforço",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "quem libera o acesso a laboratório fora do horário",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "a vigilância funciona a noite toda",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "posso deixar a bicicleta no campus durante o fim de semana",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "onde ficam os extintores do bloco de humanidades",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem alguma cartilha de segurança para calouros",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "quero saber se existem câmeras no bloco 6",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como funciona a identificação na portaria para visitantes",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como faço para cadastrar meu carro no estacionamento",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "qual o procedimento em caso de incêndio no prédio",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "onde fica a base da guarda universitária",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "preciso saber o horário das rondas no estacionamento",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como avisar a vigilância que vou ficar até tarde no laboratório",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem um cara armado no estacionamento do CCS",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "estão assaltando um aluno aqui na frente da biblioteca",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "um desconhecido está tentando arrombar a porta da sala onde estou",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "um homem está me perseguindo e tentando me pegar pelo braço",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "dois homens estão brigando com paus no pátio do bloco 5",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "explodiu alguma coisa no laboratório e tem fumaça e gritaria",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem uma pessoa ameaçando se jogar do alto do bloco",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem gás cheirando muito forte e as pessoas estão passando mal no bloco 8",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "uma briga generalizada começou na quadra e tem gente caída",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "socorro tem um maluco batendo em um guarda na entrada",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "alguém invadiu o laboratório e está quebrando tudo agora",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem fogo no corredor do bloco de engenharia",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "percebi alguém filmando a entrada do laboratório de pesquisa",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem um buraco enorme na calçada do bloco novo e já caiu gente",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "a iluminação do caminho do bloco 10 está apagada e é perigoso à noite",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "notei um cheiro de gás perto do laboratório de química",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem um cachorro bravo solto no campus perto do RU",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "um homem fica olhando as alunas na saída da biblioteca há dias",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "encontrei uma mochila abandonada no corredor, ninguém reclama",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "a porta do laboratório 3 está arrombada, mas não vi ninguém",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "uma pessoa desconhecida pediu minha senha do wifi e ficou insistindo",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "me falaram que vai ter uma briga entre grupos depois da aula",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "roubaram minha bicicleta no bicicletário hoje cedo",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "arrombaram o armário do vestiário e levaram as coisas dos alunos",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ }
+]
