@@ -155,7 +155,16 @@ def _plugar_ml() -> None:
         print(f"[aviso] alternativas ML indisponíveis ({e.name}); só as básicas.", file=sys.stderr)
 
 
+def _plugar_jev() -> None:
+    """Registra o Jev (referência hospedada) só se houver chave e o pacote."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import alternativas_jev
+    if alternativas_jev.disponivel():
+        ALTERNATIVAS.update(alternativas_jev.registro(Alternativa))
+
+
 _plugar_ml()
+_plugar_jev()
 for _n in [n for n in ALTERNATIVAS if n not in ("heuristica", "pipeline")]:
     ALTERNATIVAS[_n + "+merge"] = com_merge(ALTERNATIVAS[_n])
 
