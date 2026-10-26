@@ -125,3 +125,18 @@ Linhas de base e zero-shot/LLM (`--teste teste,teste_ext`; precisão de risco im
 | llm_gemma3_4b_fs | 18% | 34% | 23% | 19% | 1420 ms | idem |
 
 Leitura: no teste ampliado todas as alternativas treinadas caem de 90–97% para 83–89% de revocação de risco imediato, e a diferença entre elas fica dentro do IC. Revocação isolada engana (mDeBERTa "acerta" 100% alarmando tudo): reporte sempre com a precisão. Zero-shot (NLI e gemma3:4b) não serve para esta tarefa em português; o LLM maior com logprobs é viável como refino, não como governante.
+
+### 3.1 Revisão das frases divergentes
+
+As 174 frases em que o verificador discordou do gerador foram rotuladas por revisão
+(critérios em `scripts/dataset_v2/revisar_ext.py`, refeita com `python3 revisar_ext.py`):
+143 entraram em `teste_ext.json` com `origem: ext-ollama-revisado` e 31 ficaram em
+`revisao_ext.json` por ambiguidade (perseguição sem pista de gênero, "perdido no campus",
+animal ferido…). Em 107 das 143 o rótulo final difere do que o gerador pediu: a maioria eram
+pedidos de "orientação" que descrevem perigo, e reclamações de ouvidoria marcadas como risco.
+O teste passa a ter 351 frases distintas (110 de risco imediato). Esta revisão não é humana;
+a validação por uma pessoa da equipe continua pendente.
+
+Pipeline atual no teste revisado: tipo 72%, gravidade 67%, revocação de risco imediato
+86% [80–92], precisão 56% (60 alarmes a mais que o necessário em cada 110). O teste revisado
+é mais difícil que o filtrado por consenso, como se esperava.
