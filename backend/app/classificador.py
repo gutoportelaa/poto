@@ -56,7 +56,8 @@ def treinar(dataset: list[dict], caminho: str | None = None) -> dict:
     y_grav = [d.get("gravidade", "orientacao") for d in dataset]
     p_tipo = _novo_pipeline().fit(textos, y_tipo)
     p_grav = _novo_pipeline().fit(textos, y_grav)
-    art = {"tipo": p_tipo, "gravidade": p_grav, "n": len(dataset)}
+    import sklearn
+    art = {"tipo": p_tipo, "gravidade": p_grav, "n": len(dataset), "sklearn": sklearn.__version__}
     Path(caminho).parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(art, caminho)
     return {"amostras": len(dataset), "caminho": caminho}
@@ -67,7 +68,18 @@ def _carregar():
     if _modelo is None:
         import joblib
         _modelo = joblib.load(CLF_PATH)
+        _avisar_versao(_modelo)
     return _modelo
+
+
+def _avisar_versao(art: dict) -> None:
+    """O .joblib é pickle: só é garantido na versão do sklearn que o treinou."""
+    import sklearn
+    treinado = art.get("sklearn")
+    if treinado != sklearn.__version__:
+        log.warning("classificador treinado em sklearn %s, carregado em %s — "
+                    "retreine com `make train-clf` para garantir o resultado.",
+                    treinado or "desconhecido", sklearn.__version__)
 
 
 def disponivel() -> bool:
