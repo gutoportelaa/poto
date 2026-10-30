@@ -22,6 +22,7 @@ from .config import (
     CANAIS,
     CANAIS_INTERNOS,
     CONTACT_OVERRIDE,
+    DEMO,
     NOTIF_PROVIDER,
     NOTIF_WEBHOOK_TOKEN,
     NOTIF_WEBHOOK_URL,
@@ -244,6 +245,8 @@ class SimcomProvider:
 
 
 def _provider() -> NotificationProvider:
+    if DEMO:  # defesa em profundidade: o demo nunca alcança provedor real
+        return LogProvider()
     if NOTIF_PROVIDER == "webhook":
         return WebhookProvider()
     if NOTIF_PROVIDER == "telegram":
@@ -271,7 +274,7 @@ async def enviar_para_canal(
     # roda fora do event loop. Gera se o Piper estiver pronto e algum consumidor usar.
     audio_url = None
     audio_wav = None
-    if voz.disponivel() and (PUBLIC_BASE_URL or NOTIF_PROVIDER == "simcom"):
+    if not DEMO and voz.disponivel() and (PUBLIC_BASE_URL or NOTIF_PROVIDER == "simcom"):
         nome = await asyncio.to_thread(voz.gerar_audio_local, voz.texto_falado(chamado))
         if nome:
             audio_wav = str(Path(AUDIO_DIR) / nome)
@@ -289,7 +292,7 @@ async def enviar_para_canal(
     }
     # Alerta PSTN desligado (demos de voz): não disca, registra como suprimido.
     # Vale para Twilio e SIMCom — ambos são ligação real (gastam crédito do SIM).
-    if NOTIF_PROVIDER in ("twilio", "simcom") and not ALERTA_PSTN_ENABLED:
+    if not DEMO and NOTIF_PROVIDER in ("twilio", "simcom") and not ALERTA_PSTN_ENABLED:
         ok, detalhe = False, "alerta PSTN desativado (POTO_ALERTA_PSTN=off)"
     else:
         prov = _provider()
@@ -298,7 +301,7 @@ async def enviar_para_canal(
         chamado["chamado_id"],
         canal,
         destino,
-        NOTIF_PROVIDER,
+        "log" if DEMO else NOTIF_PROVIDER,
         ok,
         mensagem,
         detalhe=detalhe,
@@ -370,6 +373,7 @@ async def escalonar_chamado(chamado: dict) -> dict | None:
 def status() -> dict:
     return {
         "provider": NOTIF_PROVIDER,
+        "demo": DEMO,
         "override": bool(CONTACT_OVERRIDE),
         "webhook_configurado": bool(NOTIF_WEBHOOK_URL),
         "telegram_configurado": bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID),

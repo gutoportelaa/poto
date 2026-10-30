@@ -31,6 +31,7 @@ from .agents.graph import conversa_voz, status_agentes, triagem_conversacional
 from .config import (
     AUDIO_DIR,
     CANAIS_ESTADO,
+    DEMO,
     FRONTEND_DIST,
     contato_canal,
 )
@@ -74,6 +75,15 @@ app = FastAPI(
     description="Plataforma de Orientação, Triagem e Ouvidoria — Totem de Emergência UFPI",
     lifespan=lifespan,
 )
+
+@app.middleware("http")
+async def _aviso_demo(request: Request, call_next):
+    """No modo demo toda resposta carrega o aviso, para o frontend exibir o banner."""
+    resp = await call_next(request)
+    if DEMO:
+        resp.headers["X-POTO-Demo"] = "1"
+    return resp
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -152,6 +162,7 @@ def health() -> dict:
         "stt": stt.status(),
         "video": video.status(),
         "notificacao": notifier.status(),
+        "demo": DEMO,
         "voz": voz.status(),
     }
 
