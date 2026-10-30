@@ -106,3 +106,37 @@ Teste: 97 frases distintas · teste com ruído: 194 · CV 5-fold em 242 frases. 
 | risco_potencial | 7 | 24 | 1 |
 | orientacao | 1 | 2 | 33 |
 
+
+## 3. Teste ampliado (208 frases distintas, 66 de risco imediato) e novas alternativas
+
+O teste ganhou 111 frases geradas por LLM local (gemma3:12b gera, qwen3:8b verifica às cegas; só entram as frases em que o verificador concorda nos dois rótulos — as demais estão em `scripts/dataset_v2/revisao_ext.json` para revisão humana). Frases de LLM são mais "limpas" que as de pessoas; o conjunto dá poder estatístico, não substitui teste com usuários. A célula ouvidoria × risco_potencial ficou com 2 frases (o verificador discorda do gerador nela).
+
+Linhas de base e zero-shot/LLM (`--teste teste,teste_ext`; precisão de risco imediato calculada das matrizes de confusão):
+
+| alternativa | tipo | gravidade | rec. imediato | **prec. imediato** | latência | observação |
+|---|---|---|---|---|---|---|
+| pipeline (atual) | 75% | 74% | 89% [82–95] | 66% | 1,5 ms | referência |
+| e5small_lr+merge | 82% | 74% | 85% [76–92] | 67% | 11 ms | melhor tipo, robusto a ruído (84%) |
+| bertimbau+merge | 81% | 73% | 83% [74–91] | 70% | 19 ms | CV 94% de rec. imediato |
+| llm_qwen3_8b_fs (logprobs, 3 exemplos/rótulo) | 75% | 65% | 94% [88–98] | 50% | 330 ms | alarma demais; sem treino |
+| zs_mdeberta (NLI zero-shot) | 45% | 42% | 100% | 36% | 15 ms | **degenerado**: prevê imediato para quase tudo |
+| zs_modernbert (NLI, inglês) | 29% | 44% | 20% | 48% | 19 ms | inadequado para português |
+| llm_gemma3_4b (zero-shot) | 14% | 15% | 2% | 1% | 1250 ms | viés de letra neste formato de prompt; não conclusivo |
+| llm_gemma3_4b_fs | 18% | 34% | 23% | 19% | 1420 ms | idem |
+
+Leitura: no teste ampliado todas as alternativas treinadas caem de 90–97% para 83–89% de revocação de risco imediato, e a diferença entre elas fica dentro do IC. Revocação isolada engana (mDeBERTa "acerta" 100% alarmando tudo): reporte sempre com a precisão. Zero-shot (NLI e gemma3:4b) não serve para esta tarefa em português; o LLM maior com logprobs é viável como refino, não como governante.
+
+### 3.1 Revisão das frases divergentes
+
+As 174 frases em que o verificador discordou do gerador foram rotuladas por revisão
+(critérios em `scripts/dataset_v2/revisar_ext.py`, refeita com `python3 revisar_ext.py`):
+143 entraram em `teste_ext.json` com `origem: ext-ollama-revisado` e 31 ficaram em
+`revisao_ext.json` por ambiguidade (perseguição sem pista de gênero, "perdido no campus",
+animal ferido…). Em 107 das 143 o rótulo final difere do que o gerador pediu: a maioria eram
+pedidos de "orientação" que descrevem perigo, e reclamações de ouvidoria marcadas como risco.
+O teste passa a ter 351 frases distintas (110 de risco imediato). Esta revisão não é humana;
+a validação por uma pessoa da equipe continua pendente.
+
+Pipeline atual no teste revisado: tipo 72%, gravidade 67%, revocação de risco imediato
+86% [80–92], precisão 56% (60 alarmes a mais que o necessário em cada 110). O teste revisado
+é mais difícil que o filtrado por consenso, como se esperava.

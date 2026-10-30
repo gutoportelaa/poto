@@ -125,4 +125,114 @@ def registro(Alternativa) -> dict:  # noqa: N803 — recebe a classe base do har
         def tamanho_bytes(self):
             return sum(p.numel() for p in self._modulos().parameters()) * 4
 
-    return {c.nome: c for c in (EmbedLogreg, E5Base, Bert)}
+    class ZeroShotNLI(Alternativa):
+        """Zero-shot por inferência de linguagem natural (sem treino): cada rótulo vira
+        uma hipótese descritiva em português. Não usa o dataset de treino."""
+
+        modelo = "MoritzLaurer/ModernBERT-large-zeroshot-v2.0"
+        nome = "zs_modernbert"
+        ROT_TIPO = {
+            "seguranca": "segurança, crime ou perigo no campus",
+            "mulher": "violência ou assédio contra a mulher",
+            "saude": "problema de saúde ou emergência médica",
+            "ouvidoria": "reclamação, denúncia, sugestão ou elogio administrativo",
+        }
+        ROT_GRAV = {
+            "risco_imediato": "um perigo imediato acontecendo agora",
+            "risco_potencial": "uma situação preocupante sem perigo imediato",
+            "orientacao": "um pedido de informação sem nenhum risco",
+        }
+
+        def fit(self, dados):
+            from transformers import pipeline
+            self.pipe = pipeline("zero-shot-classification", model=self.modelo,
+                                 device=0 if _dispositivo() == "cuda" else -1)
+            return self
+
+        def _melhor(self, textos, rotulos, modelo_hip):
+            nomes = list(rotulos)
+            res = self.pipe(textos, [rotulos[n] for n in nomes], hypothesis_template=modelo_hip,
+                            batch_size=16)
+            res = res if isinstance(res, list) else [res]
+            inv = {v: k for k, v in rotulos.items()}
+            return [inv[r["labels"][0]] for r in res]
+
+        def predict(self, textos):
+            return list(zip(self._melhor(textos, self.ROT_TIPO, "Esta mensagem é sobre {}."),
+                            self._melhor(textos, self.ROT_GRAV, "Esta mensagem descreve {}.")))
+
+        def tamanho_bytes(self):
+            return sum(p.numel() for p in self.pipe.model.parameters()) * 4
+
+    class ZeroShotMDeberta(ZeroShotNLI):
+        modelo = "MoritzLaurer/mDeBERTa-v3-base-xnli-multilingual-nli-2mil7"
+        nome = "zs_mdeberta"
+
+    class LlmLogprobs(Alternativa):
+        """LLM local (Ollama) como classificador System 1: a resposta é UMA letra e a
+        decisão sai das probabilidades (logprobs) dessa letra, sem gerar texto.
+        `k` exemplos por rótulo vêm do treino (few-shot); k=0 é zero-shot."""
+
+        modelo, k = "gemma3:4b", 0
+        nome = "llm_gemma3_4b"
+        url = os.getenv("POTO_OLLAMA_URL", "http://localhost:11434")
+        TIPOS = {"seguranca": "ameaça, crime, invasão, briga, incêndio ou perigo físico no campus, ou dúvida sobre a segurança",
+                 "mulher": "violência, assédio ou importunação contra mulher, ou orientação sobre a rede de proteção",
+                 "saude": "mal-estar, acidente, emergência clínica, saúde mental ou dúvida sobre atendimento de saúde",
+                 "ouvidoria": "reclamação, denúncia de irregularidade, sugestão, elogio ou dúvida sobre a ouvidoria"}
+        GRAVS = {"risco_imediato": "acontecendo AGORA, risco iminente à vida ou integridade",
+                 "risco_potencial": "situação preocupante ou ameaça difusa, sem perigo iminente",
+                 "orientacao": "pedido de informação ou orientação, sem risco"}
+
+        def fit(self, dados):
+            self.exemplos = {"tipo": [], "gravidade": []}
+            if self.k:
+                for campo, rots in (("tipo", self.TIPOS), ("gravidade", self.GRAVS)):
+                    for r in rots:
+                        ds = [d for d in dados if d[campo] == r]
+                        for d in ds[:: max(1, len(ds) // self.k)][: self.k]:
+                            self.exemplos[campo].append((d["texto"], r))
+            return self
+
+        def _prompt(self, campo, rots, texto):
+            letras = "ABCD"[: len(rots)]
+            opcoes = "\n".join(f"{l}) {r}: {d}" for l, (r, d) in zip(letras, rots.items()))
+            shots = "".join(
+                f'Mensagem: "{t}"\nResposta: {letras[list(rots).index(r)]}\n\n'
+                for t, r in self.exemplos[campo])
+            return (f"Você classifica mensagens de um totem de emergência da UFPI ({campo}).\n"
+                    f"Opções:\n{opcoes}\nResponda SOMENTE com a letra.\n\n{shots}"
+                    f'Mensagem: "{texto}"\nResposta:'), letras
+
+        def _escolher(self, campo, rots, texto):
+            import json
+            import math
+            import urllib.request
+            prompt, letras = self._prompt(campo, rots, texto)
+            corpo = {"model": self.modelo, "stream": False, "think": False, "logprobs": True,
+                     "top_logprobs": 10, "options": {"temperature": 0, "num_predict": 1},
+                     "messages": [{"role": "user", "content": prompt}]}
+            req = urllib.request.Request(f"{self.url}/api/chat", json.dumps(corpo).encode(),
+                                         {"Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=120) as r:
+                lp = json.loads(r.read()).get("logprobs") or []
+            top = {t["token"].strip(): t["logprob"] for t in (lp[0]["top_logprobs"] if lp else [])}
+            pontos = [top.get(l, -1e9) for l in letras]
+            if max(pontos) < -1e8:  # modelo não respondeu com letra: cai no mais protetivo
+                return list(rots)[0]
+            z = sum(math.exp(p) for p in pontos)
+            self.ultima_prob = [math.exp(p) / z for p in pontos]
+            return list(rots)[pontos.index(max(pontos))]
+
+        def predict(self, textos):
+            return [(self._escolher("tipo", self.TIPOS, t), self._escolher("gravidade", self.GRAVS, t))
+                    for t in textos]
+
+    class LlmGemma3Fs(LlmLogprobs):
+        k, nome = 3, "llm_gemma3_4b_fs"
+
+    class LlmQwen3Fs(LlmLogprobs):
+        modelo, k, nome = "qwen3:8b", 3, "llm_qwen3_8b_fs"
+
+    return {c.nome: c for c in (EmbedLogreg, E5Base, Bert, ZeroShotNLI, ZeroShotMDeberta,
+                                LlmLogprobs, LlmGemma3Fs, LlmQwen3Fs)}

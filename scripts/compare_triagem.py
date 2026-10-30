@@ -155,7 +155,16 @@ def _plugar_ml() -> None:
         print(f"[aviso] alternativas ML indisponíveis ({e.name}); só as básicas.", file=sys.stderr)
 
 
+def _plugar_jev() -> None:
+    """Registra o Jev (referência hospedada) só se houver chave e o pacote."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import alternativas_jev
+    if alternativas_jev.disponivel():
+        ALTERNATIVAS.update(alternativas_jev.registro(Alternativa))
+
+
 _plugar_ml()
+_plugar_jev()
 for _n in [n for n in ALTERNATIVAS if n not in ("heuristica", "pipeline")]:
     ALTERNATIVAS[_n + "+merge"] = com_merge(ALTERNATIVAS[_n])
 
@@ -169,12 +178,15 @@ def metricas(gold: list[dict], pred: list[tuple[str, str]]) -> dict:
     # pior erro: risco_imediato previsto como orientação
     grave = float(np.mean([p[1] == "orientacao" for p in np.array(pred, dtype=object)[imed]])) \
         if imed.any() else 0.0
+    alarmes = [p[1] == "risco_imediato" for p in pred]
+    prec = (sum(a and g["gravidade"] == "risco_imediato" for a, g in zip(alarmes, gold))
+            / sum(alarmes)) if any(alarmes) else 0.0
     conf = {g: {h: 0 for h in GRAVS} for g in GRAVS}
     for p, g in zip(pred, gold):
         conf[g["gravidade"]][p[1]] = conf[g["gravidade"]].get(p[1], 0) + 1
     return {"n": len(gold), "tipo": at.mean(), "grav": ag.mean(),
             "rec_imediato": rec.mean() if len(rec) else float("nan"),
-            "imediato_como_orientacao": grave, "confusao": conf,
+            "imediato_como_orientacao": grave, "prec_imediato": prec, "confusao": conf,
             "_tipo": at, "_grav": ag, "_rec": rec}
 
 
@@ -227,10 +239,13 @@ def main() -> None:
     ap.add_argument("--treino", default="treino", choices=["treino", "treino_aumentado"])
     ap.add_argument("--md", help="grava o relatório em markdown neste caminho")
     ap.add_argument("--sem-cv", action="store_true")
+    ap.add_argument("--teste", default="teste",
+                    help="arquivos de teste em dataset_v2 (vírgula), ex.: teste,teste_ext")
     args = ap.parse_args()
 
     treino, val = carregar(args.treino), carregar("validacao")
-    teste, ruido = carregar("teste"), carregar("teste_ruido")
+    teste = [d for n in args.teste.split(",") for d in carregar(n.strip())]
+    ruido = carregar("teste_ruido")
     # CV só com frases originais (sem variantes) para não vazar ruído entre folds
     cv_dados = [d for d in treino + val if "variante_de" not in d]
     rng = np.random.default_rng(0)
@@ -251,14 +266,14 @@ def main() -> None:
            f"\nTeste: {len(teste)} frases distintas · teste com ruído: {len(ruido)} · "
            f"CV 5-fold em {len(cv_dados)} frases. IC 95% por bootstrap.\n",
            "| alternativa | CV tipo | CV grav | CV rec.imediato | teste tipo | teste grav | "
-           "**teste rec.imediato** | imediato→orientação | ruído tipo | lat. mediana | p95 | tamanho |",
-           "|---|---|---|---|---|---|---|---|---|---|---|---|"]
+           "**teste rec.imediato** | prec.imediato | imediato→orientação | ruído tipo | lat. mediana | p95 | tamanho |",
+           "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for nome, cv, t, r, med, p95, tam in linhas:
         cvs = (pct(cv["tipo"]), pct(cv["grav"]), pct(cv["rec_imediato"])) if cv else ("—",) * 3
         out.append(
             f"| {nome} | {cvs[0]} | {cvs[1]} | {cvs[2]} | {com_ic(t,'tipo',rng)} | "
             f"{com_ic(t,'grav',rng)} | **{com_ic(t,'rec',rng)}** | "
-            f"{pct(t['imediato_como_orientacao'])} | {pct(r['tipo'])} | {med:.2f} ms | "
+            f"{pct(t['prec_imediato'])} | {pct(t['imediato_como_orientacao'])} | {pct(r['tipo'])} | {med:.2f} ms | "
             f"{p95:.2f} ms | {tam/1024:.0f} KB |")
     out.append("\n## Matriz de confusão da gravidade (teste; linhas = real, colunas = previsto)\n")
     for nome, t in detalhes:
