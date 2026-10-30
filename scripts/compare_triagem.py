@@ -114,6 +114,50 @@ class PipelineProd(TfidfLogreg):
 ALTERNATIVAS: dict[str, type[Alternativa]] = {
     c.nome: c for c in (Heuristica, TfidfLogreg, PipelineProd)
 }
+BASICAS = list(ALTERNATIVAS)  # as que rodam só com sklearn (default do harness)
+
+
+def com_merge(base: type[Alternativa]) -> type[Alternativa]:
+    """Embrulha qualquer alternativa no merge protetivo de produção: a heurística de
+    sinais críticos pode ELEVAR a gravidade e, em crise, define o tipo (nunca rebaixa)."""
+
+    class ComMerge(Alternativa):
+        nome = base.nome + "+merge"
+
+        def fit(self, dados):
+            self.base = base().fit(dados)
+            return self
+
+        def predict(self, textos):
+            from app.agents.graph import _heuristica, _merge_protetivo
+            from app.models import Modo
+            out = []
+            for t, (tipo, grav) in zip(textos, self.base.predict(textos)):
+                m = _merge_protetivo(_heuristica(t, Modo.normal),
+                                     {"tipo": str(tipo), "gravidade": str(grav), "confianca": 0.8},
+                                     Modo.normal, fonte="classificador")
+                out.append((m["tipo_sugerido"], m["gravidade"]))
+            return out
+
+        def tamanho_bytes(self):
+            return self.base.tamanho_bytes()
+
+    return ComMerge
+
+
+def _plugar_ml() -> None:
+    """Registra as alternativas de encoder se torch/transformers estiverem presentes."""
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import alternativas_ml
+        ALTERNATIVAS.update(alternativas_ml.registro(Alternativa))
+    except ImportError as e:
+        print(f"[aviso] alternativas ML indisponíveis ({e.name}); só as básicas.", file=sys.stderr)
+
+
+_plugar_ml()
+for _n in [n for n in ALTERNATIVAS if n not in ("heuristica", "pipeline")]:
+    ALTERNATIVAS[_n + "+merge"] = com_merge(ALTERNATIVAS[_n])
 
 
 # -------------------------------------------------------------------- métricas ----
@@ -178,7 +222,8 @@ def com_ic(m: dict, chave: str, rng) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Compara alternativas de triagem (P.O.T.O)")
-    ap.add_argument("--alt", default=",".join(ALTERNATIVAS), help="lista por vírgula")
+    ap.add_argument("--alt", default=",".join(BASICAS),
+                    help=f"lista por vírgula; disponíveis: {', '.join(ALTERNATIVAS)}")
     ap.add_argument("--treino", default="treino", choices=["treino", "treino_aumentado"])
     ap.add_argument("--md", help="grava o relatório em markdown neste caminho")
     ap.add_argument("--sem-cv", action="store_true")
