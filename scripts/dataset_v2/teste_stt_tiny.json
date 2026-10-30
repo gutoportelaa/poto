@@ -1,0 +1,3065 @@
+[
+ {
+  "texto": "Tem um homem amado no corredor do bloco C.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "tem um homem armado no corredor do bloco C"
+ },
+ {
+  "texto": "Estão menaçando como faca agora.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "estão me ameaçando com uma faca agora"
+ },
+ {
+  "texto": "Alguém arromboa a porta e lento uma sala.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "alguém arrombou a porta e entrou na sala"
+ },
+ {
+  "texto": "e dois caras estão enxrondando o estacionamento.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "vi dois caras estranhos rondando o estacionamento"
+ },
+ {
+  "texto": "Acho que estão seguindo desde a parada de ônibus.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "acho que estão me seguindo desde a parada de ônibus"
+ },
+ {
+  "texto": "Encontaram o Momo Xilabandona do suspeito no Saguão.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "encontraram uma mochila abandonada suspeita no saguão"
+ },
+ {
+  "texto": "Qual o ramal da segurança do campos?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "qual o ramal da segurança do campus?"
+ },
+ {
+  "texto": "Era saber os horários de ronda da vigilância.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "quero saber os horários de ronda da vigilância"
+ },
+ {
+  "texto": "Vamos fazer para registrar um objeto pedido.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "como faço para registrar um objeto perdido?"
+ },
+ {
+  "texto": "Não exestar aqui e disse que vai me machucar.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "meu ex está aqui e disse que vai me machucar"
+ },
+ {
+  "texto": "Uma homem está me agarrando a fúils.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "um homem está me agarrando à força"
+ },
+ {
+  "texto": "estão sendo perseguida pelo meu adesor agora.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "estou sendo perseguida pelo meu agressor agora"
+ },
+ {
+  "texto": "Um colega mando mensagens de cunho sexual sem parar.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "um colega manda mensagens de cunho sexual sem parar"
+ },
+ {
+  "texto": "meu super visor de estágio me pressiona para sair com ele.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "meu supervisor de estágio me pressiona para sair com ele"
+ },
+ {
+  "texto": "São esperando fotos íntimas, mais pelo túl na.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "estão espalhando fotos íntimas minhas pela turma"
+ },
+ {
+  "texto": "era saber como funciona a sala ali lá.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "quero saber como funciona a sala lilás"
+ },
+ {
+  "texto": "onde busco apoio para violência do Mética.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "onde busco apoio para violência doméstica?"
+ },
+ {
+  "texto": "O estaria de informação insubia rede de proteção amueno campos.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "gostaria de informações sobre a rede de proteção à mulher no campus"
+ },
+ {
+  "texto": "Uma pessoa está convulssonando no chão.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "uma pessoa está convulsionando no chão"
+ },
+ {
+  "texto": "Não estou conseguindo o respetar direito.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "não estou conseguindo respirar direito"
+ },
+ {
+  "texto": "O teu braço está sendoando muito.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "cortei o braço e está sangrando muito"
+ },
+ {
+  "texto": "O seu país está enchendo bastante.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "torci o pé e está inchando bastante"
+ },
+ {
+  "texto": "seu confé biolta e muita tontura.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "estou com febre alta e muita tontura"
+ },
+ {
+  "texto": "pati a cabeça e estão meio usonso.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "bati a cabeça e estou meio zonzo"
+ },
+ {
+  "texto": "onde fica a enfermaria do campos.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "onde fica a enfermaria do campus?"
+ },
+ {
+  "texto": "ao horário do atendimento médico.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "qual o horário do atendimento médico?"
+ },
+ {
+  "texto": "Precisa de um atestado, como faço?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "preciso de um atestado, como faço?"
+ },
+ {
+  "texto": "Erdoen não se ha ar accede moral de um professor.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "quero denunciar assédio moral de um professor"
+ },
+ {
+  "texto": "A coltição na compra de material do meu Depatamento.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "há corrupção na compra de material do meu departamento"
+ },
+ {
+  "texto": "E era o recomar da limpeza dos banheiros.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "quero reclamar da limpeza dos banheiros"
+ },
+ {
+  "texto": "gostaria de ilogiar o pessoal da biblioteca.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "gostaria de elogiar o pessoal da biblioteca"
+ },
+ {
+  "texto": "ou menviu um sugestão para a retoria.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "como envio uma sugestão para a reitoria?"
+ },
+ {
+  "texto": "O acondicionado da sala vive que bado, que era o reputar.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "o ar-condicionado da sala vive quebrado, quero reportar"
+ },
+ {
+  "texto": "Era o registrar uma recomação sobre o restaurante universitário.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "quero registrar uma reclamação sobre o restaurante universitário"
+ },
+ {
+  "texto": "Obendo as maiores e não está cuidando.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "alguém desmaiou e não está acordando"
+ },
+ {
+  "texto": "São brigando no pátil e um sacomo faca.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "estão brigando no pátio e um sacou uma faca"
+ },
+ {
+  "texto": "recebiam a ameaça de morte de um aluno.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "recebi ameaças de morte de um aluno"
+ },
+ {
+  "texto": "Um professor faz comentários sobre meu corpo nas aus.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "um professor faz comentários sobre meu corpo nas aulas"
+ },
+ {
+  "texto": "Era informação sobre bolsas de assistência estudante.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "quero informação sobre bolsas de assistência estudantil"
+ },
+ {
+  "texto": "Vifu massa saindo do laboratório de química.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "vi fumaça saindo do laboratório de química"
+ },
+ {
+  "texto": "soltendo pensamentos de mim machucar.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "estou tendo pensamentos de me machucar"
+ },
+ {
+  "texto": "A calçada do bloco novos estás duracada e perigosa.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "a calçada do bloco novo está esburacada e perigosa"
+ },
+ {
+  "texto": "O que é a Lei Maria da Penha?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "o que é a lei maria da penha"
+ },
+ {
+  "texto": "o atendimento da sala aliás é se de louso.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "o atendimento da sala lilás é sigiloso"
+ },
+ {
+  "texto": "O alo horário de funcionamento da sala lelas.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "qual o horário de funcionamento da sala lilás"
+ },
+ {
+  "texto": "como funcionam a atendimento da sala ali lá.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "como funciona o atendimento da sala lilás"
+ },
+ {
+  "texto": "Era informações sobre medidas protetivas.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "quero informações sobre medidas protetivas"
+ },
+ {
+  "texto": "Me jogaram dentro de um carro e consegui fugir, ele está procurando.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "me jogaram dentro de um carro e consegui fugir, ele está procurando"
+ },
+ {
+  "texto": "Uma amiga está sendo espancada pelo nomorado no pátio.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "uma amiga está sendo espancada pelo namorado no pátio"
+ },
+ {
+  "texto": "O link me pensa que está na porta do laboratório agora.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "o homem que me persegue está na porta do laboratório agora"
+ },
+ {
+  "texto": "eu mori do apareceu aqui amado a tas de mim.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "meu marido apareceu aqui armado atrás de mim"
+ },
+ {
+  "texto": "Memearçar um de morte agora e ou mistar poucos metos.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "me ameaçaram de morte agora e o homem está a poucos metros"
+ },
+ {
+  "texto": "Um coléria fica mandando mensagens e estente depois que eu disse não.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "um colega fica mandando mensagem insistente depois que eu disse não"
+ },
+ {
+  "texto": "Um aluno me filmou sem eu perceber no vestiário.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "um aluno me filmou sem eu perceber no vestiário"
+ },
+ {
+  "texto": "Uma colega me contou que está sofrendo abuso em casa e tem um medo por ela.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "uma colega me contou que está sofrendo abuso em casa e tenho medo por ela"
+ },
+ {
+  "texto": "No chefe de projeto, o manda mensagens de madugada ensinuando coisas.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "meu chefe de projeto manda mensagens de madrugada insinuando coisas"
+ },
+ {
+  "texto": "E orientador fica metocando de um gito que me incomoda.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "meu orientador fica me tocando de um jeito que me incomoda"
+ },
+ {
+  "texto": "Era solicitar uma coa pedido comento, público da Universidade.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "quero solicitar uma cópia de documento público da universidade"
+ },
+ {
+  "texto": "Como peço uma informação pública sobre os gastos da Universidade.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "como peço uma informação pública sobre os gastos da universidade"
+ },
+ {
+  "texto": "Orço fazer uma reclamação sem identificar.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "posso fazer uma reclamação sem me identificar"
+ },
+ {
+  "texto": "Quero ilusiar o atendimento da sequetaria do Cúdes.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "quero elogiar o atendimento da secretaria do curso"
+ },
+ {
+  "texto": "O estaria de sugerir mais bancos e sombrando o patio.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "gostaria de sugerir mais bancos e sombra no pátio"
+ },
+ {
+  "texto": "Elato de acèdio Moral e jornada abusiva no setor administrativo.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "fronteira": true,
+  "texto_original": "relato de assédio moral e jornada abusiva no setor administrativo"
+ },
+ {
+  "texto": "Descobique um servidor e serve-se a entrar barar.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "descobri que um servidor recebe sem trabalhar"
+ },
+ {
+  "texto": "A Lúnos estão sendo coagidos a participar de um projeto sem remuneração.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "alunos estão sendo coagidos a participar de um projeto sem remuneração"
+ },
+ {
+  "texto": "Sua espetro de desvio de bolsas de pesquisando meu laboratório.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "suspeito de desvio de bolsas de pesquisa no meu laboratório"
+ },
+ {
+  "texto": "Denúncia a Nônima de Faldia em Institação do Restaurante Universitário.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "denúncia anônima de fraude em licitação do restaurante universitário"
+ },
+ {
+  "texto": "Existigropo de apoio para estudantes com ansiedade.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "existe grupo de apoio para estudantes com ansiedade"
+ },
+ {
+  "texto": "Vamos avisar a coordenação sobre uma condição de saúde icônica.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "como avisar a coordenação sobre uma condição de saúde crônica"
+ },
+ {
+  "texto": "O plano de saúde estudante o cobre e atendimento do antológico.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "o plano de saúde estudantil cobre atendimento odontológico"
+ },
+ {
+  "texto": "Tem estacionamento parâmbo lança no Adal.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "tem estacionamento para ambulância no HU"
+ },
+ {
+  "texto": "Como peço a testar do médico para justificar falsos?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "como peço atestado médico para justificar faltas"
+ },
+ {
+  "texto": "alguém está tendo uma convulsão na sala de aula.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "alguém está tendo uma convulsão na sala de aula"
+ },
+ {
+  "texto": "Só com uma dovo fote no peito e o braço esquerdo do mente.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "estou com uma dor forte no peito e o braço esquerdo dormente"
+ },
+ {
+  "texto": "um aluno de abético está desacudado e suando o fio.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "um aluno diabético está desacordado e suando frio"
+ },
+ {
+  "texto": "Foi picado por um escopião e minha pena está enxando rápido.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "fui picado por um escorpião e minha perna está inchando rápido"
+ },
+ {
+  "texto": "Uma aluna não está respirando direito, está ficando rocha.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "uma aluna não está respirando direito, está ficando roxa"
+ },
+ {
+  "texto": "Tenho tido pensamentos ruins e não sei com quem falar.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "tenho tido pensamentos ruins e não sei com quem falar"
+ },
+ {
+  "texto": "está movimentando desde que é um senho R.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "estou vomitando desde que almocei no RU"
+ },
+ {
+  "texto": "Aida escada, isto com muita dor nas costas.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "caí da escada e estou com muita dor nas costas"
+ },
+ {
+  "texto": "Pomei um remédio que não conhecia e estou me sentindo este anjo.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "tomei um remédio que não conhecia e estou me sentindo estranha"
+ },
+ {
+  "texto": "Me cotinar o fiscina e o corte está fundo mas sangrando pouco.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "me cortei na oficina e o corte está fundo mas sangrando pouco"
+ },
+ {
+  "texto": "Achei um celular no banheiro, onde entego.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "achei um celular no banheiro, onde entrego"
+ },
+ {
+  "texto": "O altelefone da segurança do campos.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "qual o telefone da segurança do campus"
+ },
+ {
+  "texto": "O estaria de saber onde fazer a ocorrência de objeto pedido.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "gostaria de saber onde fazer a ocorrência de objeto perdido"
+ },
+ {
+  "texto": "Existibou tão de pânico em algum prédio do Campos.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "existe botão de pânico em algum prédio do campus"
+ },
+ {
+  "texto": "Vamos solicitar com o pãeamento da segurança até o ponto de ônibus a noite.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "como solicito acompanhamento da segurança até o ponto de ônibus à noite"
+ },
+ {
+  "texto": "São roubando uma moto aqui na frente agora mesmo.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "estão roubando uma moto aqui na frente agora mesmo"
+ },
+ {
+  "texto": "Uma homem está me assando as pessoas como uma faca no R.U.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "um homem está ameaçando as pessoas com uma faca no RU"
+ },
+ {
+  "texto": "a restando uma pessoa, tá dentro do matuatás do CT.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "estão arrastando uma pessoa pra dentro do mato atrás do CT"
+ },
+ {
+  "texto": "se prestar um colégio e levar um no carro pretaguri.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "sequestraram um colega e levaram num carro preto agorinha"
+ },
+ {
+  "texto": "o vítiro espédo da Portaria principal.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "ouvi tiros perto da portaria principal"
+ },
+ {
+  "texto": "Estão pichando as pareiras do prédio e acho que vão quebrar mais coisas.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "estão pichando as paredes do prédio e acho que vão quebrar mais coisas"
+ },
+ {
+  "texto": "Tem um grupo de desconhecidos bebendo e armando confusão perto da quada.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "tem um grupo de desconhecidos bebendo e arrumando confusão perto da quadra"
+ },
+ {
+  "texto": "Um carme abodou querendo vender doga na parada de ônibus.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "um cara me abordou querendo vender droga na parada de ônibus"
+ },
+ {
+  "texto": "O botão lateral está aberto de madogada sem vigilante.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "o portão lateral está aberto de madrugada sem vigilante"
+ },
+ {
+  "texto": "e isso me um noto que dá sala e acho que alguém entrou.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "sumiu um notebook da sala e acho que alguém entrou"
+ },
+ {
+  "texto": "Só corrotou o peso na maneira a tasa da biblioteca. Não consigo sair e estar vindo gente esquisita por aqui, me ajudam gente.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Socorro tô presa na mangueira atrás da biblioteca, não consigo sair e tá vindo gente esquisita por aqui me ajuda urgente"
+ },
+ {
+  "texto": "Puta que pariu a pazinha tá caindo tudo fogo, faumaça para caramba o agente chamo corpo de bomberos pelo morzinho.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Puta que pariu a pracinha tá caindo tudo fogo! Fumaça pra caramba alguém chama o corpo de bombeiros pelo amorzinho"
+ },
+ {
+  "texto": "Só cor, piga feia perto do bloco aí, aléira se machucando.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Socorro! briga feia perto do bloco E! galeras se machucando!"
+ },
+ {
+  "texto": "Fogo na biblioteca central, fumaça saindo, preciso que venham logo.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Fogo na biblioteca central! fumaça saindo, preciso q venham logo!!"
+ },
+ {
+  "texto": "Alguém arromboa o laboratório de Quimica. Caramado. Teus condido.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Alguém arrombou o laboratório de quimica! cara armado! to escondido."
+ },
+ {
+  "texto": "Existimento na encosta perto do Estacionamento. Pérez Caindo, corre perigo.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Deslizamento na encosta perto do estacionamento! pedras caindo, corre perigo!"
+ },
+ {
+  "texto": "A fumaça saindo do depósito de matriais do CCS, acredito que seja um princípio de incêndio, pois o cheiro é forte e já consigo veixamos baixa saindo da porta. Por favor, acione os bombeiros e a segurança.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Há fumaça saindo do depósito de materiais do CCS! Acredito que seja um princípio de incêndio, pois o cheiro é forte e já consigo ver chamas baixas saindo da porta. Por favor, acionem os bombeiros e a segurança!"
+ },
+ {
+  "texto": "Albim arrombando o laboratório de quimica. Pesses o que vem agora.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Alguém arrombando o laboratório de quimica! Preciso q venha agora!"
+ },
+ {
+  "texto": "Biggerfeia, Peto W. Teke, socos e guitos. Alguém por favor.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Briga feia perto da biblioteca, socos e gritos! Alguem por favor!"
+ },
+ {
+  "texto": "Fumaça saindo do bloco administativo. Ençandiu.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Fumaça saindo do bloco administrativo!!! Incendio??"
+ },
+ {
+  "texto": "Pesados, em forma que é um princito de incendiornária dos laboratórios do Depatamento de Engenharia Civil. Solicitamos o gente o assonamento do corpo de bombeiros e a avaliação da situação.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Prezados, informo que há um princípio de incêndio na área dos laboratórios do Departamento de Engenharia Civil. Solicitamos urgente o acionamento do corpo de bombeiros e a avaliação da situação."
+ },
+ {
+  "texto": "Como Mica Sikii, deste momento, uma confusão envolvendo alunos está acontecendo no pátio central. A situação parece escalar rapidamente e pode girar ferimentos. Solicitamos intervenção e gente para cessar o conflito.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Comunica-se que, neste momento, uma confusão envolvendo alunos está acontecendo no pátio central. A situação parece escalar rapidamente e pode gerar ferimentos. Solicitamos intervenção urgente para cessar o conflito."
+ },
+ {
+  "texto": "Albenhundando bloco agar, parece estão investimentos escura.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Alguém rondando bloco H! Parece estranho... vestimenta escura."
+ },
+ {
+  "texto": "Baru o fotepeto do Estacionamento da Retoria, tipo Pancada.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Barulho forte perto do estacionamento da reitoria. Tipo pancada?"
+ },
+ {
+  "texto": "cheiro que é mado no labri-que-meca, ninguém notou.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Cheiro queimado no lab. de quimica! Ninguém notou???"
+ },
+ {
+  "texto": "Vira uma discussão na frente do centro, tomar a KN e vira e bliga.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Viram a discussão na frente do centro? Tomara q n vire briga..."
+ },
+ {
+  "texto": "Então, o lateral abeto não devia estar medo.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Portão lateral aberto... não devia estar, medo."
+ },
+ {
+  "texto": "E aí galera, estão vendo nos moleques estranhos perto do bloco jurídico, parecem que tão funcionando em algo, mas não é vou ouvir.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "E aí galera, tão vendo uns moleques estranhos perto do bloco jurídico? Parecem que tão fuçando em algo, mó nervoso viu"
+ },
+ {
+  "texto": "Mano, tomvendo fumaça saindo do laboratório de química, não sei se é nada gav e mas está meio exquisito.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Mano, tô vendo fumaça saindo do laboratório de química, não sei se é nada grave mas tá meio esquisito"
+ },
+ {
+  "texto": "Outs andéis coutando uns boatos sinistos sobre alguém pintando os muros da engenharia de novo. Esses vamos avisar a galera ficar ligada.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Putz, andei escutando uns boatos sinistros sobre alguém pintando os muros da engenharia de novo. Precisamos avisar pra galera ficar ligada"
+ },
+ {
+  "texto": "A lobe, me disseram que teve uma confusão feia perto do estacionamento da faculdade. A tudo bem por lá devem estar assonando a polícia já.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Alô, me disseram que teve uma confusão feia perto do estacionamento da faculdade. Tá tudo bem por lá? Devem estar acionando a polícia já."
+ },
+ {
+  "texto": "Por favor, envia em segurança, torcendo imputonada sexualmente perto do restaurante universitário R.U. Ele me impede de ir embora e está me me assando. Pesso que alguém interveia o mais rápido possível.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Por favor, enviem segurança! Estou sendo importunada sexualmente perto do restaurante universitário (RU), ele me impede de ir embora e está me ameaçando; preciso que alguém intervenha o mais rápido possível."
+ },
+ {
+  "texto": "O redor da biblioteca, ou me metocando sem parar. Não consigo escapar.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Corredor da biblioteca! Homem me tocando sem parar. Não consigo escapar!"
+ },
+ {
+  "texto": "A gente tô apavorada, poque perto do PED de humanas e um cara no Meláguia vem falando coisas pesadas e me seguindo já a tente sair mas ele tá bloqueando o caminho preciso de ajuda o gente por favor.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Ai gente tô apavorada! Tô aqui perto do prédio de humanas e um cara não me larga vem falando coisas pesadas e me seguindo já tentei sair mas ele tá bloqueando o caminho preciso de ajuda urgente por favor!"
+ },
+ {
+  "texto": "Aitou tentou te avisando aquele cara da posário, tá me seguindo o lapeto do bloco jurídico, mone e voz do já falei com ele, mas não adianta.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Ai totem tô te avisando aquele cara da pós agr tá me seguindo lá perto do bloco jurídico mó nervoso já falei com ele mas não adianta"
+ },
+ {
+  "texto": "Só corro gente tem o amicentindo super insegura. Um smoleque estão fazendo barulho e oando de um jeito exito na frente do FT. Pô a sustada para chegar em casa.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Socorro gente to me sentindo super insegura, uns moleques tão fazendo barulho e olhando de um jeito esquisito na frente do ifpi. Tô assustada pra chegar em casa"
+ },
+ {
+  "texto": "Pato entopensisando de uma força, andei ouvindo uns comentários bem feios no corredor da faculdade sobre mim. Nesse intumeio a Coada Sabe.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Totem tô precisando de uma força, andei ouvindo uns comentários bem feios no corredor da faculdade sobre mim. Me sinto meio acuada sabe?"
+ },
+ {
+  "texto": "Me ajuda por favor. Uma pessoa está me mandando mensagens estranhas no insta com fotos e tals. Teu alcomedo do que pode acontecer.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Me ajuda por favor. Uma pessoa tá me mandando mensagens estranhas no insta com fotos e talz, to com medo do que pode acontecer"
+ },
+ {
+  "texto": "Só com, palavras ofensivas vupos de homem, espeto do doaco de mil-lando.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Socorro! Palavras ofensivas. grupo de homens perto do bloco D, me olhando..."
+ },
+ {
+  "texto": "Me ajuda, me sentindo em segura, ou me estão insistindo peconvest.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Me ajuda! Me sentindo insegura, homem estranho insistindo p/ conversa"
+ },
+ {
+  "texto": "Eu só está da alguém, sabe onde fica central da moeda? O gente!",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "To assustada... alguem sabe onde fica a central da mulher? urgente."
+ },
+ {
+  "texto": "Ele está falando coisas que não deviam como devagi.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Ele tá falando coisas q não devia... como devo agir?"
+ },
+ {
+  "texto": "Os estaria de saber se a OFPI possui algum programa ou iniciativa voltada para promover a igualdade de gênero e com bater o acedio no ambiente acadêmico e profissional, especialmente direcionado a mulheres.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Gostaria de saber se a UFPI possui algum programa ou iniciativa voltada para promover a igualdade de gênero e combater o assédio no ambiente acadêmico e profissional, especialmente direcionado a mulheres."
+ },
+ {
+  "texto": "Só coro preciso saber como funciona a rede de apoio aqui na OFP e estou precisando conversar com alguém de confiança.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Socorro preciso saber como funciona a rede de apoio aqui na UFPI tô precisando conversar com alguém de confiança"
+ },
+ {
+  "texto": "E aí galera, posso falar com alguém? Me sentindo meio desconfortável com os comentários que estão fazendo sobreminta e opicisando desada fa.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "E aí galera posso falar com alguém? Me sentindo meio desconfortável com uns comentários que tão fazendo sobre mim to precisando desabafar"
+ },
+ {
+  "texto": "A loa luta eu aqui no Putão 10.5 em intimidada por um grupo de homem pode me dar alguma orientação.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Alô alô to aqui no portão 3 me sinto intimidada por um grupo de homem pode me dar alguma orientação?"
+ },
+ {
+  "texto": "Eu chegaram boncinha, caída a escada, tornos-los tudo demais.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Qdo chegar ambulancia? Caí da escada, tornozelo torto DEMAIS!"
+ },
+ {
+  "texto": "preciso de ajuda o gente, até que pernico, não consigo respirar.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Preciso de ajuda urgente! Ataque panico, nao consigo respirar"
+ },
+ {
+  "texto": "Se anemento forte, pode no braço, muito sangue, socorro urgente.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Sangramento forte! Corte no braço, muito sangue. Socorro urgente!"
+ },
+ {
+  "texto": "Ai meu Deus, trocaria, não consigo resperar. Pesses o gente.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Ai meu deus! Qdo cairia? Não consigo respirar! Preciso urgente!"
+ },
+ {
+  "texto": "Tomei uma indição e tô com a ledia horrível, ou estou do inxado por favor me ajudem.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Tomei uma injeção e tô com alergia horrível!! Rosto todo inchado, por favor me ajudem!"
+ },
+ {
+  "texto": "Sinto muita angustia, quase não consigo falar preciso de alguém urgente, me SFF e ajudem.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Sinto muita angústia, quase não consigo falar... preciso de alguém urgente, me sff ajudem!"
+ },
+ {
+  "texto": "pesados nesse acido de assistência médico-udiente. Só filla uma queda durante um experimento no laboratório e suspeito de fatura na perna esquerda. Localização, laboratório de física, sala dos entos e quatro. Aguador retorno.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Prezados, necessito de assistência médica urgente. Sofri uma queda durante um experimento no laboratório e suspeito de fratura na perna esquerda. Localização: Laboratório de Física, sala 204. Aguardo retorno."
+ },
+ {
+  "texto": "Aitou tenter otivizando já topaçando mal na frente do prédio de humanas, me sinto faca e tontacho o quevo desnai a açúcar.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Ai totem to te avisando já tô passando mal na frente do prédio de humanas me sinto fraca e tonta acho q vou desmaiar socorro"
+ },
+ {
+  "texto": "Na nocádio Samu, me deram um tombo feio no campo da fundação apéreneta arriscando para fora o gente.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Mano cade o samu? Me deram um tombo feio no campo da fundação a perna tá arriscando pra fora urgente"
+ },
+ {
+  "texto": "estou com uma quiz aqui na biblioteca quase não consigo recerar parece que estou afogando preciso de ajuda rápido ou?",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Tô com uma crise aqui na biblioteca quase não consigo respirar parece que tô afogando preciso de ajuda rapidooo"
+ },
+ {
+  "texto": "Potem socorro minha amiga está desnaiada na escadaria do Paela Caio e bateu a cabeça e não tá respondendo nada a me ajudar.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Totem socorro minha amiga tá desmaiada na escadaria do CCBA ela caiu e bateu a cabeça não tá respondendo nada me ajudaaa"
+ },
+ {
+  "texto": "E tá pra vôr o total. Me senti, e diz, aqui no bloco jurídico, acho que eu vou virar e é preciso de uma assistente e o gente por favor.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Eita apavoro total! Me sentir dizzy aqui no bloco jurídico acho q vou piraia preciso de uma assistente urgente por favor"
+ },
+ {
+  "texto": "A contesceu uma confusão generalizado no RU durante o Amosso e alguém desmaiou, parece que ter um ferimento na cabeça, está inconsciente. Por favor, enviço o Corrol RU urgente.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Aconteceu uma confusão generalizada no RU durante o almoço e alguém desmaiou – parece que teve um ferimento na cabeça, está inconsciente! Por favor, enviem socorro ao RU, urgente!"
+ },
+ {
+  "texto": "estou sentindo muita dor no peito e tontura sever aqui no CT, acho que estou tendo algum problema cadíaco. Pesso que o dia atendimento médico e mediatamente parevitar uma piora por favor, me ajudem.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Estou sentindo muita dor no peito e tontura severa aqui no CT, acho que estou tendo algum problema cardíaco. Preciso de atendimento médico imediatamente para evitar uma piora, por favor me ajudem."
+ },
+ {
+  "texto": "A total tentou passando mal do uma forma feia que perto do pede de humana sinto que eu vou desnair socorro.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Ai totem tô passando mal duma forma feia aqui perto do prédio de humanas sinto q vou desmaiar socorro"
+ },
+ {
+  "texto": "Mas no Tombéi na escada caída do alto, tem óquo a pena a tota e do forte preciso de alguém o gente por favor.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Mano trombei na escada caída do alto to com a perna torta e dor forte preciso de alguém urgente por favor"
+ },
+ {
+  "texto": "A Lera to com uma legia que está feia um acara todo inchada e difícil respirar, todo um pedo qual ajuda.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Galera tô com uma alergia que tá feião a cara toda inchada e difícil respirar tô no dom Pedro qual ajuda?"
+ },
+ {
+  "texto": "Ai meu Deus, tontura que na alpassa. Sinto o Fakizantou. Preciso ajuda.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Ai meu Deus...tontura q nao passa! sinto fraqueza mto, preciso ajuda"
+ },
+ {
+  "texto": "Taltenso corro, minha prima ficou meio estranha agora, falando umas coisas sentidos e com o ar pedido achei meora visar antes que pior.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Totem socorro! Minha prima ficou meio estranha agora, falando umas coisas sem sentido e com olhar perdido achei melhor avisar antes que piore"
+ },
+ {
+  "texto": "e aí galera, até ontou conta que perto do PED de humanas, caindo só na mente ele to com o Mende Rada de Calo, alguém pode me ajudar.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "E aí galera to mto tonta aqui perto do prédio de humanas, caindo o sol na mente e tô com uma enxurrada de calor, alguém pode me ajudar?"
+ },
+ {
+  "texto": "Só com o vio. Acho que todo se eu pein a escada da biblioteca, tá doendo pra caramba. Pesciso de um lar ali rapidinho.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Socorro viu? Acho que torci o pé na escada da biblioteca, tá doendo pra caramba! Preciso de um olhar ali rapidinho"
+ },
+ {
+  "texto": "Oce com Flex o Totem queria saber se tenha algum plantão de saúde hoje a noite, né? Do com uma dochata na cabeça já faz umas olhos.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Ô totém, queria saber se tem algum plantão de saúde hoje à noite né? Tô com uma dor chata na cabeça já faz umas horas"
+ },
+ {
+  "texto": "Aitota entocentindo o copo estão em um sinto que vou passar mal. Será que é ansiedade em MSM? E como conversar com alguém?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Aê totem tô sentindo o corpo estranho sinto que vou passar mal, será que é ansiedade msm? Tem como conversar com alguém?"
+ },
+ {
+  "texto": "Ai meu Deus, teu atonta aqui que do fazê?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Ai meu deus to tonta q qdo fazer?"
+ },
+ {
+  "texto": "que depois suí na urgência, tem um fade alto.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Qd posso ir na urgencia? Tenho febre alta"
+ },
+ {
+  "texto": "Pesceso saber se tem o psicológico para atender a gajota.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Preciso saber se tem psicologo pra atender hj!"
+ },
+ {
+  "texto": "aí, estou se utor no zelo, doi demais, onde pega ajuda.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Caí! Torci o tornozelo, dói d+! Onde pego ajuda?"
+ },
+ {
+  "texto": "Esquisiu os remédios, posso pegar na famácie universitária.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Esqueci os remédios!!!  Posso pegar na farmácia universitária?"
+ },
+ {
+  "texto": "Presados, bom dia. O estaria de saber se o serviço de saúde da Universidade realiza exames laboratoriais para funcionários públicos, especificamente imogamos completo e perfil e pídico. Agradeço a informação.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Prezados, bom dia. Gostaria de saber se o serviço de saúde da universidade realiza exames laboratoriais para funcionários públicos, especificamente hemograma completo e perfil lipídico. Agradeço a informação."
+ },
+ {
+  "texto": "O Otade, como servidor público vinculado ao FPP, vem solicitar informações sobre como proceder em caso de mediência médica que ocorra dentro do campus. Algum protocolo específico a seguir.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Boa tarde. Como servidor público vinculado à UFPI, venho solicitar informações sobre como proceder em caso de emergência médica que ocorra dentro do campus. Há algum protocolo específico a seguir?"
+ },
+ {
+  "texto": "Pesada e que, do Totem, gostaria de saber se existe atendimento psicológico disponível para os docentes da Universidade e quais os critérios para acesso a este serviço. Atensemos o mente.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Prezada equipe do totem, gostaria de saber se existe atendimento psicológico disponível para os docentes da universidade e quais os critérios para acesso a este serviço. Atenciosamente."
+ },
+ {
+  "texto": "Bom dia, veio por meio deste solicitar informações sobre o funcionamento do posto de saúde durante o período de férias acadêmicas. Algum alteração no horário de atendimento, quando serviços oferecidos.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Bom dia. Venho por meio deste solicitar informações sobre o funcionamento do posto de saúde durante o período de férias acadêmicas. Há alguma alteração no horário de atendimento ou nos serviços oferecidos?"
+ },
+ {
+  "texto": "O Tade, o estaria de saber se a universidade possui algum programa de acompanhimento para funcionários que buscam melhorar sua qualidade de vida e bem-estar, como, por exemplo, atividades físicas orientadas.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Boa tarde. Gostaria de saber se a universidade possui algum programa de acompanhamento para funcionários que buscam melhorar sua qualidade de vida e bem-estar, como por exemplo, atividades físicas orientadas."
+ },
+ {
+  "texto": "Alguém sabe como funciona o fala.br, tentando relatar um problema e não seixe chegou.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "alguém sabe como funciona o Fala.BR? to tentando relatar um problema e não sei se chegou."
+ },
+ {
+  "texto": "Esses os saber que M é responsável pela manutenção dos bebê douros da área azul estão em mundos.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "preciso saber qm é responsável pela manutenção dos bebedouros da área azul. estão imundos!"
+ },
+ {
+  "texto": "A Bensha e Kipe de Limpeza do Restaurante Universitário, nota de estudos limpo e organizado.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "parabéns à equipe de limpeza do restaurante universitário! nota 10 tudo limpo e organizado"
+ },
+ {
+  "texto": "Oi, preciso de ajuda para entender como acompanhar minha solicitação na ouvidoria, tem algum numeração?",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "oi, preciso de ajuda pra entender como acompanhar minha solicitação na ouvidoria... tem algum numeração?"
+ },
+ {
+  "texto": "Pesados se esponsáveis pelo totem. Costaria de saber se existe algum procedimento específico para solicitar acesso à documentos referentes, ali citações do Depatamento de Manutenção Pedial. Agradeço a orientação.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Prezados responsáveis pelo totem, gostaria de saber se existe algum procedimento específico para solicitar acesso a documentos referentes a licitações do departamento de manutenção predial. Agradeço a orientação."
+ },
+ {
+  "texto": "O TAD, soltendo dificuldades para localizar informações sobre os prasos para a entrega do relatório final de estágio obrigatório deste ano, poderia omidir e sonar a local correto.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Boa tarde. Estou tendo dificuldades para localizar informações sobre os prazos para a entrega do relatório final de estágio obrigatório deste ano. Poderiam me direcionar ao local correto?"
+ },
+ {
+  "texto": "para abeniz o iniciativa da instalação dos tortes de emergência. Considero uma ferramenta valiosa para facilitar o contato em que a comunidade acadêmica e a administração central.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Parabenizo a iniciativa da instalação dos totens de emergência. Considero uma ferramenta valiosa para facilitar o contato entre a comunidade acadêmica e a administração central."
+ },
+ {
+  "texto": "O estaria de saber se é possível utilizar a plataforma fala.br para registar sugestões sob a memoria da sinalização interna do campus, especificamente na área do restaurante universitário. Obrigado.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Gostaria de saber se é possível utilizar a plataforma Fala.BR para registrar sugestões sobre a melhoria da sinalização interna do campus, especificamente na área do Restaurante Universitário. Obrigado."
+ },
+ {
+  "texto": "e aí galera da ouvidoria até o apesizando saber como funciona para registar umas coisas aqui do curso de NGC-VIL, tá pegando fogo VIL.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "E aí galera da ouvidoria to precisando saber como funciona pra registrar umas coisas aqui do curso de eng civil tá pegando fogo viu?"
+ },
+ {
+  "texto": "O Vida, esqueci-se a sendo fala.br, alguém me ajudou a gente e senão Tolústio Total.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Ôi vida, esqueci a senha do Fala.BR, alguém me ajuda urgente senão tô lost total!"
+ },
+ {
+  "texto": "Mém a iniciativa de ter essa ouvidoria muito fácil de usar e me sinto mais ouvido pelo FPP. Para bem isso.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Amei a iniciativa de ter essa ouvidoria, muito fácil de usar e me sinto mais ouvido pela UFPI. Parabéns!"
+ },
+ {
+  "texto": "Tela chando o processo de inscrição no Prounimento Confuso, alguém do fala.be pode dar um éobzinho por favor.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "To achando o processo de inscrição no Prouni meio confuso, alguém do Fala.BR pode dar um helpzinho por favor?"
+ },
+ {
+  "texto": "Só corrotou no portão Tés. Tipo, ele veio falar que queria me ajudar a subir, mas tá me agarrando e falando bobagem. Juro que não pedi nada. Me tira daqui o gente.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Socorro tô no portão 3, tipo, ele veio falar q queria me ajudar a subir mas tá me agarrando e falando bobagem. Juro que não pedi nada. Me tira daqui urgente!"
+ },
+ {
+  "texto": "Somo bloco de ciência sociais, ele está me seguindo e falando coisas muito ofensivas. Não consigo escapar dele, preciso que alguém vem me ajudar o gente.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Estou no bloco de Ciências Sociais, ele está me seguindo e falando coisas muito ofensivas, não consigo escapar dele – preciso que alguém venha me ajudar urgente."
+ },
+ {
+  "texto": "sou ocorrendo do CCS para você ter, ele começou a metocar e está tentando me agarrar, preciso de proteção imediata.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Estou correndo do CCS para o CT, ele começou a me tocar e está tentando me agarrar – preciso de proteção imediata!"
+ },
+ {
+  "texto": "A contesceu algo terrível no R.O.P.O. e Mediato. Uma pessoa tentou me agarrar e estou em choque. Não sei o que fazer.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Aconteceu algo terrível no RU, preciso de apoio imediato. Uma pessoa tentou me agarrar e estou em choque, não sei o que fazer."
+ },
+ {
+  "texto": "Só no CT, dentro do laboratório de química, um colega começou a fazer toques e nadecados e ameaças verbais. Esses o dia alguém para mim proteger.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "texto_original": "Estou no CT, dentro do laboratório de química, um colega começou a fazer toques inadequados e ameaças verbais. Preciso de alguém para me proteger."
+ },
+ {
+  "texto": "Enúncia, mais pessoas se se abendo o búso, não comprovam necessidade financeir. E gil.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Denúncia! Várias pessoas recebendo bolsa, não comprovam necessidade financeira. Desvio??!"
+ },
+ {
+  "texto": "Eita sou toque pra fazer uma denúncia anônima. Tem o vistunos professores dando tratamento diferenciado para a lúnica e paga mais caro na mensalidade. Mônius disse isso, né? Nem nem merece.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Eita sô... Tô aqui pra fazer uma denúncia anônima. Tenho visto uns professores dando tratamento diferenciado pra aluno que paga mais caro na mensalidade, mó injustiça isso, né? Ninguém merece."
+ },
+ {
+  "texto": "E te totençou cor, o mistinto meio tonta, cabeço girando mochateza até o aqui na biblioteca, acho que vou desnair.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Eita totém socorro me sinto meio tonta, cabeça girando mó chateza to aqui na biblioteca acho que vou desmaiar"
+ },
+ {
+  "texto": "Patentou nevosíssimas me sentindo superanciosos hoje, um pânico daqueles e teoprecisando conversar com alguém o gente por favor.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Totem tô nervosíssima me sentindo super ansiosa hoje, um pânico daqueles e to precisando conversar com alguém urgente por favor"
+ },
+ {
+  "texto": "A Lototem queria saber se tem enfermeiro aqui na facupla dar um gito numa picada de a belêmideu a legia e toenchando toda.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Alô totem queria saber se tem enfermeiro aqui na facul pra dar um jeito numa picada de abelha me deu alergia e tô inchando toda"
+ },
+ {
+  "texto": "Ai meu Deus, tem opassando uma um tovetegim e nausas preceso ajuda.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Ai meu deus to passando mal mto vertigem e náuseas preciso ajuda"
+ },
+ {
+  "texto": "ali o da escada, acho que quebrei o tornozelo doide, mas não consigo andar.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Caiu da escada, acho q quebrei o tornozelo dói d+ não consigo andar"
+ },
+ {
+  "texto": "ansiedade a atacou de novo e ele consigo rester arme e socorro.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Ansiedade atacou de novo. N consigo respirar me socorro!"
+ },
+ {
+  "texto": "Ai meu Deus, tanto o reforte quase caii. Pesses do diajuda, não sei o que fazer.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Ai meu Deus, tontura forte, quase caí! Preciso de ajuda, não sei o que fazer."
+ },
+ {
+  "texto": "do arpito latijando, do tempo demora um bulancia.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Dor peito latejando, qto tempo demora ambulância?"
+ },
+ {
+  "texto": "A Yoto com uma dúvida e cabeça, Braba já faz uma zózão, não consigo nem enjegar direito preciso de socorro.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Aí ó tô com uma dor de cabeça braba já faz umas horas não consigo nem enxergar direito preciso de socorro"
+ },
+ {
+  "texto": "A cabeça corrigando na escada do CCS e todo se autoroselo. Não consigo andar direito e sinto bastante dor. Por favor, pode me ajudar a chegar ao posto de saúde?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Acabei escorregando na escada do CCS e torci o tornozelo, não consigo andar direito e sinto bastante dor; por favor, podem me ajudar a chegar ao posto de saúde?"
+ },
+ {
+  "texto": "Tenho sentido muita ansiedade e dificuldade para esperar desde que comecei a fazer prova no CT. Preciso conversar com alguém antes que fique pior.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "texto_original": "Tenho sentido muita ansiedade e dificuldade para respirar desde que comecei a fazer prova no CT, preciso conversar com alguém antes que fique pior."
+ },
+ {
+  "texto": "Pesados, os tarea de saber quais os procedimentos da WFPI em caso de acede moral sofido por seguidores doscentes. Agradeço a atenção.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Prezados, gostaria de saber quais os procedimentos da UFPI em caso de assédio moral sofrido por servidoras docentes. Agradeço a atenção."
+ },
+ {
+  "texto": "Aí, to tem que ter o acerendo saber se tem algum lugar aqui na WFPX, que pesta apoio para as mulheres tipo como psicólogos sabe, me sento meio para baixo.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Aí totem to querendo saber se tem algum lugar aqui na UFPI que presta apoio pras mulheres tipo com psicóloga sabe? Me sinto meio pra baixo"
+ },
+ {
+  "texto": "E tetotentou precisando saber os contatos da rede de proteção a mulher da WFP para passar para o meu amigo, ela está precisando de apoio urgente.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Eita totem tô precisando saber os contatos da rede de proteção à mulher da UFPI pra passar pro meu amigo ela tá precisando de apoio urgente"
+ },
+ {
+  "texto": "A imedida aqui na facu alguém pode me dar o caminho do setor de apoio a mulher por favorzinho.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Aiii me ajuda tô perdida aqui na facul alguém pode me dar o caminho do setor de apoio à mulher por favorzinho?"
+ },
+ {
+  "texto": "Oit de bem, seria saber se tem alguma palestra ou eventos sob iligodade de gínero rolando esses dias topesesando o teu caridê com alguém.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Ôi td bem? Queria saber se tem alguma palestra ou evento sobre igualdade de gênero rolando esses dias tô precisando trocar ideia com alguém."
+ },
+ {
+  "texto": "E aí galera, estou querendo entender mais nos direitos como mulher na faculdade tem alguma tereal ou contato que vocês podem indicar.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "E aí galera? Tô querendo entender mais meus direitos como mulher na faculdade tem algum material ou contato que vocês podem indicar?"
+ },
+ {
+  "texto": "preciso saber como funciona o apoio jurídico para moeres aqui na WFP urgente.",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Preciso saber como funciona o apoio jurídico pra mulheres aqui na UFPI. urgente!"
+ },
+ {
+  "texto": "Alguém sabe como denunciar a sede moral no ambiente acadêmico?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Alguém sabe como denunciar assédio moral no ambiente acadêmico?"
+ },
+ {
+  "texto": "Estou vendo uns moleques jogando bola perto do laboratório de informática? Quase acetar uma gênela vai ver se dá para falar com eles.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Tô vendo uns moleques jogando bola perto do laboratório de informática, quase acertaram a janela vai ver se dá pra falar com eles"
+ },
+ {
+  "texto": "Votade. Tem o dúvida sobre o procedimento correto a seguir em caso de detecção de formá-se nos corredores do centro de ciencias. Poderia omifône ser informações claras e o objetivo sobre o plano de vacuação?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Boa tarde. Tenho dúvida sobre o procedimento correto a seguir em caso de detecção de fumaça nos corredores do Centro de Ciências. Poderiam me fornecer informações claras e objetivas sobre o plano de evacuação?"
+ },
+ {
+  "texto": "Você e lá galera, achei uma mochila abandonada perto da biblioteca pode ser de quem? Meu or dar uma visunera?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Sei lá galera achei uma mochila abandonada perto da biblioteca pode ser de quem? Melhor dar um aviso né?"
+ },
+ {
+  "texto": "O estaria de saber esse o estacionamento do bloco 13º para deixar meu carro durante a aula da tarde, pois ouvi alguns relatos sob futas na região.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "texto_original": "Gostaria de saber se o estacionamento do bloco III é seguro para deixar meu carro durante a aula da tarde, pois ouvi alguns relatos sobre furtas na região."
+ },
+ {
+  "texto": "A tensão galera tem uma parada estranho rolando o peto do bloco jurídico parece uns caras amados o nosso início.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ],
+  "texto_original": "Atenção galera tem uma parada estranha rolando perto do bloco jurídico parece uns caras armados mó sinistro"
+ },
+ {
+  "texto": "Manuola é essa quando fusão no estacionamento. Móbliga generalizada parece que vai ter correria galera se cura.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ],
+  "texto_original": "Mano olha essa confusão no estacionamento, mó briga generalizada parece que vai ter correria galera se cuida"
+ },
+ {
+  "texto": "E aí, viz em álpe, preciso de uma força, to vendo um buraco gigante na rua perto do putão, pois pode ser perigo para quem passa a visa segurando o CPF VA.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ],
+  "texto_original": "E aí vizinhal preciso de uma força tô vendo um buraco gigante na rua perto do portão 3 pode ser perigo pra quem passa avisa a segurança pfvr"
+ },
+ {
+  "texto": "Aí, tovendo um ZML cabrigando, feio lá perto do bloco e mock on fusão parece que vai ter violência.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ],
+  "texto_original": "Aii tô vendo uns mlk brigando feio lá perto do bloco E mó confusão parece que vai ter violência"
+ },
+ {
+  "texto": "Sua corra o teu alma está assunamento da fazendinha e um carro está tentando frar a barreira os segurança estão tentando impedir mais a situação está tensa.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ],
+  "texto_original": "Socorro to no estacionamento da fazendinha e um carro tá tentando furar a barreira os seguranças tão tentando impedir mas a situação tá tensa"
+ },
+ {
+  "texto": "Maro que cheiro estando aqui na área de condiveência parece que em manda alguma coisa terbina e tá muito fumássas.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ],
+  "texto_original": "Mano que cheiro estranho aqui na área de convivência parece queimando alguma coisa tbm tá muito fumaça"
+ },
+ {
+  "texto": "e tem um bicho enorme correndo ali dentro não sei o que pode ser perigoso",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ],
+  "texto_original": "Eita senhora to no portão 3 e tem um bicho enorme correndo ali dentro não sei o que é pode ser perigoso"
+ },
+ {
+  "texto": "O Gente o Gente tem uns caras estães rondando lá de center para essens os peitos teó com medo vio.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ],
+  "texto_original": "Urgente urgente! Tem uns caras estranhos rondando o lab center parecem suspeitos to com medo viu!"
+ },
+ {
+  "texto": "E só estar enrondando a área do muro azul parece que vai fazer algo ruim.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ],
+  "texto_original": "Pessoa estranha rondando a área do morro azul. parece q vai fazer algo ruim!"
+ },
+ {
+  "texto": "O Ministério Rendando a área do Estacionamento Feminino parece a minha sadúl.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ],
+  "texto_original": "Homem estranho rondando a área do estacionamento feminino. Parece ameaçador!"
+ },
+ {
+  "texto": "O estaria de aletar sob um vazamento de gas concher o forte detectado no corredor do bloco 500. Acredito ser um risco em inente a saúde dos ocupantes e requer atenção urgente da equipe responsável.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ],
+  "texto_original": "Gostaria de alertar sobre um vazamento de gás com cheiro forte detectado no corredor do bloco D. Acredito ser um risco iminente à saúde dos ocupantes e requer atenção urgente da equipe responsável."
+ },
+ {
+  "texto": "Acho que eu vi um baroão vindo da área de condiveência, tipo tempo e guitaria. Pale a pena dar uma olada.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_potencial"
+  ],
+  "texto_original": "Acho q ouvi um barulhão vindo da área de convivência, tipo trampo e gritaria. Vale a pena dar uma olhada?"
+ },
+ {
+  "texto": "Pesados durante a noite, os ruídos suspeitos próximos ao estacionamento da reitoria. Não consigo identificar a origem em compresão e gostaria que fosse feito uma verificação para descatar qualquer problema.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Prezados, durante a noite, ouço ruídos suspeitos próximos ao estacionamento da Reitoria. Não consigo identificar a origem com precisão e gostaria que fosse feita uma verificação para descartar qualquer problema."
+ },
+ {
+  "texto": "em fomos que detectei um no forte odor de gás na área próximo a cantina do centro de ciencias humanas. Soliciturgência na avaliação e possível evacuação preventiva da região.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Senhores, informo que detectei um forte odor de gás na área próxima à cantina do Centro de Ciências Humanas. Solicito urgência na avaliação e possível evacuação preventiva da região."
+ },
+ {
+  "texto": "e aí, galera, até o aqui perto do bloco, parece que tá rolando um baraco, feu uns gritos e tal, vamos verificar",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "E aí galera to aqui perto do bloco D parece q ta rolando um barraco feio uns gritos e talz vamo verificar?"
+ },
+ {
+  "texto": "Mano cuidado no estacionamento da AD, a moto está pegando fogo, fumigando tudo já liguei pelo corpo de bombeiros mas avisas visinhos.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Mano cuidado no estacionamento da AAD a moto tá pegando fogo fumegando tudo já liguei pro corpo de bombeiros mas avisa os vizinhos"
+ },
+ {
+  "texto": "alguém sabe se esse grupo sabe pelo mato do fundão do Sienze Associais? Viu uns caras estranhos lá, tomei o assustado.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Alguém sabe se é seguro passar pelo mato do fundão do Ciências Sociais? Vi uns caras estranhos lá, tô meio assustada"
+ },
+ {
+  "texto": "A galera parece que tão pulando a gada da reitoria já viu umas pessoas entrando, rapidinho vamos dar um pedido para ver quem é?",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Aí galera parece q tão pulando a grade da Reitoria já vi umas pessoas entrando rapidinho vamo dar um perdido pra ver quem é?"
+ },
+ {
+  "texto": "Só com, para o estranho atas da biblioteca parece augmentando.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Socorro! Barulho estranho atrás da biblioteca, parece algm entrando!"
+ },
+ {
+  "texto": "Ensenho no bloco D. Fumaça saindo pelas generas, preciso que alguém veja.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Incêndio no bloco D! Fumaça saindo pelas janelas, preciso q alguém veja!"
+ },
+ {
+  "texto": "Viu um carrundando o Estacionamento Oeste, mockar a suspeito, não tirei foto.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Vi um cara rondando o estacionamento oeste, mó cara suspeito, não tirei foto."
+ },
+ {
+  "texto": "Alguém briga perto do campo de futebol e dos itudo.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Alguém briga perto do campo de futebol! Gritos e tudo..."
+ },
+ {
+  "texto": "onde fica a saída de imigência do Pédio da Engenharia, tô pedido.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Onde fica a saída de emergência do prédio da engenharia? Tô perdido!"
+ },
+ {
+  "texto": "Nejuda, ele me seguiu até o bloco e taglitando coisas horríveis precisos saída aqui agora.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Me ajuda! Ele me seguiu até o bloco E, tá gritando coisas horríveis... preciso sair daqui AGORA!"
+ },
+ {
+  "texto": "Por favor, estou sendo impedida de entrar no ônibus. Um homem me agarrou e não me deixa passar. Topeto da retoria.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Por favor, tô sendo impedida de entrar no ônibus. Um homem me agarrou e não me deixa passar! Tô perto da reitoria."
+ },
+ {
+  "texto": "Estou pesando o banheiro do Depatamento de Biologia. Ele bateu na porta e está falando o que vai me pegar socorro.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Estou presa no banheiro do departamento de biologia! Ele bateu na porta e tá falando que vai me pegar... socorro!!!"
+ },
+ {
+  "texto": "Alguém vem, torcendo seguida em direção ao estacionamento. Não consigo escapar. Placa a vermelha na moto urgente.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Alguém vem! Tô sendo seguida em direção ao estacionamento. Não consigo escapar. Placa vermelha na moto… urgente!"
+ },
+ {
+  "texto": "Por favor, preciso de ajudou gente. Sou no bloco de unitativo do CCS e um homem está me seguindo insistentemente, ignorando meus pedidos para que ele se afaxe, sinto que ele pode medir dia.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Por favor, preciso de ajuda urgente! Estou no bloco administrativo do CCS e um homem está me seguindo insistentemente, ignorando meus pedidos para que ele se afaste; sinto que ele pode me agredir."
+ },
+ {
+  "texto": "Seu presa no banheiro da biblioteca central, alguém te encolhou a porta por dentro e não consigo sair sozinha. Em um homem batendo na porta, estão muito assustada e com medo do que pode acontecer.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Estou presa no banheiro da biblioteca central, alguém trancou a porta por dentro e não consigo sair sozinha. Tem um homem batendo na porta, estou muito assustada e com medo do que pode acontecer."
+ },
+ {
+  "texto": "Ai meu Deus estou presa num bar aqui perto da facu, ele não me larga pra vorezinho. Só com.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Ai meu Deus tô presa num bar aqui perto da facul, ele não me larga pavorzinho! Socorro"
+ },
+ {
+  "texto": "Tromu e passustada, uns caras estão me encarando na ruda a faculdade, sinto que vão fazer alguma comigo, preciso sair daqui o gente.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "To muito assustada, uns caras tão me encarando na rua da faculdade, sinto que vão fazer alguma comigo, preciso sair daqui urgente"
+ },
+ {
+  "texto": "Mai toucheurando, ele pegou meu braço e tá falando coisas feias, até o aqui no acusamento com a barão. Por favor, mandar o game.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Mãe tô chorando, ele pegou meu braço e tá falando coisas feias, to aqui no cruzamento com a Barão. Por favor manda alguém"
+ },
+ {
+  "texto": "Mano tem o aumento a sustada. O antiosão pegou no meu braço na tráça da OFP e me chamando de gata não consigo passar, estou com medo que ele vem atrás de minço o cor.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Mano to muito assustada! Um tiozão pegou no meu braço na praça da UFPI me chamando de gata não consigo passar tô com medo que ele venha atrás de mim socorro"
+ },
+ {
+  "texto": "Gente, preciso de ajudo o gente. Topesa no banheiro da fatéco guarda, veio mim com o modando falando bobagem, tô com pânico e não consigo sair por favor, mandem alguém.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Gente preciso de ajuda urgente! Tô presa no banheiro da Fatec o guarda veio me incomodando falando bobagem tô com pânico e não consigo sair por favor mandem alguém!"
+ },
+ {
+  "texto": "Oitoutento do bem. Eria saber se tem algum lugar aqui perto onde eu possa conversar sobre algumas coisas. Tipo, recebere apoio de alguém.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_potencial"
+  ],
+  "texto_original": "Oi totem tudo bem? Queria saber se tem algum lugar aqui perto onde eu possa conversar sobre algumas coisas, tipo receber apoio de alguém."
+ },
+ {
+  "texto": "Preciso falar, cá segurando o meu mal não quero que ele toque em mim.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_potencial"
+  ],
+  "texto_original": "Preciso falar! cara segurando minha mao nao quero q ele toque em mim"
+ },
+ {
+  "texto": "Alheram, pessoal me seguindo na faculdade, sendo que vai acontecer algo ruim.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_potencial"
+  ],
+  "texto_original": "Alerma! Pessoa me seguindo na faculdade, sinto q vai acontecer algo ruim"
+ },
+ {
+  "texto": "Oito aqui no bloco e me sentindo, super insegura um cara tá me seguindo e eu não sei o que fazer pode me ajudar.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "orientacao"
+  ],
+  "texto_original": "Ôi tô aqui no bloco E me sentindo super insegura um cara tá me seguindo e eu não sei o que fazer pode me ajudar?"
+ },
+ {
+  "texto": "A digente ter opesçando de informação, o Gente Qual o Telefon e da ouvidoria para registrar uma situação chata que aconteceu comigo.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "orientacao"
+  ],
+  "texto_original": "Aii gente to precisando de informação urgente qual o telefone da ouvidoria pra registrar uma situação chata que aconteceu comigo?"
+ },
+ {
+  "texto": "Ai meu Deus, tem o aceminto a dor peito. Acho que eu vou passar mal.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_imediato"
+  ],
+  "texto_original": "Ai meu deus to c muita dor peito! Acho q vou passar mal!"
+ },
+ {
+  "texto": "Me sento tonta e faca quase desnaia e na biblioteca. A game!",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_imediato"
+  ],
+  "texto_original": "Me sinto tonta e fraca, quase desmaiei na biblioteca. Alguém?"
+ },
+ {
+  "texto": "aí descada, por seu pé, dormo muito forte, ele consigua subir.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_imediato"
+  ],
+  "texto_original": "Caí da escada! Torci o pé. Dor muito forte! N consigu subir"
+ },
+ {
+  "texto": "Me só com. Alguém tá me seguindo? Pavor, preciso que venham me buscar agora.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_imediato"
+  ],
+  "texto_original": "Me socam! Alguém tá me seguindo!!! Pavor!!!!  Preciso q venham me buscar agora!"
+ },
+ {
+  "texto": "Tonemos isso e uma demais pagoenta, mais, nissente, eendo super angustiada aqui no campo, os pode mandar um psicólogo.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_imediato"
+  ],
+  "texto_original": "Tô nervosíssima demais pra aguentar mais me sentindo super angustiada aqui no campus pode mandar um psicólogo?"
+ },
+ {
+  "texto": "E tá tentou com um adúdio barriguinho, suportável queente saí nada da boca, acho que estou entoxicado me ajudo gente.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_imediato"
+  ],
+  "texto_original": "Eita trem tô com uma dor de barriga insuportável crente sai nada da boca acho q tô intoxicado me ajuda urgente"
+ },
+ {
+  "texto": "A legia piorou o DMS em enchaço na garganta ao que fazer.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Alergia piorou dms. inchaço na garganta. oq fazer??"
+ },
+ {
+  "texto": "A cidade atacando o Nau consigo esperar direito ao game poder falar esse magi.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Ansiedade atacando.  nao consigo respirar direito... alguem pode falar cmg?"
+ },
+ {
+  "texto": "e no corredor. Você o torna o zelo doi muito, quando se guandar mais com dificuldade.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Caí no corredor! Torci o tornozelo, dói muito, consigo andar mas com dificuldade."
+ },
+ {
+  "texto": "Você com um flexo, tota em rapidinho, até o amicentinho, meio tonta, sinto um filha na barriga feio e uns láteses de memória, acho que precisa chegar algo viu.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Ô totem rapidinho to me sentindo meio tonta sinto um frio na barriga feio e uns lapsos de memória acho que preciso checar algo viu?"
+ },
+ {
+  "texto": "E aí galera do Totem, só filma que dinha fote agora no campo se teu acompanha enxada e la tejando muito será que devuí pro posto o espera.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "E aí galera do totem? Sofri uma quedinha forte agora no campus to com a perna inchada e latejando muito será que devo ir pro posto ou espera?"
+ },
+ {
+  "texto": "Sei lá galera teó com uma dúvida que a Bça que inedeta a apetando o peito. Não sei se é só cancir mas estou bem abobado. Alguém me indicam um lugar para dar um cheque?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Sei lá galera to com uma dor de cabeça qnd tá apertando o peito. Não sei se é só canseira mas tô bem abobalhado. Alguém me indica um lugar pra dar um check?"
+ },
+ {
+  "texto": "Mano, estou tendo isso demais, não consigo respirar direito, sinto que eu vou desmayar alguém por favor me responder. Te opirando aqui.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "orientacao"
+  ],
+  "texto_original": "Mano tô tenso demais não consigo respirar direito sinto q vou desmaiar, alguem por favor me responde, to pirando aqui"
+ },
+ {
+  "texto": "Esses usades se tem como cancelar minhas que são para o mestado. Se sistema tá bom, todo esperada.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Preciso saber se tem como cancelar minha inscrição pra o mestrado. Sistema travou! Tô desesperada."
+ },
+ {
+  "texto": "Alguém sabe que as bolsas de iniciação científica tão atasadas já faz um mês?",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Alguém sabe pq as bolsas de iniciação científica tão atrasadas? Já faz um mês!"
+ },
+ {
+  "texto": "Sugistão, mais debedor os nos corredores do IC por favor. Exidatação é real.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Sugestão: mais bebedouros nos corredores do IC, por favor! Desidratação é real!"
+ },
+ {
+  "texto": "Para a Bensai e que PWB-OTK-Sentau, super atenciosos e prestativos. Valeu!",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Parabéns à equipe da biblioteca central! Super atenciosos e prestativos. Valeu!"
+ },
+ {
+  "texto": "Duvidem, meu relato no follow.brkd, já passou a data limite de resposta.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Dúvida: meu relato no Fala.BR cadê? Já passou a data limite de resposta."
+ },
+ {
+  "texto": "E tá pesado? Do tentando usar o falo a ponto BR mas não estou conseguindo cada estar minha conta. Mota um puço viu. A Game Podia me ajudar por favorzinho.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Eita apressado! Tô tentando usar o Fala.BR mas não tô conseguindo cadastrar minha conta, mó trampo isso viu. Alguém podia me ajudar por favorzinho?"
+ },
+ {
+  "texto": "Manero que botaram esse totem pra gente falar, saca? Mas Andeio ouvindo uns boatos, fez o sob com a ouvidoria, talidando com as denúncias de acèdio será que a verdade mesmo.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Maneiro que botaram esse totem pra gente falar, saca? Mas andei ouvindo uns boatos feios sobre como a ouvidoria tá lidando com as denúncias de assédio… Será que é verdade mesmo?"
+ },
+ {
+  "texto": "A Igalea do Totem, para bem-spede nesse ativa, muito bom poder mandar um recado assim. Só acho que podia ter o afai pra gente usar o celular sem gastar maior internet.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Aê galera do totem! Parabéns pela iniciativa, muito bom poder mandar um recado assim. Só acho q podia ter wi-fi pra gente usar o celular sem gastar mó internet."
+ },
+ {
+  "texto": "O gente, alta água no bloco e até os dias, nenhum que em resolver em dar.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "orientacao"
+  ],
+  "texto_original": "urgente! falta água no bloco E há 3 dias! ninguém resolve nda!"
+ },
+ {
+  "texto": "Mano, vi uns caras mexendo em matriar o laboratório depois do horário ontem a noite. Acho que deviam dar um objeto nisso, né? Só pra vocês saberem.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "orientacao"
+  ],
+  "texto_original": "Mano, vi uns caras mexendo em material do laboratório depois do horário ontem à noite, acho que deviam dar um jeito nisso né? só pra vocês saberem"
+ },
+ {
+  "texto": "Estou presa banheiro feminino da biblioteca ou mendendo. Não consigo sair.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Estou presa banheiro feminino da biblioteca, homem dentro! Não consigo sair!!!"
+ },
+ {
+  "texto": "Me abedi Roma e Estacionamento do Campos. Por favor envia alguém o gente.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Me agrediram no estacionamento do campus. Por favor, envie alguém urgente!"
+ },
+ {
+  "texto": "Aí estou aqui no bloco deles esperada. Um cara está me seguindo, faz umas duas horas e agora pegou no meu braço para não deixar eu passar. Toco no medo de levar um fota. Adem por favor.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Ai tô aqui no bloco D desesperada! Um cara tá me seguindo faz umas duas horas e agora pegou no meu braço pra não deixar eu passar. Tô com medo de levar um forta! Alguém por favor?"
+ },
+ {
+  "texto": "Tô no curssinho mevoso, alguém tá me encarando de um jeito estranho e já faz um tempo. Sinto que vai acontecer alguma coisa ruim. Odro horas, camelhos.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Tô no cursinho nervoso, alguém tá me encarando de um jeito estranho e já faz um tempão. Sinto que vai acontecer alguma coisa ruim. Pode olhar as câmeras?"
+ },
+ {
+  "texto": "Mano, tô na pasta dos estudantes. Um Senhor começou a fazer comentários muito pesados sobre a minha roupa e agora tá vindo mais perto. Tô com um entagunia. Me ajuda.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Mano tô na praça dos estudantes! Um senhor começou a fazer comentários muito pesados sobre a minha roupa e agora tá vindo mais perto. Tô com muita agonia, me ajuda!"
+ },
+ {
+  "texto": "Por che tope dida no campos e um homem tá insistindo e me acompanhar. Não conheço ele de nada, né? De que é apavorada? É seguro e o I% já põe o amor, é?",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Poxa tô perdida no campus e um homem tá insistindo em 'me acompanhar'. Não conheço ele de nada né? Fiquei apavorada. É seguro eu ir pro centro de apoio à mulher?"
+ },
+ {
+  "texto": "A meu Deus Todo uma festa da República aqui perto do Campos e um cara não tá me lagando. Já falei que não quero mas ele fica agudado o tipo sinistro. Teu a conmê do Dírio Embora Sozinha.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Ai meu Deus tô numa festa da república aqui perto do campus e um cara não tá me largando, já falei que não quero mas ele fica grudado tipo sinistro, to com medo de ir embora sozinha"
+ },
+ {
+  "texto": "Mãe ter opressiando muito da sua ajuda topreza no monibus na rodoviária. Mãe, motorista, está fazendo comentários muito ofensivo sobre mim, e sinto que ele vai fazer algo pior.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Mãe to precisando muito da sua ajuda tô presa num ônibus na rodoviária, o motorista tá fazendo comentários muito ofensivos sobre mim e sinto que ele vai fazer algo pior"
+ },
+ {
+  "texto": "A Igalera tem o desesperada, foi pra casa de uma amiga no bai ou primavera e um vizinho dela começou a me seguir. Não consigo voltar para o FPS sozinho à sua pavorada.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Aí galera to desesperada, fui pra casa de uma amiga no bairro primavera e um vizinho dela começou a me seguir, não consigo voltar pra UFPI sozinha tô apavorada"
+ },
+ {
+  "texto": "Todo o barzinho perto do Campos, me sente desconfortável com a forma que fui abordada por um homem, ele tá insistindo e me dá bebida e eu preciso sair daqui. Não é ajuda.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Tô num barzinho perto do campus, me senti desconfortável com a forma que fui abordada por um homem, ele tá insistindo em me dar bebida e eu preciso sair daqui. Me ajuda?"
+ },
+ {
+  "texto": "Só com, ele me seguiu até o bloco e está na garrando. Precisou sair daqui.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Socorro! Ele me seguiu até o bloco E, está me agarrando! preciso sair daqui!"
+ },
+ {
+  "texto": "Por favor, ajuda. No instação no momento da reitoria ele, a Messoa. Tem o meduque Vote.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Por favor, ajuda! No estacionamento da reitoria... ele ameaçou. Tenho medo que volte."
+ },
+ {
+  "texto": "Imegência, com o redor e fio um homem minko a louro, não consigo passar. A quem por favor.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Emergência! Corredor do IF... um homem me encurralou, não consigo passar. Alguém por favor?"
+ },
+ {
+  "texto": "Me ajudem, próximo a biblioteca foi empurrada e me sentir refei. Pesses o de segurança urgente.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Me ajudem!!! Próximo à biblioteca, fui empurrada e me senti refém! preciso de segurança urgente."
+ },
+ {
+  "texto": "Por favor, estou presa no banheiro da biblioteca, um homem tão colapota e não me deixa sair, de sinto muito medo e não sei o que fazer.",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Por favor, estou presa no banheiro da biblioteca, um homem trancou a porta e não me deixa sair; sinto muito medo e não sei o que fazer."
+ },
+ {
+  "texto": "aconteceu algo horrível, um homem tentou forçar a entrada no meu quarto, estou em choque e com muito medo, por favor, envia em obem",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Aconteceu algo horrível no RU, um homem tentou forçar a entrada no meu quarto; estou em choque e com muito medo, por favor, enviem alguém."
+ },
+ {
+  "texto": "ou na frente do hospital o investário. Uma pessoa está me ameaçando e me impedindo de ir embora preciso que a segurança vem agora e estou desesperada.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Estou na frente do Hospital Universitário, uma pessoa está me ameaçando e me impedindo de ir embora – preciso que a segurança venha agora, estou desesperada."
+ },
+ {
+  "texto": "Por favor, preciso de ajudou gente. Só um bloco a do CCS, um homem está me seguindo e fazendo comentários ofensivos. Parece que ele não vai parar.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Por favor, preciso de ajuda urgente! Estou no bloco A do CCS, um homem está me seguindo e fazendo comentários ofensivos, parece que ele não vai parar."
+ },
+ {
+  "texto": "Estou com muito medo e preciso sair do local. Sou uma frente da biblioteca central, alguém pode me ajudar a chegar ao Putão principal.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "risco_imediato"
+  ],
+  "texto_original": "Estou com muito medo e preciso sair do local. Estou na frente da biblioteca central, alguém pode me ajudar a chegar ao portão principal?"
+ },
+ {
+  "texto": "Preciso saber se tem como ver o andamento do processo de bolsa. E nepaço o paciente, teodes esperada.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Preciso saber se tem como ver o andamento do processo de bolsa! N passo pra frente, to desesperada!"
+ },
+ {
+  "texto": "Alguém viu a falta de limpeza na biblioteca central, toleixo em salubidade total. O Gente.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Alguém viu a falta de limpeza na biblioteca central?? Mto lixo, insalubridade total. Urgente!"
+ },
+ {
+  "texto": "sugestão, mas bebê dor os com água filtada nos predios antigos. Obrigado.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Sugestão: mais bebedouros com água filtrada nos prédios antigos. Obrigado!"
+ },
+ {
+  "texto": "dúvida, como funciona o processo de recursos das notas, não achei nada no site.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Dúvida: como funciona o processo de recurso das notas? Não achei nada no site."
+ },
+ {
+  "texto": "Opa, botade, ele adar um toque aqui sobre a divulgação dos resultados do concurso pro monitoria do curso 10. Tá super confuso na página da OFP8 e faute informação. Viu? A galera tá pedidíssima.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Opa, boa tarde! Queria dar um toque aqui sobre a divulgação dos resultados do concurso pro monitoria do curso X. Tá super confuso na página da UFPI, falta informação, viu? A galera tá perdidíssima."
+ },
+ {
+  "texto": "Oi, tudo bem. Só que ir ilogiar o atendimento de vocês no falo.be. Responder rápido e são muito atenciosos. Mobo a iniciativa é se de ouvir a gente.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Ôi, tudo bem? Só queria elogiar o atendimento de vocês no Fala.BR! Respondem rapidinho e são muito atenciosos, mó boa a iniciativa essa de ouvir a gente!"
+ },
+ {
+  "texto": "A lore queria tirar uma dúvida rapidinho. Como funciona o processo de responder a uma infestação registada aqui? É automático, o que tem alguém analisando as coisas?",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Alô! Queria tirar uma dúvida rapidinho. Como funciona o processo de responder a uma manifestação registrada aqui? É automático ou tem alguém analisando as coisas?"
+ },
+ {
+  "texto": "Professor Sumil, Enial não aparece em id. Alguém sabe o ócate aconteceu?",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Professor sumiu! N aula não aparece nd. Alguem sabe oq aconteceu?"
+ },
+ {
+  "texto": "Contas do Laboratório de Química no Meiros Estães, peces o investigado.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Contas do laboratório de química... numeros estranhos. Preciso investigado!"
+ },
+ {
+  "texto": "Pense em mais debedores nos corredores, muito calor, sugestão simples.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Pensem em mais bebedouros nos corredores, muito calor!! Sugestão simples."
+ },
+ {
+  "texto": "A Gadeçoa atenção da ouvidoria com o meu problema anterior, resolvido rapidinho, para bem.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Agradeço a atenção da ouvidoria com meu problema anterior. Resolvido rapidinho! Parabéns!"
+ },
+ {
+  "texto": "Como faço para saber se minha retomação foi vista, tal aponta o BR não me dá info.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Como faço pra saber se minha reclamação foi vista? Fala.BR não me dá info."
+ },
+ {
+  "texto": "O Iwovedoria te ótimandando uma loca e para reclamar da falta de limpeza na facu do Delta. Tal uma zona sinistua calera e joga licho em tudo mó-feu e fedou-se o Tmb, né?",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Ôi ouvidoria to te mandando um alô aqui pra reclamar da falta de limpeza na facul do Delta, tá uma zona sinistro a galera joga lixo em tudo mó feio e fedorzo tmb né"
+ },
+ {
+  "texto": "E aí, visão preciso saber se você espome me ajudar, tovendo uns professores dando preferência pelos alunos que paga mais caro na mensalidade. Mochato isso parece favorecimento para Minvill.",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "E aí vizão preciso saber se vocês podem me ajudar. Tô vendo uns professores dando preferência pros alunos que pagam mais caro na mensalidade, mó chato isso parece favorecimento pra mim viu?"
+ },
+ {
+  "texto": "Se a gente galeira da ouvidoria, queria dar um parabéns para o pessoal da BB Otecas Central A Organização tá show de bola e os atendentes super atenciosos. Note a desce.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Seguinte galera da ouvidoria, queria dar um parabéns pro pessoal da biblioteca central a organização tá show de bola e os atendentes super atenciosos. Nota 10"
+ },
+ {
+  "texto": "E aí, fala o BRP-sysu, esclare ser uma parada. Eu mandei menos age em fazunas dias e nada de resposta. Qual o tempo médio de retorno? Tô precisando muito dessa informação.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "E aí fala br preciso esclarecer uma parada. Eu mandei mensagem faz uns dias e nada de resposta, qual o tempo médio de retorno? Tô precisando muito dessa informação"
+ },
+ {
+  "texto": "A logo galera, toma uma dúvida que o é aqui. Se eu quiser fazer uma denúncia nonima, posso usar a ouvidoria, né? Pesso que isso garante que ninguém vai descobrir que foi eu.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Alô galera tô numa dúvida cruel aqui. Se eu quiser fazer uma denúncia anônima posso usar a ouvidoria né? Preciso garantir que ninguém vai descobrir que fui eu."
+ },
+ {
+  "texto": "Seu lado, total tentou a com um adúdio barriga sinistre já faz uns dois dias. Sinto febrzinha também será que devuindo o posto?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Sei lá totem to com uma dor de barriga sinistra já faz uns 2 dias, sinto febrezinha também será que devo ir no posto?"
+ },
+ {
+  "texto": "Pondia, tem um notado um aumento significativo nos níveis de estesce nas últimas semanas. Existe algum serviço de apoio psicológico ou acompanhimento para servidores da FIPI, a Gadeço a atenção.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Bom dia. Tenho notado um aumento significativo nos níveis de estresse nas últimas semanas. Existe algum serviço de apoio psicológico ou acompanhamento para servidores da UFPI? Agradeço a atenção."
+ },
+ {
+  "texto": "Esqueci-se meus remédios peprolados, onde consigo comparo gente.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Esqueci meus remédios p prolapso. Onde consigo comprar urgente?"
+ },
+ {
+  "texto": "Se entrou uma dor forte no peito, pode ser a vez, é preciso serviço.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Sinto uma dor forte no peito. Pode ser gravíssimo? Preciso ser visto."
+ },
+ {
+  "texto": "A ansiedade é tacul, faltaar, vai tu tem famácer. Alguém pode me ajudar?",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Ansiedade atacou, falta ar. Perto tem farmácia? Alguém pode me ajudar?"
+ },
+ {
+  "texto": "caiu da Bik da suduendo muito. Acho que ter o contálmo o gente.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Caiu da bike, braço doendo muito. Acho q to com trauma, urgente!"
+ },
+ {
+  "texto": "Me sinto o faco de confuso. Não consigo lembrar o nome da russa o colo.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Me sinto fraco e confuso. Não consigo lembrar o nome da rua... socorro!"
+ },
+ {
+  "texto": "e aí galera te oumei o tonta aqui na biblioteca sinto que vou passar uma alguém pode me ajudar.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "E aí galera to meio tonta aqui na biblioteca sinto q vou passar mal alguém pode me ajudar?"
+ },
+ {
+  "texto": "Na noteu a superancioso, pra prova de cálculo estou quase entrando em pânico-ogendo atendimento psicológico podia dar um toque.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Mano to super ansioso pra prova de cálculo tô quase entrando em pânico alguém do atendimento psicológico podia dar um toque"
+ },
+ {
+  "texto": "Só cor, gente, me macho queina a escada do bloco detaçando eando bastante alguém pode viver isso.",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Socorro gente me machuquei na escada do bloco D tá sangrando bastante alguém pode vir ver isso?"
+ },
+ {
+  "texto": "Por que preocupado com a minha voz ela tava bem-vonque e hoje acudou o meio quando fusa queria saber se tem algum médico no campos pra dar uma olada.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Pô fiquei preocupado com a minha vó ela tava bem ontem e hoje acordou meio confusa queria saber se tem algum médico no campus pra dar uma olhada"
+ },
+ {
+  "texto": "Some sentindo muito tonta e com a cabeça leve a seca de uma hora, acho que precisa verificar minha pressão, estou no bloco administativo. Peto do elevador principal.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Estou me sentindo muito tonta e com a cabeça leve há cerca de uma hora, acho que preciso verificar minha pressão; estou no bloco Administrativo, perto do elevador principal."
+ },
+ {
+  "texto": "Sou com uma foto e dura abdominal e naus as algumas horas, sem conseguir comer nada, estou na biblioteca tentando estudar, mas não me sinto bem.",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Estou com uma forte dor abdominal e náuseas há algumas horas, sem conseguir comer nada; estou na biblioteca tentando estudar, mas não me sinto bem."
+ },
+ {
+  "texto": "Preciso entender como funciona o agendamento para consulta com o títico geral no Agau. Estou confuso sobre os requisitos e documentos necessários.",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Preciso entender como funciona o agendamento para consulta com um clínico geral no HU, estou confuso sobre os requisitos e documentos necessários."
+ },
+ {
+  "texto": "Bom dia, sou o professora do Cúdso X e gostaria de recomendar uma colega que tem enfrentado de dificuldades. Ela me solicitou informações sobre o serviço de apoio psicológico da OFP para Moheres. Como posso direcione-lo?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "orientacao"
+  ],
+  "texto_original": "Bom dia! Sou professora do curso X e gostaria de recomendar uma colega que tem enfrentado dificuldades. Ela me solicitou informações sobre o serviço de apoio psicológico da UFPI para mulheres. Como posso direcioná-la?"
+ },
+ {
+  "texto": "O Sico Flex, estou tentando passar um desconforto, o sinistro aqui na facu, cara não para de milar e fazer comentar os que eu ouvi em pode me ajudar.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "orientacao"
+  ],
+  "texto_original": "Ô totem to passando um desconforto sinistro aqui na facul o cara não para de me olhar e fazer comentario asqueroso alguém pode me ajudar?"
+ },
+ {
+  "texto": "Me ajuda por favor, topida nesse campos e queria saber onde ficar ouvido o dia para registar uma situação chata que aconteceu comigo.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "orientacao"
+  ],
+  "texto_original": "Me ajuda por favor tô perdida nesse campus e queria saber onde fica a ouvidoria pra registrar uma situação chata que aconteceu comigo"
+ },
+ {
+  "texto": "Só contou a tente homem sentindo muito em seguro um cara veio a tarde de mim no estacionamento Parece que está me seguindo o que eu faço.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "orientacao"
+  ],
+  "texto_original": "Socorro totem to me sentindo muito insegura um cara veio atrás de mim no estacionamento parece q tá me seguindo o que eu faço?"
+ },
+ {
+  "texto": "Só como o Teóssus tá doutiu, tá me seguindo desde a porta da Facúqueria saber se existe algum segurança que eu possa acionar agora.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "orientacao"
+  ],
+  "texto_original": "Socorro to assustada um tio tá me seguindo desde a porta da facul queria saber se existe algum segurança que eu possa acionar agora"
+ },
+ {
+  "texto": "Ele não metou o que mais, mas fala coisas ou rives posso fazer algo.",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "orientacao"
+  ],
+  "texto_original": "Ele não me toca mais, mas fala coisas horríveis... posso fazer algo?"
+ },
+ {
+  "texto": "Me senti em seguro perto do Putão Tês. Tem um homem me seguindo que me devolvezar.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "orientacao"
+  ],
+  "texto_original": "Me senti insegura perto do portão 3, tem um homem me seguindo. qm devo avisar?"
+ },
+ {
+  "texto": "onde acha o ouvidoria da Universidade? Eu preciso registrar uma situação.",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "orientacao"
+  ],
+  "texto_original": "Onde acho a ouvidoria da universidade? preciso registrar uma situação"
+ },
+ {
+  "texto": "Alguém pode me ajudar, me sinto em seguro perto do bloco e por favor.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "orientacao"
+  ],
+  "texto_original": "Alguém pode me ajudar? Me sinto insegura perto do bloco E, por favor."
+ },
+ {
+  "texto": "Só qual, um homem tá meuando de forma estranho no estacionamento. Que fazer?",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "mulher",
+   "orientacao"
+  ],
+  "texto_original": "Socorro! Um homem tá me olhando de forma estranha no estacionamento. Q fazer?"
+ },
+ {
+  "texto": "A ajuda,附 pedo do bloco jurídico.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "ajuda! briga perto do bloco jurídico!!"
+ },
+ {
+  "texto": "Ogonária dos Estacionamentos Tiro Fote",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "fogo na area dos estacionamentos, cheiro forte!"
+ },
+ {
+  "texto": "Viu um carista em Ronda do Lab de Informática, na alcance.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "vi um cara estranho rondando o lab de informatica... nao conheço."
+ },
+ {
+  "texto": "Aja segurando, alguém mais diu a pacinha e está tirando fotos.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "cade a seguranca? alguem invadiu a pracinha e tá tirando fotos!"
+ },
+ {
+  "texto": "E de meu cacharpeto da biblioteca, teocone do de alguém se passar por mim.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "perdi meu crachá perto da biblioteca, to com medo de alguem se passar por mim."
+ },
+ {
+  "texto": "e aí, galera, até o acepeto do Predio de Engenharia, o Vium Barlon fez um to estranho, parece discussão a calorada tá tudo bem?",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "E aí galera to aqui perto do prédio de engenharia, ouvi um barulhão feio mto estranho parece discussão acalorada tá tudo bem?"
+ },
+ {
+  "texto": "A luz apagou na rua da facu e tênjantes que se tolando por portão principal melhor dar um olado arrapidinho.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "A luz apagou na rua da facu e tem gente esquisita olhando pro portão principal melhor dar uma olhada rapidinho"
+ },
+ {
+  "texto": "Só qual, tem um carro dando voltas no Estacionamento já faz meio a hora, parece sujo o peito o vio.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Socorro! Tem um carro dando voltas no estacionamento já faz meia hora, parece suspeito viu?"
+ },
+ {
+  "texto": "Pesados, vem o comunicar aqui identifiquei uma gênella danificada no laboratório de química aparentemente forçada. Solicito verificação da área para evitar innozões e possíveis futas de materiais.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Prezados, venho comunicar que identifiquei uma janela danificada no laboratório de Química, aparentemente forçada. Solicito verificação da área para evitar invasões e possíveis furtas de materiais."
+ },
+ {
+  "texto": "Mano tem o updido na área da reitoria, achei umas pessoas estranhos, randando, normal isso.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Mano to perdido na área da reitoria achei umas pessoas estranhas rondando, normal isso?"
+ },
+ {
+  "texto": "A isso conviu. Vou massa saindo do laboratório de quineca alguém sabe o quê?",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Aiii socorro viu! Fumaça saindo do laboratório de química alguém sabe o que é?"
+ },
+ {
+  "texto": "A la patão tem ouvendo uns moleques jogando bola no meio dos carros, destacionamento está a segura para passar por lá.",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Fala patrão to vendo uns moleques jogando bola no meio dos carros do estacionamento tá seguro pra passar por lá?"
+ },
+ {
+  "texto": "Alguém arrombando o lava de informática, preciso que vem o gente.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Alguém arrombando o lab de informatica! preciso q venha urgente!"
+ },
+ {
+  "texto": "para o estranho pô agário para essa discussão séria. Pode ser perigoso.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Barulho estranho pró agrário... parece discussão séria! pode ser perigoso?"
+ },
+ {
+  "texto": "Fogo no Estacionamento da Faculdade de Direito. Pequem nós chamamos.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Fogo no estacionamento da faculdade de direito! pequenas chamas!"
+ },
+ {
+  "texto": "Vi uma pessoa desconhecida rondando a biblioteca com casos peita precisa verificar.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Vi uma pessoa desconhecida rondando a biblioteca, com cara suspeita. precisa verificar."
+ },
+ {
+  "texto": "Putão do Fundal abetou, alguém viu?",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Portão do fundao abertoo!!! Alguem viu?"
+ },
+ {
+  "texto": "Estou vendo um grupo de pessoas suspeitas, andando a entrada do CCS. Eles parecem está tentando forçar a porta, poderiam verificar. Por favor.",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Estou vendo um grupo de pessoas suspeitas rondando a entrada do CCS, eles parecem estar tentando forçar a porta; poderiam verificar, por favor?"
+ },
+ {
+  "texto": "A condensê-l, uma discussão acalorada perto do rio, com britos e elameças. Hemos que possa escalar para algo mais grave, seria o bom se alguém pudesse conferir.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Aconteceu uma discussão acalorada perto do RU, com gritos e ameaças. Temo que possa escalar para algo mais grave, seria bom se alguém pudesse ir conferir."
+ },
+ {
+  "texto": "percebi um fonte cheiro de quemado o vindo da área dos laboratórios do CT, não sei a origem, mas parece preocupante e sugir uma inspeção urgente.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Percebi um forte cheiro de queimado vindo da área dos laboratórios do CT; não sei a origem, mas parece preocupante e sugiro uma inspeção urgente."
+ },
+ {
+  "texto": "Enquanto aí um objeto estando enxão próximo a Biblio Teca, como fio saindo, não estou ok, mas acho que pode ser pregoso para quem passar por perto.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "orientacao"
+  ],
+  "texto_original": "Encontrei um objeto estranho no chão próximo à biblioteca, com fios saindo. Não o toquei, mas acho que pode ser perigoso para quem passar por perto."
+ },
+ {
+  "texto": "Aí, o malusmo corredorá, preciso de ajudo urgente.",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ],
+  "texto_original": "Caiu uma luz no corredor A, preciso de ajuda urgente!"
+ },
+ {
+  "texto": "A Impai Teoa nervosa demais para fazer a pova, a ansiedade está me corruendo num consigo respere direito. Tem algum apoio psicológico por perto?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ],
+  "texto_original": "Aiii pai to nervosa demais pra fazer a prova, a ansiedade tá me corroendo não consigo respirar direito. Tem algum apoio psicológico por perto?"
+ },
+ {
+  "texto": "Você confleque sua tota, tu viu que o pessoal da limpeza tá assumindo com as plantas do corredor? Ache a coisa para a sua estar a galera, né? Poderia dar o me jeito, nisso aí?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "stt-tiny",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ],
+  "texto_original": "Ô Totem, tu viu que o pessoal da limpeza tá sumindo com as plantas do corredor? Parece até coisa pra assustar a galera, né? Poderia dar um jeito nisso aí?"
+ }
+]

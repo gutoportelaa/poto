@@ -140,3 +140,40 @@ a validação por uma pessoa da equipe continua pendente.
 Pipeline atual no teste revisado: tipo 72%, gravidade 67%, revocação de risco imediato
 86% [80–92], precisão 56% (60 alarmes a mais que o necessário em cada 110). O teste revisado
 é mais difícil que o filtrado por consenso, como se esperava.
+
+## 4. Teste revisado (354 frases, 110 de risco imediato)
+
+| alternativa | tipo | gravidade | rec. imediato | prec. imediato | imediato→orientação | latência |
+|---|---|---|---|---|---|---|
+| pipeline atual | 72% | 66% | 86% [80–92] | 56% | 2% | 1,6 ms |
+| e5small+merge | 79% | 68% | 85% [78–92] | 58% | 5% | 11 ms |
+| bertimbau+merge | 82% | 70% | 83% [76–89] | 62% | 4% | 17 ms |
+| qwen3:8b logprobs (few-shot) | 79% | 57% | 95% [92–99] | 44% | 1% | 1,8 s |
+
+Os encoders ganham 7–10 pontos de tipo e empatam em risco (intervalos sobrepostos). O LLM tem a
+maior revocação à custa de mais da metade dos alarmes serem falsos e de latência 1000× maior.
+
+## 5. Texto passado por STT (issue #9)
+
+`scripts/dataset_v2/stt_roundtrip.py`: as mesmas 354 frases são faladas por voz sintética pt-BR
+(Piper, `faber`), opcionalmente com ruído branco (SNR 15 dB) e transcritas pelo Whisper local
+(`tiny` e `base`, CPU, int8). Os rótulos são os da frase original. Exemplo real de erro grave:
+"homem **armado**" → "homem **amado**".
+
+Revocação de risco imediato (queda em relação ao texto digitado, 86% / 85% / 83%):
+
+| conjunto | pipeline | e5small+merge | bertimbau+merge |
+|---|---|---|---|
+| digitado | 86% | 85% | 83% |
+| Whisper base | 72% [63–80] | 67% [58–76] | 69% [61–77] |
+| Whisper base + ruído | 77% [69–85] | 71% [62–80] | — |
+| Whisper tiny | 73% [65–81] | 65% [56–74] | — |
+| Whisper tiny + ruído | 68% [59–76] | 57% [48–66] | 58% [49–67] |
+
+- **Todas** as alternativas perdem 10–30 pontos de revocação com fala; o pior caso é tiny + ruído.
+- O pipeline atual é o que **menos perde** (-14 a -18 pontos); os encoders perdem mais (e5: até -28).
+  Os encoders aprendem a frase limpa; o TF-IDF de caracteres e a heurística absorvem melhor
+  erros de grafia e palavras cortadas.
+- "Imediato previsto como orientação" sobe de ~2% para 3–9%.
+- Limitações: uma única voz sintética e limpa, e ruído branco; fala real tem sotaque, pausas e
+  sobreposição. O número é um **indicativo de ordem de grandeza**, não uma garantia.
