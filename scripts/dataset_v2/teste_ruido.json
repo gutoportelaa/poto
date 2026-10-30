@@ -1,0 +1,1556 @@
+[
+ {
+  "texto": "tem um homem armao no corredor do bloo C",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "tem um homem armado no corredor do bloco C",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "tem um homem armado no corredor do bloco C",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "tem um homem armado no corredor do bloco C",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "ESTAO ME AMEACANDO COM UMA FACA AGORA!!!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "estão me ameaçando com uma faca agora",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "estão me amaçando com uma faca aogra",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "estão me ameaçando com uma faca agora",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "alguém arrombou a porta e entruo na sala",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "alguém arrombou a porta e entrou na sala",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "ALGUEM ARROMBOU A PORTA E ENTROU NA SALA!!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "alguém arrombou a porta e entrou na sala",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "vi dois caras estranhos rondando o estacionamento",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "vi dois caras estranhos rondando o estacionamento",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "vi dois craas estranhos rodando o estacionamento",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "vi dois caras estranhos rondando o estacionamento",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "acho que estão me seuindo desde a paraada de ônibus",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "acho que estão me seguindo desde a parada de ônibus",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "acho que estao me seguindo desde a parada de onibus",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "acho que estão me seguindo desde a parada de ônibus",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "enontraram uma mochila abandonada suspeita no sagguão",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "encontraram uma mochila abandonada suspeita no saguão",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "encontraram uma mochila abandonada suspeita no saguao",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "encontraram uma mochila abandonada suspeita no saguão",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "qual o rmal da seguança do campus?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "qual o ramal da segurança do campus?",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "QUAL O RAMAL DA SEGURANCA DO CAMPUS?...",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "qual o ramal da segurança do campus?",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "quero saber os horáriso de ronad da vigilância",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "quero saber os horários de ronda da vigilância",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "QUERO SABER OS HORARIOS DE RONDA DA VIGILANCIA...",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "quero saber os horários de ronda da vigilância",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "como faco para registrar um objeto perdido?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "como faço para registrar um objeto perdido?",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "COMO FACO PARA REGISTRAR UM OBJETO PERDIDO?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "como faço para registrar um objeto perdido?",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "meu ex esta aqui e disse que vai me machucar",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "meu ex está aqui e disse que vai me machucar",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "MEU EX ESTA AQUI E DISSE QUE VAI ME MACHUCAR!!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "meu ex está aqui e disse que vai me machucar",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "UM HOMEM ESTA ME AGARRANDO A FORCA!!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "um homem está me agarrando à força",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "um homme está me agrrando à força",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "um homem está me agarrando à força",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "ESTOU SENDO PERSEGUIDA PELO MEU AGRESSOR AGORA!!!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "estou sendo perseguida pelo meu agressor agora",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "estou sendo perseguida pelo meu agressor agora",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "estou sendo perseguida pelo meu agressor agora",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "um colega manda mensagens de cunho sexual sem parar",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "um colega manda mensagens de cunho sexual sem parar",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "UM COLEGA MANDA MENSAGENS DE CUNHO SEXUAL SEM PARAR!!!",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "um colega manda mensagens de cunho sexual sem parar",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "meu spuervisor de estágio me pressoina para sair com ele",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "meu supervisor de estágio me pressiona para sair com ele",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "meu supervisor de estagio me pressiona para sair com ele",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "meu supervisor de estágio me pressiona para sair com ele",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "estao espalhando fotos intimas minhas pela turma",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "estão espalhando fotos íntimas minhas pela turma",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "estão espalhando fotos íntimas minhhas pela turam",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "estão espalhando fotos íntimas minhas pela turma",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "quero saber como funciona a sala lilas",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "quero saber como funciona a sala lilás",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "quero saer como funciona a sala lilsá",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "quero saber como funciona a sala lilás",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "onde busoc apoio para viiolência doméstica?",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "onde busco apoio para violência doméstica?",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "ONDE BUSCO APOIO PARA VIOLENCIA DOMESTICA?!!",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "onde busco apoio para violência doméstica?",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "gostaria de informacoes sobre a rede de protecao a mulher no campus",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "gostaria de informações sobre a rede de proteção à mulher no campus",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "GOSTARIA DE INFORMACOES SOBRE A REDE DE PROTECAO A MULHER NO CAMPUS",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "gostaria de informações sobre a rede de proteção à mulher no campus",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "uma pessoa esta convulsionando no chao",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "uma pessoa está convulsionando no chão",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "uma pesssoa está convvulsionando no chão",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "uma pessoa está convulsionando no chão",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "NAO ESTOU CONSEGUINDO RESPIRAR DIREITO!!",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "não estou conseguindo respirar direito",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "não estou conseguindo rspirar dirito",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "não estou conseguindo respirar direito",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "cortei o braco e esta sangrando muito",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "cortei o braço e está sangrando muito",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "CORTEI O BRACO E ESTA SANGRANDO MUITO",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "cortei o braço e está sangrando muito",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "torci o pé e está inchanddo batsante",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "torci o pé e está inchando bastante",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "torci o pe e esta inchando bastante",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "torci o pé e está inchando bastante",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "ESTOU COM FEBRE ALTA E MUITA TONTURA",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "estou com febre alta e muita tontura",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "estoou com febre alta e muita tonura",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "estou com febre alta e muita tontura",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "bati a cabeca e estou meio zonzo",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "bati a cabeça e estou meio zonzo",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "bati a caebça e esotu meio zonzo",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "bati a cabeça e estou meio zonzo",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "ONDE FICA A ENFERMARIA DO CAMPUS?!!",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "onde fica a enfermaria do campus?",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "onde fica a enfremaria do caampus?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "onde fica a enfermaria do campus?",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "QUAL O HORARIO DO ATENDIMENTO MEDICO?...",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "qual o horário do atendimento médico?",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "qual o horario do atendimento medico?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "qual o horário do atendimento médico?",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "preciso de um atestado, como faco?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "preciso de um atestado, como faço?",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "PRECISO DE UM ATESTADO, COMO FACO?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "preciso de um atestado, como faço?",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "quero deenunciar asésdio moral de um professor",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "quero denunciar assédio moral de um professor",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "quero denunciar assedio moral de um professor",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "quero denunciar assédio moral de um professor",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "HA CORRUPCAO NA COMPRA DE MATERIAL DO MEU DEPARTAMENTO!!!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "há corrupção na compra de material do meu departamento",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "há crrupção na commpra de material do meu departamento",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "há corrupção na compra de material do meu departamento",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "QUERO RECLAMAR DA LIMPEZA DOS BANHEIROS...",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "quero reclamar da limpeza dos banheiros",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "quero relcamar da limpeza dos baanheiros",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "quero reclamar da limpeza dos banheiros",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "gostaria de elogiar o pessoal da biblioteca",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "gostaria de elogiar o pessoal da biblioteca",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "gosaria de elogiiar o pessoal da biblioteca",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "gostaria de elogiar o pessoal da biblioteca",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "como envio uma sugestao para a reitoria?",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "como envio uma sugestão para a reitoria?",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "COMO ENVIO UMA SUGESTAO PARA A REITORIA?!!!",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "como envio uma sugestão para a reitoria?",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "o ar-condicioando da sala vive quebrado, queero reportar",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "o ar-condicionado da sala vive quebrado, quero reportar",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "O AR-CONDICIONADO DA SALA VIVE QUEBRADO, QUERO REPORTAR...",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "o ar-condicionado da sala vive quebrado, quero reportar",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "QUERO REGISTRAR UMA RECLAMACAO SOBRE O RESTAURANTE UNIVERSITARIO!!",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "quero registrar uma reclamação sobre o restaurante universitário",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "qeuro registrar uma reclaação sobre o restaurante universitário",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "quero registrar uma reclamação sobre o restaurante universitário",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "alguem desmaiou e nao esta acordando",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "alguém desmaiou e não está acordando",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "alguém desmiaou e não está acordndo",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "alguém desmaiou e não está acordando",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "etsão brigando no pátiio e um sacou uma faca",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "estão brigando no pátio e um sacou uma faca",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "estao brigando no patio e um sacou uma faca",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "estão brigando no pátio e um sacou uma faca",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "RECEBI AMEACAS DE MORTE DE UM ALUNO",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "recebi ameaças de morte de um aluno",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "recebi ameacas de morte de um aluno",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "recebi ameaças de morte de um aluno",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "um professor faz comentários sobe meu corpo nas aulaas",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "um professor faz comentários sobre meu corpo nas aulas",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "um professor faz comentarios sobre meu corpo nas aulas",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v1-bench",
+  "variante_de": "um professor faz comentários sobre meu corpo nas aulas",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "QUERO INFORMACAO SOBRE BOLSAS DE ASSISTENCIA ESTUDANTIL...",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "quero informação sobre bolsas de assistência estudantil",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "quero informação sobrre bosas de assistência estudantil",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "quero informação sobre bolsas de assistência estudantil",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "vi fumaça sainndo do laboratóro de química",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "vi fumaça saindo do laboratório de química",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "VI FUMACA SAINDO DO LABORATORIO DE QUIMICA",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "vi fumaça saindo do laboratório de química",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "estou tendo pensameentos de me machuacr",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "estou tendo pensamentos de me machucar",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "estou tendo pensamentos de me machucar",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v1-bench",
+  "variante_de": "estou tendo pensamentos de me machucar",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "a calçada do blcoo novo está esbruacada e perigosa",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "a calçada do bloco novo está esburacada e perigosa",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "A CALCADA DO BLOCO NOVO ESTA ESBURACADA E PERIGOSA!!",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v1-bench",
+  "variante_de": "a calçada do bloco novo está esburacada e perigosa",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "o que é a lei mariia da pnha",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "o que é a lei maria da penha",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "O QUE E A LEI MARIA DA PENHA!!!",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "o que é a lei maria da penha",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "o atendimento da sala lilas e sigiloso",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "o atendimento da sala lilás é sigiloso",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "O ATENDIMENTO DA SALA LILAS E SIGILOSO!!!",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "o atendimento da sala lilás é sigiloso",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "qual o horário de funcionamenot da sala lliás",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "qual o horário de funcionamento da sala lilás",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "qual o horario de funcionamento da sala lilas",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "qual o horário de funcionamento da sala lilás",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "COMO FUNCIONA O ATENDIMENTO DA SALA LILAS...",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "como funciona o atendimento da sala lilás",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "como funcioa o atednimento da sala lilás",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "como funciona o atendimento da sala lilás",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "quero informacoes sobre medidas protetivas",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "quero informações sobre medidas protetivas",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "quero informaçõees sobre medidas portetivas",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "quero informações sobre medidas protetivas",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "me jogaram dentro de um carro e consegui fugir, ele esta procurando",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "me jogaram dentro de um carro e consegui fugir, ele está procurando",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "ME JOGARAM DENTRO DE UM CARRO E CONSEGUI FUGIR, ELE ESTA PROCURANDO...",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "me jogaram dentro de um carro e consegui fugir, ele está procurando",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "uma amiga esta sendo espancada pelo namorado no patio",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "uma amiga está sendo espancada pelo namorado no pátio",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "uma amiga está sendo espancaad pelo namorado no páito",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "uma amiga está sendo espancada pelo namorado no pátio",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "O HOMEM QUE ME PERSEGUE ESTA NA PORTA DO LABORATORIO AGORA...",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "o homem que me persegue está na porta do laboratório agora",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "o homem que me perseegue está na porta do laboartório agora",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "o homem que me persegue está na porta do laboratório agora",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "meu marido aparceu aqui armado atráás de mim",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "meu marido apareceu aqui armado atrás de mim",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "MEU MARIDO APARECEU AQUI ARMADO ATRAS DE MIM!!!",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "meu marido apareceu aqui armado atrás de mim",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "me ameaçaram de morte aora e o homem está a pocos metros",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "me ameaçaram de morte agora e o homem está a poucos metros",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "ME AMEACARAM DE MORTE AGORA E O HOMEM ESTA A POUCOS METROS...",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "me ameaçaram de morte agora e o homem está a poucos metros",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "UM COLEGA FICA MANDANDO MENSAGEM INSISTENTE DEPOIS QUE EU DISSE NAO!!!",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "um colega fica mandando mensagem insistente depois que eu disse não",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "um colega fica mandando mensagem insistente depois que eu disse nao",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "um colega fica mandando mensagem insistente depois que eu disse não",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "um aluno me filmou sem eu perceber no vestiario",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "um aluno me filmou sem eu perceber no vestiário",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "um aluno me filmu sem eu perceber no vestiáário",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "um aluno me filmou sem eu perceber no vestiário",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "uma colega me contou que esta sofrendo abuso em casa e tenho medo por ela",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "uma colega me contou que está sofrendo abuso em casa e tenho medo por ela",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "uma colea me contou que está sofrendo abusso em casa e tenho medo por ela",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "uma colega me contou que está sofrendo abuso em casa e tenho medo por ela",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "meu chefe de projeto manda mensagnes de madrugada insinuando coissa",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "meu chefe de projeto manda mensagens de madrugada insinuando coisas",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "MEU CHEFE DE PROJETO MANDA MENSAGENS DE MADRUGADA INSINUANDO COISAS!!!",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "meu chefe de projeto manda mensagens de madrugada insinuando coisas",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "meu orientador fica me tocanndo de um jeto que me incomoda",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "meu orientador fica me tocando de um jeito que me incomoda",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "meu orientador fica me tocando de um jeito que me incomoda",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "meu orientador fica me tocando de um jeito que me incomoda",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "QUERO SOLICITAR UMA COPIA DE DOCUMENTO PUBLICO DA UNIVERSIDADE!!!",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "quero solicitar uma cópia de documento público da universidade",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "quero soolicitar uma cópia de documneto público da universidade",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "quero solicitar uma cópia de documento público da universidade",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "COMO PECO UMA INFORMACAO PUBLICA SOBRE OS GASTOS DA UNIVERSIDADE!!",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "como peço uma informação pública sobre os gastos da universidade",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "como peco uma informacao publica sobre os gastos da universidade",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "como peço uma informação pública sobre os gastos da universidade",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "POSSO FAZER UMA RECLAMACAO SEM ME IDENTIFICAR!!!",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "posso fazer uma reclamação sem me identificar",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "possso fazer uma reclamação sem me iddentificar",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "posso fazer uma reclamação sem me identificar",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "quero elogiar o atendimento da secretaria do curso",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "quero elogiar o atendimento da secretaria do curso",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "quero elogiar o atendimeento da secretaria do currso",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "quero elogiar o atendimento da secretaria do curso",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "gostaria de sugerir mais bancos e sombra no patio",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "gostaria de sugerir mais bancos e sombra no pátio",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "gosaria de sugerir mais bancos e sombra no páto",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "gostaria de sugerir mais bancos e sombra no pátio",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "RELATO DE ASSEDIO MORAL E JORNADA ABUSIVA NO SETOR ADMINISTRATIVO!!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "fronteira": true,
+  "variante_de": "relato de assédio moral e jornada abusiva no setor administrativo",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "relato de assedio moral e jornada abusiva no setor administrativo",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "fronteira": true,
+  "variante_de": "relato de assédio moral e jornada abusiva no setor administrativo",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "descobri que um servidor recebe sem trabalhar",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "descobri que um servidor recebe sem trabalhar",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "DESCOBRI QUE UM SERVIDOR RECEBE SEM TRABALHAR!!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "descobri que um servidor recebe sem trabalhar",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "ALUNOS ESTAO SENDO COAGIDOS A PARTICIPAR DE UM PROJETO SEM REMUNERACAO!!!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "alunos estão sendo coagidos a participar de um projeto sem remuneração",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "alunos estao sendo coagidos a participar de um projeto sem remuneracao",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "alunos estão sendo coagidos a participar de um projeto sem remuneração",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "suspeito de desvio de bolsas de pesquisa no meu laboratorio",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "suspeito de desvio de bolsas de pesquisa no meu laboratório",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "suspieto de desvvio de bolsas de pesquisa no meu laboratório",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "suspeito de desvio de bolsas de pesquisa no meu laboratório",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "denuncia anonima de fraude em licitacao do restaurante universitario",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "denúncia anônima de fraude em licitação do restaurante universitário",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "DENUNCIA ANONIMA DE FRAUDE EM LICITACAO DO RESTAURANTE UNIVERSITARIO!!!",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "denúncia anônima de fraude em licitação do restaurante universitário",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "existte grupo de apoio para estudantes com anseidade",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "existe grupo de apoio para estudantes com ansiedade",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "existe grupo de apoio para estudantes com ansiedade",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "existe grupo de apoio para estudantes com ansiedade",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "COMO AVISAR A COORDENACAO SOBRE UMA CONDICAO DE SAUDE CRONICA!!",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "como avisar a coordenação sobre uma condição de saúde crônica",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "como avisar a coordenacao sobre uma condicao de saude cronica",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "como avisar a coordenação sobre uma condição de saúde crônica",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "O PLANO DE SAUDE ESTUDANTIL COBRE ATENDIMENTO ODONTOLOGICO!!",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "o plano de saúde estudantil cobre atendimento odontológico",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "o plano de saude estudantil cobre atendimento odontologico",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "o plano de saúde estudantil cobre atendimento odontológico",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "TEM ESTACIONAMENTO PARA AMBULANCIA NO HU!!",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "tem estacionamento para ambulância no HU",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "tem estacionammento para ambulâcia no HU",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "tem estacionamento para ambulância no HU",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "COMO PECO ATESTADO MEDICO PARA JUSTIFICAR FALTAS!!",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "como peço atestado médico para justificar faltas",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "como peço atestado médcio para justificar faaltas",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "como peço atestado médico para justificar faltas",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "algéum está tenod uma convulsão na sala de aula",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "alguém está tendo uma convulsão na sala de aula",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "alguem esta tendo uma convulsao na sala de aula",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "alguém está tendo uma convulsão na sala de aula",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "ESTOU COM UMA DOR FORTE NO PEITO E O BRACO ESQUERDO DORMENTE...",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "estou com uma dor forte no peito e o braço esquerdo dormente",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "estou com uma dor forte no peito e o braaço esuerdo dormente",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "estou com uma dor forte no peito e o braço esquerdo dormente",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "um aluno diabéitco está desacordado e suanddo frio",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "um aluno diabético está desacordado e suando frio",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "UM ALUNO DIABETICO ESTA DESACORDADO E SUANDO FRIO!!",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "um aluno diabético está desacordado e suando frio",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "fui picado por um esccorpião e minha perrna está inchando rápido",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "fui picado por um escorpião e minha perna está inchando rápido",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "FUI PICADO POR UM ESCORPIAO E MINHA PERNA ESTA INCHANDO RAPIDO",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "fui picado por um escorpião e minha perna está inchando rápido",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "UMA ALUNA NAO ESTA RESPIRANDO DIREITO, ESTA FICANDO ROXA!!",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "uma aluna não está respirando direito, está ficando roxa",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "uma aluuna não está respriando direito, está ficando roxa",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "uma aluna não está respirando direito, está ficando roxa",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "TENHO TIDO PENSAMENTOS RUINS E NAO SEI COM QUEM FALAR...",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "tenho tido pensamentos ruins e não sei com quem falar",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "tenho tido pensamentos ruins e nao sei com quem falar",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "tenho tido pensamentos ruins e não sei com quem falar",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "ESTOU VOMITANDO DESDE QUE ALMOCEI NO RU...",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "estou vomitando desde que almocei no RU",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "esou vomitando desde que almoeci no RU",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "estou vomitando desde que almocei no RU",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "cai da escada e estou com muita dor nas costas",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "caí da escada e estou com muita dor nas costas",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "caí da escada e esttou com muiat dor nas costas",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "caí da escada e estou com muita dor nas costas",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "TOMEI UM REMEDIO QUE NAO CONHECIA E ESTOU ME SENTINDO ESTRANHA",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "tomei um remédio que não conhecia e estou me sentindo estranha",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "tomei um remédio que não conhecia e esou me sentindo estrranha",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "tomei um remédio que não conhecia e estou me sentindo estranha",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "me cortei na oficina e o corte esta fundo mas sangrando pouco",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "me cortei na oficina e o corte está fundo mas sangrando pouco",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "ME CORTEI NA OFICINA E O CORTE ESTA FUNDO MAS SANGRANDO POUCO",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "me cortei na oficina e o corte está fundo mas sangrando pouco",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "achei um celular no banheiro, onde entrego",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "achei um celular no banheiro, onde entrego",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "ACHEI UM CELULAR NO BANHEIRO, ONDE ENTREGO!!!",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "achei um celular no banheiro, onde entrego",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "qual o telefone da seguranca do campus",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "qual o telefone da segurança do campus",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "qual o telefone da sgurança do camus",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "qual o telefone da segurança do campus",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "gosstaria de saber onde fazre a ocorrência de objeto perdido",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "gostaria de saber onde fazer a ocorrência de objeto perdido",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "gostaria de saber onde fazer a ocorrencia de objeto perdido",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "gostaria de saber onde fazer a ocorrência de objeto perdido",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "existe botao de panico em algum predio do campus",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "existe botão de pânico em algum prédio do campus",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "EXISTE BOTAO DE PANICO EM ALGUM PREDIO DO CAMPUS",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "existe botão de pânico em algum prédio do campus",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "COMO SOLICITO ACOMPANHAMENTO DA SEGURANCA ATE O PONTO DE ONIBUS A NOITE...",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "como solicito acompanhamento da segurança até o ponto de ônibus à noite",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "como solicito acompanhamento da seguranca ate o ponto de onibus a noite",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2",
+  "variante_de": "como solicito acompanhamento da segurança até o ponto de ônibus à noite",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "estao roubando uma moto aqui na frente agora mesmo",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "estão roubando uma moto aqui na frente agora mesmo",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "ESTAO ROUBANDO UMA MOTO AQUI NA FRENTE AGORA MESMO",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "estão roubando uma moto aqui na frente agora mesmo",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "um homem está amaçando as pesssoas com uma faca no RU",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "um homem está ameaçando as pessoas com uma faca no RU",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "UM HOMEM ESTA AMEACANDO AS PESSOAS COM UMA FACA NO RU!!",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "um homem está ameaçando as pessoas com uma faca no RU",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "estao arrastando uma pessoa pra dentro do mato atras do CT",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "estão arrastando uma pessoa pra dentro do mato atrás do CT",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "etsão arrastando uma pessoa pra dntro do mato atrás do CT",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "estão arrastando uma pessoa pra dentro do mato atrás do CT",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "sequestrarma um coleag e levaram num carro preto agorinha",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "sequestraram um colega e levaram num carro preto agorinha",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "sequestraram um colega e levaram num carro preto agorinha",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "sequestraram um colega e levaram num carro preto agorinha",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "ouvi tiros perto da portaria principal",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "ouvi tiros perto da portaria principal",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "ouvi tiros perrto da portaria pricnipal",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2",
+  "variante_de": "ouvi tiros perto da portaria principal",
+  "ruido": "digitacao"
+ },
+ {
+  "texto": "ESTAO PICHANDO AS PAREDES DO PREDIO E ACHO QUE VAO QUEBRAR MAIS COISAS!!",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "estão pichando as paredes do prédio e acho que vão quebrar mais coisas",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "estao pichando as paredes do predio e acho que vao quebrar mais coisas",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "estão pichando as paredes do prédio e acho que vão quebrar mais coisas",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "tem um grupo de desconhecidos bebendo e arrumando confusao perto da quadra",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "tem um grupo de desconhecidos bebendo e arrumando confusão perto da quadra",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "TEM UM GRUPO DE DESCONHECIDOS BEBENDO E ARRUMANDO CONFUSAO PERTO DA QUADRA",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "tem um grupo de desconhecidos bebendo e arrumando confusão perto da quadra",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "UM CARA ME ABORDOU QUERENDO VENDER DROGA NA PARADA DE ONIBUS!!!",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "um cara me abordou querendo vender droga na parada de ônibus",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "um cara me abordou querendo vender droga na parada de onibus",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "um cara me abordou querendo vender droga na parada de ônibus",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "o portao lateral esta aberto de madrugada sem vigilante",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "o portão lateral está aberto de madrugada sem vigilante",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "O PORTAO LATERAL ESTA ABERTO DE MADRUGADA SEM VIGILANTE!!",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "o portão lateral está aberto de madrugada sem vigilante",
+  "ruido": "caixa_alta"
+ },
+ {
+  "texto": "sumiu um notebook da sala e acho que alguem entrou",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "sumiu um notebook da sala e acho que alguém entrou",
+  "ruido": "sem_acento"
+ },
+ {
+  "texto": "SUMIU UM NOTEBOOK DA SALA E ACHO QUE ALGUEM ENTROU...",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "variante_de": "sumiu um notebook da sala e acho que alguém entrou",
+  "ruido": "caixa_alta"
+ }
+]

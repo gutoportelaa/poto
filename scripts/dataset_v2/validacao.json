@@ -1,0 +1,202 @@
+[
+ {
+  "texto": "onde eu denuncio assédio sexual na universidade",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "quais são os direitos de quem sofre violência doméstica",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "qual o telefone da central de atendimento à mulher",
+  "tipo": "mulher",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "um professor me trancou na sala e está encostando em mim",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "estou escondida no banheiro porque meu agressor está do lado de fora",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "estou com medo, ele está me ameaçando com uma faca",
+  "tipo": "mulher",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "meu namorado controla minhas roupas e quer que eu largue o curso",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "fui xingada e humilhada por ser mulher no laboratório",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "fronteira": true
+ },
+ {
+  "texto": "um homem fica esperando eu sair da aula e me segue de longe",
+  "tipo": "mulher",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "o restaurante universitário está com fila enorme, como reclamar",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como registro uma manifestação no Fala.BR",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "queria elogiar o professor de cálculo pela dedicação",
+  "tipo": "ouvidoria",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "um docente está usando recursos da universidade para negócio próprio",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "denuncio um professor que humilha os alunos em sala",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2",
+  "fronteira": true
+ },
+ {
+  "texto": "quero denunciar um professor que dá nota em troca de favores",
+  "tipo": "ouvidoria",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "qual o telefone do SAMU",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "quem é o responsável pelos primeiros socorros no bloco",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "como faço para tomar a vacina da gripe aqui",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem uma criança desmaiada na creche da universidade",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "um professor teve um infarto na sala",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "uma mulher grávida está sangrando muito perto do bloco 3",
+  "tipo": "saude",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "uma colega está muito ansiosa e chorando sem parar na sala",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "um amigo anda dizendo que não vê sentido na vida",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "estou com dor de cabeça forte há dois dias e enjoo",
+  "tipo": "saude",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "como eu faço para registrar um boletim de ocorrência por furto",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "a segurança atende ligação de celular ou só de ramal",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "perdi minha carteira no campus, a quem eu procuro",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem um sujeito encapuzado correndo com uma arma pelo campus",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "assaltaram o caixa eletrônico e os bandidos ainda estão aqui",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "um grupo está cercando um aluno com pedaços de pau",
+  "tipo": "seguranca",
+  "gravidade": "risco_imediato",
+  "origem": "v2"
+ },
+ {
+  "texto": "tem um fio solto soltando faísca perto da escada",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "vi um carro suspeito parado há horas na frente do departamento",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ },
+ {
+  "texto": "vi uma pessoa estranha rondando os carros no estacionamento",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "v2"
+ }
+]
