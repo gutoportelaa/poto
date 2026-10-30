@@ -2094,5 +2094,35 @@
    "seguranca",
    "orientacao"
   ]
+ },
+ {
+  "texto": "Caiu uma luz no corredor A, preciso de ajuda urgente!",
+  "tipo": "seguranca",
+  "gravidade": "risco_potencial",
+  "origem": "ext-ollama-humano",
+  "rotulo_gerador": [
+   "seguranca",
+   "risco_imediato"
+  ]
+ },
+ {
+  "texto": "Aiii pai to nervosa demais pra fazer a prova, a ansiedade tá me corroendo não consigo respirar direito. Tem algum apoio psicológico por perto?",
+  "tipo": "saude",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama-humano",
+  "rotulo_gerador": [
+   "saude",
+   "risco_potencial"
+  ]
+ },
+ {
+  "texto": "Ô Totem, tu viu que o pessoal da limpeza tá sumindo com as plantas do corredor? Parece até coisa pra assustar a galera, né? Poderia dar um jeito nisso aí?",
+  "tipo": "seguranca",
+  "gravidade": "orientacao",
+  "origem": "ext-ollama-humano",
+  "rotulo_gerador": [
+   "ouvidoria",
+   "risco_potencial"
+  ]
  }
 ]

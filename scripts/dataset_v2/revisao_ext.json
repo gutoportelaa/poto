@@ -1,15 +1,5 @@
 [
  {
-  "texto": "Caiu uma luz no corredor A, preciso de ajuda urgente!",
-  "tipo": "seguranca",
-  "gravidade": "risco_imediato",
-  "origem": "ext-ollama",
-  "verificador": {
-   "tipo": "seguranca",
-   "gravidade": "risco_potencial"
-  }
- },
- {
   "texto": "Boa tarde. Tenho dúvidas sobre o procedimento correto para relatar uma situação de potencial risco na área dos laboratórios do ICB. Poderiam me indicar um canal específico ou contato responsável?",
   "tipo": "seguranca",
   "gravidade": "orientacao",
@@ -156,26 +146,6 @@
   "origem": "ext-ollama",
   "verificador": {
    "tipo": "saude",
-   "gravidade": "orientacao"
-  }
- },
- {
-  "texto": "Aiii pai to nervosa demais pra fazer a prova, a ansiedade tá me corroendo não consigo respirar direito. Tem algum apoio psicológico por perto?",
-  "tipo": "saude",
-  "gravidade": "risco_potencial",
-  "origem": "ext-ollama",
-  "verificador": {
-   "tipo": "saude",
-   "gravidade": "orientacao"
-  }
- },
- {
-  "texto": "Ô Totem, tu viu que o pessoal da limpeza tá sumindo com as plantas do corredor? Parece até coisa pra assustar a galera, né? Poderia dar um jeito nisso aí?",
-  "tipo": "ouvidoria",
-  "gravidade": "risco_potencial",
-  "origem": "ext-ollama",
-  "verificador": {
-   "tipo": "seguranca",
    "gravidade": "orientacao"
   }
  },
