@@ -74,7 +74,10 @@ TURN_PASS = os.getenv("POTO_TURN_PASS", "")
 # --- Notificação externa ---------------------------------------------------
 # Redireciona todos os destinos para um número (testes em bancada).
 CONTACT_OVERRIDE = os.getenv("POTO_CONTACT_OVERRIDE", "").strip()
-NOTIF_PROVIDER = os.getenv("POTO_NOTIF_PROVIDER", "log").strip().lower()
+# Modo demonstração (publicação para testes de usuário): nenhum caminho chega a
+# provedor real, nenhuma ligação/SMS sai e o relato não é persistido. Sobrepõe o resto.
+DEMO = os.getenv("POTO_DEMO", "").strip().lower() in ("1", "true", "on", "yes", "sim")
+NOTIF_PROVIDER = "log" if DEMO else os.getenv("POTO_NOTIF_PROVIDER", "log").strip().lower()
 NOTIF_WEBHOOK_URL = os.getenv("POTO_NOTIF_WEBHOOK_URL", "").strip()
 NOTIF_WEBHOOK_TOKEN = os.getenv("POTO_NOTIF_WEBHOOK_TOKEN", "").strip()
 TELEGRAM_BOT_TOKEN = os.getenv("POTO_TELEGRAM_BOT_TOKEN", "").strip()

@@ -529,6 +529,20 @@ async function heartbeat(): Promise<void> {
   } catch { /* offline: a batida se perde, esperado */ }
 }
 
+// Modo demonstração: o backend sinaliza em /health e a tela avisa, de forma fixa, que
+// nada é acionado de verdade nem guardado.
+async function avisoDemo() {
+  try {
+    const h = await fetch(`${apiBase()}/health`).then((r) => r.json());
+    if (!h?.demo) return;
+    const el = document.createElement("div");
+    el.className = "demo-banner";
+    el.setAttribute("role", "status");
+    el.textContent = "DEMONSTRAÇÃO — nenhuma ajuda é acionada e nada do que você escrever é guardado. Em emergência real, ligue 190, 192 ou 193.";
+    document.body.prepend(el);
+  } catch { /* sem backend: sem banner */ }
+}
+
 initServiceWorker();
 // Wordmark P.O.T.O no header volta ao início (a qualquer momento do fluxo).
 document.getElementById("brand-home")?.addEventListener("click", home);
@@ -540,3 +554,4 @@ setInterval(heartbeat, 15_000);
 home();
 refreshStatus();
 heartbeat();
+avisoDemo();
