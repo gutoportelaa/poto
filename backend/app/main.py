@@ -26,7 +26,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import db, notifier, sla, stt, video, voz
+from . import db, notifier, ouvidoria, sla, stt, video, voz
 from .agents.graph import conversa_voz, status_agentes, triagem_conversacional
 from .config import (
     AUDIO_DIR,
@@ -278,7 +278,12 @@ async def escalonar(chamado_id: str, req: EscalonamentoIn) -> dict:
 # --- Triagem conversacional (agentes) -------------------------------------
 @app.post(f"{API}/triagem", response_model=TriagemOut)
 def triagem(req: TriagemIn) -> TriagemOut:
-    return TriagemOut(**triagem_conversacional(req.texto, req.modo))
+    out = triagem_conversacional(req.texto, req.modo)
+    ori = ouvidoria.orientar(req.texto)
+    if ori["aviso_anonimato"] or (ori["resposta"] and out.get("tipo_sugerido") == "ouvidoria"):
+        out = {**out, "orientacao_ouvidoria": ori["resposta"], "fontes": ori["fontes"],
+               "aviso_anonimato": ori["aviso_anonimato"]}
+    return TriagemOut(**out)
 
 
 @app.post(f"{API}/conversa", response_model=ConversaOut)
