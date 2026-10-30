@@ -1,0 +1,50 @@
+{
+  "_doc": "Base de conhecimento da Ouvidoria (issue #21). O assistente responde SÓ a partir deste arquivo: cada afirmação tem fonte. status = 'norma' (vem de lei/decreto), 'portal' (vem do portal oficial da UFPI/CGU) ou 'a_confirmar' (não usar em resposta). Levantado em 2026-10-26.",
+  "fatos": {
+    "prazo_manifestacao": {
+      "texto": "A Ouvidoria tem 30 dias para dar resposta conclusiva à manifestação. O prazo pode ser prorrogado por mais 30 dias, mediante justificativa expressa.",
+      "status": "norma",
+      "fonte": "Lei 13.460/2017, art. 16 (planalto.gov.br/ccivil_03/_ato2015-2018/2017/lei/l13460.htm)"
+    },
+    "prazo_acesso_informacao": {
+      "texto": "Pedido de acesso à informação (LAI) tem resposta em até 20 dias, prorrogáveis por mais 10 dias com justificativa.",
+      "status": "norma",
+      "fonte": "Lei 12.527/2011 (LAI), art. 11"
+    },
+    "canal_oficial": {
+      "texto": "As manifestações são registradas na plataforma Fala.BR, canal oficial da Ouvidoria do Poder Executivo federal.",
+      "status": "norma",
+      "fonte": "Decreto 9.492/2018; wiki do Fala.BR (CGU)"
+    },
+    "tipos_manifestacao": {
+      "texto": "No Fala.BR você pode registrar: elogio, sugestão, reclamação, denúncia, solicitação, pedido de simplificação (Simplifique) e pedido de acesso à informação.",
+      "status": "portal",
+      "fonte": "Wiki do Fala.BR (CGU)"
+    },
+    "denuncia_anonima": {
+      "texto": "A denúncia anônima, feita sem identificação, não gera número de protocolo e não permite resposta nem acompanhamento.",
+      "status": "portal",
+      "fonte": "Wiki do Fala.BR (CGU)"
+    },
+    "telefone": {
+      "texto": "Telefone da Ouvidoria da UFPI: (86) 3237-2104.",
+      "status": "portal",
+      "fonte": "ufpi.br/ouvidoria e Carta de Serviços da UFPI (ufpi.br/cartadeservicos)"
+    },
+    "horario": {
+      "texto": "Atendimento de segunda a sexta, das 8h às 12h e das 13h às 17h.",
+      "status": "portal",
+      "fonte": "ufpi.br/ouvidoria"
+    },
+    "email": {
+      "texto": null,
+      "status": "a_confirmar",
+      "fonte": "Divergência: config do projeto usa ouvidoria@ufpi.br; a Carta de Serviços indica ouvidoria@ufpi.edu.br (issue #26)"
+    },
+    "regimento": {
+      "texto": null,
+      "status": "a_confirmar",
+      "fonte": "Resolução/regimento da Ouvidoria da UFPI e política para assédio moral × violência de gênero ainda não localizados (issue #20)"
+    }
+  }
+}

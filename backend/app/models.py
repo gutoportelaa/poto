@@ -150,6 +150,11 @@ class TriagemOut(BaseModel):
         NivelRisco.normal,
         description="Regime de autonomia: claro (aciona já) | suposto (gate humano) | normal (autônomo).",
     )
+    orientacao_ouvidoria: str | None = Field(
+        None, description="Resposta da base da Ouvidoria (só fatos com fonte), quando aplicável.")
+    aviso_anonimato: str | None = Field(
+        None, description="Aviso de que denúncia anônima não gera protocolo nem resposta.")
+    fontes: list[str] = Field(default_factory=list, description="Fontes da orientação.")
 
 
 # --- Conversa por voz (triagem multi-turno) ------------------------------
